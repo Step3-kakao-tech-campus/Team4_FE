@@ -19,34 +19,28 @@ i18n
     resources: {
       ko: {
         translation: {
-          aria: {
-            languageSelect: '언어 선택',
+          common: {
+            selected: '선택됨',
           },
-          language: '한국어',
-          landing: {
+          landingPage: {
             d1: '다른 나라의 음식점에서도 쉽게 주문하고 싶으신가요?',
             d2: '가 도와드릴게요',
-          },
-          button: {
-            language: '언어',
-            ok: '확인',
+            languageSelect: '언어 선택',
+            language: '한국어',
             start: '시작하기',
           },
         },
       },
       en: {
-        aria: {
-          languageSelect: 'language select',
-        },
         translation: {
-          language: 'English',
-          landing: {
+          common: {
+            selected: 'selected',
+          },
+          landingPage: {
             d1: 'Do you want to order easily from restaurants in other countries?',
             d2: 'will help you',
-          },
-          button: {
-            language: 'Language',
-            ok: 'ok',
+            languageSelect: 'language select',
+            language: 'English',
             start: 'Start',
           },
         },
