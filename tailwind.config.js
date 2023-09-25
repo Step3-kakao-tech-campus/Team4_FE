@@ -7,7 +7,15 @@ module.exports = {
     fontFamily: {
       'noto': ['Noto Sans', 'Noto Sans KR', 'sans-serif']
     },
-    extend: {},
+    extend: {
+      colors: {
+        'matgpt': {
+          blue: '#5b76ff',
+          gray: '#808080',
+          red: '#ff5d5d',
+        }
+      },
+    },
   },
   plugins: [],
 }
