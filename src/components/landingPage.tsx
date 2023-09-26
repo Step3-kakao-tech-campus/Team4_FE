@@ -1,12 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import { IoLanguage } from 'react-icons/io5';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Button from './atoms/button';
 import OptionSelectPopup from './organisms/optionSelectPopup';
+import { LANGUAGE_SET, setLanguage } from '../utils/language';
 
 export default function LandingPage() {
   const { t } = useTranslation();
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (dialogRef.current !== null) {
+      dialogRef.current.showModal();
+    }
+  }, []);
 
   const showLanguageSelectModal = () => {
     if (dialogRef.current !== null) {
@@ -14,13 +21,13 @@ export default function LandingPage() {
     }
   };
 
-  const onLanguageSelect = () => {
-    if (dialogRef.current !== null) {
-      dialogRef.current.close();
-    }
-  };
+  const onLanguageSelect = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const selectedLanguage = Object.fromEntries(formData.entries()).languageSelect.toString();
 
-  const closeLanguageSelectModal = () => {
+    setLanguage(selectedLanguage);
+
     if (dialogRef.current !== null) {
       dialogRef.current.close();
     }
@@ -39,20 +46,19 @@ export default function LandingPage() {
         {t('landingPage.d2')}
       </div>
       <OptionSelectPopup
-        optionNames={['한국어', 'English']}
-        optionGroup="언어 선택"
+        options={LANGUAGE_SET}
+        optionGroup="languageSelect"
         onOptionSelect={onLanguageSelect}
-        closeModal={closeLanguageSelectModal}
         ref={dialogRef}
       />
-      <button
-        type="button"
-        className="flex items-center gap-1"
+      <Button
         onClick={showLanguageSelectModal}
       >
-        <IoLanguage aria-label={t('aria.languageSelect')} />
-        {t('landingPage.language')}
-      </button>
+        <div className="flex items-center gap-1">
+          <IoLanguage aria-label={t('landingPage.languageSelect')} size="1.2rem" />
+          {t('landingPage.language')}
+        </div>
+      </Button>
       <Button>{t('landingPage.start')}</Button>
     </main>
   );
