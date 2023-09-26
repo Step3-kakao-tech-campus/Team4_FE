@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       colors: {
         'matgpt': {
+          lightblue: '#C9D2FF',
           blue: '#5b76ff',
           gray: '#808080',
           red: '#ff5d5d',
