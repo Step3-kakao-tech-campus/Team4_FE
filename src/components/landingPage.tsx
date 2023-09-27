@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { IoLanguage } from 'react-icons/io5';
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import Button from './atoms/button';
 import OptionSelectPopup from './organisms/optionSelectPopup';
 import { LANGUAGE_SET, setLanguage } from '../utils/language';
@@ -64,7 +65,9 @@ export default function LandingPage() {
           {t('landingPage.language')}
         </div>
       </Button>
-      <Button>{t('landingPage.start')}</Button>
+      <Link to="/main">
+        <Button>{t('landingPage.start')}</Button>
+      </Link>
     </main>
   );
 }
