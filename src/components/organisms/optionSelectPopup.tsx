@@ -6,12 +6,14 @@ import { Option } from '../../types/option';
 interface OptionListProps {
   options: Option[];
   optionGroup: string;
-  onOptionSelect: React.FormEventHandler<HTMLFormElement>
+  currentValue: string;
+  onOptionSelect: React.FormEventHandler<HTMLFormElement>;
 }
 
 const OptionSelectPopup = forwardRef<HTMLDialogElement, OptionListProps>(({
   options,
   optionGroup,
+  currentValue,
   onOptionSelect,
 }, ref) => {
   const { t } = useTranslation();
@@ -31,7 +33,9 @@ const OptionSelectPopup = forwardRef<HTMLDialogElement, OptionListProps>(({
                 <RadioOption
                   labelName={name}
                   optionGroup={optionGroup}
+                  id={value}
                   value={value}
+                  defaultChecked={value === currentValue}
                 />
               </li>
             ))}

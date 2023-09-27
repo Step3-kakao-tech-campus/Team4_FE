@@ -6,12 +6,13 @@ import OptionSelectPopup from './organisms/optionSelectPopup';
 import { LANGUAGE_SET, setLanguage } from '../utils/language';
 
 export default function LandingPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    if (dialogRef.current !== null) {
+    if (dialogRef.current !== null && localStorage.getItem('visited') === null) {
       dialogRef.current.showModal();
+      localStorage.setItem('visited', 'true');
     }
   }, []);
 
@@ -27,7 +28,7 @@ export default function LandingPage() {
     const selectedLanguage = Object.fromEntries(formData.entries()).languageSelect;
 
     if (selectedLanguage !== undefined
-      && localStorage.getItem('language') !== selectedLanguage.toString()) {
+      && i18n.language !== selectedLanguage.toString()) {
       setLanguage(selectedLanguage.toString());
     }
 
@@ -51,6 +52,7 @@ export default function LandingPage() {
       <OptionSelectPopup
         options={LANGUAGE_SET}
         optionGroup="languageSelect"
+        currentValue={i18n.language}
         onOptionSelect={onLanguageSelect}
         ref={dialogRef}
       />

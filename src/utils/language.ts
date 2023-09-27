@@ -14,6 +14,5 @@ export const LANGUAGE_SET: Option[] = [
 
 export const setLanguage = (language: string) => {
   i18n.changeLanguage(language);
-  localStorage.setItem('language', language);
   document.documentElement.lang = language;
 };
