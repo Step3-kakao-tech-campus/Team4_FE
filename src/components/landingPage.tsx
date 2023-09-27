@@ -24,9 +24,12 @@ export default function LandingPage() {
   const onLanguageSelect = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const selectedLanguage = Object.fromEntries(formData.entries()).languageSelect.toString();
+    const selectedLanguage = Object.fromEntries(formData.entries()).languageSelect;
 
-    setLanguage(selectedLanguage);
+    if (selectedLanguage !== undefined
+      && localStorage.getItem('language') !== selectedLanguage.toString()) {
+      setLanguage(selectedLanguage.toString());
+    }
 
     if (dialogRef.current !== null) {
       dialogRef.current.close();
