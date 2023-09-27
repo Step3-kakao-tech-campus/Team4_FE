@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Button from './atoms/button';
 import OptionSelectPopup from './organisms/optionSelectPopup';
 import { LANGUAGE_SET, setLanguage } from '../utils/language';
+import { preventScrollWhenModalOpen, restorePreventScroll } from '../utils/modal';
 
 export default function LandingPage() {
   const { t, i18n } = useTranslation();
@@ -20,7 +21,7 @@ export default function LandingPage() {
   const showLanguageSelectModal = () => {
     if (dialogRef.current !== null) {
       dialogRef.current.showModal();
-      document.body.style.overflowY = 'hidden';
+      preventScrollWhenModalOpen();
     }
   };
 
@@ -36,7 +37,7 @@ export default function LandingPage() {
 
     if (dialogRef.current !== null) {
       dialogRef.current.close();
-      document.body.style.overflowY = 'auto';
+      restorePreventScroll();
     }
   };
 
