@@ -39,7 +39,7 @@ i18n
           },
           landingPage: {
             d1: 'Do you want to order easily from restaurants in other countries?',
-            d2: 'will help you',
+            d2: ' will help you',
             languageSelect: 'language select',
             language: 'English',
             start: 'Start',
