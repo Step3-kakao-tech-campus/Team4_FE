@@ -21,13 +21,13 @@ const OptionSelectPopup = forwardRef<HTMLDialogElement, OptionListProps>(({
   return (
     <dialog
       ref={ref}
-      className="relative mb-0 h-[50vh] w-full max-w-[500px] rounded-t-2xl
+      className="fixed mb-0 h-[50vh] w-full max-w-[500px] rounded-t-2xl
       backdrop:bg-matgpt-gray/50"
     >
       <form onSubmit={onOptionSelect}>
         <section>
           <h1 className="py-2">{t('landingPage.languageSelect')}</h1>
-          <ul className="max-h-[calc(50vh-6rem)] overflow-y-auto">
+          <ul className="h-[calc(50vh-6rem-1px)] overflow-y-auto overscroll-contain px-4">
             {options.map(({ name, value }) => (
               <li key={value}>
                 <RadioOption
@@ -43,8 +43,7 @@ const OptionSelectPopup = forwardRef<HTMLDialogElement, OptionListProps>(({
         </section>
         <button
           type="submit"
-          className="fixed inset-x-0 bottom-0 mx-auto w-full max-w-[500px]
-          border-t border-t-matgpt-gray/50 bg-white py-4"
+          className="w-full max-w-[500px] border-t border-t-matgpt-gray/50 bg-white py-4"
         >
           {t('landingPage.save')}
         </button>

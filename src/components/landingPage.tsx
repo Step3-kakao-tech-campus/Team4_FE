@@ -20,6 +20,7 @@ export default function LandingPage() {
   const showLanguageSelectModal = () => {
     if (dialogRef.current !== null) {
       dialogRef.current.showModal();
+      document.body.style.overflowY = 'hidden';
     }
   };
 
@@ -35,6 +36,7 @@ export default function LandingPage() {
 
     if (dialogRef.current !== null) {
       dialogRef.current.close();
+      document.body.style.overflowY = 'auto';
     }
   };
 
