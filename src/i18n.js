@@ -19,8 +19,13 @@ i18n
     resources: {
       ko: {
         translation: {
-          common: {
-            selected: '선택됨',
+          navigationBar: {
+            prompt: '프롬프트 페이지로 이동',
+            myPage: '마이 페이지로 이동',
+            home: '메인 페이지로 이동',
+            search: '검색 페이지로 이동',
+            darkMode: '다크 모드로 전환',
+            lightMode: '라이트 모드로 전환',
           },
           landingPage: {
             d1: '다른 나라의 음식점에서도 쉽게 주문하고 싶으신가요?',
@@ -33,10 +38,15 @@ i18n
         },
       },
       en: {
+        navigationBar: {
+          prompt: 'Move to prompt page',
+          myPage: 'Move to my page',
+          home: 'Move to main page',
+          search: 'Move to search page',
+          darkMode: 'Switch to dark mode',
+          lightMode: 'Switch to light mode',
+        },
         translation: {
-          common: {
-            selected: 'selected',
-          },
           landingPage: {
             d1: 'Do you want to order easily from restaurants in other countries?',
             d2: ' will help you',
