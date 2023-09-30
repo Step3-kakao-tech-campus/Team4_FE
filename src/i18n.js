@@ -10,6 +10,9 @@ i18n
   .use(initReactI18next)
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
+  .on('languageChanged', (lng) => {
+    document.documentElement.lang = lng;
+  })
   .init({
     debug: true,
     fallbackLng: 'en',

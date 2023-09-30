@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './atoms/button';
 import OptionSelectPopup from './organisms/optionSelectPopup';
-import { LANGUAGE_SET, setLanguage } from '../utils/language';
+import { LANGUAGE_SET } from '../utils/language';
 import { preventScrollWhenModalOpen, restorePreventScroll } from '../utils/modal';
 
 export default function LandingPage() {
@@ -32,7 +32,7 @@ export default function LandingPage() {
 
     if (selectedLanguage !== undefined
       && i18n.language !== selectedLanguage.toString()) {
-      setLanguage(selectedLanguage.toString());
+      i18n.changeLanguage(selectedLanguage.toString());
     }
 
     if (dialogRef.current !== null) {
