@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './components/landingPage';
+import SocialLoginModal from './components/socialLoginModal';
 
 function App() {
   return (
