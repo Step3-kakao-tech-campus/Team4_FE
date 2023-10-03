@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route>
           <Route path="/landing" element={<LandingPage />} />
+          <Route path="/test" element={<SocialLoginModal />} />
         </Route>
       </Routes>
     </BrowserRouter>
