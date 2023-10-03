@@ -38,6 +38,13 @@ i18n
             start: '시작하기',
             save: '저장',
           },
+          loginModal: {
+            requestLogin: '로그인이 필요합니다.',
+            googleLogo: '구글 소셜 로그인 로고',
+            kakaoLogo: '카카오 소셜 로그인 로고',
+            loginGoogle: 'Google 계정으로 로그인',
+            loginKakao: '카카오 로그인',
+          },
         },
       },
       en: {
@@ -57,6 +64,13 @@ i18n
             language: 'English',
             start: 'Start',
             save: 'Save',
+          },
+          loginModal: {
+            requestLogin: 'Login is required.',
+            googleLogo: 'Google Logo',
+            kakaoLogo: 'Kakao Logo',
+            loginGoogle: 'Sign in with Google',
+            loginKakao: 'Login with Kakao',
           },
         },
       },
