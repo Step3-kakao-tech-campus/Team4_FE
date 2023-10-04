@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './components/landingPage';
+import SocialLoginModal from './components/socialLoginModal';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <Routes>
         <Route>
           <Route path="/landing" element={<LandingPage />} />
+          <Route path="/test" element={<SocialLoginModal />} />
         </Route>
       </Routes>
     </BrowserRouter>
