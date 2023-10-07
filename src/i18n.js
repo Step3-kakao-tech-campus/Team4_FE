@@ -51,6 +51,7 @@ i18n
             coinUsageHistory: '코인 사용 내역',
             language: '언어',
             logout: '로그 아웃',
+          },
           loginModal: {
             requestLogin: '로그인이 필요합니다.',
             googleLogo: '구글 소셜 로그인 로고',
@@ -91,6 +92,7 @@ i18n
             coinUsageHistory: 'Coin Usage History',
             language: 'Language',
             logout: 'Log Out',
+          },
           loginModal: {
             requestLogin: 'Login is required.',
             googleLogo: 'Google Logo',
