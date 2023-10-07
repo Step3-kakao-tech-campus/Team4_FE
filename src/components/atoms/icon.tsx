@@ -38,7 +38,7 @@ function Icon({ name, size, ariaLabel }:{ name:string; size:string; ariaLabel:st
     case 'AiOutlineBell': // 종
       return <AiOutlineBell size={size} aria-label={ariaLabel} />;
     default:
-      return <GoHome size={size} aria-label={ariaLabel} />;
+      return <div>해당 이름의 아이콘이 없습니다.</div>;
   }
 }
 
