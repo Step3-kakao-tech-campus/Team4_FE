@@ -51,11 +51,13 @@ const Input = forwardRef<RefHandler, InputProps>((
 
   if (mode === 'singleLine') {
     return (
-      <input
-        type="text"
-        ref={inputRef}
-        className="w-full focus:outline-none"
-      />
+      <div className="w-full rounded-full border border-black bg-white px-4 py-2">
+        <input
+          type="text"
+          ref={inputRef}
+          className="w-full focus:outline-none"
+        />
+      </div>
     );
   }
 
@@ -63,7 +65,7 @@ const Input = forwardRef<RefHandler, InputProps>((
     return (
       <textarea
         ref={textareaRef}
-        className="w-full focus:outline-none"
+        className="h-full w-full resize-none p-4"
       />
     );
   }
