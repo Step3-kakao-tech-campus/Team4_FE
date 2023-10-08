@@ -1,4 +1,5 @@
 import { forwardRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { RefHandler } from '../../types/refHandler';
 import Input from '../atoms/input';
 import Button from '../atoms/button';
@@ -40,6 +41,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
   ref,
 ) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { t } = useTranslation();
 
   if (mode === 'modify') {
     return (
@@ -54,7 +56,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
                   textColor="text-black"
                   onClick={onModifyEvent}
                 >
-                  수정
+                  {t('menuTag.modify')}
                 </Button>
                 <Button
                   size="small"
@@ -62,7 +64,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
                   textColor="text-black"
                   onClick={() => setIsExpanded(false)}
                 >
-                  취소
+                  {t('menuTag.cancel')}
                 </Button>
               </div>
             </div>
@@ -82,14 +84,14 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
           <div className="relative flex w-[10rem] flex-col items-center">
             <section className="flex flex-col gap-1 rounded-xl bg-black px-4 py-2 text-white">
               <h3 className="font-bold">{name}</h3>
-              <p className="text-xs">프롬프트에 추가하시겠습니까?</p>
-              <div className="flex flex-row justify-around">
+              <p className="text-xs">{t('menuTag.prompt')}</p>
+              <div className="mt-1 flex flex-row justify-around">
                 <Button
                   size="small"
                   textColor="text-black"
                   onClick={onPromptEvent}
                 >
-                  추가
+                  {t('menuTag.add')}
                 </Button>
                 <Button
                   size="small"
@@ -97,7 +99,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
                   textColor="text-black"
                   onClick={() => setIsExpanded(false)}
                 >
-                  취소
+                  {t('menuTag.cancel')}
                 </Button>
               </div>
             </section>
