@@ -10,7 +10,7 @@ interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 }
 
 export default function Image({
-  threshold = { smallToMedium: '0px', mediumToLarge: '0px' },
+  threshold = { smallToMedium: '0px', mediumToLarge: '1920px' },
   smallImageSrc,
   largeImageSrc,
   imageSrc,
