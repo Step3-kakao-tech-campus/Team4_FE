@@ -6,12 +6,16 @@ import Button from '../atoms/button';
 interface MenuTagProps {
   name: string;
   mode: 'modify' | 'prompt';
+  onModifyEvent?: React.MouseEventHandler<HTMLButtonElement>;
+  onPromptEvent?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const MenuTag = forwardRef<RefHandler, MenuTagProps>((
   {
     name,
     mode,
+    onModifyEvent = () => {},
+    onPromptEvent = () => {},
   },
   ref,
 ) => {
@@ -28,6 +32,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
                 <Button
                   size="small"
                   textColor="text-black"
+                  onClick={onModifyEvent}
                 >
                   수정
                 </Button>
@@ -35,10 +40,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
                   size="small"
                   backgroundColor="bg-matgpt-gray"
                   textColor="text-black"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsExpanded(false);
-                  }}
+                  onClick={() => setIsExpanded(false)}
                 >
                   취소
                 </Button>
@@ -74,6 +76,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
                 <Button
                   size="small"
                   textColor="text-black"
+                  onClick={onPromptEvent}
                 >
                   추가
                 </Button>
@@ -81,10 +84,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
                   size="small"
                   backgroundColor="bg-matgpt-gray"
                   textColor="text-black"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsExpanded(false);
-                  }}
+                  onClick={() => setIsExpanded(false)}
                 >
                   취소
                 </Button>
