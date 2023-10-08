@@ -1,7 +1,7 @@
 import { ImgHTMLAttributes } from 'react';
 
 interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
-  threshold: { smallToMedium: string; mediumToLarge: string; };
+  threshold?: { smallToMedium: string; mediumToLarge: string; };
   smallImageSrc?: string;
   largeImageSrc?: string;
   imageSrc: string;
@@ -10,7 +10,7 @@ interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 }
 
 export default function Image({
-  threshold,
+  threshold = { smallToMedium: '0px', mediumToLarge: '0px' },
   smallImageSrc,
   largeImageSrc,
   imageSrc,
