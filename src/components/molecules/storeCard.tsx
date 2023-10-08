@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 
@@ -23,11 +24,13 @@ export default function StoreCard({
   reviewCount,
   averageCost,
 }: StoreCardProps) {
+  const { t } = useTranslation();
+
   return (
     <Link
       to={`/stores/${storeId}`}
       className="flex w-full items-center gap-4 p-2"
-      aria-label={`${storeName} 상세 페이지로 이동`}
+      aria-label={t('storeCard.moveDetail')}
     >
       <div className="h-32 w-32">
         <Image
@@ -49,20 +52,14 @@ export default function StoreCard({
         </p>
         <div className="flex gap-3 text-xs">
           <div className="flex items-center gap-[0.1875rem]">
-            <Icon name="OutlineStar" size="1rem" ariaLabel="별점" />
+            <Icon name="OutlineStar" size="1rem" ariaLabel={t('storeCard.rating')} />
             {reviewStar}
           </div>
           <div>
-            리뷰
-            {' '}
-            {reviewCount}
+            {`${t('storeCard.review')} ${reviewCount}`}
           </div>
           <div>
-            평균
-            {' '}
-            {averageCost}
-            {' '}
-            원
+            {`${t('storeCard.average')} ${averageCost} ${t('storeCard.KRW')}`}
           </div>
         </div>
       </section>

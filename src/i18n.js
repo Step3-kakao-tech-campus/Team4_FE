@@ -62,6 +62,13 @@ i18n
             loginGoogle: 'Google 계정으로 로그인',
             loginKakao: '카카오 로그인',
           },
+          storeCard: {
+            moveDetail: '상세 페이지로 이동',
+            rating: '별점',
+            review: '리뷰',
+            average: '평균',
+            KRW: '원',
+          },
         },
       },
       en: {
@@ -105,6 +112,13 @@ i18n
             kakaoLogo: 'Kakao Logo',
             loginGoogle: 'Sign in with Google',
             loginKakao: 'Login with Kakao',
+          },
+          storeCard: {
+            moveDetail: 'Move to the detail page',
+            rating: 'Rating',
+            review: 'Review',
+            average: 'Avg',
+            KRW: 'KRW',
           },
         },
       },
