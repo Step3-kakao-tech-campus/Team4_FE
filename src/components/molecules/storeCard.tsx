@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 
-interface RestaurantCardProps {
+interface StoreCardProps {
   storeId: number;
   storeName: string;
   category: string;
@@ -13,7 +13,7 @@ interface RestaurantCardProps {
   averageCost: number;
 }
 
-export default function RestaurantCard({
+export default function StoreCard({
   storeId,
   storeName,
   category,
@@ -22,7 +22,7 @@ export default function RestaurantCard({
   reviewStar,
   reviewCount,
   averageCost,
-}: RestaurantCardProps) {
+}: StoreCardProps) {
   return (
     <Link
       to={`/stores/${storeId}`}
