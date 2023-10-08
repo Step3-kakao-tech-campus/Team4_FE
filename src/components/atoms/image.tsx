@@ -1,9 +1,12 @@
-interface ImageProps {
+import { ImgHTMLAttributes } from 'react';
+
+interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   threshold: { smallToMedium: string; mediumToLarge: string; };
   smallImageSrc?: string;
   largeImageSrc?: string;
   imageSrc: string;
   alt: string;
+  objectFitMode?: boolean;
 }
 
 export default function Image({
@@ -12,9 +15,11 @@ export default function Image({
   largeImageSrc,
   imageSrc,
   alt,
+  objectFitMode = false,
+  ...props
 }: ImageProps) {
   return (
-    <picture>
+    <picture className={`${objectFitMode ? 'flex h-full w-full' : ''}`}>
       <source
         media={`(max-width: ${threshold.smallToMedium})`}
         srcSet={smallImageSrc || imageSrc}
@@ -23,7 +28,7 @@ export default function Image({
         media={`(min-width: ${threshold.mediumToLarge})`}
         srcSet={largeImageSrc || imageSrc}
       />
-      <img src={imageSrc} alt={alt} />
+      <img {...props} src={imageSrc} alt={alt} />
     </picture>
   );
 }
