@@ -11,7 +11,6 @@ interface StoreCardProps {
   image: string;
   reviewStar: number;
   reviewCount: number;
-  averageCost: number;
 }
 
 export default function StoreCard({
@@ -22,7 +21,6 @@ export default function StoreCard({
   image,
   reviewStar,
   reviewCount,
-  averageCost,
 }: StoreCardProps) {
   const { t } = useTranslation();
 
@@ -50,16 +48,13 @@ export default function StoreCard({
           {review}
           &rdquo;
         </p>
-        <div className="flex gap-3 text-xs">
+        <div className="flex items-center gap-3 text-xs">
           <div className="flex items-center gap-[0.1875rem]">
             <Icon name="OutlineStar" size="1rem" ariaLabel={t('storeCard.rating')} />
             {reviewStar}
           </div>
           <div>
             {`${t('storeCard.review')} ${reviewCount}`}
-          </div>
-          <div>
-            {`${t('storeCard.average')} ${averageCost} ${t('storeCard.KRW')}`}
           </div>
         </div>
       </section>
