@@ -27,7 +27,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
         {isExpanded ? (
           <div className="relative flex w-[10rem] flex-col items-center">
             <div className="flex flex-col gap-2 rounded-xl bg-black px-4 py-2">
-              <Input ref={ref} mode="singleLine" />
+              <Input ref={ref} mode="singleLine" defaultValue={name} />
               <div className="flex flex-row justify-around">
                 <Button
                   size="small"
@@ -46,7 +46,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
                 </Button>
               </div>
             </div>
-            <div className="w-4 border-[0.75rem] border-transparent border-t-black" />
+            <div className="w-4 border-[0.5rem] border-transparent border-t-black" />
           </div>
         ) : (
           <div className="relative flex w-[10rem] flex-col items-center">
@@ -90,7 +90,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
                 </Button>
               </div>
             </section>
-            <div className="w-4 border-[0.75rem] border-transparent border-t-black" />
+            <div className="w-4 border-[0.5rem] border-transparent border-t-black" />
           </div>
         ) : (
           <div className="relative flex w-[10rem] flex-col items-center">
