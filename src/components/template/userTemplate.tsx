@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { AiOutlineLeft, AiOutlineBell } from 'react-icons/ai';
 import MyPageList from '../molecules/myPageList';
 import Button from '../atoms/button';
-import NavigationBar from '../layouts/navigationBar';
 
 function UserTemplate() {
   const { t } = useTranslation();
@@ -35,7 +34,6 @@ function UserTemplate() {
           <span>{t('userPage.logout')}</span>
         </div>
       </div>
-      <NavigationBar />
     </div>
   );
 }
