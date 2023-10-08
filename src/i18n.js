@@ -30,6 +30,9 @@ i18n
             darkMode: '다크 모드로 전환',
             lightMode: '라이트 모드로 전환',
           },
+          input: {
+            search: '검색하기',
+          },
           landingPage: {
             d1: '다른 나라의 음식점에서도 쉽게 주문하고 싶으신가요?',
             d2: '가 도와드릴게요',
@@ -62,15 +65,18 @@ i18n
         },
       },
       en: {
-        navigationBar: {
-          prompt: 'Move to prompt page',
-          myPage: 'Move to my page',
-          home: 'Move to main page',
-          search: 'Move to search page',
-          darkMode: 'Switch to dark mode',
-          lightMode: 'Switch to light mode',
-        },
         translation: {
+          navigationBar: {
+            prompt: 'Move to prompt page',
+            myPage: 'Move to my page',
+            home: 'Move to main page',
+            search: 'Move to search page',
+            darkMode: 'Switch to dark mode',
+            lightMode: 'Switch to light mode',
+          },
+          input: {
+            search: 'Search',
+          },
           landingPage: {
             d1: 'Do you want to order easily from restaurants in other countries?',
             d2: ' will help you',
