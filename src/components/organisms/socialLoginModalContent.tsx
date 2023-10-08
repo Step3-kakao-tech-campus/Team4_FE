@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { AiOutlineClose } from 'react-icons/ai';
 import SocialLoginButton from '../atoms/socialLoginButton';
+import Icon from '../atoms/icon';
 
 interface SocialLoginModalContentProps {
-  onCloseModalClick: () => {};
+  onCloseModalClick: () => void;
 }
 
 function SocialLoginModalContent({ onCloseModalClick }:SocialLoginModalContentProps) {
@@ -12,7 +12,7 @@ function SocialLoginModalContent({ onCloseModalClick }:SocialLoginModalContentPr
     <div>
       <div className="text-center mt-12 relative">
         <button type="button" onClick={() => { onCloseModalClick(); }} className="absolute top-[-3.5em] right-[-0.5rem]">
-          <AiOutlineClose />
+          <Icon name="OutlineClose" size="1rem" ariaLabel={t('loginModal.closeIcon')} />
         </button>
         <div className="text-2xl font-bold mb-6">
           <span className="text-4xl">
