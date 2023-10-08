@@ -9,33 +9,33 @@ import { HiUserGroup, HiCreditCard } from 'react-icons/hi';
 
 function Icon({ name, size, ariaLabel }:{ name:string; size:string; ariaLabel:string }) {
   switch (name) {
-    case 'BsPerson': // 사람
+    case 'Person': // 사람
       return <BsPerson size={size} aria-label={ariaLabel} />;
-    case 'GoHome': // 홈버튼
+    case 'Home': // 홈버튼
       return <GoHome size={size} aria-label={ariaLabel} />;
-    case 'GoSearch': // 검색
+    case 'Search': // 검색
       return <GoSearch size={size} aria-label={ariaLabel} />;
-    case 'PiMoon': // 다크모드
+    case 'Moon': // 다크모드
       return <PiMoon size={size} aria-label={ariaLabel} />;
-    case 'PiClipboard': // 클립보드
+    case 'Clipboard': // 클립보드
       return <PiClipboard size={size} aria-label={ariaLabel} />;
-    case 'IoLanguage': // 랜딩페이지 지구본
+    case 'Language': // 랜딩페이지 지구본
       return <IoLanguage size={size} aria-label={ariaLabel} />;
-    case 'AiOutlineHeart': // 하트
+    case 'OutlineHeart': // 하트
       return <AiOutlineHeart size={size} aria-label={ariaLabel} />;
-    case 'AiOutlineLike': // 좋아요
+    case 'OutlineLike': // 좋아요
       return <AiOutlineLike size={size} aria-label={ariaLabel} />;
-    case 'HiUserGroup': // 유저들
+    case 'UserGroup': // 유저들
       return <HiUserGroup size={size} aria-label={ariaLabel} />;
-    case 'HiCreditCard': // 결제
+    case 'CreditCard': // 결제
       return <HiCreditCard size={size} aria-label={ariaLabel} />;
-    case 'AiOutlineStar': //  즐겨찾기(별)
+    case 'OutlineStar': //  즐겨찾기(별)
       return <AiOutlineStar size={size} aria-label={ariaLabel} />;
-    case 'AiOutlineClose': // <
+    case 'OutlineClose': // <
       return <AiOutlineClose size={size} aria-label={ariaLabel} />;
-    case 'AiOutlineLeft': // >
+    case 'OutlineLeft': // >
       return <AiOutlineLeft size={size} aria-label={ariaLabel} />;
-    case 'AiOutlineBell': // 종
+    case 'OutlineBell': // 종
       return <AiOutlineBell size={size} aria-label={ariaLabel} />;
     default:
       return <div>해당 이름의 아이콘이 없습니다.</div>;
