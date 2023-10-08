@@ -7,7 +7,13 @@ import {
 } from 'react-icons/ai';
 import { HiUserGroup, HiCreditCard } from 'react-icons/hi';
 
-function Icon({ name, size, ariaLabel }:{ name:string; size:string; ariaLabel:string }) {
+interface IconProps {
+  name: 'Person' | 'Home' | 'Search' | 'Moon' | 'Clipboard' | 'Language' | 'OutlineHeart' | 'OutlineLike' | 'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard';
+  size: string;
+  ariaLabel: string;
+}
+
+function Icon({ name, size, ariaLabel }:IconProps) {
   switch (name) {
     case 'Person': // 사람
       return <BsPerson size={size} aria-label={ariaLabel} />;

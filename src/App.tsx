@@ -12,7 +12,7 @@ function App() {
         <Route>
           <Route path="/landing" element={<LandingPage />} />
           <Route path="/mypage" element={<UserPage />} />
-          <Route path="/test" element={<Icon name="BsPerson" size="3.5rem" ariaLabel={t('navigationBar.myPage')} />} />
+          <Route path="/test" element={<Icon name="Person" size="3.5rem" ariaLabel={t('navigationBar.myPage')} />} />
         </Route>
       </Routes>
     </BrowserRouter>
