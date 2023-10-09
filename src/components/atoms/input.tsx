@@ -1,5 +1,5 @@
 import {
-  useRef, forwardRef, useImperativeHandle,
+  useRef, forwardRef, useImperativeHandle, useEffect,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GoSearch } from 'react-icons/go';
@@ -7,12 +7,16 @@ import { RefHandler } from '../../types/refHandler';
 
 interface InputProps {
   mode: 'search' | 'singleLine' | 'multiLine';
+  placeholder?: string;
+  defaultValue?: string;
   onSearchClick? : React.FormEventHandler<HTMLFormElement>;
 }
 
 const Input = forwardRef<RefHandler, InputProps>((
   {
     mode,
+    placeholder,
+    defaultValue,
     onSearchClick = (e) => { e.preventDefault(); },
   },
   ref,
@@ -31,6 +35,16 @@ const Input = forwardRef<RefHandler, InputProps>((
     },
   }));
 
+  useEffect(() => {
+    if (defaultValue !== undefined) {
+      if ((mode === 'search' || mode === 'singleLine') && inputRef.current !== null) {
+        inputRef.current.value = defaultValue;
+      } else if (mode === 'multiLine' && textareaRef.current !== null) {
+        textareaRef.current.value = defaultValue;
+      }
+    }
+  }, []);
+
   if (mode === 'search') {
     return (
       <form
@@ -41,6 +55,7 @@ const Input = forwardRef<RefHandler, InputProps>((
           type="text"
           ref={inputRef}
           className="w-full focus:outline-none"
+          placeholder={placeholder}
         />
         <button type="submit">
           <GoSearch size="1.2rem" aria-label={t('input.search')} />
@@ -56,6 +71,7 @@ const Input = forwardRef<RefHandler, InputProps>((
           type="text"
           ref={inputRef}
           className="w-full focus:outline-none"
+          placeholder={placeholder}
         />
       </div>
     );
@@ -66,6 +82,7 @@ const Input = forwardRef<RefHandler, InputProps>((
       <textarea
         ref={textareaRef}
         className="h-full w-full resize-none p-4"
+        placeholder={placeholder}
       />
     );
   }

@@ -63,6 +63,12 @@ i18n
             loginGoogle: 'Google 계정으로 로그인',
             loginKakao: '카카오 로그인',
           },
+          menuTag: {
+            modify: '수정',
+            add: '추가',
+            cancel: '취소',
+            prompt: '프롬프트에 추가 하시겠습니까?',
+          },
         },
       },
       en: {
@@ -107,6 +113,12 @@ i18n
             kakaoLogo: 'Kakao Logo',
             loginGoogle: 'Sign in with Google',
             loginKakao: 'Login with Kakao',
+          },
+          menuTag: {
+            modify: 'Modify',
+            add: 'Add',
+            cancel: 'Cancel',
+            prompt: 'Would you like to add it to the prompt?',
           },
         },
       },
