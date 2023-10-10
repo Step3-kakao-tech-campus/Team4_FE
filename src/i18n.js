@@ -69,6 +69,11 @@ i18n
             cancel: '취소',
             prompt: '프롬프트에 추가 하시겠습니까?',
           },
+          storeCard: {
+            moveDetail: '상세 페이지로 이동',
+            rating: '별점',
+            review: '리뷰',
+          },
         },
       },
       en: {
@@ -119,6 +124,11 @@ i18n
             add: 'Add',
             cancel: 'Cancel',
             prompt: 'Would you like to add it to the prompt?',
+          },
+          storeCard: {
+            moveDetail: 'Move to the detail page',
+            rating: 'Rating',
+            review: 'Review',
           },
         },
       },
