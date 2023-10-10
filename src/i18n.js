@@ -69,6 +69,13 @@ i18n
             cancel: '취소',
             prompt: '프롬프트에 추가 하시겠습니까?',
           },
+          reviewCard: {
+            linkToReview: '의 선택된 리뷰 페이지로 이동',
+            storeImage: '식당 이미지',
+            userImage: '유저 이미지',
+            ratingIcon: '리뷰 평점 아이콘',
+            memberNumIcon: '방문 인원 아이콘',
+          },
         },
       },
       en: {
@@ -119,6 +126,13 @@ i18n
             add: 'Add',
             cancel: 'Cancel',
             prompt: 'Would you like to add it to the prompt?',
+          },
+          reviewCard: {
+            linkToReview: 'Slected Review Page',
+            storeImage: 'Store Image',
+            userImage: 'User Image',
+            ratingIcon: 'Review Rating Icon',
+            memberNumIcon: 'The number of people visiting the store Icon',
           },
         },
       },
