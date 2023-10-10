@@ -74,6 +74,9 @@ i18n
             rating: '별점',
             review: '리뷰',
           },
+          pageTitle: {
+            back: '이전 페이지로 이동',
+          },
         },
       },
       en: {
@@ -129,6 +132,9 @@ i18n
             moveDetail: 'Move to the detail page',
             rating: 'Rating',
             review: 'Review',
+          },
+          pageTitle: {
+            back: 'Go to previous page',
           },
         },
       },
