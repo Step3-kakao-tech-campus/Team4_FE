@@ -5,7 +5,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'noto': ['Noto Sans', 'Noto Sans KR', 'sans-serif']
+      'noto': ['Noto Sans', 'Noto Sans KR', 'sans-serif'],
+      'roboto': ['Roboto', "sans-serif"],
     },
     extend: {
       colors: {
