@@ -56,11 +56,18 @@ i18n
             logout: '로그 아웃',
           },
           loginModal: {
+            closeIcon: '로그인 모달창을 닫습니다.',
             requestLogin: '로그인이 필요합니다.',
             googleLogo: '구글 소셜 로그인 로고',
             kakaoLogo: '카카오 소셜 로그인 로고',
             loginGoogle: 'Google 계정으로 로그인',
             loginKakao: '카카오 로그인',
+          },
+          menuTag: {
+            modify: '수정',
+            add: '추가',
+            cancel: '취소',
+            prompt: '프롬프트에 추가 하시겠습니까?',
           },
           storeCard: {
             moveDetail: '상세 페이지로 이동',
@@ -105,11 +112,18 @@ i18n
             logout: 'Log Out',
           },
           loginModal: {
+            closeIcon: 'Close the Login Modal',
             requestLogin: 'Login is required.',
             googleLogo: 'Google Logo',
             kakaoLogo: 'Kakao Logo',
             loginGoogle: 'Sign in with Google',
             loginKakao: 'Login with Kakao',
+          },
+          menuTag: {
+            modify: 'Modify',
+            add: 'Add',
+            cancel: 'Cancel',
+            prompt: 'Would you like to add it to the prompt?',
           },
           storeCard: {
             moveDetail: 'Move to the detail page',
