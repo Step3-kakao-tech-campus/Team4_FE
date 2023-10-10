@@ -1,3 +1,5 @@
+import { comma } from '../../utils/convert';
+
 interface ConListCardType {
   date: string,
   usingCash: number,
@@ -10,8 +12,8 @@ function CoinListCard({ date, usingCash, sumCash }:ConListCardType) {
       <hr className="border-[0.1rem]" />
       <div className="w-full flex justify-between py-6">
         <div className="pl-6">{date}</div>
-        <div>{usingCash}</div>
-        <div className="pr-6">{sumCash}</div>
+        <div>{comma(usingCash)}</div>
+        <div className="pr-6">{comma(sumCash)}</div>
       </div>
     </div>
   );
