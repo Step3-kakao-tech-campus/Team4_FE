@@ -6,15 +6,16 @@ import Button from '../atoms/button';
 import OptionSelectPopup from '../organisms/optionSelectPopup';
 import { LANGUAGE_SET } from '../../utils/language';
 import { preventScrollWhenModalOpen, restorePreventScroll } from '../../utils/modal';
+import { getLocalStorageItem, setLocalStorageItem } from '../../utils/localStorage';
 
 export default function LandingPage() {
   const { t, i18n } = useTranslation();
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    if (dialogRef.current !== null && localStorage.getItem('visited') === null) {
+    if (dialogRef.current !== null && getLocalStorageItem('visited') === null) {
       dialogRef.current.showModal();
-      localStorage.setItem('visited', 'true');
+      setLocalStorageItem('visited', 'true');
     }
   }, []);
 
