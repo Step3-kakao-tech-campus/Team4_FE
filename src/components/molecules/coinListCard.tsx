@@ -1,12 +1,12 @@
 import { comma } from '../../utils/convert';
 
-interface ConListCardType {
+interface CoinListCardType {
   date: string,
   usingCash: number,
   sumCash: number,
 }
 
-function CoinListCard({ date, usingCash, sumCash }:ConListCardType) {
+function CoinListCard({ date, usingCash, sumCash }:CoinListCardType) {
   return (
     <div>
       <hr className="border-[0.1rem]" />
