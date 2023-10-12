@@ -83,6 +83,10 @@ i18n
             recentReviewed: '최근 리뷰가 달린 음식점',
             similar: '나와 비슷한 사용자에게 인기 있는 음식점',
           },
+          marker: {
+            storeImage: '가게 이미지',
+            storeDetail: '가게 상세 페이지로 이동',
+          },
         },
       },
       en: {
@@ -147,6 +151,10 @@ i18n
             popularStore: 'Popular restaurant',
             recentReviewed: 'Recently reviewed restaurant',
             similar: 'Popular restaurant for users similar to me',
+          },
+          marker: {
+            storeImage: 'Store image',
+            storeDetail: 'Go to the store details page',
           },
         },
       },

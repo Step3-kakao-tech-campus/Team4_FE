@@ -28,7 +28,7 @@ export default function StoreCard({
     <Link
       to={`/stores/${storeId}`}
       className="flex w-full items-center gap-4 p-2"
-      aria-label={t('storeCard.moveDetail')}
+      aria-label={`${storeName} ${t('storeCard.moveDetail')}`}
     >
       <div className="h-28 w-28">
         <Image
