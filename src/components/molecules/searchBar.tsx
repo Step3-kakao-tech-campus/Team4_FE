@@ -1,7 +1,10 @@
 import { useTranslation } from 'react-i18next';
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Icon from '../atoms/icon';
 import Input from '../atoms/input';
 import StoreCard from './storeCard';
+import { RefHandler } from '../../types/refHandler';
 
 interface SearchBarProps {
   isSearching: boolean;
@@ -15,6 +18,26 @@ export default function SearchBar({
   closeSearchPanel,
 }: SearchBarProps) {
   const { t } = useTranslation();
+  const searchRef = useRef<RefHandler>(null);
+  const navigate = useNavigate();
+
+  const onSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (searchRef.current !== null) {
+      const inputValue = searchRef.current.getInputValue();
+      if (inputValue === undefined) {
+        alert('오류가 발생했습니다. 다시 시도해 주세요.');
+      } else if (inputValue.length < 2) {
+        alert('두 글자 이상 입력해 주세요.');
+      } else {
+        navigate(`/search?q=${inputValue}`);
+      }
+    } else {
+      alert('오류가 발생했습니다. 다시 시도해 주세요.');
+    }
+  };
+
   return (
     <div
       className="relative h-16 bg-matgpt-blue p-3"
@@ -33,7 +56,11 @@ export default function SearchBar({
           <>
           </>
         )}
-        <Input mode="search" />
+        <Input
+          mode="search"
+          ref={searchRef}
+          onSearchClick={onSearch}
+        />
       </div>
       {isSearching ? (
         <div className="absolute left-0 top-16 z-50 w-full bg-white py-2">
