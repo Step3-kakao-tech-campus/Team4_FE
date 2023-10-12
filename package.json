@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-google-maps/api": "^2.19.2",
     "@react-oauth/google": "^0.11.1",
     "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",
