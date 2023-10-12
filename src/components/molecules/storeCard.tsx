@@ -40,7 +40,7 @@ export default function StoreCard({
           decoding="async"
         />
       </div>
-      <section className="flex h-full flex-col justify-between py-2 text-left">
+      <section className="flex h-full flex-col justify-between gap-[0.375rem] py-2 text-left">
         <h3 className="text-lg font-bold">{storeName}</h3>
         <p className="text-sm">{category}</p>
         <p className="font-bold">

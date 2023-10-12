@@ -1,5 +1,7 @@
+import { useTranslation } from 'react-i18next';
 import Icon from '../atoms/icon';
 import Input from '../atoms/input';
+import StoreCard from './storeCard';
 
 interface SearchBarProps {
   isSearching: boolean;
@@ -12,6 +14,7 @@ export default function SearchBar({
   openSearchPanel,
   closeSearchPanel,
 }: SearchBarProps) {
+  const { t } = useTranslation();
   return (
     <div
       className="relative h-16 bg-matgpt-blue p-3"
@@ -24,7 +27,7 @@ export default function SearchBar({
             className="text-white"
             onClick={closeSearchPanel}
           >
-            <Icon name="OutlineLeft" size="1.4em" ariaLabel="검색 취소" />
+            <Icon name="OutlineLeft" size="1.4em" ariaLabel={t('searchBar.cancelSearch')} />
           </button>
         ) : (
           <>
@@ -33,7 +36,44 @@ export default function SearchBar({
         <Input mode="search" />
       </div>
       {isSearching ? (
-        <div className="absolute left-0 top-16 z-50 w-full bg-white" />
+        <div className="absolute left-0 top-16 z-50 w-full bg-white py-2">
+          <div>
+            <h2 className="px-3 font-bold">{t('searchBar.popularStore')}</h2>
+            <StoreCard
+              storeId={1}
+              storeName="몽중헌 판교점"
+              category="중식당"
+              review="닭껍질이 엄청 맛있습니다"
+              image="/logo192.png"
+              reviewCount={2000}
+              reviewStar={4.3}
+            />
+          </div>
+          <div>
+            <h2 className="px-3 font-bold">{t('searchBar.recentReviewed')}</h2>
+            <StoreCard
+              storeId={2}
+              storeName="교반식당 판교아브뉴프랑점"
+              category="돼지고기 구이"
+              review="숙성고기 맛집"
+              image="/logo192.png"
+              reviewCount={500}
+              reviewStar={4.6}
+            />
+          </div>
+          <div>
+            <h2 className="px-3 font-bold">{t('searchBar.similar')}</h2>
+            <StoreCard
+              storeId={3}
+              storeName="비앙또아 판교점"
+              category="양식"
+              review="줄 서서 먹는 브런치 카페"
+              image="/logo192.png"
+              reviewCount={500}
+              reviewStar={4.4}
+            />
+          </div>
+        </div>
       ) : (
         <>
         </>

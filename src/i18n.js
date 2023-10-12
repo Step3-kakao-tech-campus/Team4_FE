@@ -77,6 +77,12 @@ i18n
           pageTitle: {
             back: '이전 페이지로 이동',
           },
+          searchBar: {
+            cancelSearch: '검색 취소',
+            popularStore: '인기 음식점',
+            recentReviewed: '최근 리뷰가 달린 음식점',
+            similar: '나와 비슷한 사용자에게 인기 있는 음식점',
+          },
         },
       },
       en: {
@@ -135,6 +141,12 @@ i18n
           },
           pageTitle: {
             back: 'Go to previous page',
+          },
+          searchBar: {
+            cancelSearch: 'Cancel search',
+            popularStore: 'Popular restaurant',
+            recentReviewed: 'Recently reviewed restaurant',
+            similar: 'Popular restaurant for users similar to me',
           },
         },
       },
