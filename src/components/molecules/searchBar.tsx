@@ -73,7 +73,7 @@ export default function SearchBar({
               review="닭껍질이 엄청 맛있습니다"
               image="/logo192.png"
               reviewCount={2000}
-              reviewStar={4.3}
+              rating={4.3}
             />
           </div>
           <div>
@@ -85,7 +85,7 @@ export default function SearchBar({
               review="숙성고기 맛집"
               image="/logo192.png"
               reviewCount={500}
-              reviewStar={4.6}
+              rating={4.6}
             />
           </div>
           <div>
@@ -97,7 +97,7 @@ export default function SearchBar({
               review="줄 서서 먹는 브런치 카페"
               image="/logo192.png"
               reviewCount={500}
-              reviewStar={4.4}
+              rating={4.4}
             />
           </div>
         </div>
