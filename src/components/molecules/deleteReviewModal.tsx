@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ReactModal from 'react-modal';
 import Button from '../atoms/button';
 
@@ -25,6 +26,7 @@ const customModalStyles = {
 };
 
 function DeleteReviewModal() {
+  const { t } = useTranslation();
   const [modalOpen, setModalOpen] = useState(true);
 
   function onCloseModalClick() {
@@ -37,11 +39,11 @@ function DeleteReviewModal() {
       style={customModalStyles}
     >
       <div className="w-full flex-col justify-items-center justify-center">
-        <div className="text-center">정말로 삭제하시겠습니까?</div>
-        <div className="text-center font-bold text-matgpt-red">삭제된 리뷰는 복구할 수 없습니다.</div>
+        <div className="text-center">{t('deleteReviewModal.deleteTitle')}</div>
+        <div className="text-center font-bold text-matgpt-red">{t('deleteReviewModal.notRecovredTitle')}</div>
         <div className="text-center mt-12">
           <Button size="medium" backgroundColor="bg-matgpt-gray" textColor="text-black" extraStyle="mr-8" onClick={() => { onCloseModalClick(); }}>
-            취소
+            {t('deleteReviewModal.cancel')}
           </Button>
           <Button
             size="medium"
