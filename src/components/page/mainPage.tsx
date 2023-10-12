@@ -22,7 +22,30 @@ export default function MainPage() {
       />
       <div className={`${isSearching ? 'hidden' : ''}`}>
         <div className="h-[calc(100dvh-7.7rem)]">
-          <MyGoogleMap />
+          <MyGoogleMap stores={[
+            {
+              storeId: 1,
+              storeName: '박대감닭한마리',
+              lat: 37.56471,
+              lng: 126.9838683,
+              image: '/logo192.png',
+            },
+            {
+              storeId: 2,
+              storeName: '고반식당 판교아브뉴프랑점',
+              lat: 37.564452,
+              lng: 126.984287,
+              image: '/logo192.png',
+            },
+            {
+              storeId: 3,
+              storeName: '서울지짐이',
+              lat: 37.5650588,
+              lng: 126.9840605,
+              image: '/logo192.png',
+            },
+          ]}
+          />
         </div>
         <NavigationBar />
       </div>

@@ -1,4 +1,6 @@
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { MarkerInfo } from '../../types/map';
+import Marker from '../molecules/marker';
 
 const containerStyle = {
   width: '100%',
@@ -10,7 +12,11 @@ const center = {
   lng: 126.984487,
 };
 
-export default function MyGoogleMap() {
+interface MyGoogleMapProps {
+  stores: MarkerInfo[];
+}
+
+export default function MyGoogleMap({ stores }: MyGoogleMapProps) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY!,
@@ -25,8 +31,28 @@ export default function MyGoogleMap() {
         options={{
           mapTypeControl: false,
           streetViewControl: false,
+          styles: [{
+            featureType: 'poi',
+            elementType: 'all',
+            stylers: [{
+              visibility: 'off',
+            }],
+          }],
         }}
-      />
+      >
+        {stores.map(({
+          lat, lng, storeId, storeName, image,
+        }) => (
+          <Marker
+            key={storeId}
+            lat={lat}
+            lng={lng}
+            storeName={storeName}
+            image={image}
+            storeId={storeId}
+          />
+        ))}
+      </GoogleMap>
     ) : (
       <>
       </>
