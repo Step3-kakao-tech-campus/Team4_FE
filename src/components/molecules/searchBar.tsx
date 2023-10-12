@@ -63,39 +63,39 @@ export default function SearchBar({
         />
       </div>
       {isSearching ? (
-        <div className="absolute left-0 top-16 z-50 w-full bg-white py-2">
+        <div className="absolute left-0 top-16 z-50 flex w-full flex-col gap-4 bg-white py-4">
           <div>
-            <h2 className="px-3 font-bold">{t('searchBar.popularStore')}</h2>
+            <h2 className="mb-2 px-4 font-bold">{t('searchBar.popularStore')}</h2>
             <StoreCard
               storeId={1}
               storeName="몽중헌 판교점"
               category="중식당"
               review="닭껍질이 엄청 맛있습니다"
-              image="/logo192.png"
+              image="/image/fakeDb/store/store1.png"
               reviewCount={2000}
               rating={4.3}
             />
           </div>
           <div>
-            <h2 className="px-3 font-bold">{t('searchBar.recentReviewed')}</h2>
+            <h2 className="mb-2 px-4 font-bold">{t('searchBar.recentReviewed')}</h2>
             <StoreCard
               storeId={2}
-              storeName="교반식당 판교아브뉴프랑점"
+              storeName="고반식당 판교아브뉴프랑점"
               category="돼지고기 구이"
               review="숙성고기 맛집"
-              image="/logo192.png"
+              image="/image/fakeDb/store/store2.png"
               reviewCount={500}
               rating={4.6}
             />
           </div>
           <div>
-            <h2 className="px-3 font-bold">{t('searchBar.similar')}</h2>
+            <h2 className="mb-2 px-4 font-bold">{t('searchBar.similar')}</h2>
             <StoreCard
               storeId={3}
               storeName="비앙또아 판교점"
               category="양식"
               review="줄 서서 먹는 브런치 카페"
-              image="/logo192.png"
+              image="/image/fakeDb/store/store3.png"
               reviewCount={500}
               rating={4.4}
             />

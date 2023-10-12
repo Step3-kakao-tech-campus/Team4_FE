@@ -30,7 +30,7 @@ export default function StoreCard({
       className="flex w-full items-center gap-4 p-2"
       aria-label={t('storeCard.moveDetail')}
     >
-      <div className="h-32 w-32">
+      <div className="h-28 w-28">
         <Image
           imageSrc={image}
           alt={storeName}
@@ -40,7 +40,7 @@ export default function StoreCard({
           decoding="async"
         />
       </div>
-      <section className="flex h-full flex-col justify-between gap-[0.375rem] py-2 text-left">
+      <section className="flex h-full flex-col gap-[0.375rem] text-left">
         <h3 className="text-lg font-bold">{storeName}</h3>
         <p className="text-sm">{category}</p>
         <p className="font-bold">
