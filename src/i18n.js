@@ -76,8 +76,22 @@ i18n
             ratingIcon: '리뷰 평점',
             memberNumIcon: '방문 인원',
           },
+          storeCard: {
+            moveDetail: '상세 페이지로 이동',
+            rating: '별점',
+            review: '리뷰',
+          },
+          pageTitle: {
+            back: '이전 페이지로 이동',
+          },
+          deleteReviewModal: {
+            deleteTitle: '정말로 삭제하시겠습니까?',
+            notRecovredTitle: '삭제된 리뷰는 복구할 수 없습니다.',
+            cancel: '취소',
+          },
         },
       },
+    },
       en: {
         translation: {
           navigationBar: {
@@ -133,6 +147,18 @@ i18n
             userImage: 'User Image',
             ratingIcon: 'Review Rating',
             memberNumIcon: 'The number of people visiting the store',
+          storeCard: {
+            moveDetail: 'Move to the detail page',
+            rating: 'Rating',
+            review: 'Review',
+          },
+          pageTitle: {
+            back: 'Go to previous page',
+          },
+          deleteReviewModal: {
+            deleteTitle: 'Are you sure you want to delete it?',
+            notRecovredTitle: 'Deleted reviews cannot be recovered.',
+            cancel: 'Cancel',
           },
         },
       },
