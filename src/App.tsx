@@ -5,7 +5,7 @@ import UserPage from './components/page/userPage';
 import MainPage from './components/page/mainPage';
 import NavigationBar from './components/layouts/navigationBar';
 import SearchResultPage from './components/page/searchResultPage';
-import { queryClient } from './utils/query';
+import { queryClient } from './utils/fetch';
 
 function App() {
   return (
