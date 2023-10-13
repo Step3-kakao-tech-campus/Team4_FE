@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import NavigationBar from '../layouts/navigationBar';
 import SearchBar from '../molecules/searchBar';
 import MyGoogleMap from '../organisms/MyGoogleMap';
 
@@ -47,7 +46,6 @@ export default function MainPage() {
           ]}
           />
         </div>
-        <NavigationBar />
       </div>
 
     </main>
