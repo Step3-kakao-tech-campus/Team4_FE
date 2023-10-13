@@ -2,16 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
-
-interface StoreCardProps {
-  storeId: number;
-  storeName: string;
-  category: string;
-  review: string;
-  image: string;
-  rating: number;
-  reviewCount: number;
-}
+import { StoreCardInfo } from '../../types/store';
 
 export default function StoreCard({
   storeId,
@@ -21,7 +12,7 @@ export default function StoreCard({
   image,
   rating,
   reviewCount,
-}: StoreCardProps) {
+}: StoreCardInfo) {
   const { t } = useTranslation();
 
   return (
