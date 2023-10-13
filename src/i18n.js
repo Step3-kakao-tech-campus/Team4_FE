@@ -84,6 +84,16 @@ i18n
           pageTitle: {
             back: '이전 페이지로 이동',
           },
+          searchBar: {
+            cancelSearch: '검색 취소',
+            popularStore: '인기 음식점',
+            recentReviewed: '최근 리뷰가 달린 음식점',
+            similar: '나와 비슷한 사용자에게 인기 있는 음식점',
+          },
+          marker: {
+            storeImage: '가게 이미지',
+            storeDetail: '가게 상세 페이지로 이동',
+          },
           deleteReviewModal: {
             deleteTitle: '정말로 삭제하시겠습니까?',
             notRecovredTitle: '삭제된 리뷰는 복구할 수 없습니다.',
@@ -154,6 +164,16 @@ i18n
           },
           pageTitle: {
             back: 'Go to previous page',
+          },
+          searchBar: {
+            cancelSearch: 'Cancel search',
+            popularStore: 'Popular restaurant',
+            recentReviewed: 'Recently reviewed restaurant',
+            similar: 'Popular restaurant for users similar to me',
+          },
+          marker: {
+            storeImage: 'Store image',
+            storeDetail: 'Go to the store details page',
           },
           deleteReviewModal: {
             deleteTitle: 'Are you sure you want to delete it?',
