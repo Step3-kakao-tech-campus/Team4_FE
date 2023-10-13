@@ -9,7 +9,9 @@ import { queryClient } from './utils/query';
 import { worker } from './mocks/worker';
 
 if (process.env.NODE_ENV === 'development') {
-  worker.start();
+  worker.start({
+    onUnhandledRequest: 'bypass',
+  });
 }
 
 function App() {

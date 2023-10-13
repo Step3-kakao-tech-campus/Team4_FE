@@ -1,11 +1,36 @@
-import { useSearchParams } from 'react-router-dom';
+import { StoreCardInfo } from '../../types/store';
 import PageTitleCard from '../molecules/pageTitleCard';
+import StoreCard from '../molecules/storeCard';
 
-export default function SearchResultTemplate() {
-  const [searchParams] = useSearchParams();
-  const searchString = searchParams.get('q');
+interface SearchResultTemplateProps {
+  searchString: string;
+  stores: StoreCardInfo[];
+}
 
+export default function SearchResultTemplate({
+  searchString,
+  stores,
+}: SearchResultTemplateProps) {
   return (
-    <PageTitleCard pageTitle={`${searchString || ''} 검색 결과`} />
+    <main>
+      <PageTitleCard pageTitle={`${searchString} 검색 결과`} />
+      <ul className="flex flex-col gap-2 py-2">
+        {stores.map(({
+          storeId, storeName, category, review, reviewCount, rating, image,
+        }) => (
+          <li key={storeId}>
+            <StoreCard
+              storeId={storeId}
+              storeName={storeName}
+              category={category}
+              review={review}
+              reviewCount={reviewCount}
+              rating={rating}
+              image={image}
+            />
+          </li>
+        ))}
+      </ul>
+    </main>
   );
 }
