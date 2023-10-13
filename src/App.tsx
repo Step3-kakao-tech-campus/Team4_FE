@@ -6,6 +6,11 @@ import MainPage from './components/page/mainPage';
 import NavigationBar from './components/layouts/navigationBar';
 import SearchResultPage from './components/page/searchResultPage';
 import { queryClient } from './utils/query';
+import { worker } from './mocks/worker';
+
+if (process.env.NODE_ENV === 'development') {
+  worker.start();
+}
 
 function App() {
   return (
