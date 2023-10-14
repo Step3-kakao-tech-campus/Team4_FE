@@ -1,3 +1,3 @@
 import { createFetchInstance } from '../utils/fetch';
 
-export const fetchInstance = createFetchInstance('http://localhost:3000', 1000);
+export const fetchInstance = createFetchInstance(process.env.REACT_APP_FETCH_URL, 1000);
