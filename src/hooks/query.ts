@@ -1,9 +1,12 @@
-import { useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import { getSearchedStore } from '../apis/search';
 
 export function useSearchStore(searchString: string | null) {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ['searchStore', { searchString }],
-    queryFn: async () => getSearchedStore(searchString),
+    queryFn: async ({ pageParam = 0 }) => getSearchedStore(searchString, pageParam),
+    getNextPageParam: (lastPage, allPages) => (
+      lastPage.length === 0 ? undefined : allPages.flat().length
+    ),
   });
 }
