@@ -1,5 +1,6 @@
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQuery } from 'react-query';
 import { getSearchedStore } from '../apis/search';
+import { getStoreDetail } from '../apis/storeDetail';
 
 export function useSearchStore(searchString: string | null) {
   return useInfiniteQuery({
@@ -8,5 +9,12 @@ export function useSearchStore(searchString: string | null) {
     getNextPageParam: (lastPage, allPages) => (
       lastPage.length === 0 ? undefined : allPages.flat().length
     ),
+  });
+}
+
+export function useStoreDetail(storeId: number) {
+  return useQuery({
+    queryKey: ['storeDetail', { storeId }],
+    queryFn: async () => getStoreDetail(storeId),
   });
 }
