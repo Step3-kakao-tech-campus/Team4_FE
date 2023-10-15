@@ -7,6 +7,7 @@ import NavigationBar from './components/layouts/navigationBar';
 import SearchResultPage from './components/page/searchResultPage';
 import { queryClient } from './utils/query';
 import { worker } from './mocks/worker';
+import StoreDetailPage from './components/page/storeDetailPage';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -24,6 +25,7 @@ function App() {
           <Route element={<NavigationBar />}>
             <Route path="/mypage" element={<UserPage />} />
             <Route path="/search" element={<SearchResultPage />} />
+            <Route path="/stores/:storeId" element={<StoreDetailPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
