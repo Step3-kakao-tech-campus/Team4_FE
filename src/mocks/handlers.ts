@@ -143,7 +143,7 @@ export const handlers = [
         response: {
           storeId: 1,
           storeName: '몽중헌 판교점',
-          image: '/image/fakeDb/store/store1.png',
+          storeImage: '/image/fakeDb/store/store1.png',
           reviewCount: 2000,
           rating: 4.3,
           information: '음식점 정보',
