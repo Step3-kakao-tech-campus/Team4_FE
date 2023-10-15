@@ -9,7 +9,7 @@ export const handlers = [
         ctx.status(400),
         ctx.json({
           success: false,
-          response: {},
+          response: null,
           error: {
             status: 400,
             message: '잘못된 요청입니다.',
@@ -114,6 +114,40 @@ export const handlers = [
             rating: 4.6,
           },
         ],
+        error: null,
+      }),
+    );
+  }),
+
+  rest.get('/stores/:storeId', (req, res, ctx) => {
+    const { storeId } = req.params;
+
+    if (Number.isNaN(+storeId)) {
+      return res(
+        ctx.status(400),
+        ctx.json({
+          success: false,
+          response: null,
+          error: {
+            status: 400,
+            message: '잘못된 요청입니다.',
+          },
+        }),
+      );
+    }
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        success: true,
+        response: {
+          storeId: 1,
+          storeName: '몽중헌 판교점',
+          image: '/image/fakeDb/store/store1.png',
+          reviewCount: 2000,
+          rating: 4.3,
+          information: '음식점 정보',
+        },
         error: null,
       }),
     );
