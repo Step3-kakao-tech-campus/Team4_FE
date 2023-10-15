@@ -3,7 +3,6 @@ import { QueryClientProvider } from 'react-query';
 import LandingPage from './components/page/landingPage';
 import UserPage from './components/page/userPage';
 import MainPage from './components/page/mainPage';
-import NavigationBar from './components/layouts/navigationBar';
 import SearchResultPage from './components/page/searchResultPage';
 import MainLayout from './components/layouts/mainLayout';
 import { queryClient } from './utils/query';
@@ -24,6 +23,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<MainPage />} />
             <Route path="/mypage" element={<UserPage />} />
+            <Route path="/search" element={<SearchResultPage />} />
           </Route>
           {/* 단독 레이아웃 */}
           <Route path="/landing" element={<LandingPage />} />
