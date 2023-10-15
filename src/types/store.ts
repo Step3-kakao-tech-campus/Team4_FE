@@ -11,7 +11,7 @@ export interface StoreCardInfo {
 export interface StoreDetail {
   storeId: number;
   storeName: string;
-  image: string;
+  storeImage: string;
   reviewCount: number;
   rating: number;
   information: string;
