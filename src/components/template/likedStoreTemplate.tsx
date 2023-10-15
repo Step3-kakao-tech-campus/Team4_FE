@@ -10,7 +10,6 @@ interface LikedStoreTemplateType {
 }
 
 function LikedStoreTemplate({ likedStore, page, onChangePage }: LikedStoreTemplateType) {
-  console.log(likedStore);
   return (
     <div className="relative">
       <div className="sticky top-0">
