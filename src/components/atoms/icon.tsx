@@ -3,17 +3,19 @@ import { GoHome, GoSearch } from 'react-icons/go';
 import { PiMoon, PiClipboard } from 'react-icons/pi';
 import { IoLanguage } from 'react-icons/io5';
 import {
-  AiOutlineHeart, AiOutlineLike, AiOutlineStar, AiOutlineClose, AiOutlineLeft, AiOutlineBell,
+  AiOutlineHeart, AiOutlineLike, AiOutlineStar, AiOutlineClose,
+  AiOutlineLeft, AiOutlineBell, AiOutlineRight,
 } from 'react-icons/ai';
 import { HiUserGroup, HiCreditCard } from 'react-icons/hi';
 
 interface IconProps {
-  name: 'Person' | 'Home' | 'Search' | 'Moon' | 'Clipboard' | 'Language' | 'OutlineHeart' | 'OutlineLike' | 'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard';
+  name: 'Person' | 'Home' | 'Search' | 'Moon' | 'Clipboard' | 'Language' | 'OutlineHeart' | 'OutlineLike' |
+  'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard' | 'OutlineRight';
   size: string;
   ariaLabel: string;
 }
 
-function Icon({ name, size, ariaLabel }:IconProps) {
+function Icon({ name, size, ariaLabel }: IconProps) {
   switch (name) {
     case 'Person': // 사람
       return <BsPerson size={size} aria-label={ariaLabel} />;
@@ -37,10 +39,12 @@ function Icon({ name, size, ariaLabel }:IconProps) {
       return <HiCreditCard size={size} aria-label={ariaLabel} />;
     case 'OutlineStar': //  즐겨찾기(별)
       return <AiOutlineStar size={size} aria-label={ariaLabel} />;
-    case 'OutlineClose': // <
+    case 'OutlineClose': // x
       return <AiOutlineClose size={size} aria-label={ariaLabel} />;
-    case 'OutlineLeft': // >
+    case 'OutlineLeft': // <
       return <AiOutlineLeft size={size} aria-label={ariaLabel} />;
+    case 'OutlineRight': // >
+      return <AiOutlineRight size={size} aria-label={ariaLabel} />;
     case 'OutlineBell': // 종
       return <AiOutlineBell size={size} aria-label={ariaLabel} />;
     default:
