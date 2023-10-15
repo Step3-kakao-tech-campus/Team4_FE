@@ -1,11 +1,10 @@
 import { ButtonHTMLAttributes } from 'react';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends React.PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>> {
   size?: 'small' | 'medium';
   backgroundColor?: string;
   textColor?: string;
   extraStyle?: string;
-  children: React.ReactNode;
 }
 
 export default function Button({
