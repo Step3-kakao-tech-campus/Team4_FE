@@ -25,6 +25,7 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/mypage" element={<UserPage />} />
             <Route path="/search" element={<SearchResultPage />} />
+            <Route path="/test" element={<LikedStorePage />} />
           </Route>
           {/* 단독 레이아웃 */}
           <Route path="/landing" element={<LandingPage />} />
