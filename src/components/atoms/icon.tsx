@@ -3,8 +3,8 @@ import { GoHome, GoSearch } from 'react-icons/go';
 import { PiMoon, PiClipboard } from 'react-icons/pi';
 import { IoLanguage } from 'react-icons/io5';
 import {
-  AiFillHeart, AiOutlineLike, AiOutlineStar, AiOutlineClose,
-  AiOutlineLeft, AiOutlineBell, AiOutlineRight,
+  AiOutlineLike, AiOutlineStar, AiOutlineClose,
+  AiOutlineLeft, AiOutlineBell, AiOutlineRight, AiFillHeart,
 } from 'react-icons/ai';
 import { HiUserGroup, HiCreditCard } from 'react-icons/hi';
 
@@ -32,8 +32,6 @@ function Icon({
       return <PiClipboard size={size} aria-label={ariaLabel} className={color} />;
     case 'Language': // 랜딩페이지 지구본
       return <IoLanguage size={size} aria-label={ariaLabel} className={color} />;
-    case 'FillHeart': // 하트
-      return <AiFillHeart size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineLike': // 좋아요
       return <AiOutlineLike size={size} aria-label={ariaLabel} className={color} />;
     case 'UserGroup': // 유저들
@@ -48,6 +46,8 @@ function Icon({
       return <AiOutlineLeft size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineRight': // >
       return <AiOutlineRight size={size} aria-label={ariaLabel} className={color} />;
+    case 'FillHeart': // 하트
+      return <AiFillHeart size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineBell': // 종
       return <AiOutlineBell size={size} aria-label={ariaLabel} className={color} />;
     default:

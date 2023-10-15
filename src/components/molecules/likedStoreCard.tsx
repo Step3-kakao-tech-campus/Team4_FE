@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { AiFillHeart } from 'react-icons/ai';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 import { StoreCardInfo } from '../../types/store';
@@ -70,7 +69,7 @@ export default function LikedStoreCard({
           onClickLikeStoreHandler();
         }}
       >
-        <AiFillHeart className={like ? 'text-matgpt-red' : 'text-matgpt-red opacity-20'} size="3rem" aria-label="가게 좋아요 버튼" />
+        <Icon name="FillHeart" color={like ? 'text-matgpt-red' : 'text-matgpt-red opacity-20'} size="3rem" ariaLabel={t('likedStorePage.heartButton')} />
       </button>
     </div>
   );
