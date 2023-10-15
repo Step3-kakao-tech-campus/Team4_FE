@@ -7,6 +7,7 @@ import SearchResultPage from './components/page/searchResultPage';
 import MainLayout from './components/layouts/mainLayout';
 import { queryClient } from './utils/query';
 import { worker } from './mocks/worker';
+import LikedStorePage from './components/page/likedStorePage';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({

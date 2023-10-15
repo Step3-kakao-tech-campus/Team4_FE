@@ -15,7 +15,7 @@ function LikedStorePage() {
     if (type === 'right') {
       setPage(() => page + 1);
     } else if (type === 'left') {
-      if (page > 0) { setPage(() => page - 1); }
+      if (page > 1) { setPage(() => page - 1); } else { alert('첫 번째 페이지 입니다.'); }
     }
   };
   if (data && !isLoading && !isFetching) {
