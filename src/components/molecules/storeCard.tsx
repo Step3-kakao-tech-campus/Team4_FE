@@ -4,7 +4,7 @@ import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 import { StoreCardInfo } from '../../types/store';
 
-export default function StoreCard({
+export default function likedStoreCard({
   storeId,
   storeName,
   category,

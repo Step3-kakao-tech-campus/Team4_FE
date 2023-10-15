@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { StoreCardInfo } from '../../types/store';
 import PageTitleCard from '../molecules/pageTitleCard';
 import Icon from '../atoms/icon';
-import StoreCard from '../molecules/storeCard';
+import LikedStoreCard from '../molecules/likedStoreCard';
 
 interface LikedStoreTemplateType {
   likedStore: StoreCardInfo[],
@@ -46,7 +46,7 @@ function LikedStoreTemplate({ likedStore, page, onChangePage }: LikedStoreTempla
             storeId, storeName, category, review, reviewCount, rating, image,
           }) => (
             <li key={storeId}>
-              <StoreCard
+              <LikedStoreCard
                 storeId={storeId}
                 storeName={storeName}
                 category={category}
