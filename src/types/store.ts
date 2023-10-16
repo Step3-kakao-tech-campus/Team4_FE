@@ -6,4 +6,5 @@ export interface StoreCardInfo {
   image: string;
   rating: number;
   reviewCount: number;
+  likedCard?: boolean;
 }
