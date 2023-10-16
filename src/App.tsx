@@ -7,6 +7,7 @@ import SearchResultPage from './components/page/searchResultPage';
 import MainLayout from './components/layouts/mainLayout';
 import { queryClient } from './utils/query';
 import { worker } from './mocks/worker';
+import CoinRechargePage from './components/page/coinRechargePage';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/mypage" element={<UserPage />} />
             <Route path="/search" element={<SearchResultPage />} />
+            <Route path="/coinRechargeHistory" element={<CoinRechargePage />} />
           </Route>
           {/* 단독 레이아웃 */}
           <Route path="/landing" element={<LandingPage />} />
