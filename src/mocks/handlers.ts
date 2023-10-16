@@ -176,6 +176,7 @@ export const handlers = [
         success: true,
         response: [
           {
+            storeId: 1,
             reviewId: 1,
             storeImage: '/image/fakeDb/store/store1.png',
             storeName: '몽중헌 판교점',
@@ -186,6 +187,7 @@ export const handlers = [
             createdAt: new Date(),
           },
           {
+            storeId: 1,
             reviewId: 2,
             storeImage: '/image/fakeDb/store/store1.png',
             storeName: '몽중헌 판교점',
@@ -196,6 +198,7 @@ export const handlers = [
             createdAt: new Date(),
           },
           {
+            storeId: 1,
             reviewId: 3,
             storeImage: '/image/fakeDb/store/store1.png',
             storeName: '몽중헌 판교점',
