@@ -152,4 +152,62 @@ export const handlers = [
       }),
     );
   }),
+
+  rest.get('/stores/:storeId/reviews', (req, res, ctx) => {
+    const { storeId } = req.params;
+
+    if (Number.isNaN(+storeId)) {
+      return res(
+        ctx.status(400),
+        ctx.json({
+          success: false,
+          response: null,
+          error: {
+            status: 400,
+            message: '잘못된 요청입니다.',
+          },
+        }),
+      );
+    }
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        success: true,
+        response: [
+          {
+            reviewId: 1,
+            storeImage: '/image/fakeDb/store/store1.png',
+            storeName: '몽중헌 판교점',
+            profileImage: '/image/fakeDb/userPage/userImage.png',
+            reviewerName: '춘식이',
+            reviewRating: '4.5',
+            visitedCount: 2,
+            createdAt: new Date(),
+          },
+          {
+            reviewId: 2,
+            storeImage: '/image/fakeDb/store/store1.png',
+            storeName: '몽중헌 판교점',
+            profileImage: '/image/fakeDb/userPage/userImage.png',
+            reviewerName: '춘식이',
+            reviewRating: '4.5',
+            visitedCount: 2,
+            createdAt: new Date(),
+          },
+          {
+            reviewId: 3,
+            storeImage: '/image/fakeDb/store/store1.png',
+            storeName: '몽중헌 판교점',
+            profileImage: '/image/fakeDb/userPage/userImage.png',
+            reviewerName: '춘식이',
+            reviewRating: '4.5',
+            visitedCount: 2,
+            createdAt: new Date(),
+          },
+        ],
+        error: null,
+      }),
+    );
+  }),
 ];
