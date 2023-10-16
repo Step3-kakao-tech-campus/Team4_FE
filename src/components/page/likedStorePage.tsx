@@ -11,7 +11,7 @@ function LikedStorePage() {
     queryFn: () => getLikedStore(1 + 6 * (page - 1), limits),
   });
 
-  const fonHandleChangePage = (type: 'right' | 'left') => {
+  const onHandleChangePage = (type: 'right' | 'left') => {
     if (type === 'right') {
       setPage(() => page + 1);
     } else if (type === 'left') {
@@ -24,7 +24,7 @@ function LikedStorePage() {
       <LikedStoreTemplate
         likedStore={data}
         page={page}
-        onChangePage={fonHandleChangePage}
+        onChangePage={onHandleChangePage}
       />
     );
   }
