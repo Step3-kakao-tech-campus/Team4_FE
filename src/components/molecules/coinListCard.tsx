@@ -2,18 +2,18 @@ import { comma } from '../../utils/convert';
 
 interface CoinListCardType {
   date: string,
-  usingCash: number,
-  sumCash: number,
+  passingCoin: number,
+  finalCoin: number,
 }
 
-function CoinListCard({ date, usingCash, sumCash }:CoinListCardType) {
+function CoinListCard({ date, passingCoin, finalCoin }: CoinListCardType) {
   return (
     <div>
       <hr className="border-[0.1rem]" />
-      <div className="w-full flex justify-between py-6">
+      <div className="flex w-full justify-between py-6">
         <div className="pl-6">{date}</div>
-        <div>{comma(usingCash)}</div>
-        <div className="pr-6">{comma(sumCash)}</div>
+        <div>{comma(passingCoin)}</div>
+        <div className="pr-6">{comma(finalCoin)}</div>
       </div>
     </div>
   );

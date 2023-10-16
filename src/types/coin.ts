@@ -1,5 +1,6 @@
 export interface CoinRechargeInfo {
+  rechargeId: number,
   date: string;
-  reChargeCoin: string;
-  totalCoin: string;
+  reChargeCoin: number;
+  totalCoin: number;
 }
