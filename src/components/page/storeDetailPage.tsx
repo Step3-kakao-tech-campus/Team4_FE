@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useStoreDetail } from '../../hooks/query';
+import { useStoreDetail, useStoreReview } from '../../hooks/query';
 import StoreDetailTemplate from '../template/storeDetailTemplate';
 
 export default function StoreDetailPage() {
@@ -9,14 +9,19 @@ export default function StoreDetailPage() {
     return <div>잘못된 접근입니다.</div>;
   }
 
-  const { data, isLoading } = useStoreDetail(+storeId);
-  const storeDetail = data?.data.response;
+  const { data: storeDetailData, isLoading: isStoreDetailDataLoading } = useStoreDetail(+storeId);
+  const storeDetail = storeDetailData?.data.response;
 
-  if (isLoading) {
+  const { data: reviewData } = useStoreReview(+storeId);
+
+  if (isStoreDetailDataLoading) {
     return <div>...</div>;
   }
 
   return (
-    <StoreDetailTemplate storeDetail={storeDetail} />
+    <StoreDetailTemplate
+      storeDetail={storeDetail}
+      reviews={reviewData?.pages.flat()}
+    />
   );
 }

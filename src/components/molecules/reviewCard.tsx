@@ -16,7 +16,8 @@ interface ReviewCardType {
 }
 
 function ReviewCard({
-  storeId, reviewId, storeImage, storeName, profileImage, reviewerName, reviewRating, visitedCount, createdAt,
+  storeId, reviewId, storeImage,
+  storeName, profileImage, reviewerName, reviewRating, visitedCount, createdAt,
 }:ReviewCardType) {
   const { t } = useTranslation();
   return (
@@ -26,15 +27,15 @@ function ReviewCard({
       aria-label={`${storeName} ${t('reviewCard.linkToReview')}`}
     >
       <div className="flex">
-        <div className="mr-2 h-34 w-26">
+        <div className="h-34 w-26 mr-2">
           <Image imageSrc={storeImage} alt={t('reviewCard.storeImage')} threshold={{ smallToMedium: '0', mediumToLarge: '0' }} />
         </div>
         <div className="w-[20rem]">
           <div>
-            <span className="font-bold h-[0.1rem] overflow-hidden text-ellipsis">{storeName}</span>
+            <span className="h-[0.1rem] overflow-hidden text-ellipsis font-bold">{storeName}</span>
           </div>
           <div className="flex items-center py-2">
-            <div className="w-[2.5rem] h-[31.901px] ">
+            <div className="h-[31.901px] w-[2.5rem] ">
               <Image imageSrc={profileImage} alt={t('reviewCard.userImage')} threshold={{ smallToMedium: '0', mediumToLarge: '0' }} className="pr-2" />
             </div>
             <span className="h-[1.5rem] overflow-hidden text-ellipsis">{reviewerName}</span>
