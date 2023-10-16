@@ -23,7 +23,7 @@ function UserTemplate() {
         </div>
       </div>
       <div>
-        <MyPageList text={t('userPage.likedRestaurant')} linkTo="/likedRestaurant" />
+        <MyPageList text={t('userPage.likedRestaurant')} linkTo="/likedStore" />
         <MyPageList text={t('userPage.recentlyViewedRestaurant')} linkTo="/recentlyViewedRestaurant" />
         <MyPageList text={t('userPage.writtenReview')} linkTo="/writtenReview" />
         <MyPageList text={t('userPage.likedReview')} linkTo="/likedReview" />
