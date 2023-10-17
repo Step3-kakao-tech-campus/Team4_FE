@@ -10,7 +10,9 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/require-default-props": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./src/test/**/*", "./src/mocks/**/*"]}]
   },
   "env": {
     "node": true,
