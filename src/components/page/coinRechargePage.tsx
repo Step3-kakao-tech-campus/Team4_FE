@@ -7,7 +7,7 @@ function CoinRechargePage() {
   const [page, setPage] = useState(1);
   const limits = 12;
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: [`getLikedStore?cursor=${1 + 6 * (page - 1)}&limits=${limits}`],
+    queryKey: [`getChargeCoin?cursor=${1 + 6 * (page - 1)}&limits=${limits}`],
     queryFn: () => getChargeCoin(1 + 6 * (page - 1), limits),
   });
 

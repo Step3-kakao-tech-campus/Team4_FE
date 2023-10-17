@@ -20,6 +20,9 @@ function CoinRechargeTemplate({ coinRecharge, page, onChangePage }: CoinRecharge
   }
   return (
     <div>
+      <div className="sticky top-0">
+        <PageTitleCard pageTitle="코인 충전 내역" />
+      </div>
       <nav className="flex items-center justify-between px-4 py-2">
         <button
           onClick={() => { leftPage(); }}
@@ -36,9 +39,6 @@ function CoinRechargeTemplate({ coinRecharge, page, onChangePage }: CoinRecharge
         </button>
       </nav>
       <main className="relative">
-        <div className="sticky top-0">
-          <PageTitleCard pageTitle="코인 충전 내역" />
-        </div>
         <div className="flex w-full justify-between py-6">
           <div className="pl-6">충전 날짜</div>
           <div>충전 금액</div>

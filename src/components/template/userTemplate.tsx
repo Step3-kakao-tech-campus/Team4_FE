@@ -1,20 +1,18 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { AiOutlineLeft, AiOutlineBell } from 'react-icons/ai';
 import MyPageList from '../molecules/myPageList';
 import Button from '../atoms/button';
+import PageTitleCard from '../molecules/pageTitleCard';
 
 function UserTemplate() {
   const { t } = useTranslation();
   return (
     <div>
-      <div className="bg-gradient-to-b from-matgpt-blue from-65% to-white to-45%">
-        <div className="flex items-center justify-between pt-5 text-lg text-white">
-          <AiOutlineLeft className="ml-4" />
-          <span>{t('userPage.pageTitle')}</span>
-          <AiOutlineBell className="mr-4" />
+      <div className="bg-gradient-to-b from-matgpt-blue from-55% to-white to-45%">
+        <div className="flex items-center justify-between text-lg text-white">
+          <PageTitleCard pageTitle={t('userPage.pageTitle')} />
         </div>
-        <div className="flex flex-col items-center pt-12">
+        <div className="flex flex-col items-center">
           <img src="/image/fakeDb/userPage/userImage.png" alt={t('userPage.userImage')} className="w-[9rem]" />
           <span className="py-3 text-xl font-bold">{t('userPage.userName')}</span>
           <Link to="/profileEditingPage">
