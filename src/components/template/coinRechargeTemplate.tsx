@@ -50,6 +50,7 @@ function CoinRechargeTemplate({ coinRecharge, page, onChangePage }: CoinRecharge
                 date={date}
                 passingCoin={reChargeCoin}
                 finalCoin={totalCoin}
+                isUse={false}
               />
             </li>
           ))}
