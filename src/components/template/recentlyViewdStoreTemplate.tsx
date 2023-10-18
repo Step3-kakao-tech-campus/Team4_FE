@@ -31,7 +31,7 @@ function RecentlyViewdStoreTemplate(
   return (
     <div className="relative">
       <div className="sticky top-0">
-        <PageTitleCard pageTitle={t('likedStorePage.pageTitle')} />
+        <PageTitleCard pageTitle={t('recentlyViewdStorePage.pageTitle')} />
       </div>
       <nav>
         <Page page={page} isLastPage={isLastPage} onChangePage={onChangePage} />
