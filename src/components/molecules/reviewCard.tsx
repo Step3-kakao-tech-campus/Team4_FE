@@ -12,18 +12,18 @@ function ReviewCard({
   return (
     <Link
       to={`/stores/${storeId}/reviews/${reviewId}`}
-      className="flex w-full items-center gap-4 p-2"
+      className="w-full p-2"
       aria-label={`${storeName} ${t('reviewCard.linkToReview')}`}
     >
       <div className="flex">
-        <div className="h-34 w-26 mr-2">
-          <Image imageSrc={storeImage} alt={t('reviewCard.storeImage')} threshold={{ smallToMedium: '0', mediumToLarge: '0' }} />
+        <div className="mr-2 h-28 w-28">
+          <Image imageSrc={storeImage} alt={t('reviewCard.storeImage')} threshold={{ smallToMedium: '0', mediumToLarge: '0' }} className="rounded-full object-cover" />
         </div>
-        <div className="w-[20rem]">
+        <div className="flex w-[20rem] flex-col justify-between py-2">
           <div>
             <span className="h-[0.1rem] overflow-hidden text-ellipsis font-bold">{storeName}</span>
           </div>
-          <div className="flex items-center py-2">
+          <div className="flex items-center">
             <div className="h-[31.901px] w-[2.5rem] ">
               <Image imageSrc={profileImage} alt={t('reviewCard.userImage')} threshold={{ smallToMedium: '0', mediumToLarge: '0' }} className="pr-2" />
             </div>
