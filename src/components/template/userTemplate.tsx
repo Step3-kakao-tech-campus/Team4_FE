@@ -21,12 +21,12 @@ function UserTemplate() {
         </div>
       </div>
       <div>
-        <MyPageList text={t('userPage.likedRestaurant')} linkTo="/liked_stores" />
-        <MyPageList text={t('userPage.recentlyViewedRestaurant')} linkTo="/recent-stores" />
-        <MyPageList text={t('userPage.writtenReview')} linkTo="/written-review" />
-        <MyPageList text={t('userPage.likedReview')} linkTo="/liked-review" />
-        <MyPageList text={t('userPage.coinRechargeHistory')} linkTo="/coin-recharge-history" />
-        <MyPageList text={t('userPage.coinUsageHistory')} linkTo="/coin-usage-history" />
+        <MyPageList text={t('userPage.likedRestaurant')} linkTo="/likedStores" />
+        <MyPageList text={t('userPage.recentlyViewedRestaurant')} linkTo="/recentStores" />
+        <MyPageList text={t('userPage.writtenReview')} linkTo="/writtenReview" />
+        <MyPageList text={t('userPage.likedReview')} linkTo="/likedReview" />
+        <MyPageList text={t('userPage.coinRechargeHistory')} linkTo="/coinRechargeHistory" />
+        <MyPageList text={t('userPage.coinUsageHistory')} linkTo="/coinUsageHistory" />
         <MyPageList text={t('userPage.language')} linkTo="/language" />
         <div className="mb-8 pb-8 text-center text-matgpt-gray">
           <span>{t('userPage.logout')}</span>

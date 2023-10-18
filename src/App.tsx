@@ -27,9 +27,9 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/mypage" element={<UserPage />} />
             <Route path="/search" element={<SearchResultPage />} />
-            <Route path="/liked_stores" element={<LikedStorePage />} />
-            <Route path="/coin-recharge-history" element={<CoinRechargePage />} />
-            <Route path="/recent-stores" element={<RecentlyViewdStorePage />} />
+            <Route path="/likedStores" element={<LikedStorePage />} />
+            <Route path="/coinRechargeHistory" element={<CoinRechargePage />} />
+            <Route path="/recentStores" element={<RecentlyViewdStorePage />} />
           </Route>
           {/* 단독 레이아웃 */}
           <Route path="/landing" element={<LandingPage />} />
