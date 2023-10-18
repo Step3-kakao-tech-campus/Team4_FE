@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ReviewCardInfo } from '../../types/review';
 import StoreInfoTab from './storeInfoTab';
 import StoreReviewTab from './storeReviewTab';
@@ -15,6 +16,7 @@ export default function StoreDetailTab({
   fetchReview,
 }: StoreDetailTabProps) {
   const [tab, setTab] = useState(0);
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -24,14 +26,14 @@ export default function StoreDetailTab({
           className={`${tab === 0 ? 'border-b-white' : 'border-b-black'} flex grow items-center justify-center border-b border-r border-r-black`}
           onClick={() => setTab(0)}
         >
-          개요
+          {t('storeDetail.overview')}
         </button>
         <button
           type="button"
           className={`${tab === 1 ? 'border-b-white' : 'border-b-black'} flex grow items-center justify-center border-b`}
           onClick={() => setTab(1)}
         >
-          리뷰
+          {t('storeDetail.review')}
         </button>
       </div>
       <div>

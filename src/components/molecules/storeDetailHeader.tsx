@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Button from '../atoms/button';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
@@ -19,13 +20,14 @@ export default function StoreDetailHeader({
   rating,
   reviewCount,
 }: StoreDetailHeaderProps) {
+  const { t } = useTranslation();
   return (
     <>
-      <PageTitleCard pageTitle="음식점 상세 페이지" />
+      <PageTitleCard pageTitle={t('storeDetail.pageTitle')} />
       <div className="h-48 w-full">
         <Image
           imageSrc={storeImage}
-          alt={`${storeName} 이미지`}
+          alt={`${storeName} ${t('storeDetail.image')}`}
           objectFitMode
           className="h-full w-full object-cover object-center"
         />
@@ -37,7 +39,7 @@ export default function StoreDetailHeader({
             <Icon
               name="OutlineHeart"
               size="1.4rem"
-              ariaLabel="좋아요 한 식당에 추가"
+              ariaLabel={t('storeDetail.addLikedStore')}
             />
           </button>
         </div>
@@ -47,17 +49,17 @@ export default function StoreDetailHeader({
               <Icon
                 name="OutlineStar"
                 size="1.4rem"
-                ariaLabel="별점"
+                ariaLabel={t('storeDetail.rating')}
               />
               <div>{rating}</div>
             </div>
             <div className="flex items-center gap-1">
-              <div>리뷰</div>
+              <div>{t('storeDetail.review')}</div>
               <div>{reviewCount}</div>
             </div>
           </div>
           <Link to={`/stores/${storeId}/writeReview`}>
-            <Button>리뷰 쓰기</Button>
+            <Button>{t('storeDetail.writeReview')}</Button>
           </Link>
         </div>
       </div>
