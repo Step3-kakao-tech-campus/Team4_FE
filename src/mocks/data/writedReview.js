@@ -1,4 +1,4 @@
-export default [[
+export default [
   {
     success: true,
     cursor: 9,
@@ -90,12 +90,9 @@ export default [[
         reviewRating: 4.5,
         visitedCount: 3,
         createdAt: '1년 전',
-      },
-    ],
+      }],
     error: null,
   },
-],
-[
   {
     success: true,
     cursor: 17,
@@ -191,8 +188,6 @@ export default [[
     ],
     error: null,
   },
-],
-[
   {
     success: true,
     cursor: 17,
@@ -284,9 +279,7 @@ export default [[
         reviewRating: 4.5,
         visitedCount: 3,
         createdAt: '1년 전',
-      },
-    ],
+      }],
     error: null,
   },
-],
 ];
