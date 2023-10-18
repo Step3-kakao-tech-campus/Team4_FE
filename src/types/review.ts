@@ -7,5 +7,5 @@ export interface ReviewCardInfo {
   reviewerName: string;
   reviewRating: number;
   visitedCount: number;
-  createdAt: Date;
+  createdAt: string;
 }

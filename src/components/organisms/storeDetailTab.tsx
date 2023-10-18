@@ -49,7 +49,7 @@ export default function StoreDetailTab({
                   storeName={review.storeName}
                   profileImage={review.profileImage}
                   visitedCount={review.visitedCount}
-                  createdAt={review.createdAt.toString()}
+                  createdAt={review.createdAt}
                 />
               </li>
             ))}

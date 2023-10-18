@@ -184,7 +184,7 @@ export const handlers = [
             reviewerName: '춘식이',
             reviewRating: '4.5',
             visitedCount: 2,
-            createdAt: new Date(),
+            createdAt: '3일 전',
           },
           {
             storeId: 1,
@@ -195,7 +195,7 @@ export const handlers = [
             reviewerName: '춘식이',
             reviewRating: '4.5',
             visitedCount: 2,
-            createdAt: new Date(),
+            createdAt: '3일 전',
           },
           {
             storeId: 1,
@@ -206,7 +206,7 @@ export const handlers = [
             reviewerName: '춘식이',
             reviewRating: '4.5',
             visitedCount: 2,
-            createdAt: new Date(),
+            createdAt: '3일 전',
           },
         ],
         error: null,
