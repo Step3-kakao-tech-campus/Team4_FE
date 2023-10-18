@@ -17,6 +17,7 @@ export default function StoreDetailTemplate({
   return (
     <main>
       <StoreDetailHeader
+        storeId={storeDetail.storeId}
         storeName={storeDetail.storeName}
         storeImage={storeDetail.storeImage}
         rating={storeDetail.rating}

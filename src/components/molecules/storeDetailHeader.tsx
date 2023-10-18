@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom';
 import Button from '../atoms/button';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 import PageTitleCard from './pageTitleCard';
 
 interface StoreDetailHeaderProps {
+  storeId: number;
   storeName: string;
   storeImage: string;
   rating: number;
@@ -11,6 +13,7 @@ interface StoreDetailHeaderProps {
 }
 
 export default function StoreDetailHeader({
+  storeId,
   storeName,
   storeImage,
   rating,
@@ -53,7 +56,9 @@ export default function StoreDetailHeader({
               <div>{reviewCount}</div>
             </div>
           </div>
-          <Button>리뷰 쓰기</Button>
+          <Link to={`/stores/${storeId}/writeReview`}>
+            <Button>리뷰 쓰기</Button>
+          </Link>
         </div>
       </div>
     </>
