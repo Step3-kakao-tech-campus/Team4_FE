@@ -1,4 +1,5 @@
 import { rest } from 'msw';
+import writedReviewData from './data/writedReview';
 
 export const handlers = [
   rest.get('/search', (req, res, ctx) => {
@@ -207,6 +208,26 @@ export const handlers = [
         ],
         error: null,
       }),
+    );
+  }),
+  rest.get('/mypage/write-reviews', (req, res, ctx) => {
+    const cursor = Number(req.url.searchParams.get('cursor'));
+    const limits = Number(req.url.searchParams.get('limits'));
+    if (cursor === 1 && limits === 8) {
+      return res(
+        ctx.status(200),
+        ctx.json(writedReviewData[0]),
+      );
+    }
+    if (cursor === 9 && limits === 8) {
+      return res(
+        ctx.status(200),
+        ctx.json(writedReviewData[1]),
+      );
+    }
+    return res(
+      ctx.status(200),
+      ctx.json(writedReviewData[2]),
     );
   }),
 ];
