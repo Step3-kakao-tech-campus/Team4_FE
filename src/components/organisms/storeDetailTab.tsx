@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import { ReviewCardInfo } from '../../types/review';
-import ReviewCard from '../molecules/reviewCard';
+import StoreInfoTab from './storeInfoTab';
+import StoreReviewTab from './storeReviewTab';
 
 interface StoreDetailTabProps {
   storeInfo: string;
   reviews: ReviewCardInfo[] | undefined;
+  fetchReview: () => void;
 }
 
 export default function StoreDetailTab({
   storeInfo,
   reviews,
+  fetchReview,
 }: StoreDetailTabProps) {
   const [tab, setTab] = useState(0);
 
@@ -32,32 +35,13 @@ export default function StoreDetailTab({
         </button>
       </div>
       <div>
-        {tab === 0 ? <div>{storeInfo}</div> : (
-          <>
-          </>
-        )}
+        {tab === 0 ? <StoreInfoTab storeInfo={storeInfo} /> : null}
         {tab === 1 && reviews ? (
-          <ul>
-            {reviews.map((review) => (
-              <li key={review.reviewId}>
-                <ReviewCard
-                  storeId={review.storeId}
-                  reviewId={review.reviewId}
-                  reviewRating={review.reviewRating}
-                  reviewerName={review.reviewerName}
-                  storeImage={review.storeImage}
-                  storeName={review.storeName}
-                  profileImage={review.profileImage}
-                  visitedCount={review.visitedCount}
-                  createdAt={review.createdAt}
-                />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <>
-          </>
-        )}
+          <StoreReviewTab
+            reviews={reviews}
+            fetchReview={fetchReview}
+          />
+        ) : null}
       </div>
     </div>
   );

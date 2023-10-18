@@ -6,11 +6,13 @@ import StoreDetailTab from '../organisms/storeDetailTab';
 interface StoreDetailTemplateProps {
   storeDetail: StoreDetail;
   reviews: ReviewCardInfo[] | undefined;
+  fetchReview: () => void;
 }
 
 export default function StoreDetailTemplate({
   storeDetail,
   reviews,
+  fetchReview,
 }: StoreDetailTemplateProps) {
   return (
     <main>
@@ -23,6 +25,7 @@ export default function StoreDetailTemplate({
       <StoreDetailTab
         storeInfo={storeDetail.information}
         reviews={reviews}
+        fetchReview={fetchReview}
       />
     </main>
   );

@@ -12,7 +12,15 @@ export default function StoreDetailPage() {
   const { data: storeDetailData, isLoading: isStoreDetailDataLoading } = useStoreDetail(+storeId);
   const storeDetail = storeDetailData?.data.response;
 
-  const { data: reviewData } = useStoreReview(+storeId);
+  const {
+    data: reviewData, hasNextPage, fetchNextPage,
+  } = useStoreReview(+storeId);
+
+  const fetchReview = () => {
+    if (hasNextPage) {
+      fetchNextPage();
+    }
+  };
 
   if (isStoreDetailDataLoading) {
     return <div>...</div>;
@@ -22,6 +30,7 @@ export default function StoreDetailPage() {
     <StoreDetailTemplate
       storeDetail={storeDetail}
       reviews={reviewData?.pages.flat()}
+      fetchReview={fetchReview}
     />
   );
 }
