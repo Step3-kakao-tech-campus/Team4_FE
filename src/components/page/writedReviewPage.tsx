@@ -17,8 +17,6 @@ function WritedReviewPage() {
       setPage(() => page - 1);
     }
   };
-  console.log(data);
-  console.log(isLoading, isFetching);
   if (data && !isLoading && !isFetching) {
     return (
       <WritedReviewTemplate

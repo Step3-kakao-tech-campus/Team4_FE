@@ -15,7 +15,7 @@ function WritedReviewTemplate({ wrtiedReview, page, onChangePage }: WritedReview
   const [isLastPage, setIsLastPage] = useState(false);
 
   useEffect(() => {
-    if (wrtiedReview.length < 6) {
+    if (wrtiedReview.length < 8) {
       return () => {
         setIsLastPage(true);
       };
