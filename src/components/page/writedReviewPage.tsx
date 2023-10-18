@@ -12,9 +12,9 @@ function WritedReviewPage() {
   });
   const onHandleChangePage = (type: 'right' | 'left') => {
     if (type === 'right') {
-      setPage(() => page + 1);
+      setPage((prev) => prev + 1);
     } else if (type === 'left') {
-      setPage(() => page - 1);
+      setPage((prev) => prev - 1);
     }
   };
   if (data && !isLoading && !isFetching) {
