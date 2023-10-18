@@ -9,6 +9,7 @@ import { queryClient } from './utils/query';
 import { worker } from './mocks/worker';
 import LikedStorePage from './components/page/likedStorePage';
 import CoinRechargePage from './components/page/coinRechargePage';
+import RecentlyViewdStorePage from './components/page/recentlyViewdStorePage';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -24,10 +25,12 @@ function App() {
           {/* 공통 레이아웃 */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<MainPage />} />
-            <Route path="/mypage" element={<UserPage />} />
+            <Route path="/mypage" element={<UserPage />}>
+              <Route path="/my-reviews" element={<LikedStorePage />} />
+              <Route path="/coin-recharge-history" element={<CoinRechargePage />} />
+              <Route path="/recent-stores" element={<RecentlyViewdStorePage />} />
+            </Route>
             <Route path="/search" element={<SearchResultPage />} />
-            <Route path="/likedStore" element={<LikedStorePage />} />
-            <Route path="/coinRechargeHistory" element={<CoinRechargePage />} />
           </Route>
           {/* 단독 레이아웃 */}
           <Route path="/landing" element={<LandingPage />} />
