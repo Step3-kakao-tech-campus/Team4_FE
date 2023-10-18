@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReviewCardInfo } from '../../types/review';
-import StoreInfoTab from './storeInfoTab';
+import StoreOverviewTab from './storeOverviewTab';
 import StoreReviewTab from './storeReviewTab';
 
 interface StoreDetailTabProps {
@@ -37,7 +37,7 @@ export default function StoreDetailTab({
         </button>
       </div>
       <div>
-        {tab === 0 ? <StoreInfoTab storeInfo={storeInfo} /> : null}
+        {tab === 0 ? <StoreOverviewTab storeInfo={storeInfo} /> : null}
         {tab === 1 && reviews ? (
           <StoreReviewTab
             reviews={reviews}
