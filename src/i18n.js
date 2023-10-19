@@ -121,6 +121,9 @@ i18n
           recentlyViewdStorePage: {
             pageTitle: '최근 본 맛집',
           },
+          likedReviewPage: {
+            likedReviewPage: '좋아요 한 리뷰',
+          },
         },
       },
       en: {
@@ -223,6 +226,9 @@ i18n
           },
           recentlyViewdStorePage: {
             pageTitle: 'Recently Viewd Restaurant',
+          },
+          likedReviewPage: {
+            likedReviewPage: 'Liked review',
           },
         },
       },
