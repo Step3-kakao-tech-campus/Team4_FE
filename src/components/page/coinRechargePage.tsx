@@ -7,8 +7,8 @@ function CoinRechargePage() {
   const [page, setPage] = useState(1);
   const limits = 12;
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: [`getChargeCoin?cursor=${1 + 6 * (page - 1)}&limits=${limits}`],
-    queryFn: () => getChargeCoin(1 + 6 * (page - 1), limits),
+    queryKey: [`getChargeCoin?cursor=${1 + 12 * (page - 1)}&limits=${limits}`],
+    queryFn: () => getChargeCoin(1 + 12 * (page - 1), limits),
   });
 
   const onHandleChangePage = (type: 'right' | 'left') => {

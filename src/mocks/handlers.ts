@@ -1,5 +1,6 @@
 import { rest } from 'msw';
 import recentlyViewdStoreData from './data/recentlyViewdStore';
+import { coinRechargeData, coinUsageData } from './data/coinData';
 
 export const handlers = [
   rest.get('/search', (req, res, ctx) => {
@@ -119,97 +120,6 @@ export const handlers = [
       }),
     );
   }),
-  rest.get('/mypage/charge-coin', (req, res, ctx) => {
-    const cursor = Number(req.url.searchParams.get('cursor'));
-    const limits = Number(req.url.searchParams.get('limits'));
-    if (cursor === 1 && limits === 12) {
-      return res(
-        ctx.status(200),
-        ctx.json({
-          success: true,
-          cursor: 7,
-          response: [
-            {
-              date: '2023-10-05',
-              reChargeCoin: 1400,
-              totalCoin: 2400,
-            },
-            {
-              date: '2023-10-06',
-              reChargeCoin: 1000,
-              totalCoin: 3400,
-            },
-            {
-              date: '2023-10-07',
-              reChargeCoin: 5000,
-              totalCoin: 8400,
-            },
-            {
-              date: '2023-10-05',
-              reChargeCoin: 1400,
-              totalCoin: 2400,
-            },
-            {
-              date: '2023-10-06',
-              reChargeCoin: 1000,
-              totalCoin: 3400,
-            },
-            {
-              date: '2023-10-07',
-              reChargeCoin: 5000,
-              totalCoin: 8400,
-            },
-            {
-              date: '2023-10-05',
-              reChargeCoin: 1400,
-              totalCoin: 2400,
-            },
-            {
-              date: '2023-10-06',
-              reChargeCoin: 1000,
-              totalCoin: 3400,
-            },
-            {
-              date: '2023-10-07',
-              reChargeCoin: 5000,
-              totalCoin: 8400,
-            },
-            {
-              date: '2023-10-05',
-              reChargeCoin: 1400,
-              totalCoin: 2400,
-            },
-            {
-              date: '2023-10-06',
-              reChargeCoin: 1000,
-              totalCoin: 3400,
-            },
-            {
-              date: '2023-10-07',
-              reChargeCoin: 5000,
-              totalCoin: 8400,
-            },
-          ],
-          error: null,
-        }),
-      );
-    }
-    return res(
-      ctx.status(200),
-      ctx.json({
-        success: true,
-        cursor: 0,
-        response: [
-          {
-            date: '2023-10-07',
-            reChargeCoin: 5000,
-            totalCoin: 8400,
-          },
-        ],
-        error: null,
-      }),
-    );
-  }),
   rest.get('/mypage/recent-stores', (req, res, ctx) => {
     const cursor = Number(req.url.searchParams.get('cursor'));
     const limits = Number(req.url.searchParams.get('limits'));
@@ -228,6 +138,58 @@ export const handlers = [
     return res(
       ctx.status(200),
       ctx.json(recentlyViewdStoreData[2]),
+    );
+  }),
+  rest.get('/mypage/charge-coin', (req, res, ctx) => {
+    const cursor = Number(req.url.searchParams.get('cursor'));
+    const limits = Number(req.url.searchParams.get('limits'));
+    if (cursor === 1 && limits === 12) {
+      return res(
+        ctx.status(200),
+        ctx.json(
+          coinRechargeData[0],
+        ),
+      );
+    }
+    if (cursor === 13 && limits === 12) {
+      return res(
+        ctx.status(200),
+        ctx.json(
+          coinRechargeData[1],
+        ),
+      );
+    }
+    return res(
+      ctx.status(200),
+      ctx.json(
+        coinRechargeData[2],
+      ),
+    );
+  }),
+  rest.get('/mypage/usage-coin', (req, res, ctx) => {
+    const cursor = Number(req.url.searchParams.get('cursor'));
+    const limits = Number(req.url.searchParams.get('limits'));
+    if (cursor === 1 && limits === 12) {
+      return res(
+        ctx.status(200),
+        ctx.json(
+          coinUsageData[0],
+        ),
+      );
+    }
+    if (cursor === 13 && limits === 12) {
+      return res(
+        ctx.status(200),
+        ctx.json(
+          coinUsageData[1],
+        ),
+      );
+    }
+    return res(
+      ctx.status(200),
+      ctx.json(
+        coinUsageData[2],
+      ),
     );
   }),
 ];
