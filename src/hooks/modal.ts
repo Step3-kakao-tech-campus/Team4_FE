@@ -2,10 +2,10 @@ import { ModalType } from '../types/modal';
 import { addModal, deleteModal } from '../store/slices/modalSlice';
 import { useModalDispatch } from './store';
 
-export function useModal(type: ModalType) {
+export function useModal() {
   const dispatch = useModalDispatch();
 
-  const openModal = () => {
+  const openModal = (type: ModalType) => {
     dispatch(addModal(type));
   };
   const closeModal = () => {
