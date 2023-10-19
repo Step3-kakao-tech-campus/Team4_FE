@@ -10,6 +10,7 @@ import { worker } from './mocks/worker';
 import LikedStorePage from './components/page/likedStorePage';
 import CoinRechargePage from './components/page/coinRechargePage';
 import WritedReviewPage from './components/page/writedReviewPage';
+import RecentlyViewdStorePage from './components/page/recentlyViewdStorePage';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -27,9 +28,10 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/mypage" element={<UserPage />} />
             <Route path="/search" element={<SearchResultPage />} />
-            <Route path="/likedStore" element={<LikedStorePage />} />
+            <Route path="/likedStores" element={<LikedStorePage />} />
             <Route path="/coinRechargeHistory" element={<CoinRechargePage />} />
             <Route path="/writtenReview" element={<WritedReviewPage />} />
+            <Route path="/recentStores" element={<RecentlyViewdStorePage />} />
           </Route>
           {/* 단독 레이아웃 */}
           <Route path="/landing" element={<LandingPage />} />

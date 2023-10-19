@@ -21,8 +21,8 @@ function UserTemplate() {
         </div>
       </div>
       <div>
-        <MyPageList text={t('userPage.likedRestaurant')} linkTo="/likedStore" />
-        <MyPageList text={t('userPage.recentlyViewedRestaurant')} linkTo="/recentlyViewedRestaurant" />
+        <MyPageList text={t('userPage.likedRestaurant')} linkTo="/likedStores" />
+        <MyPageList text={t('userPage.recentlyViewedRestaurant')} linkTo="/recentStores" />
         <MyPageList text={t('userPage.writtenReview')} linkTo="/writtenReview" />
         <MyPageList text={t('userPage.likedReview')} linkTo="/likedReview" />
         <MyPageList text={t('userPage.coinRechargeHistory')} linkTo="/coinRechargeHistory" />

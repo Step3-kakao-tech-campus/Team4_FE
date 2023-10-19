@@ -118,6 +118,9 @@ i18n
           writtenReviewPage: {
             pageTitle: '작성 한 리뷰',
           },
+          recentlyViewdStorePage: {
+            pageTitle: '최근 본 맛집',
+          },
         },
       },
       en: {
@@ -217,6 +220,9 @@ i18n
           },
           writtenReviewPage: {
             pageTitle: 'Written Review',
+          },
+          recentlyViewdStorePage: {
+            pageTitle: 'Recently Viewd Restaurant',
           },
         },
       },

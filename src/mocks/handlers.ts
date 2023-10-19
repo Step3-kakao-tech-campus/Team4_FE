@@ -1,5 +1,6 @@
 import { rest } from 'msw';
 import writedReviewData from './data/writedReview';
+import recentlyViewdStoreData from './data/recentlyViewdStore';
 
 export const handlers = [
   rest.get('/search', (req, res, ctx) => {
@@ -210,6 +211,7 @@ export const handlers = [
       }),
     );
   }),
+
   rest.get('/mypage/write-reviews', (req, res, ctx) => {
     const cursor = Number(req.url.searchParams.get('cursor'));
     const limits = Number(req.url.searchParams.get('limits'));
@@ -228,6 +230,27 @@ export const handlers = [
     return res(
       ctx.status(200),
       ctx.json(writedReviewData[2]),
+    );
+  }),
+
+  rest.get('/mypage/recent-stores', (req, res, ctx) => {
+    const cursor = Number(req.url.searchParams.get('cursor'));
+    const limits = Number(req.url.searchParams.get('limits'));
+    if (cursor === 1 && limits === 6) {
+      return res(
+        ctx.status(200),
+        ctx.json(recentlyViewdStoreData[0]),
+      );
+    }
+    if (cursor === 7 && limits === 6) {
+      return res(
+        ctx.status(200),
+        ctx.json(recentlyViewdStoreData[1]),
+      );
+    }
+    return res(
+      ctx.status(200),
+      ctx.json(recentlyViewdStoreData[2]),
     );
   }),
 ];
