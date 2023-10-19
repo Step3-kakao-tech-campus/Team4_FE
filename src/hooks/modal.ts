@@ -7,6 +7,7 @@ export function useModal() {
 
   const openModal = (type: ModalType) => {
     dispatch(addModal(type));
+    window.history.pushState({ modalType: type }, '');
   };
   const closeModal = () => {
     dispatch(deleteModal());

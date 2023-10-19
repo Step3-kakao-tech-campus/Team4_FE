@@ -1,4 +1,5 @@
 import { createPortal } from 'react-dom';
+import { useEffect } from 'react';
 import { useModalSelector } from '../../hooks/store';
 import { useModal } from '../../hooks/modal';
 import ModalBackdrop from './modalBackdrop';
@@ -6,6 +7,17 @@ import ModalBackdrop from './modalBackdrop';
 export default function ModalContainer({ children }: { children: React.ReactNode }) {
   const modals = useModalSelector((state) => state.modal);
   const { closeModal } = useModal();
+
+  useEffect(() => {
+    const closeWhenBack = () => {
+      if (modals.length > 0) {
+        closeModal();
+      }
+    };
+    window.addEventListener('popstate', closeWhenBack);
+
+    return () => window.removeEventListener('popstate', closeWhenBack);
+  }, [modals]);
 
   return (
     <>
