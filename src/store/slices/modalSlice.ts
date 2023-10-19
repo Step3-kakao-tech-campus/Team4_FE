@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ModalType } from '../../types/modal';
 
 interface Modal {
   id: number;
-  type: 'Language' | 'Login' | 'Search';
+  type: ModalType;
 }
 
 const initialState: Modal[] = [];
@@ -11,19 +12,19 @@ export const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal: (state, action: PayloadAction<Modal>) => {
-      const { id, type } = action.payload;
+    addModal: (state, action: PayloadAction<Modal['type']>) => {
+      const type = action.payload;
+      const id = state.length;
       return state.concat({
         id,
         type,
       });
     },
-    closeModal: (state, action: PayloadAction<Modal>) => {
-      const { id, type } = action.payload;
-      return state.filter((current) => !(current.id === id && current.type === type));
+    deleteModal: (state) => {
+      state.pop();
     },
   },
 });
 
-export const { openModal, closeModal } = modalSlice.actions;
-export default modalSlice.reducer;
+export const { addModal, deleteModal } = modalSlice.actions;
+export const modalReducer = modalSlice.reducer;
