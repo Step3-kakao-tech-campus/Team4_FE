@@ -6,17 +6,17 @@ import ReviewCard from '../molecules/reviewCard';
 import Page from '../molecules/page';
 
 interface WritedReviewType {
-  wrtiedReview: ReviewCardInfo[],
+  likedReview: ReviewCardInfo[],
   page: number,
   onChangePage: (type: 'left' | 'right') => void,
 }
 
-function LikedReviewTemplate({ wrtiedReview, page, onChangePage }: WritedReviewType) {
+function LikedReviewTemplate({ likedReview, page, onChangePage }: WritedReviewType) {
   const { t } = useTranslation();
   const [isLastPage, setIsLastPage] = useState(false);
 
   useEffect(() => {
-    if (wrtiedReview.length < 8) {
+    if (likedReview.length < 8) {
       return () => {
         setIsLastPage(true);
       };
@@ -24,7 +24,7 @@ function LikedReviewTemplate({ wrtiedReview, page, onChangePage }: WritedReviewT
     return () => {
       setIsLastPage(false);
     };
-  }, [wrtiedReview]);
+  }, [likedReview]);
   return (
     <div className="relative">
       <div className="sticky top-0">
@@ -35,7 +35,7 @@ function LikedReviewTemplate({ wrtiedReview, page, onChangePage }: WritedReviewT
       </nav>
       <main>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {wrtiedReview.map(({
+          {likedReview.map(({
             storeId, reviewId, storeImage,
             storeName, profileImage, reviewerName,
             reviewRating, visitedCount, createdAt,

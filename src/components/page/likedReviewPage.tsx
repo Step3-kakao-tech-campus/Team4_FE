@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { getWrtiedReview } from '../../apis/review';
-import WritedReviewTemplate from '../template/writedReviewTemplate';
+import { getLikedReview } from '../../apis/review';
+import LikedReviewTemplate from '../template/likedReviewTemplate';
 
-function WritedReviewPage() {
+function LikedReviewPage() {
   const [page, setPage] = useState(1);
   const limits = 8;
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: [`getWrtiedReview?cursor=${1 + 8 * (page - 1)}&limits=${limits}`],
-    queryFn: () => getWrtiedReview(1 + 8 * (page - 1), limits),
+    queryKey: [`getLikedReview?cursor=${1 + 8 * (page - 1)}&limits=${limits}`],
+    queryFn: () => getLikedReview(1 + 8 * (page - 1), limits),
   });
   const onHandleChangePage = (type: 'right' | 'left') => {
     if (type === 'right') {
@@ -19,8 +19,8 @@ function WritedReviewPage() {
   };
   if (data && !isLoading && !isFetching) {
     return (
-      <WritedReviewTemplate
-        wrtiedReview={data}
+      <LikedReviewTemplate
+        likedReview={data}
         page={page}
         onChangePage={onHandleChangePage}
       />
@@ -31,4 +31,4 @@ function WritedReviewPage() {
   );
 }
 
-export default WritedReviewPage;
+export default LikedReviewPage;
