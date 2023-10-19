@@ -121,6 +121,9 @@ i18n
             previousPage: '이전 페이지로',
             nextPage: '다음 페이지로',
           },
+          writtenReviewPage: {
+            pageTitle: '작성 한 리뷰',
+          },
           recentlyViewdStorePage: {
             pageTitle: '최근 본 맛집',
           },
@@ -226,6 +229,9 @@ i18n
             firstPage: 'This is the first page.',
             previousPage: 'Go to the previous page',
             nextPage: 'Go to the next page',
+          },
+          writtenReviewPage: {
+            pageTitle: 'Written Review',
           },
           recentlyViewdStorePage: {
             pageTitle: 'Recently Viewd Restaurant',

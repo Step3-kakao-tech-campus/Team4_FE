@@ -9,6 +9,7 @@ import { queryClient } from './utils/query';
 import { worker } from './mocks/worker';
 import LikedStorePage from './components/page/likedStorePage';
 import CoinRechargePage from './components/page/coinRechargePage';
+import WritedReviewPage from './components/page/writedReviewPage';
 import RecentlyViewdStorePage from './components/page/recentlyViewdStorePage';
 import CoinUsagePage from './components/page/coinUsagePage';
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/search" element={<SearchResultPage />} />
             <Route path="/likedStores" element={<LikedStorePage />} />
             <Route path="/coinRechargeHistory" element={<CoinRechargePage />} />
+            <Route path="/writtenReview" element={<WritedReviewPage />} />
             <Route path="/recentStores" element={<RecentlyViewdStorePage />} />
             <Route path="/coinUsageHistory" element={<CoinUsagePage />} />
           </Route>
