@@ -233,6 +233,27 @@ export const handlers = [
     );
   }),
 
+  rest.get('/mypage/liked-reviews', (req, res, ctx) => {
+    const cursor = Number(req.url.searchParams.get('cursor'));
+    const limits = Number(req.url.searchParams.get('limits'));
+    if (cursor === 1 && limits === 8) {
+      return res(
+        ctx.status(200),
+        ctx.json(writedReviewData[0]),
+      );
+    }
+    if (cursor === 9 && limits === 8) {
+      return res(
+        ctx.status(200),
+        ctx.json(writedReviewData[1]),
+      );
+    }
+    return res(
+      ctx.status(200),
+      ctx.json(writedReviewData[2]),
+    );
+  }),
+
   rest.get('/mypage/recent-stores', (req, res, ctx) => {
     const cursor = Number(req.url.searchParams.get('cursor'));
     const limits = Number(req.url.searchParams.get('limits'));

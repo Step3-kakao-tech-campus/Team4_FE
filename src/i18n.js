@@ -122,7 +122,7 @@ i18n
             pageTitle: '최근 본 맛집',
           },
           likedReviewPage: {
-            likedReviewPage: '좋아요 한 리뷰',
+            pageTitle: '좋아요 한 리뷰',
           },
         },
       },
@@ -228,7 +228,7 @@ i18n
             pageTitle: 'Recently Viewd Restaurant',
           },
           likedReviewPage: {
-            likedReviewPage: 'Liked review',
+            pageTitle: 'Liked review',
           },
         },
       },
