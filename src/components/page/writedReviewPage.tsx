@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import LikedStoreTemplate from '../template/likedStoreTemplate';
-import { getLikedStore } from '../../apis/likedStore';
+import { getWrtiedReview } from '../../apis/writedReview';
+import WritedReviewTemplate from '../template/writedReviewTemplate';
 
-function LikedStorePage() {
+function WritedReviewPage() {
   const [page, setPage] = useState(1);
-  const limits = 6;
+  const limits = 8;
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: [`getLikedStore?cursor=${1 + 6 * (page - 1)}&limits=${limits}`],
-    queryFn: () => getLikedStore(1 + 6 * (page - 1), limits),
+    queryKey: [`getWrtiedReview?cursor=${1 + 8 * (page - 1)}&limits=${limits}`],
+    queryFn: () => getWrtiedReview(1 + 8 * (page - 1), limits),
   });
-
   const onHandleChangePage = (type: 'right' | 'left') => {
     if (type === 'right') {
       setPage((prev) => prev + 1);
@@ -18,11 +17,10 @@ function LikedStorePage() {
       setPage((prev) => prev - 1);
     }
   };
-
   if (data && !isLoading && !isFetching) {
     return (
-      <LikedStoreTemplate
-        likedStore={data}
+      <WritedReviewTemplate
+        wrtiedReview={data}
         page={page}
         onChangePage={onHandleChangePage}
       />
@@ -33,4 +31,4 @@ function LikedStorePage() {
   );
 }
 
-export default LikedStorePage;
+export default WritedReviewPage;
