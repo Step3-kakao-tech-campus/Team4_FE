@@ -20,7 +20,7 @@ export default function LanguageModal() {
 
   return (
     <>
-      <div className="fixed bottom-0 w-full max-w-[500px] rounded-t-2xl ">
+      <div className="fixed bottom-0 w-full max-w-[500px] rounded-t-2xl bg-white">
         <form onSubmit={onLanguageSelect}>
           <section>
             <h1 className="py-2 text-center">{t('landingPage.languageSelect')}</h1>
