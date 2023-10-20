@@ -23,9 +23,6 @@ export function useModal(type: ModalType) {
   const openModal = () => {
     window.location.hash = type;
   };
-  const closeModal = () => {
-    window.location.hash = '';
-  };
 
-  return { openModal, closeModal };
+  return { openModal };
 }
