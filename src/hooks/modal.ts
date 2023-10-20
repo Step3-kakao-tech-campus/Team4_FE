@@ -1,16 +1,30 @@
+import { useEffect } from 'react';
 import { ModalType } from '../types/modal';
-import { addModal, deleteModal } from '../store/slices/modalSlice';
+import { open, close } from '../store/slices/modalSlice';
 import { useModalDispatch } from './store';
 
-export function useModal() {
+export function useModal(type: ModalType) {
   const dispatch = useModalDispatch();
 
-  const openModal = (type: ModalType) => {
-    dispatch(addModal(type));
-    window.history.pushState({ modalType: type }, '');
+  useEffect(() => {
+    const handleModalOpen = () => {
+      const { hash } = window.location;
+      if (hash === `#${type}`) {
+        dispatch(open(type));
+      } else {
+        dispatch(close());
+      }
+    };
+    window.addEventListener('hashchange', handleModalOpen);
+
+    return () => window.removeEventListener('hashchange', handleModalOpen);
+  }, [type]);
+
+  const openModal = () => {
+    window.location.hash = type;
   };
   const closeModal = () => {
-    dispatch(deleteModal());
+    window.location.hash = '';
   };
 
   return { openModal, closeModal };

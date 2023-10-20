@@ -2,29 +2,25 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ModalType } from '../../types/modal';
 
 interface Modal {
-  id: number;
-  type: ModalType;
+  type: ModalType | null;
 }
 
-const initialState: Modal[] = [];
+const initialState: Modal = {
+  type: null,
+};
 
 export const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    addModal: (state, action: PayloadAction<Modal['type']>) => {
-      const type = action.payload;
-      const id = state.length;
-      return state.concat({
-        id,
-        type,
-      });
-    },
-    deleteModal: (state) => {
-      state.pop();
-    },
+    open: (state, action: PayloadAction<Modal['type']>) => ({
+      type: action.payload,
+    }),
+    close: () => ({
+      type: null,
+    }),
   },
 });
 
-export const { addModal, deleteModal } = modalSlice.actions;
+export const { open, close } = modalSlice.actions;
 export const modalReducer = modalSlice.reducer;
