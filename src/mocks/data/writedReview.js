@@ -1,4 +1,4 @@
-export default [
+export const writedReviewData = [
   {
     success: true,
     cursor: 9,

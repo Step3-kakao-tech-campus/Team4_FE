@@ -109,6 +109,12 @@ i18n
             reChargeCoin: '충전 코인',
             totalCoin: '코인 합계',
           },
+          coinUsage: {
+            pageTitle: '코인 사용 내역',
+            date: '사용 날짜',
+            reChargeCoin: '사용 코인',
+            totalCoin: '코인 합계',
+          },
           page: {
             firstPage: '첫번째 페이지 입니다.',
             lastPage: '마지막 페이지 입니다.',
@@ -213,6 +219,12 @@ i18n
             pageTitle: 'Coin Recharge History',
             date: 'Recharge Date',
             reChargeCoin: 'Recharge Coins',
+            totalCoin: 'Coin Total',
+          },
+          coinUsage: {
+            pageTitle: 'Coin Usage History',
+            date: 'Usage Date',
+            reChargeCoin: 'Usage Coin',
             totalCoin: 'Coin Total',
           },
           page: {
