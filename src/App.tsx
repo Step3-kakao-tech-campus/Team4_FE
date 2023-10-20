@@ -11,6 +11,7 @@ import LikedStorePage from './components/page/likedStorePage';
 import CoinRechargePage from './components/page/coinRechargePage';
 import WritedReviewPage from './components/page/writedReviewPage';
 import RecentlyViewdStorePage from './components/page/recentlyViewdStorePage';
+import LikedReviewPage from './components/page/likedReviewPage';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -31,6 +32,7 @@ function App() {
             <Route path="/likedStores" element={<LikedStorePage />} />
             <Route path="/coinRechargeHistory" element={<CoinRechargePage />} />
             <Route path="/writtenReview" element={<WritedReviewPage />} />
+            <Route path="/likedReview" element={<LikedReviewPage />} />
             <Route path="/recentStores" element={<RecentlyViewdStorePage />} />
           </Route>
           {/* 단독 레이아웃 */}
