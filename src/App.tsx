@@ -33,7 +33,7 @@ function App() {
             <Route path="/coinRechargeHistory" element={<CoinRechargePage />} />
             <Route path="/writtenReview" element={<WritedReviewPage />} />
             <Route path="/recentStores" element={<RecentlyViewdStorePage />} />
-            <Route path="/test" element={<UserEditProfileTeamplate />} />
+            <Route path="/profileEditingPage" element={<UserEditProfileTeamplate />} />
           </Route>
           {/* 단독 레이아웃 */}
           <Route path="/landing" element={<LandingPage />} />

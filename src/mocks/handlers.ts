@@ -253,4 +253,9 @@ export const handlers = [
       ctx.json(recentlyViewdStoreData[2]),
     );
   }),
+  rest.put('/mypage/edit-profile', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json({ status: 200 }),
+  )),
+
 ];
