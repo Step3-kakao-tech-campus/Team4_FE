@@ -6,14 +6,16 @@ import { GoSearch } from 'react-icons/go';
 import { RefHandler } from '../../types/refHandler';
 
 interface InputProps {
+  id?: string,
   mode: 'search' | 'singleLine' | 'multiLine';
   placeholder?: string;
   defaultValue?: string;
-  onSearchClick? : React.FormEventHandler<HTMLFormElement>;
+  onSearchClick?: React.FormEventHandler<HTMLFormElement>;
 }
 
 const Input = forwardRef<RefHandler, InputProps>((
   {
+    id,
     mode,
     placeholder,
     defaultValue,
@@ -68,6 +70,7 @@ const Input = forwardRef<RefHandler, InputProps>((
     return (
       <div className="w-full rounded-full border border-black bg-white px-4 py-2">
         <input
+          id={id}
           type="text"
           ref={inputRef}
           className="w-full focus:outline-none"
