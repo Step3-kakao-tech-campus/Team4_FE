@@ -108,6 +108,37 @@ i18n
             rating: '별점',
             writeReview: '리뷰 작성',
           },
+          likedStorePage: {
+            pageTitle: '좋아요 한 맛집',
+            heartButton: '맛집 좋아요 버튼',
+          },
+          coinRecharging: {
+            pageTitle: '코인 충전 내역',
+            date: '충전 날짜',
+            reChargeCoin: '충전 코인',
+            totalCoin: '코인 합계',
+          },
+          coinUsage: {
+            pageTitle: '코인 사용 내역',
+            date: '사용 날짜',
+            reChargeCoin: '사용 코인',
+            totalCoin: '코인 합계',
+          },
+          page: {
+            firstPage: '첫번째 페이지 입니다.',
+            lastPage: '마지막 페이지 입니다.',
+            previousPage: '이전 페이지로',
+            nextPage: '다음 페이지로',
+          },
+          writtenReviewPage: {
+            pageTitle: '작성 한 리뷰',
+          },
+          recentlyViewdStorePage: {
+            pageTitle: '최근 본 맛집',
+          },
+          likedReviewPage: {
+            pageTitle: '좋아요 한 리뷰',
+          },
         },
       },
       en: {
@@ -197,6 +228,37 @@ i18n
             addLikedStore: 'Add to the store you liked',
             rating: 'Rating',
             writeReview: 'Write review',
+          },
+          likedStorePage: {
+            pageTitle: 'A Restaurant with Likes',
+            heartButton: 'Like Restaurant Button',
+          },
+          coinRecharging: {
+            pageTitle: 'Coin Recharge History',
+            date: 'Recharge Date',
+            reChargeCoin: 'Recharge Coins',
+            totalCoin: 'Coin Total',
+          },
+          coinUsage: {
+            pageTitle: 'Coin Usage History',
+            date: 'Usage Date',
+            reChargeCoin: 'Usage Coin',
+            totalCoin: 'Coin Total',
+          },
+          page: {
+            lastPage: 'This is the last page.',
+            firstPage: 'This is the first page.',
+            previousPage: 'Go to the previous page',
+            nextPage: 'Go to the next page',
+          },
+          writtenReviewPage: {
+            pageTitle: 'Written Review',
+          },
+          recentlyViewdStorePage: {
+            pageTitle: 'Recently Viewd Restaurant',
+          },
+          likedReviewPage: {
+            pageTitle: 'Liked review',
           },
         },
       },
