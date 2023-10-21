@@ -23,8 +23,8 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <ModalContainer>
-          <BrowserRouter>
+        <BrowserRouter>
+          <ModalContainer>
             <Routes>
               {/* 공통 레이아웃 */}
               <Route element={<MainLayout />}>
@@ -37,8 +37,8 @@ function App() {
               {/* 단독 레이아웃 */}
               <Route path="/landing" element={<LandingPage />} />
             </Routes>
-          </BrowserRouter>
-        </ModalContainer>
+          </ModalContainer>
+        </BrowserRouter>
       </Provider>
     </QueryClientProvider>
   );
