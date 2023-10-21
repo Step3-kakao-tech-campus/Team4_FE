@@ -25,6 +25,7 @@ export default function ModalContainer({ children }: { children: React.ReactNode
 
     preNode.current?.addEventListener('keydown', handlePreNodeShiftTab);
     postNode.current?.addEventListener('keydown', handlePostNodeTab);
+    preNode.current?.focus();
 
     return () => {
       preNode.current?.removeEventListener('keydown', handlePreNodeShiftTab);
