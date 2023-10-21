@@ -99,6 +99,15 @@ i18n
             notRecovredTitle: '삭제된 리뷰는 복구할 수 없습니다.',
             cancel: '취소',
           },
+          storeDetail: {
+            overview: '개요',
+            review: '리뷰',
+            pageTitle: '음식점 상세 페이지',
+            image: '이미지',
+            addLikedStore: '좋아요 한 음식점에 추가',
+            rating: '별점',
+            writeReview: '리뷰 작성',
+          },
           likedStorePage: {
             pageTitle: '좋아요 한 맛집',
             heartButton: '맛집 좋아요 버튼',
@@ -210,6 +219,15 @@ i18n
             deleteTitle: 'Are you sure you want to delete it?',
             notRecovredTitle: 'Deleted reviews cannot be recovered.',
             cancel: 'Cancel',
+          },
+          storeDetail: {
+            overview: 'Overview',
+            review: 'Review',
+            pageTitle: 'Store detail page',
+            image: 'image',
+            addLikedStore: 'Add to the store you liked',
+            rating: 'Rating',
+            writeReview: 'Write review',
           },
           likedStorePage: {
             pageTitle: 'A Restaurant with Likes',

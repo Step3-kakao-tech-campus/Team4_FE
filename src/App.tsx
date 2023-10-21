@@ -7,6 +7,7 @@ import SearchResultPage from './components/page/searchResultPage';
 import MainLayout from './components/layouts/mainLayout';
 import { queryClient } from './utils/query';
 import { worker } from './mocks/worker';
+import StoreDetailPage from './components/page/storeDetailPage';
 import LikedStorePage from './components/page/likedStorePage';
 import CoinRechargePage from './components/page/coinRechargePage';
 import WritedReviewPage from './components/page/writedReviewPage';
@@ -30,6 +31,7 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/mypage" element={<UserPage />} />
             <Route path="/search" element={<SearchResultPage />} />
+            <Route path="/stores/:storeId" element={<StoreDetailPage />} />
             <Route path="/likedStores" element={<LikedStorePage />} />
             <Route path="/coinRechargeHistory" element={<CoinRechargePage />} />
             <Route path="/writtenReview" element={<WritedReviewPage />} />
