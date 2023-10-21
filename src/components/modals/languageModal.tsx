@@ -33,7 +33,6 @@ export default function LanguageModal() {
                     id={value}
                     value={value}
                     defaultChecked={value === i18n.language}
-                    autoFocus
                   />
                 </li>
               ))}
