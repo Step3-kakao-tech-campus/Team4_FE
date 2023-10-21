@@ -3,14 +3,15 @@ import { GoHome, GoSearch } from 'react-icons/go';
 import { PiMoon, PiClipboard } from 'react-icons/pi';
 import { IoLanguage } from 'react-icons/io5';
 import {
-  AiOutlineLike, AiOutlineStar, AiOutlineClose,
+  AiOutlineLike, AiOutlineStar, AiOutlineClose, AiOutlineHeart,
   AiOutlineLeft, AiOutlineBell, AiOutlineRight, AiFillHeart,
 } from 'react-icons/ai';
 import { HiUserGroup, HiCreditCard } from 'react-icons/hi';
 
 interface IconProps {
   name: 'Person' | 'Home' | 'Search' | 'Moon' | 'Clipboard' | 'Language' | 'FillHeart' | 'OutlineLike' |
-  'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard' | 'OutlineRight';
+  'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard' | 'OutlineRight' |
+  'OutlineHeart';
   size: string;
   ariaLabel: string;
   color?: string;
@@ -46,8 +47,10 @@ function Icon({
       return <AiOutlineLeft size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineRight': // >
       return <AiOutlineRight size={size} aria-label={ariaLabel} className={color} />;
-    case 'FillHeart': // 하트
+    case 'FillHeart': // 채운 하트
       return <AiFillHeart size={size} aria-label={ariaLabel} className={color} />;
+    case 'OutlineHeart': // 빈 하트
+      return <AiOutlineHeart size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineBell': // 종
       return <AiOutlineBell size={size} aria-label={ariaLabel} className={color} />;
     default:
