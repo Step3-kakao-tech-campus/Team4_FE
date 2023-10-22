@@ -1,1 +1,1 @@
-export type ModalType = 'Language' | 'Login' | 'Search';
+export type ModalType = 'Language' | 'Login' | 'Search' | 'DeleteReview';
