@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import CoinRechargeTemplate from '../template/coinRechargeTemplate';
-import { getChargeCoin } from '../../apis/coin';
+import CoinUsageTemlate from '../template/coinUsageTemlate';
+import { getUsageCoin } from '../../apis/coin';
 
-function CoinRechargePage() {
+function CoinUsagePage() {
   const [page, setPage] = useState(1);
   const limits = 12;
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: [`getChargeCoin?cursor=${1 + 12 * (page - 1)}&limits=${limits}`],
-    queryFn: () => getChargeCoin(1 + 12 * (page - 1), limits),
+    queryKey: [`getUsageCoin?cursor=${1 + 12 * (page - 1)}&limits=${limits}`],
+    queryFn: () => getUsageCoin(1 + 12 * (page - 1), limits),
   });
 
   const onHandleChangePage = (type: 'right' | 'left') => {
@@ -21,7 +21,7 @@ function CoinRechargePage() {
 
   if (data && !isLoading && !isFetching) {
     return (
-      <CoinRechargeTemplate coinRecharge={data} page={page} onChangePage={onHandleChangePage} />
+      <CoinUsageTemlate coinUsage={data} page={page} onChangePage={onHandleChangePage} />
     );
   }
 
@@ -30,4 +30,4 @@ function CoinRechargePage() {
   );
 }
 
-export default CoinRechargePage;
+export default CoinUsagePage;

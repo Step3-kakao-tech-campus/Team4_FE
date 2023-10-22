@@ -99,6 +99,15 @@ i18n
             notRecovredTitle: '삭제된 리뷰는 복구할 수 없습니다.',
             cancel: '취소',
           },
+          storeDetail: {
+            overview: '개요',
+            review: '리뷰',
+            pageTitle: '음식점 상세 페이지',
+            image: '이미지',
+            addLikedStore: '좋아요 한 음식점에 추가',
+            rating: '별점',
+            writeReview: '리뷰 작성',
+          },
           likedStorePage: {
             pageTitle: '좋아요 한 맛집',
             heartButton: '맛집 좋아요 버튼',
@@ -109,11 +118,26 @@ i18n
             reChargeCoin: '충전 코인',
             totalCoin: '코인 합계',
           },
+          coinUsage: {
+            pageTitle: '코인 사용 내역',
+            date: '사용 날짜',
+            reChargeCoin: '사용 코인',
+            totalCoin: '코인 합계',
+          },
           page: {
             firstPage: '첫번째 페이지 입니다.',
             lastPage: '마지막 페이지 입니다.',
             previousPage: '이전 페이지로',
             nextPage: '다음 페이지로',
+          },
+          writtenReviewPage: {
+            pageTitle: '작성 한 리뷰',
+          },
+          recentlyViewdStorePage: {
+            pageTitle: '최근 본 맛집',
+          },
+          likedReviewPage: {
+            pageTitle: '좋아요 한 리뷰',
           },
         },
       },
@@ -196,6 +220,15 @@ i18n
             notRecovredTitle: 'Deleted reviews cannot be recovered.',
             cancel: 'Cancel',
           },
+          storeDetail: {
+            overview: 'Overview',
+            review: 'Review',
+            pageTitle: 'Store detail page',
+            image: 'image',
+            addLikedStore: 'Add to the store you liked',
+            rating: 'Rating',
+            writeReview: 'Write review',
+          },
           likedStorePage: {
             pageTitle: 'A Restaurant with Likes',
             heartButton: 'Like Restaurant Button',
@@ -206,11 +239,26 @@ i18n
             reChargeCoin: 'Recharge Coins',
             totalCoin: 'Coin Total',
           },
+          coinUsage: {
+            pageTitle: 'Coin Usage History',
+            date: 'Usage Date',
+            reChargeCoin: 'Usage Coin',
+            totalCoin: 'Coin Total',
+          },
           page: {
             lastPage: 'This is the last page.',
             firstPage: 'This is the first page.',
             previousPage: 'Go to the previous page',
             nextPage: 'Go to the next page',
+          },
+          writtenReviewPage: {
+            pageTitle: 'Written Review',
+          },
+          recentlyViewdStorePage: {
+            pageTitle: 'Recently Viewd Restaurant',
+          },
+          likedReviewPage: {
+            pageTitle: 'Liked review',
           },
         },
       },

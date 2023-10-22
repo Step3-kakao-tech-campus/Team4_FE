@@ -8,3 +8,12 @@ export interface StoreCardInfo {
   reviewCount: number;
   likedCard?: boolean;
 }
+
+export interface StoreDetail {
+  storeId: number;
+  storeName: string;
+  storeImage: string;
+  reviewCount: number;
+  rating: number;
+  information: string;
+}
