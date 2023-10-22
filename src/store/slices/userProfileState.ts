@@ -1,17 +1,26 @@
 import type { PayloadAction } from '@reduxjs/toolkit/dist/createAction';
-import { createSlice } from '@reduxjs/toolkit/dist/createSlice';
-import { ProfileEditInfo } from '../../types/profile';
+import { createSlice } from '@reduxjs/toolkit';
+import { ProfileEditInfo, ProfileInfo } from '../../types/profile';
 
-const initialState: ProfileEditInfo = {
+const initialState: ProfileInfo = {
   language: '',
   gender: '',
   nickname: '',
+  profileImage: '/image/fakeDb/userPage/userImage.png',
 };
 
 const profileSlice = createSlice({
   name: 'Profile',
   initialState,
   reducers: {
+    editProfile: (state, action: PayloadAction<ProfileEditInfo>) => ({
+      ...state,
+      ...action.payload,
+    }),
+    edieProfileImage: (state, action: PayloadAction<string>) => ({
+      ...state,
+      profileImage: action.payload,
+    }),
     editLanuage: (state, action: PayloadAction<string>) => ({
       ...state,
       language: action.payload,
@@ -27,5 +36,7 @@ const profileSlice = createSlice({
   },
 });
 
-export const { editLanuage, editGender, editNickname } = profileSlice.actions;
+export const {
+  editProfile, editLanuage, editGender, editNickname,
+} = profileSlice.actions;
 export default profileSlice.reducer;

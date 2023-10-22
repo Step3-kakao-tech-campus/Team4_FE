@@ -1,14 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PageTitleCard from '../molecules/pageTitleCard';
-import Button from '../atoms/button';
 import EditProfileForm from '../organisms/editProfileForm';
-import { ProfileInfo } from '../../types/profile';
+import EditProfileImage from '../organisms/editProfileImage';
 
-function UserEditProfileTeamplate({
-  language, gender, nickname, profileImage,
-}: ProfileInfo) {
+function UserEditProfileTeamplate() {
   const { t } = useTranslation();
 
   return (
@@ -17,19 +13,9 @@ function UserEditProfileTeamplate({
         <div className="flex items-center justify-between text-lg text-white">
           <PageTitleCard pageTitle={t('userPage.pageTitle')} />
         </div>
-        <div className="flex flex-col items-center">
-          <img src={profileImage} alt={t('userPage.userImage')} className="w-[9rem]" />
-          <span className="py-3 text-xl font-bold">닉네임</span>
-          <Link to="/profileEditingPage">
-            <Button>프로필 사진 수정</Button>
-          </Link>
-        </div>
+        <EditProfileImage />
       </div>
-      <EditProfileForm
-        initialLanguage={language}
-        initialGender={gender}
-        initialNickname={nickname}
-      />
+      <EditProfileForm />
     </div>
   );
 }
