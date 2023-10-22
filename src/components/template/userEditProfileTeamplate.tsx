@@ -7,7 +7,7 @@ import EditProfileForm from '../organisms/editProfileForm';
 import { ProfileInfo } from '../../types/profile';
 
 function UserEditProfileTeamplate({
-  language, gender, nickName, profileImage,
+  language, gender, nickname, profileImage,
 }: ProfileInfo) {
   const { t } = useTranslation();
 
@@ -28,7 +28,7 @@ function UserEditProfileTeamplate({
       <EditProfileForm
         initialLanguage={language}
         initialGender={gender}
-        initialNickName={nickName}
+        initialNickname={nickname}
       />
     </div>
   );

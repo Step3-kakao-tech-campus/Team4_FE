@@ -262,7 +262,7 @@ export const handlers = [
     ctx.json({
       language: '한국어',
       gender: '남자',
-      nickName: '닉네임',
+      nickname: '닉네임',
       profileImage: '/image/fakeDb/userPage/userImage.png',
     }),
   )),

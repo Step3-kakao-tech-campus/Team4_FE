@@ -13,7 +13,7 @@ function UserEditProfilePage() {
       <UserEditProfileTeamplate
         language={data.language}
         gender={data.gender}
-        nickName={data.nickName}
+        nickname={data.nickname}
         profileImage={data.profileImage}
       />
     );

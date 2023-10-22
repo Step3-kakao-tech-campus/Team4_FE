@@ -9,12 +9,12 @@ import { profileEdit } from '../../apis/profile';
 interface EditProfileFormProps {
   initialLanguage: string,
   initialGender: string,
-  initialNickName: string,
+  initialNickname: string,
 }
 
 function EditProfileForm({
   initialLanguage, initialGender,
-  initialNickName,
+  initialNickname,
 }: EditProfileFormProps) {
   const navigate = useNavigate();
   const [openArray, setOpenArray] = useState([false, false]);
@@ -28,15 +28,15 @@ function EditProfileForm({
 
   async function onClickProfileEdit() {
     if (inputRef.current !== null) {
-      const nickName = inputRef.current.getInputValue();
-      if (nickName === undefined) {
+      const nickname = inputRef.current.getInputValue();
+      if (nickname === undefined) {
         alert('오류가 발생했습니다. 다시 시도해 주세요.');
         return;
       }
-      if (nickName.length < 2) { alert('닉네임은 2자 이상이여야 합니다.'); } else {
+      if (nickname.length < 2) { alert('닉네임은 2자 이상이여야 합니다.'); } else {
         // 리팩토링 때 값이 변경 되지 않았으면 api 요청안하는 기능 추가
         // 닉네임, 성별, 언어를 백앤드에 전송
-        const result = await profileEdit({ language, gender, nickName });
+        const result = await profileEdit({ language, gender, nickname });
         if (result.status === 200) {
           alert('요청이 성공적이네요!');
         }
@@ -51,7 +51,7 @@ function EditProfileForm({
         <form>
           <label htmlFor="nickName">
             <span className="font-bold">닉네임</span>
-            <Input mode="singleLine" ref={inputRef} placeholder={initialNickName} id="nickName" />
+            <Input mode="singleLine" ref={inputRef} placeholder={initialNickname} id="nickName" />
           </label>
         </form>
       </div>
