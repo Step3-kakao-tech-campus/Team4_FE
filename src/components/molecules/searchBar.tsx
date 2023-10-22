@@ -24,7 +24,7 @@ export default function SearchBar({
   const onSearch = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (searchRef.current !== null) {
+    if (searchRef.current) {
       const inputValue = searchRef.current.getInputValue();
       if (inputValue === undefined) {
         alert('오류가 발생했습니다. 다시 시도해 주세요.');
