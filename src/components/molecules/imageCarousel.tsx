@@ -6,12 +6,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './css/carouselCss.css';
 
-interface ImageCarouselType {
+interface ImageCarouselProps {
   swiperStyle: string;
   children: React.ReactNode;
 }
 
-function ImageCarousel({ swiperStyle, children }:ImageCarouselType) {
+function ImageCarousel({ swiperStyle, children }:ImageCarouselProps) {
   let global = 0;
   const modifiedChildren = React.Children.map(children, (child) => {
     global += 1;
