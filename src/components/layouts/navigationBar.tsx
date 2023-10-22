@@ -3,9 +3,12 @@ import { BsPerson } from 'react-icons/bs';
 import { GoHome, GoSearch } from 'react-icons/go';
 import { PiMoon, PiClipboard } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
+import { useModal } from '../../hooks/modal';
 
 export default function NavigationBar() {
   const { t } = useTranslation();
+  const { openModal } = useModal('Search');
+
   return (
     <nav className="fixed inset-x-0 bottom-0 mx-auto flex w-full max-w-[500px]
       flex-row items-center justify-evenly bg-white"
@@ -28,12 +31,13 @@ export default function NavigationBar() {
       >
         <GoHome size="1.7rem" aria-label={t('navigationBar.home')} />
       </Link>
-      <Link
-        to="/search"
+      <button
+        type="button"
         className="flex grow justify-center py-4"
+        onClick={openModal}
       >
         <GoSearch size="1.7rem" aria-label={t('navigationBar.search')} />
-      </Link>
+      </button>
       <button
         type="button"
         className="flex grow justify-center py-4"
