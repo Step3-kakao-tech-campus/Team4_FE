@@ -87,10 +87,7 @@ const Input = forwardRef<RefHandler, InputProps>((
     );
   }
 
-  return (
-    <>
-    </>
-  );
+  return null;
 });
 
 export default Input;

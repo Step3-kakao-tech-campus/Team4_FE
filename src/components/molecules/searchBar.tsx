@@ -52,10 +52,7 @@ export default function SearchBar({
           >
             <Icon name="OutlineLeft" size="1.4em" ariaLabel={t('searchBar.cancelSearch')} />
           </button>
-        ) : (
-          <>
-          </>
-        )}
+        ) : null}
         <Input
           mode="search"
           ref={searchRef}
@@ -101,10 +98,7 @@ export default function SearchBar({
             />
           </div>
         </div>
-      ) : (
-        <>
-        </>
-      )}
+      ) : null}
     </div>
   );
 }
