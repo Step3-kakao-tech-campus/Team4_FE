@@ -3,10 +3,12 @@ import { ModalType } from '../../types/modal';
 
 interface Modal {
   type: ModalType | null;
+  isOpen: boolean
 }
 
 const initialState: Modal = {
   type: null,
+  isOpen: false,
 };
 
 export const modalSlice = createSlice({
@@ -15,9 +17,11 @@ export const modalSlice = createSlice({
   reducers: {
     open: (state, action: PayloadAction<Modal['type']>) => ({
       type: action.payload,
+      isOpen: true,
     }),
     close: () => ({
       type: null,
+      isOpen: false,
     }),
   },
 });
