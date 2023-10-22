@@ -1,6 +1,6 @@
 import Icon from '../atoms/icon';
 
-interface DropdownListType {
+interface DropdownListProps {
   value: string,
   children: React.ReactNode,
   isOpen: boolean,
@@ -9,7 +9,7 @@ interface DropdownListType {
 
 function DropdownList({
   value, children, isOpen, setIsOpen,
-}: DropdownListType) {
+}: DropdownListProps) {
   return (
     <div className="relative">
       <button type="button" onClick={() => setIsOpen()} className="my-2 block w-full rounded-t-lg border border-solid border-black p-2">

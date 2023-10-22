@@ -4,15 +4,18 @@ import Input from '../atoms/input';
 import Button from '../atoms/button';
 import DropdownList from '../molecules/dropdownList';
 import { RefHandler } from '../../types/refHandler';
-import { profileEdit } from '../../apis/profileEdit';
+import { profileEdit } from '../../apis/profile';
 
-interface EditProfileFormType {
+interface EditProfileFormProps {
   initialLanguage: string,
   initialGender: string,
   initialNickName: string,
 }
 
-function EditProfileForm({ initialLanguage, initialGender, initialNickName }: EditProfileFormType) {
+function EditProfileForm({
+  initialLanguage, initialGender,
+  initialNickName,
+}: EditProfileFormProps) {
   const navigate = useNavigate();
   const [openArray, setOpenArray] = useState([false, false]);
   const [language, setLanguage] = useState(initialLanguage);
@@ -20,7 +23,6 @@ function EditProfileForm({ initialLanguage, initialGender, initialNickName }: Ed
   const inputRef = useRef<RefHandler>(null);
 
   // 요청 성공 시 리덕스에 전체 값 저장
-  // 취소 클릭시 뒤로 가기
 
   // 페이지 렌더링 시 닉네임, 성별, 언어 서버에서 받아오기
 

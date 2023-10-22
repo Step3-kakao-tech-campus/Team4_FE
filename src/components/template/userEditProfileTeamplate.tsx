@@ -4,8 +4,11 @@ import { useTranslation } from 'react-i18next';
 import PageTitleCard from '../molecules/pageTitleCard';
 import Button from '../atoms/button';
 import EditProfileForm from '../organisms/editProfileForm';
+import { ProfileInfo } from '../../types/profile';
 
-function UserEditProfileTeamplate() {
+function UserEditProfileTeamplate({
+  language, gender, nickName, profileImage,
+}: ProfileInfo) {
   const { t } = useTranslation();
 
   return (
@@ -15,14 +18,18 @@ function UserEditProfileTeamplate() {
           <PageTitleCard pageTitle={t('userPage.pageTitle')} />
         </div>
         <div className="flex flex-col items-center">
-          <img src="/image/fakeDb/userPage/userImage.png" alt={t('userPage.userImage')} className="w-[9rem]" />
+          <img src={profileImage} alt={t('userPage.userImage')} className="w-[9rem]" />
           <span className="py-3 text-xl font-bold">닉네임</span>
           <Link to="/profileEditingPage">
             <Button>프로필 사진 수정</Button>
           </Link>
         </div>
       </div>
-      <EditProfileForm initialLanguage="한국어" initialGender="남자" initialNickName="닉네임" />
+      <EditProfileForm
+        initialLanguage={language}
+        initialGender={gender}
+        initialNickName={nickName}
+      />
     </div>
   );
 }

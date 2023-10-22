@@ -257,5 +257,14 @@ export const handlers = [
     ctx.status(200),
     ctx.json({ status: 200 }),
   )),
+  rest.get('/mypage/profile', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json({
+      language: '한국어',
+      gender: '남자',
+      nickName: '닉네임',
+      profileImage: '/image/fakeDb/userPage/userImage.png',
+    }),
+  )),
 
 ];
