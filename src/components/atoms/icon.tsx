@@ -4,14 +4,14 @@ import { PiMoon, PiClipboard } from 'react-icons/pi';
 import { IoLanguage } from 'react-icons/io5';
 import {
   AiOutlineLike, AiOutlineStar, AiOutlineClose, AiOutlineHeart,
-  AiOutlineLeft, AiOutlineBell, AiOutlineRight, AiFillHeart,
+  AiOutlineLeft, AiOutlineBell, AiOutlineRight, AiFillHeart, AiFillStar,
 } from 'react-icons/ai';
 import { HiUserGroup, HiCreditCard } from 'react-icons/hi';
 
 interface IconProps {
   name: 'Person' | 'Home' | 'Search' | 'Moon' | 'Clipboard' | 'Language' | 'FillHeart' | 'OutlineLike' |
   'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard' | 'OutlineRight' |
-  'OutlineHeart';
+  'OutlineHeart' | 'FillStar';
   size: string;
   ariaLabel: string;
   color?: string;
@@ -41,6 +41,8 @@ function Icon({
       return <HiCreditCard size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineStar': //  즐겨찾기(별)
       return <AiOutlineStar size={size} aria-label={ariaLabel} className={color} />;
+    case 'FillStar': //  별 채워짐
+      return <AiFillStar size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineClose': // x
       return <AiOutlineClose size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineLeft': // <
