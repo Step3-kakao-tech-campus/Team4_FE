@@ -29,7 +29,7 @@ export default function SearchModal() {
   };
 
   return (
-    <div className="h-[100dvh] bg-white">
+    <div className="h-[100dvh] w-[100dvw] max-w-[500px] bg-white">
       <div className="h-16 bg-matgpt-blue p-3">
         <div className="flex flex-row items-center gap-2">
           <button
