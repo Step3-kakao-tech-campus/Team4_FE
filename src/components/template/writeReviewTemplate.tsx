@@ -1,6 +1,7 @@
 import {
   Dispatch, SetStateAction, forwardRef, useImperativeHandle, useRef,
 } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../atoms/button';
 import Input from '../atoms/input';
 import PageTitleCard from '../molecules/pageTitleCard';
@@ -10,6 +11,7 @@ import { RefHandler, WriteReviewRefHandler } from '../../types/refHandler';
 import { ReviewImageInfo } from '../../types/review';
 
 interface WriteReviewTemplateProps {
+  storeId: number;
   rating: number;
   setRating: Dispatch<SetStateAction<number>>;
   reviewImages: ReviewImageInfo[];
@@ -18,6 +20,7 @@ interface WriteReviewTemplateProps {
 
 const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplateProps>((
   {
+    storeId,
     rating,
     setRating,
     reviewImages,
@@ -28,6 +31,8 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
   const contentRef = useRef<RefHandler>(null);
   const peopleCountRef = useRef<RefHandler>(null);
   const totalPriceRef = useRef<RefHandler>(null);
+
+  const navigate = useNavigate();
 
   useImperativeHandle(ref, () => ({
     getContent: () => contentRef.current?.getInputValue(),
@@ -77,7 +82,14 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
           </div>
         </div>
         <div className="flex justify-between">
-          <Button backgroundColor="bg-matgpt-gray">작성 취소하기</Button>
+          <Button
+            backgroundColor="bg-matgpt-gray"
+            onClick={() => {
+              navigate(`/stores/${storeId}`);
+            }}
+          >
+            작성 취소하기
+          </Button>
           <Button>작성 완료하기</Button>
         </div>
       </div>
