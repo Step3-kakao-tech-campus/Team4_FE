@@ -66,15 +66,11 @@ export default function UploadImage({
       </div>
       <div className="flex justify-center">
         <label htmlFor="uploadImage">
-          <div
-            className="cursor-pointer rounded-full bg-matgpt-blue px-8 py-2 text-white"
-            role="button"
-          >
-            사진 추가
+          <div className="text-center">
+            사진 추가하기
           </div>
           <input
             id="uploadImage"
-            className="hidden"
             type="file"
             accept="image/*"
             multiple
