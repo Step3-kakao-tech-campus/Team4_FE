@@ -50,9 +50,9 @@ function App() {
               <Route path="/landing" element={<LandingPage />} />
             </Routes>
           </ModalContainer>
-        </BrowserRouter >
-      </Provider >
-    </QueryClientProvider >
+        </BrowserRouter>
+      </Provider>
+    </QueryClientProvider>
   );
 }
 

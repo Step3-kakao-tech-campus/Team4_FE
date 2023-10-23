@@ -279,7 +279,6 @@ export const handlers = [
       ctx.json(recentlyViewdStoreData[2]),
     );
   }),
-<<<<<<< HEAD
   rest.put('/mypage/edit-profile', (req, res, ctx) => res(
     ctx.status(200),
     ctx.json({ status: 200 }),
@@ -294,7 +293,6 @@ export const handlers = [
     }),
   )),
 
-=======
   rest.get('/mypage/charge-coin', (req, res, ctx) => {
     const cursor = Number(req.url.searchParams.get('cursor'));
     const limits = Number(req.url.searchParams.get('limits'));
@@ -347,5 +345,4 @@ export const handlers = [
       ),
     );
   }),
->>>>>>> 548b02e6e37bbef0f8321d8a93e4ff9a71b2eac6
 ];
