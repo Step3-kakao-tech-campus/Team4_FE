@@ -4,6 +4,7 @@ import {
 import Image from '../atoms/image';
 import ImageCarousel from '../molecules/imageCarousel';
 import { ReviewImageInfo } from '../../types/review';
+import Icon from '../atoms/icon';
 
 interface UploadImageProps {
   reviewImages: ReviewImageInfo[];
@@ -23,6 +24,14 @@ export default function UploadImage({
     }
   }, []);
 
+  const handleDeleteImage = (imageIndex: number) => {
+    const prevUrls = imageTempUrls.slice();
+    const prevData = reviewImages.slice();
+
+    setImageTempUrls(prevUrls.slice(0, imageIndex).concat(prevUrls.slice(imageIndex + 1)));
+    setReviewImages(prevData.slice(0, imageIndex).concat(prevData.slice(imageIndex + 1)));
+  };
+
   return (
     <>
       <div
@@ -31,14 +40,27 @@ export default function UploadImage({
       >
         {reviewImages.length === 0 ? <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">선택된 사진 없음</div> : null}
         <ImageCarousel swiperStyle="w-full h-full">
-          {imageTempUrls.map((imageUrl) => (
-            <Image
+          {imageTempUrls.map((imageUrl, index) => (
+            <div
+              className="h-full w-full"
               key={imageUrl}
-              imageSrc={imageUrl}
-              alt={imageUrl}
-              objectFitMode
-              className="object-cover"
-            />
+            >
+              <Image
+                imageSrc={imageUrl}
+                alt={imageUrl}
+                objectFitMode
+                className="object-cover"
+              />
+              <button
+                type="button"
+                className="absolute right-4 top-4 rounded-full bg-white/50 p-1"
+                onClick={() => {
+                  handleDeleteImage(index);
+                }}
+              >
+                <Icon name="OutlineClose" ariaLabel="사진 삭제" size="1rem" />
+              </button>
+            </div>
           ))}
         </ImageCarousel>
       </div>
