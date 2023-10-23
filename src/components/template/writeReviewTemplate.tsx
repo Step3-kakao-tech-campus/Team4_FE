@@ -7,16 +7,21 @@ import PageTitleCard from '../molecules/pageTitleCard';
 import SelectRating from '../molecules/selectRating';
 import UploadImage from '../organisms/uploadImage';
 import { RefHandler, WriteReviewRefHandler } from '../../types/refHandler';
+import { ReviewImageInfo } from '../../types/review';
 
 interface WriteReviewTemplateProps {
   rating: number;
   setRating: Dispatch<SetStateAction<number>>;
+  reviewImages: ReviewImageInfo[];
+  setReviewImages: Dispatch<SetStateAction<ReviewImageInfo[]>>;
 }
 
 const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplateProps>((
   {
     rating,
     setRating,
+    reviewImages,
+    setReviewImages,
   },
   ref,
 ) => {
@@ -33,7 +38,10 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
   return (
     <main className="pb-[3.7rem]">
       <PageTitleCard pageTitle="리뷰 작성" />
-      <UploadImage />
+      <UploadImage
+        reviewImages={reviewImages}
+        setReviewImages={setReviewImages}
+      />
       <div className="flex flex-col gap-4 p-4 text-center">
         <SelectRating
           rating={rating}

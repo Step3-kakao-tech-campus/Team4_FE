@@ -9,3 +9,15 @@ export interface ReviewCardInfo {
   visitedCount: number,
   createdAt: string,
 }
+
+export interface ReviewImageTagInfo {
+  name: string;
+  locationX: number;
+  locationY: number;
+  rating: number;
+}
+
+export interface ReviewImageInfo {
+  imageData: File;
+  tags: ReviewImageTagInfo[];
+}
