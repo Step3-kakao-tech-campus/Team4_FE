@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux/es/exports';
 import { useTranslation } from 'react-i18next';
-import { RootState } from '../../store/store';
+import { RootState } from '../../store/index';
 import Button from '../atoms/button';
 
 function EditProfileImage() {

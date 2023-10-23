@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { useTranslation } from 'react-i18next';
-import { RootState } from '../../store/store';
+import { RootState } from '../../store/index';
 import Input from '../atoms/input';
 import Button from '../atoms/button';
 import DropdownList from '../molecules/dropdownList';
