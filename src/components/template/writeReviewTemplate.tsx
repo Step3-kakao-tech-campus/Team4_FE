@@ -1,16 +1,31 @@
+import { Dispatch, SetStateAction } from 'react';
 import Button from '../atoms/button';
 import Input from '../atoms/input';
 import PageTitleCard from '../molecules/pageTitleCard';
 import SelectRating from '../molecules/selectRating';
 import UploadImage from '../organisms/uploadImage';
 
-export default function WriteReviewTemplate() {
+interface WriteReviewTemplateProps {
+  rating: number;
+  setRating: Dispatch<SetStateAction<number>>;
+}
+
+export default function WriteReviewTemplate({
+  rating,
+  setRating,
+}: WriteReviewTemplateProps) {
   return (
     <main className="pb-[3.7rem]">
       <PageTitleCard pageTitle="리뷰 작성" />
       <UploadImage />
-      <div className="flex flex-col gap-4 p-4">
-        <SelectRating />
+      <div className="flex flex-col gap-4 p-4 text-center">
+        <SelectRating
+          rating={rating}
+          setRating={setRating}
+        />
+        <div>
+          가게에 대한 리뷰를 남겨주세요.
+        </div>
         <div className="h-80">
           <Input mode="multiLine" />
         </div>
