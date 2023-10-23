@@ -4,3 +4,10 @@ export interface CoinRechargeInfo {
   reChargeCoin: number;
   totalCoin: number;
 }
+
+export interface CoinUsageInfo {
+  usageId: number,
+  date: Date;
+  usageCoin: number,
+  totalCoin: number,
+}

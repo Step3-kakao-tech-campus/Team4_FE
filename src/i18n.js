@@ -99,6 +99,15 @@ i18n
             notRecovredTitle: '삭제된 리뷰는 복구할 수 없습니다.',
             cancel: '취소',
           },
+          storeDetail: {
+            overview: '개요',
+            review: '리뷰',
+            pageTitle: '음식점 상세 페이지',
+            image: '이미지',
+            addLikedStore: '좋아요 한 음식점에 추가',
+            rating: '별점',
+            writeReview: '리뷰 작성',
+          },
           likedStorePage: {
             pageTitle: '좋아요 한 맛집',
             heartButton: '맛집 좋아요 버튼',
@@ -107,6 +116,12 @@ i18n
             pageTitle: '코인 충전 내역',
             date: '충전 날짜',
             reChargeCoin: '충전 코인',
+            totalCoin: '코인 합계',
+          },
+          coinUsage: {
+            pageTitle: '코인 사용 내역',
+            date: '사용 날짜',
+            reChargeCoin: '사용 코인',
             totalCoin: '코인 합계',
           },
           page: {
@@ -137,6 +152,9 @@ i18n
             cancel: '취소',
             notSelected: '설정 안됨',
             fileIsNotUpload: '파일이 업로드 되지 않았습니다.',
+          },
+          likedReviewPage: {
+            pageTitle: '좋아요 한 리뷰',
           },
         },
       },
@@ -219,6 +237,15 @@ i18n
             notRecovredTitle: 'Deleted reviews cannot be recovered.',
             cancel: 'Cancel',
           },
+          storeDetail: {
+            overview: 'Overview',
+            review: 'Review',
+            pageTitle: 'Store detail page',
+            image: 'image',
+            addLikedStore: 'Add to the store you liked',
+            rating: 'Rating',
+            writeReview: 'Write review',
+          },
           likedStorePage: {
             pageTitle: 'A Restaurant with Likes',
             heartButton: 'Like Restaurant Button',
@@ -227,6 +254,12 @@ i18n
             pageTitle: 'Coin Recharge History',
             date: 'Recharge Date',
             reChargeCoin: 'Recharge Coins',
+            totalCoin: 'Coin Total',
+          },
+          coinUsage: {
+            pageTitle: 'Coin Usage History',
+            date: 'Usage Date',
+            reChargeCoin: 'Usage Coin',
             totalCoin: 'Coin Total',
           },
           page: {
@@ -257,6 +290,9 @@ i18n
             cancel: 'Cancel',
             notSelected: 'not Selected',
             fileIsNotUpload: 'The file was not uploaded.',
+          },
+          likedReviewPage: {
+            pageTitle: 'Liked review',
           },
         },
       },
