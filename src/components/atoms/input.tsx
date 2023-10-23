@@ -6,7 +6,7 @@ import { GoSearch } from 'react-icons/go';
 import { RefHandler } from '../../types/refHandler';
 
 interface InputProps {
-  mode: 'search' | 'singleLine' | 'multiLine';
+  mode: 'search' | 'singleLine' | 'number' | 'multiLine';
   placeholder?: string;
   defaultValue?: string;
   onSearchClick? : React.FormEventHandler<HTMLFormElement>;
@@ -27,7 +27,7 @@ const Input = forwardRef<RefHandler, InputProps>((
 
   useImperativeHandle(ref, () => ({
     getInputValue: () => {
-      if (mode === 'search' || mode === 'singleLine') {
+      if (mode === 'search' || mode === 'singleLine' || mode === 'number') {
         return inputRef.current?.value;
       }
 
@@ -72,6 +72,22 @@ const Input = forwardRef<RefHandler, InputProps>((
           ref={inputRef}
           className="w-full focus:outline-none"
           placeholder={placeholder}
+        />
+      </div>
+    );
+  }
+
+  if (mode === 'number') {
+    return (
+      <div className="w-full rounded-full border border-black bg-white px-4 py-2">
+        <input
+          type="number"
+          ref={inputRef}
+          className="w-full focus:outline-none"
+          placeholder={placeholder}
+          min={0}
+          inputMode="numeric"
+          pattern="[0-9]*"
         />
       </div>
     );

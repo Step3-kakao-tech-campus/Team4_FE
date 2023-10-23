@@ -65,7 +65,7 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
           <div>몇 분이서 오셨나요?</div>
           <div className="flex w-24 items-center gap-2">
             <Input
-              mode="singleLine"
+              mode="number"
               ref={peopleCountRef}
             />
             명
@@ -75,7 +75,7 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
           <div>얼마나 지불하셨나요?</div>
           <div className="flex w-36 items-center gap-2">
             <Input
-              mode="singleLine"
+              mode="number"
               ref={totalPriceRef}
             />
             원
