@@ -5,6 +5,7 @@ import Image from '../atoms/image';
 import ImageCarousel from '../molecules/imageCarousel';
 import { ReviewImageInfo } from '../../types/review';
 import Icon from '../atoms/icon';
+import ImageCropModal from '../modals/imageCropModal';
 
 interface UploadImageProps {
   reviewImages: ReviewImageInfo[];
@@ -17,6 +18,8 @@ export default function UploadImage({
 }: UploadImageProps) {
   const [imageTempUrls, setImageTempUrls] = useState<string[]>([]);
   const imageCarouselRef = useRef<HTMLDivElement>(null);
+  const [isImageCropModalOpen, setIsImageCropModalOpen] = useState<boolean>(false);
+  const [currentCroppingImageUrl, setCurrentCroppingImageUrl] = useState<string>('');
 
   useEffect(() => {
     if (imageCarouselRef.current) {
@@ -34,6 +37,15 @@ export default function UploadImage({
 
   return (
     <>
+      <ImageCropModal
+        isOpen={isImageCropModalOpen}
+        setIsOpen={setIsImageCropModalOpen}
+        imageUrl={currentCroppingImageUrl}
+        imageTempUrls={imageTempUrls}
+        setImageTempUrls={setImageTempUrls}
+        reviewImages={reviewImages}
+        setReviewImages={setReviewImages}
+      />
       <div
         className={`relative mb-2 w-full ${reviewImages.length === 0 ? 'bg-matgpt-gray' : ''}`}
         ref={imageCarouselRef}
@@ -73,25 +85,14 @@ export default function UploadImage({
             id="uploadImage"
             type="file"
             accept="image/*"
-            multiple
             onChange={(e) => {
               const fileList = e.target.files;
 
               if (fileList) {
-                const prevUrls = imageTempUrls.slice();
-                const prevData = reviewImages.slice();
+                const url = URL.createObjectURL(fileList[0]);
 
-                Array.from(fileList).forEach((file) => {
-                  const url = URL.createObjectURL(file);
-                  prevUrls.push(url);
-                  prevData.push({
-                    imageData: file,
-                    tags: [],
-                  });
-                });
-
-                setImageTempUrls(prevUrls);
-                setReviewImages(prevData);
+                setIsImageCropModalOpen(true);
+                setCurrentCroppingImageUrl(url);
               }
             }}
           />

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
+import ReactModal from 'react-modal';
 import LandingPage from './components/page/landingPage';
 import UserPage from './components/page/userPage';
 import MainPage from './components/page/mainPage';
@@ -24,6 +25,8 @@ if (process.env.NODE_ENV === 'development') {
     onUnhandledRequest: 'bypass',
   });
 }
+
+ReactModal.setAppElement('#root');
 
 function App() {
   return (
