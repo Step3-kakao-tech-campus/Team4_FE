@@ -3,7 +3,6 @@ import Cropper, { Area } from 'react-easy-crop';
 import ReactModal from 'react-modal';
 import Button from '../atoms/button';
 import getCroppedImg from '../../utils/image';
-import { ReviewImageInfo } from '../../types/review';
 
 const customModalStyles = {
   overlay: {
@@ -31,10 +30,8 @@ interface ImageCropModalProps {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   imageUrl: string;
-  reviewImages: ReviewImageInfo[];
-  setReviewImages: Dispatch<SetStateAction<ReviewImageInfo[]>>;
-  imageTempUrls: string[];
-  setImageTempUrls: Dispatch<SetStateAction<string[]>>;
+  reviewImages: Blob[];
+  setReviewImages: Dispatch<SetStateAction<Blob[]>>;
 }
 
 export default function ImageCropModal({
@@ -43,8 +40,6 @@ export default function ImageCropModal({
   imageUrl,
   reviewImages,
   setReviewImages,
-  imageTempUrls,
-  setImageTempUrls,
 }: ImageCropModalProps) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
@@ -62,11 +57,8 @@ export default function ImageCropModal({
       );
 
       if (croppedImage) {
-        const prevUrls = imageTempUrls.slice();
         const prevData = reviewImages.slice();
-        prevUrls.push(URL.createObjectURL(croppedImage));
         prevData.push(croppedImage);
-        setImageTempUrls(prevUrls);
         setReviewImages(prevData);
         setIsOpen(false);
         setZoom(1);

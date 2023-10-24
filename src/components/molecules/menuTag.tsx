@@ -1,8 +1,12 @@
-import { forwardRef, useState } from 'react';
+import {
+  useState, SetStateAction, Dispatch, useRef,
+} from 'react';
 import { useTranslation } from 'react-i18next';
-import { RefHandler } from '../../types/refHandler';
 import Input from '../atoms/input';
 import Button from '../atoms/button';
+import Icon from '../atoms/icon';
+import { ReviewImageTagInfo } from '../../types/review';
+import { RefHandler } from '../../types/refHandler';
 
 interface DefaultTagProps {
   name: string;
@@ -25,23 +29,44 @@ function DefaultTag({ name, onClick }: DefaultTagProps) {
 }
 
 interface MenuTagProps {
+  tagIndex: number;
   name: string;
   mode: 'modify' | 'prompt';
-  onModifyEvent?: React.MouseEventHandler<HTMLButtonElement>;
   onPromptEvent?: React.MouseEventHandler<HTMLButtonElement>;
+  onDeleteEvent?: React.MouseEventHandler<HTMLButtonElement>;
+  reviewImageTags?: ReviewImageTagInfo[];
+  setReviewImageTags?: Dispatch<SetStateAction<ReviewImageTagInfo[]>>;
 }
 
-const MenuTag = forwardRef<RefHandler, MenuTagProps>((
-  {
-    name,
-    mode,
-    onModifyEvent = () => {},
-    onPromptEvent = () => {},
-  },
-  ref,
-) => {
+export default function MenuTag({
+  tagIndex,
+  name,
+  mode,
+  onPromptEvent = () => {},
+  onDeleteEvent = () => {},
+  reviewImageTags,
+  setReviewImageTags,
+}: MenuTagProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const { t } = useTranslation();
+
+  const inputRef = useRef<RefHandler>(null);
+
+  const modifyMenuTag = (tagIndexToModify: number, modifiedName: string) => {
+    if (reviewImageTags !== undefined && setReviewImageTags !== undefined) {
+      const prevTags = reviewImageTags.slice();
+      prevTags[tagIndexToModify] = {
+        ...prevTags[tagIndexToModify],
+        name: modifiedName,
+      };
+
+      setReviewImageTags([
+        ...prevTags.slice(0, tagIndexToModify),
+        prevTags[tagIndexToModify],
+        ...prevTags.slice(tagIndexToModify + 1),
+      ]);
+    }
+  };
 
   if (mode === 'modify') {
     return (
@@ -49,12 +74,23 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
         {isExpanded ? (
           <div className="relative flex w-[10rem] flex-col items-center">
             <div className="flex flex-col gap-2 rounded-xl bg-black px-4 py-2">
-              <Input ref={ref} mode="singleLine" defaultValue={name} />
+              <button
+                type="button"
+                onClick={onDeleteEvent}
+                className="absolute right-2 top-2 text-white"
+              >
+                <Icon name="OutlineClose" size="1rem" ariaLabel="메뉴 태그 삭제" />
+              </button>
+              <div className="mr-3">
+                <Input ref={inputRef} mode="singleLine" defaultValue={name} />
+              </div>
               <div className="flex flex-row justify-around">
                 <Button
                   size="small"
                   textColor="text-black"
-                  onClick={onModifyEvent}
+                  onClick={() => {
+                    modifyMenuTag(tagIndex, inputRef.current?.getInputValue() || '');
+                  }}
                 >
                   {t('menuTag.modify')}
                 </Button>
@@ -71,7 +107,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
             <div className="w-4 border-[0.5rem] border-transparent border-t-black" />
           </div>
         ) : (
-          <DefaultTag name={name} onClick={() => setIsExpanded(true)} />
+          <DefaultTag name={name === '' ? '메뉴 이름을 입력해주세요.' : name} onClick={() => setIsExpanded(true)} />
         )}
       </div>
     );
@@ -116,6 +152,4 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
     <>
     </>
   );
-});
-
-export default MenuTag;
+}

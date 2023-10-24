@@ -2,10 +2,11 @@ import { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import WriteReviewTemplate from '../template/writeReviewTemplate';
 import { WriteReviewRefHandler } from '../../types/refHandler';
-import { ReviewImageInfo } from '../../types/review';
+import { ReviewImageTagInfo } from '../../types/review';
 
 export default function WriteReviewPage() {
-  const [reviewImages, setReviewImages] = useState<ReviewImageInfo[]>([]);
+  const [reviewImages, setReviewImages] = useState<Blob[]>([]);
+  const [reviewImageTags, setReviewImageTags] = useState<ReviewImageTagInfo[]>([]);
   const [rating, setRating] = useState(5);
   const writeReviewRef = useRef<WriteReviewRefHandler>(null);
 
@@ -23,6 +24,8 @@ export default function WriteReviewPage() {
       ref={writeReviewRef}
       reviewImages={reviewImages}
       setReviewImages={setReviewImages}
+      reviewImageTags={reviewImageTags}
+      setReviewImageTags={setReviewImageTags}
     />
   );
 }

@@ -3,20 +3,25 @@ import {
 } from 'react';
 import Image from '../atoms/image';
 import ImageCarousel from '../molecules/imageCarousel';
-import { ReviewImageInfo } from '../../types/review';
 import Icon from '../atoms/icon';
 import ImageCropModal from '../modals/imageCropModal';
+import Button from '../atoms/button';
+import { ReviewImageTagInfo } from '../../types/review';
+import MenuTag from '../molecules/menuTag';
 
 interface UploadImageProps {
-  reviewImages: ReviewImageInfo[];
-  setReviewImages: Dispatch<SetStateAction<ReviewImageInfo[]>>;
+  reviewImages: Blob[];
+  setReviewImages: Dispatch<SetStateAction<Blob[]>>;
+  reviewImageTags: ReviewImageTagInfo[];
+  setReviewImageTags: Dispatch<SetStateAction<ReviewImageTagInfo[]>>;
 }
 
 export default function UploadImage({
   reviewImages,
   setReviewImages,
+  reviewImageTags,
+  setReviewImageTags,
 }: UploadImageProps) {
-  const [imageTempUrls, setImageTempUrls] = useState<string[]>([]);
   const imageCarouselRef = useRef<HTMLDivElement>(null);
   const [isImageCropModalOpen, setIsImageCropModalOpen] = useState<boolean>(false);
   const [currentCroppingImageUrl, setCurrentCroppingImageUrl] = useState<string>('');
@@ -28,11 +33,28 @@ export default function UploadImage({
   }, []);
 
   const handleDeleteImage = (imageIndex: number) => {
-    const prevUrls = imageTempUrls.slice();
     const prevData = reviewImages.slice();
 
-    setImageTempUrls(prevUrls.slice(0, imageIndex).concat(prevUrls.slice(imageIndex + 1)));
-    setReviewImages(prevData.slice(0, imageIndex).concat(prevData.slice(imageIndex + 1)));
+    setReviewImages([...prevData.slice(0, imageIndex), ...prevData.slice(imageIndex + 1)]);
+  };
+
+  const addMenuTag = (imageIndex: number) => {
+    const prevTags = reviewImageTags.slice();
+    prevTags.push({
+      imageIndex,
+      tagIndex: prevTags.length > 0 ? prevTags[prevTags.length - 1].tagIndex + 1 : 0,
+      name: '',
+      locationX: 50,
+      locationY: 50,
+    });
+
+    setReviewImageTags(prevTags);
+  };
+
+  const deleteMenuTag = (tagIndex: number) => {
+    const prevTags = reviewImageTags.slice();
+
+    setReviewImageTags([...prevTags.slice(0, tagIndex), ...prevTags.slice(tagIndex + 1)]);
   };
 
   return (
@@ -41,8 +63,6 @@ export default function UploadImage({
         isOpen={isImageCropModalOpen}
         setIsOpen={setIsImageCropModalOpen}
         imageUrl={currentCroppingImageUrl}
-        imageTempUrls={imageTempUrls}
-        setImageTempUrls={setImageTempUrls}
         reviewImages={reviewImages}
         setReviewImages={setReviewImages}
       />
@@ -52,28 +72,62 @@ export default function UploadImage({
       >
         {reviewImages.length === 0 ? <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">선택된 사진 없음</div> : null}
         <ImageCarousel swiperStyle="w-full h-full">
-          {imageTempUrls.map((imageUrl, index) => (
-            <div
-              className="h-full w-full"
-              key={imageUrl}
-            >
-              <Image
-                imageSrc={imageUrl}
-                alt={imageUrl}
-                objectFitMode
-                className="object-cover"
-              />
-              <button
-                type="button"
-                className="absolute right-4 top-4 rounded-full bg-white/50 p-1"
-                onClick={() => {
-                  handleDeleteImage(index);
-                }}
+          {reviewImages.map((imageData, imageIndex) => {
+            const imageUrl = URL.createObjectURL(imageData);
+            return (
+              <div
+                className="relative h-full w-full"
+                key={imageUrl}
               >
-                <Icon name="OutlineClose" ariaLabel="사진 삭제" size="1rem" />
-              </button>
-            </div>
-          ))}
+                {reviewImageTags.map(({
+                  imageIndex: thisTagImageIndex, tagIndex, name, locationX, locationY,
+                }) => (
+                  thisTagImageIndex === imageIndex && (
+                  <div
+                    className="absolute"
+                    style={{ left: `${locationX}%`, top: `${locationY}%` }}
+                    key={tagIndex}
+                  >
+                    <MenuTag
+                      tagIndex={tagIndex}
+                      name={name}
+                      mode="modify"
+                      onDeleteEvent={() => {
+                        deleteMenuTag(tagIndex);
+                      }}
+                      reviewImageTags={reviewImageTags}
+                      setReviewImageTags={setReviewImageTags}
+                    />
+                  </div>
+                  )
+                ))}
+                <Image
+                  imageSrc={imageUrl}
+                  alt={imageUrl}
+                  objectFitMode
+                  className="object-cover"
+                />
+                <Button
+                  size="small"
+                  onClick={() => {
+                    addMenuTag(imageIndex);
+                  }}
+                  extraStyle="absolute left-4 top-4"
+                >
+                  메뉴 태그 추가
+                </Button>
+                <button
+                  type="button"
+                  className="absolute right-4 top-4 rounded-full bg-white/50 p-1"
+                  onClick={() => {
+                    handleDeleteImage(imageIndex);
+                  }}
+                >
+                  <Icon name="OutlineClose" ariaLabel="사진 삭제" size="1rem" />
+                </button>
+              </div>
+            );
+          })}
         </ImageCarousel>
       </div>
       <div className="flex justify-center">

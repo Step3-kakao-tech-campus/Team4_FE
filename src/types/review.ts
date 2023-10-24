@@ -11,13 +11,15 @@ export interface ReviewCardInfo {
 }
 
 export interface ReviewImageTagInfo {
+  imageIndex: number;
+  tagIndex: number;
   name: string;
   locationX: number;
   locationY: number;
-  rating: number;
+  // rating: number;
 }
 
-export interface ReviewImageInfo {
-  imageData: File;
-  tags: ReviewImageTagInfo[];
-}
+// export interface ReviewImageInfo {
+//   imageData: Blob;
+//   tags: ReviewImageTagInfo[];
+// }
