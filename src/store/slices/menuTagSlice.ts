@@ -13,7 +13,7 @@ export const menuTagSlice = createSlice({
       locationY: number
     }>) => {
       state.push({
-        tagIndex: state[state.length - 1].tagIndex + 1,
+        tagIndex: state.length > 0 ? state[state.length - 1].tagIndex + 1 : 0,
         name: '',
         imageIndex: action.payload.imageIndex,
         locationX: action.payload.locationX,

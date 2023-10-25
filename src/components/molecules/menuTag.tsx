@@ -18,7 +18,7 @@ function DefaultTag({
   onClick,
 }: DefaultTagProps) {
   return (
-    <div className="relative w-4 border-[0.5rem] border-transparent border-t-black">
+    <div className="relative w-4 -translate-x-2 -translate-y-2 border-[0.5rem] border-transparent border-t-black">
       <button
         type="button"
         className="absolute left-1/2 top-1/2 flex
@@ -77,7 +77,7 @@ export default function MenuTag({
     return (
       <>
         {isExpanded ? (
-          <div className="relative w-4 border-[0.5rem] border-transparent border-t-black">
+          <div className="relative w-4 -translate-x-2 -translate-y-2 border-[0.5rem] border-transparent border-t-black">
             <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 translate-y-[calc(-100%-0.5rem)] flex-col gap-2 rounded-xl bg-black px-4 py-2">
               <button
                 type="button"
@@ -124,7 +124,7 @@ export default function MenuTag({
     return (
       <div>
         {isExpanded ? (
-          <div className="relative w-4 border-[0.5rem] border-transparent border-t-black">
+          <div className="relative w-4 -translate-x-2 -translate-y-2 border-[0.5rem] border-transparent border-t-black">
             <section className="absolute left-1/2 top-1/2 flex -translate-x-1/2 translate-y-[calc(-100%-0.5rem)] flex-col gap-1 rounded-xl bg-black px-4 py-2 text-white">
               <h3 className="font-bold">{name}</h3>
               <p className="text-xs">{t('menuTag.prompt')}</p>

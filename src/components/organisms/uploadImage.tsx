@@ -1,11 +1,15 @@
 import {
   Dispatch, SetStateAction, useEffect, useRef, useState,
 } from 'react';
+import { useDispatch } from 'react-redux';
 import Image from '../atoms/image';
 import ImageCarousel from '../molecules/imageCarousel';
 import Icon from '../atoms/icon';
 import ImageCropModal from '../modals/imageCropModal';
 import Button from '../atoms/button';
+import { useMenuTagSelector } from '../../hooks/store';
+import MenuTag from '../molecules/menuTag';
+import { addMenuTag } from '../../store/slices/menuTagSlice';
 
 interface UploadImageProps {
   reviewImages: Blob[];
@@ -19,6 +23,10 @@ export default function UploadImage({
   const imageCarouselRef = useRef<HTMLDivElement>(null);
   const [isImageCropModalOpen, setIsImageCropModalOpen] = useState<boolean>(false);
   const [currentCroppingImageUrl, setCurrentCroppingImageUrl] = useState<string>('');
+  const [isAddingMenuTag, setIsAddingMenuTag] = useState(false);
+
+  const reviewTags = useMenuTagSelector((state) => state.menuTag);
+  const menuTagDispatch = useDispatch();
 
   useEffect(() => {
     if (imageCarouselRef.current) {
@@ -32,8 +40,12 @@ export default function UploadImage({
     setReviewImages([...prevData.slice(0, imageIndex), ...prevData.slice(imageIndex + 1)]);
   };
 
-  const addMenuTag = (imageIndex: number) => {
-    console.log(imageIndex);
+  const addTag = (imageIndex: number, locationX: number, locationY: number) => {
+    menuTagDispatch(addMenuTag({
+      imageIndex,
+      locationX,
+      locationY,
+    }));
   };
 
   // const deleteMenuTag = (tagIndex: number) => {
@@ -62,6 +74,46 @@ export default function UploadImage({
                 className="relative h-full w-full"
                 key={imageUrl}
               >
+                {isAddingMenuTag ? (
+                  <button
+                    type="button"
+                    className="absolute z-50 h-full w-full bg-black/50 text-white"
+                    onClick={(e: React.MouseEvent) => {
+                      if (imageCarouselRef.current) {
+                        const x = e.nativeEvent.offsetX;
+                        const y = e.nativeEvent.offsetY;
+
+                        addTag(
+                          imageIndex,
+                          (x / imageCarouselRef.current.offsetWidth) * 100,
+                          (y / imageCarouselRef.current.offsetHeight) * 100,
+                        );
+                        setIsAddingMenuTag(false);
+                      }
+                    }}
+                  >
+                    메뉴 태그를 추가할 위치를 클릭하세요.
+                  </button>
+                ) : null}
+                {reviewTags.map((reviewTag) => {
+                  if (imageIndex === reviewTag.imageIndex) {
+                    return (
+                      <div
+                        className="absolute"
+                        style={{ left: `${reviewTag.locationX}%`, top: `${reviewTag.locationY}%` }}
+                        key={reviewTag.tagIndex}
+                      >
+                        <MenuTag
+                          tagIndex={reviewTag.tagIndex}
+                          mode="modify"
+                          name={reviewTag.name}
+                        />
+                      </div>
+                    );
+                  }
+
+                  return null;
+                })}
                 <Image
                   imageSrc={imageUrl}
                   alt={imageUrl}
@@ -71,9 +123,9 @@ export default function UploadImage({
                 <Button
                   size="small"
                   onClick={() => {
-                    addMenuTag(imageIndex);
+                    setIsAddingMenuTag(true);
                   }}
-                  className="absolute left-4 top-4 flex gap-2"
+                  extraStyle="absolute left-4 top-4 flex gap-2"
                 >
                   메뉴 태그 추가
                 </Button>
