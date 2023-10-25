@@ -83,20 +83,20 @@ export default function MenuTag({
               <div className="flex flex-row justify-around gap-2">
                 <Button
                   size="small"
+                  backgroundColor="bg-matgpt-gray"
+                  textColor="text-black"
+                  onClick={() => setIsExpanded(false)}
+                >
+                  {t('menuTag.cancel')}
+                </Button>
+                <Button
+                  size="small"
                   textColor="text-black"
                   onClick={() => {
                     handleModifyTag(inputRef.current?.getInputValue() || '');
                   }}
                 >
                   {t('menuTag.modify')}
-                </Button>
-                <Button
-                  size="small"
-                  backgroundColor="bg-matgpt-gray"
-                  textColor="text-black"
-                  onClick={() => setIsExpanded(false)}
-                >
-                  {t('menuTag.cancel')}
                 </Button>
               </div>
             </div>
@@ -122,18 +122,18 @@ export default function MenuTag({
               <div className="mt-1 flex flex-row justify-around">
                 <Button
                   size="small"
-                  textColor="text-black"
-                  onClick={onPromptEvent}
-                >
-                  {t('menuTag.add')}
-                </Button>
-                <Button
-                  size="small"
                   backgroundColor="bg-matgpt-gray"
                   textColor="text-black"
                   onClick={() => setIsExpanded(false)}
                 >
                   {t('menuTag.cancel')}
+                </Button>
+                <Button
+                  size="small"
+                  textColor="text-black"
+                  onClick={onPromptEvent}
+                >
+                  {t('menuTag.add')}
                 </Button>
               </div>
             </section>
