@@ -108,6 +108,7 @@ export default function UploadImage({
                           tagIndex={reviewTag.tagIndex}
                           mode="modify"
                           name={reviewTag.name}
+                          rating={reviewTag.rating}
                         />
                       </div>
                     );

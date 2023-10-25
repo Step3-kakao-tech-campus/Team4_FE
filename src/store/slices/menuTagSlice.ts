@@ -19,16 +19,19 @@ export const menuTagSlice = createSlice({
         imageIndex: action.payload.imageIndex,
         locationX: action.payload.locationX,
         locationY: action.payload.locationY,
+        rating: 0,
       });
     },
     modifyMenuTag: (state, action: PayloadAction<{
       tagIndex: number,
       name: string,
+      rating: number
     }>) => state.map((tag) => {
       if (tag.tagIndex === action.payload.tagIndex) {
         return {
           ...tag,
           name: action.payload.name,
+          rating: action.payload.rating,
         };
       }
 

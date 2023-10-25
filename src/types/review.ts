@@ -16,7 +16,7 @@ export interface ReviewImageTagInfo {
   name: string;
   locationX: number;
   locationY: number;
-  // rating: number;
+  rating: number;
 }
 
 // export interface ReviewImageInfo {

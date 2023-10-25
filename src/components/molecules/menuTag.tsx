@@ -8,14 +8,18 @@ import Button from '../atoms/button';
 import Icon from '../atoms/icon';
 import { RefHandler } from '../../types/refHandler';
 import { modifyMenuTag, removeMenuTag } from '../../store/slices/menuTagSlice';
+import SelectTagRating from './selectTagRating';
+import TagRating from './tagRating';
 
 interface DefaultTagProps {
   name: string;
+  rating: number;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 function DefaultTag({
   name,
+  rating,
   onClick,
 }: DefaultTagProps) {
   return (
@@ -27,7 +31,10 @@ function DefaultTag({
           break-all rounded-lg bg-black px-3 py-2"
         onClick={onClick}
       >
-        <span className="text-sm text-white">{name}</span>
+        <div className="flex items-center gap-1 text-white">
+          <span className="text-sm">{name}</span>
+          {rating !== 0 ? <TagRating rating={rating} /> : null}
+        </div>
       </button>
     </div>
   );
@@ -36,6 +43,7 @@ function DefaultTag({
 interface MenuTagProps {
   tagIndex: number;
   name: string;
+  rating: number;
   mode: 'modify' | 'prompt';
   onPromptEvent?: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -43,10 +51,12 @@ interface MenuTagProps {
 export default function MenuTag({
   tagIndex,
   name,
+  rating,
   mode,
   onPromptEvent = () => {},
 }: MenuTagProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [modifyRating, setModifyRating] = useState(rating);
   const { t } = useTranslation();
   const inputRef = useRef<RefHandler>(null);
   const menuTagDispatch = useDispatch();
@@ -55,6 +65,7 @@ export default function MenuTag({
     menuTagDispatch(modifyMenuTag({
       tagIndex,
       name: modifiedName,
+      rating: modifyRating,
     }));
   };
 
@@ -80,6 +91,10 @@ export default function MenuTag({
               <div className="mr-3">
                 <Input ref={inputRef} mode="singleLine" defaultValue={name} />
               </div>
+              <SelectTagRating
+                rating={modifyRating}
+                setRating={setModifyRating}
+              />
               <div className="flex flex-row justify-around gap-2">
                 <Button
                   size="small"
@@ -104,6 +119,7 @@ export default function MenuTag({
         ) : (
           <DefaultTag
             name={name === '' ? '메뉴 이름을 입력해주세요.' : name}
+            rating={rating}
             onClick={() => setIsExpanded(true)}
           />
         )}
@@ -141,6 +157,7 @@ export default function MenuTag({
         ) : (
           <DefaultTag
             name={name}
+            rating={rating}
             onClick={() => setIsExpanded(true)}
           />
         ) }
