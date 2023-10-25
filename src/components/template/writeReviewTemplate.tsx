@@ -15,6 +15,7 @@ interface WriteReviewTemplateProps {
   setRating: Dispatch<SetStateAction<number>>;
   reviewImages: Blob[];
   setReviewImages: Dispatch<SetStateAction<Blob[]>>;
+  handleWriteReview: () => void;
 }
 
 const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplateProps>((
@@ -24,6 +25,7 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
     setRating,
     reviewImages,
     setReviewImages,
+    handleWriteReview,
   },
   ref,
 ) => {
@@ -89,7 +91,9 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
           >
             작성 취소하기
           </Button>
-          <Button>작성 완료하기</Button>
+          <Button onClick={() => handleWriteReview()}>
+            작성 완료하기
+          </Button>
         </div>
       </div>
     </main>

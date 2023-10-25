@@ -1,4 +1,4 @@
-import { ReviewCardInfo } from '../types/review';
+import { ReviewCardInfo, ReviewInfo } from '../types/review';
 import { fetchInstance } from './instance';
 
 export async function getWrtiedReview(
@@ -15,4 +15,11 @@ export async function getLikedReview(
 ): Promise<ReviewCardInfo[]> {
   const response = await fetchInstance.get(`/mypage/liked-reviews?cursor=${cursor}&limits=${limits}`);
   return response.data.response;
+}
+
+export async function writeReview(
+  storeId: number,
+  reviewData: ReviewInfo,
+) {
+  return fetchInstance.post(`/stores/${storeId}/reviews`, reviewData);
 }

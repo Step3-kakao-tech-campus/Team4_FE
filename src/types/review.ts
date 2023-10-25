@@ -19,7 +19,15 @@ export interface ReviewImageTagInfo {
   rating: number;
 }
 
-// export interface ReviewImageInfo {
-//   imageData: Blob;
-//   tags: ReviewImageTagInfo[];
-// }
+export interface ReviewImageInfo {
+  imageData: Blob;
+  tags: ReviewImageTagInfo[];
+}
+
+export interface ReviewInfo {
+  reviewImages: ReviewImageInfo[];
+  content: string;
+  rating: number;
+  peopleCount: number;
+  totalPrice: number;
+}
