@@ -7,7 +7,7 @@ import Input from '../atoms/input';
 import Button from '../atoms/button';
 import Icon from '../atoms/icon';
 import { RefHandler } from '../../types/refHandler';
-import { modifyMenuTag } from '../../store/slices/menuTagSlice';
+import { modifyMenuTag, removeMenuTag } from '../../store/slices/menuTagSlice';
 
 interface DefaultTagProps {
   name: string;
@@ -58,6 +58,12 @@ export default function MenuTag({
     }));
   };
 
+  const handleDeleteTag = () => {
+    menuTagDispatch(removeMenuTag({
+      tagIndex,
+    }));
+  };
+
   if (mode === 'modify') {
     return (
       <>
@@ -67,6 +73,7 @@ export default function MenuTag({
               <button
                 type="button"
                 className="absolute right-2 top-2 text-white"
+                onClick={() => handleDeleteTag()}
               >
                 <Icon name="OutlineClose" size="1rem" ariaLabel="메뉴 태그 삭제" />
               </button>
