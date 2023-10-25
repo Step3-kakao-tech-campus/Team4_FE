@@ -15,15 +15,16 @@ interface DefaultTagProps {
 
 function DefaultTag({ name, onClick }: DefaultTagProps) {
   return (
-    <div className="relative flex w-[10rem] flex-col items-center">
+    <div className="relative w-4 border-[0.5rem] border-transparent border-t-black">
       <button
         type="button"
-        className="flex rounded-lg bg-black px-3 py-2"
+        className="absolute left-1/2 top-1/2 flex
+          -translate-x-1/2 translate-y-[calc(-100%-0.5rem)] whitespace-nowrap
+          break-all rounded-lg bg-black px-3 py-2"
         onClick={onClick}
       >
         <span className="text-sm text-white">{name}</span>
       </button>
-      <div className="w-4 border-[0.5rem] border-transparent border-t-black" />
     </div>
   );
 }
@@ -72,8 +73,8 @@ export default function MenuTag({
     return (
       <div>
         {isExpanded ? (
-          <div className="relative flex w-[10rem] flex-col items-center">
-            <div className="flex flex-col gap-2 rounded-xl bg-black px-4 py-2">
+          <div className="relative w-4 border-[0.5rem] border-transparent border-t-black">
+            <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 translate-y-[calc(-100%-0.5rem)] flex-col gap-2 rounded-xl bg-black px-4 py-2">
               <button
                 type="button"
                 onClick={onDeleteEvent}
@@ -84,7 +85,7 @@ export default function MenuTag({
               <div className="mr-3">
                 <Input ref={inputRef} mode="singleLine" defaultValue={name} />
               </div>
-              <div className="flex flex-row justify-around">
+              <div className="flex flex-row justify-around gap-2">
                 <Button
                   size="small"
                   textColor="text-black"
@@ -104,7 +105,6 @@ export default function MenuTag({
                 </Button>
               </div>
             </div>
-            <div className="w-4 border-[0.5rem] border-transparent border-t-black" />
           </div>
         ) : (
           <DefaultTag name={name === '' ? '메뉴 이름을 입력해주세요.' : name} onClick={() => setIsExpanded(true)} />
@@ -117,8 +117,8 @@ export default function MenuTag({
     return (
       <div>
         {isExpanded ? (
-          <div className="relative flex w-[10rem] flex-col items-center">
-            <section className="flex flex-col gap-1 rounded-xl bg-black px-4 py-2 text-white">
+          <div className="relative w-4 border-[0.5rem] border-transparent border-t-black">
+            <section className="absolute left-1/2 top-1/2 flex -translate-x-1/2 translate-y-[calc(-100%-0.5rem)] flex-col gap-1 rounded-xl bg-black px-4 py-2 text-white">
               <h3 className="font-bold">{name}</h3>
               <p className="text-xs">{t('menuTag.prompt')}</p>
               <div className="mt-1 flex flex-row justify-around">
@@ -139,7 +139,6 @@ export default function MenuTag({
                 </Button>
               </div>
             </section>
-            <div className="w-4 border-[0.5rem] border-transparent border-t-black" />
           </div>
         ) : (
           <DefaultTag name={name} onClick={() => setIsExpanded(true)} />
