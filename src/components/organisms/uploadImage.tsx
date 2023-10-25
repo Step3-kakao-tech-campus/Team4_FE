@@ -43,7 +43,7 @@ export default function UploadImage({
     setReviewImages([...prevData.slice(0, imageIndex), ...prevData.slice(imageIndex + 1)]);
   };
 
-  const addTag = (imageIndex: number, locationX: number, locationY: number) => {
+  const handleAddTag = (imageIndex: number, locationX: number, locationY: number) => {
     menuTagDispatch(addMenuTag({
       imageIndex,
       locationX,
@@ -82,7 +82,7 @@ export default function UploadImage({
                         const x = e.nativeEvent.offsetX;
                         const y = e.nativeEvent.offsetY;
 
-                        addTag(
+                        handleAddTag(
                           imageIndex,
                           (x / imageCarouselRef.current.offsetWidth) * 100,
                           (y / imageCarouselRef.current.offsetHeight) * 100,
