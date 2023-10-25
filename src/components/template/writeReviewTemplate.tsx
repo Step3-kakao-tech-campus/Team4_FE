@@ -8,7 +8,6 @@ import PageTitleCard from '../molecules/pageTitleCard';
 import SelectRating from '../molecules/selectRating';
 import UploadImage from '../organisms/uploadImage';
 import { RefHandler, WriteReviewRefHandler } from '../../types/refHandler';
-import { ReviewImageTagInfo } from '../../types/review';
 
 interface WriteReviewTemplateProps {
   storeId: number;
@@ -16,8 +15,6 @@ interface WriteReviewTemplateProps {
   setRating: Dispatch<SetStateAction<number>>;
   reviewImages: Blob[];
   setReviewImages: Dispatch<SetStateAction<Blob[]>>;
-  reviewImageTags: ReviewImageTagInfo[];
-  setReviewImageTags: Dispatch<SetStateAction<ReviewImageTagInfo[]>>;
 }
 
 const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplateProps>((
@@ -27,8 +24,6 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
     setRating,
     reviewImages,
     setReviewImages,
-    reviewImageTags,
-    setReviewImageTags,
   },
   ref,
 ) => {
@@ -50,8 +45,6 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
       <UploadImage
         reviewImages={reviewImages}
         setReviewImages={setReviewImages}
-        reviewImageTags={reviewImageTags}
-        setReviewImageTags={setReviewImageTags}
       />
       <div className="flex flex-col gap-4 p-4 text-center">
         <SelectRating

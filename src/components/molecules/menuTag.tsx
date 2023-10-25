@@ -13,7 +13,10 @@ interface DefaultTagProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function DefaultTag({ name, onClick }: DefaultTagProps) {
+function DefaultTag({
+  name,
+  onClick,
+}: DefaultTagProps) {
   return (
     <div className="relative w-4 border-[0.5rem] border-transparent border-t-black">
       <button
@@ -50,28 +53,29 @@ export default function MenuTag({
 }: MenuTagProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const { t } = useTranslation();
-
   const inputRef = useRef<RefHandler>(null);
 
   const modifyMenuTag = (tagIndexToModify: number, modifiedName: string) => {
     if (reviewImageTags !== undefined && setReviewImageTags !== undefined) {
       const prevTags = reviewImageTags.slice();
-      prevTags[tagIndexToModify] = {
-        ...prevTags[tagIndexToModify],
-        name: modifiedName,
-      };
+      const newTags = prevTags.map((prevTag) => {
+        if (prevTag.tagIndex === tagIndexToModify) {
+          return {
+            ...prevTag,
+            name: modifiedName,
+          };
+        }
 
-      setReviewImageTags([
-        ...prevTags.slice(0, tagIndexToModify),
-        prevTags[tagIndexToModify],
-        ...prevTags.slice(tagIndexToModify + 1),
-      ]);
+        return prevTag;
+      });
+
+      setReviewImageTags(newTags);
     }
   };
 
   if (mode === 'modify') {
     return (
-      <div>
+      <>
         {isExpanded ? (
           <div className="relative w-4 border-[0.5rem] border-transparent border-t-black">
             <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 translate-y-[calc(-100%-0.5rem)] flex-col gap-2 rounded-xl bg-black px-4 py-2">
@@ -107,9 +111,12 @@ export default function MenuTag({
             </div>
           </div>
         ) : (
-          <DefaultTag name={name === '' ? '메뉴 이름을 입력해주세요.' : name} onClick={() => setIsExpanded(true)} />
+          <DefaultTag
+            name={name === '' ? '메뉴 이름을 입력해주세요.' : name}
+            onClick={() => setIsExpanded(true)}
+          />
         )}
-      </div>
+      </>
     );
   }
 
@@ -141,7 +148,10 @@ export default function MenuTag({
             </section>
           </div>
         ) : (
-          <DefaultTag name={name} onClick={() => setIsExpanded(true)} />
+          <DefaultTag
+            name={name}
+            onClick={() => setIsExpanded(true)}
+          />
         ) }
       </div>
     );

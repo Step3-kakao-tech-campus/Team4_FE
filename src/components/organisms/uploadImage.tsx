@@ -6,21 +6,15 @@ import ImageCarousel from '../molecules/imageCarousel';
 import Icon from '../atoms/icon';
 import ImageCropModal from '../modals/imageCropModal';
 import Button from '../atoms/button';
-import { ReviewImageTagInfo } from '../../types/review';
-import MenuTag from '../molecules/menuTag';
 
 interface UploadImageProps {
   reviewImages: Blob[];
   setReviewImages: Dispatch<SetStateAction<Blob[]>>;
-  reviewImageTags: ReviewImageTagInfo[];
-  setReviewImageTags: Dispatch<SetStateAction<ReviewImageTagInfo[]>>;
 }
 
 export default function UploadImage({
   reviewImages,
   setReviewImages,
-  reviewImageTags,
-  setReviewImageTags,
 }: UploadImageProps) {
   const imageCarouselRef = useRef<HTMLDivElement>(null);
   const [isImageCropModalOpen, setIsImageCropModalOpen] = useState<boolean>(false);
@@ -39,23 +33,12 @@ export default function UploadImage({
   };
 
   const addMenuTag = (imageIndex: number) => {
-    const prevTags = reviewImageTags.slice();
-    prevTags.push({
-      imageIndex,
-      tagIndex: prevTags.length > 0 ? prevTags[prevTags.length - 1].tagIndex + 1 : 0,
-      name: '',
-      locationX: 50,
-      locationY: 50,
-    });
-
-    setReviewImageTags(prevTags);
+    console.log(imageIndex);
   };
 
-  const deleteMenuTag = (tagIndex: number) => {
-    const prevTags = reviewImageTags.slice();
-
-    setReviewImageTags([...prevTags.slice(0, tagIndex), ...prevTags.slice(tagIndex + 1)]);
-  };
+  // const deleteMenuTag = (tagIndex: number) => {
+  //   console.log(tagIndex);
+  // };
 
   return (
     <>
@@ -79,28 +62,6 @@ export default function UploadImage({
                 className="relative h-full w-full"
                 key={imageUrl}
               >
-                {reviewImageTags.map(({
-                  imageIndex: thisTagImageIndex, tagIndex, name, locationX, locationY,
-                }) => (
-                  thisTagImageIndex === imageIndex && (
-                  <div
-                    className="absolute"
-                    style={{ left: `${locationX}%`, top: `${locationY}%` }}
-                    key={tagIndex}
-                  >
-                    <MenuTag
-                      tagIndex={tagIndex}
-                      name={name}
-                      mode="modify"
-                      onDeleteEvent={() => {
-                        deleteMenuTag(tagIndex);
-                      }}
-                      reviewImageTags={reviewImageTags}
-                      setReviewImageTags={setReviewImageTags}
-                    />
-                  </div>
-                  )
-                ))}
                 <Image
                   imageSrc={imageUrl}
                   alt={imageUrl}
@@ -112,7 +73,7 @@ export default function UploadImage({
                   onClick={() => {
                     addMenuTag(imageIndex);
                   }}
-                  extraStyle="absolute left-4 top-4"
+                  className="absolute left-4 top-4 flex gap-2"
                 >
                   메뉴 태그 추가
                 </Button>
