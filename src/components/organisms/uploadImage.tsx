@@ -9,7 +9,7 @@ import ImageCropModal from '../modals/imageCropModal';
 import Button from '../atoms/button';
 import { useMenuTagSelector } from '../../hooks/store';
 import MenuTag from '../molecules/menuTag';
-import { addMenuTag, removeAllMenuTagFromCurrentImage } from '../../store/slices/menuTagSlice';
+import { addMenuTag, removeAllMenuTagFromCurrentImage, resetMenuTag } from '../../store/slices/menuTagSlice';
 
 interface UploadImageProps {
   reviewImages: Blob[];
@@ -32,6 +32,8 @@ export default function UploadImage({
     if (imageCarouselRef.current) {
       imageCarouselRef.current.style.height = `${imageCarouselRef.current.offsetWidth}px`;
     }
+
+    menuTagDispatch(resetMenuTag());
   }, []);
 
   const handleDeleteImage = (imageIndex: number) => {

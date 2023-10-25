@@ -7,6 +7,7 @@ export const menuTagSlice = createSlice({
   name: 'menuTag',
   initialState,
   reducers: {
+    resetMenuTag: () => [],
     addMenuTag: (state, action: PayloadAction<{
       imageIndex: number,
       locationX: number,
@@ -45,6 +46,6 @@ export const menuTagSlice = createSlice({
 });
 
 export const {
-  addMenuTag, modifyMenuTag, removeMenuTag, removeAllMenuTagFromCurrentImage,
+  resetMenuTag, addMenuTag, modifyMenuTag, removeMenuTag, removeAllMenuTagFromCurrentImage,
 } = menuTagSlice.actions;
 export const menuTagReducer = menuTagSlice.reducer;
