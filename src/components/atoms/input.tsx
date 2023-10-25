@@ -36,7 +36,7 @@ const Input = forwardRef<RefHandler, InputProps>((
   }));
 
   useEffect(() => {
-    if (defaultValue !== undefined) {
+    if (defaultValue) {
       if ((mode === 'search' || mode === 'singleLine') && inputRef.current !== null) {
         inputRef.current.value = defaultValue;
       } else if (mode === 'multiLine' && textareaRef.current !== null) {
@@ -87,10 +87,7 @@ const Input = forwardRef<RefHandler, InputProps>((
     );
   }
 
-  return (
-    <>
-    </>
-  );
+  return null;
 });
 
 export default Input;

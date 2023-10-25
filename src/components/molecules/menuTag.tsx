@@ -112,10 +112,7 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
     );
   }
 
-  return (
-    <>
-    </>
-  );
+  return null;
 });
 
 export default MenuTag;

@@ -53,9 +53,6 @@ export default function MyGoogleMap({ stores }: MyGoogleMapProps) {
           />
         ))}
       </GoogleMap>
-    ) : (
-      <>
-      </>
-    )
+    ) : null
   );
 }
