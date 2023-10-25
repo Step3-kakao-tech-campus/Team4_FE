@@ -20,6 +20,19 @@ export const menuTagSlice = createSlice({
         locationY: action.payload.locationY,
       });
     },
+    modifyMenuTag: (state, action: PayloadAction<{
+      tagIndex: number,
+      name: string,
+    }>) => state.map((tag) => {
+      if (tag.tagIndex === action.payload.tagIndex) {
+        return {
+          ...tag,
+          name: action.payload.name,
+        };
+      }
+
+      return tag;
+    }),
     removeMenuTag: (
       state,
       action: PayloadAction<{ tagIndex: number }>,
@@ -31,5 +44,7 @@ export const menuTagSlice = createSlice({
   },
 });
 
-export const { addMenuTag, removeMenuTag, removeAllMenuTagFromCurrentImage } = menuTagSlice.actions;
+export const {
+  addMenuTag, modifyMenuTag, removeMenuTag, removeAllMenuTagFromCurrentImage,
+} = menuTagSlice.actions;
 export const menuTagReducer = menuTagSlice.reducer;

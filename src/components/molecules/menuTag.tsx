@@ -1,12 +1,13 @@
 import {
-  useState, SetStateAction, Dispatch, useRef,
+  useState, useRef,
 } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 import Input from '../atoms/input';
 import Button from '../atoms/button';
 import Icon from '../atoms/icon';
-import { ReviewImageTagInfo } from '../../types/review';
 import { RefHandler } from '../../types/refHandler';
+import { modifyMenuTag } from '../../store/slices/menuTagSlice';
 
 interface DefaultTagProps {
   name: string;
@@ -37,9 +38,6 @@ interface MenuTagProps {
   name: string;
   mode: 'modify' | 'prompt';
   onPromptEvent?: React.MouseEventHandler<HTMLButtonElement>;
-  onDeleteEvent?: React.MouseEventHandler<HTMLButtonElement>;
-  reviewImageTags?: ReviewImageTagInfo[];
-  setReviewImageTags?: Dispatch<SetStateAction<ReviewImageTagInfo[]>>;
 }
 
 export default function MenuTag({
@@ -47,30 +45,17 @@ export default function MenuTag({
   name,
   mode,
   onPromptEvent = () => {},
-  onDeleteEvent = () => {},
-  reviewImageTags,
-  setReviewImageTags,
 }: MenuTagProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const { t } = useTranslation();
   const inputRef = useRef<RefHandler>(null);
+  const menuTagDispatch = useDispatch();
 
-  const modifyMenuTag = (tagIndexToModify: number, modifiedName: string) => {
-    if (reviewImageTags !== undefined && setReviewImageTags !== undefined) {
-      const prevTags = reviewImageTags.slice();
-      const newTags = prevTags.map((prevTag) => {
-        if (prevTag.tagIndex === tagIndexToModify) {
-          return {
-            ...prevTag,
-            name: modifiedName,
-          };
-        }
-
-        return prevTag;
-      });
-
-      setReviewImageTags(newTags);
-    }
+  const handleModifyTag = (modifiedName: string) => {
+    menuTagDispatch(modifyMenuTag({
+      tagIndex,
+      name: modifiedName,
+    }));
   };
 
   if (mode === 'modify') {
@@ -81,7 +66,6 @@ export default function MenuTag({
             <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 translate-y-[calc(-100%-0.5rem)] flex-col gap-2 rounded-xl bg-black px-4 py-2">
               <button
                 type="button"
-                onClick={onDeleteEvent}
                 className="absolute right-2 top-2 text-white"
               >
                 <Icon name="OutlineClose" size="1rem" ariaLabel="메뉴 태그 삭제" />
@@ -94,7 +78,7 @@ export default function MenuTag({
                   size="small"
                   textColor="text-black"
                   onClick={() => {
-                    modifyMenuTag(tagIndex, inputRef.current?.getInputValue() || '');
+                    handleModifyTag(inputRef.current?.getInputValue() || '');
                   }}
                 >
                   {t('menuTag.modify')}
