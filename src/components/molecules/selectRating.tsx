@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import Icon from '../atoms/icon';
 
 interface SelectRatingProps {
@@ -10,14 +11,15 @@ export default function SelectRating({
   rating,
   setRating,
 }: SelectRatingProps) {
+  const { t } = useTranslation();
   return (
     <>
-      <div>가게에 대한 평점을 남겨주세요.</div>
+      <div>{t('writeReviewPage.d1')}</div>
       <div className="flex justify-center gap-1 text-yellow-400">
         <button
           type="button"
           onClick={() => setRating(1)}
-          title="평점 1점 남기기"
+          title={`${t('writeReviewPage.rating')} 1 ${rating === 1 ? t('writeReviewPage.selected') : ''}`}
           tabIndex={0}
         >
           {rating >= 1
@@ -27,7 +29,7 @@ export default function SelectRating({
         <button
           type="button"
           onClick={() => setRating(2)}
-          title="평점 2점 남기기"
+          title={`${t('writeReviewPage.rating')} 2 ${rating === 2 ? t('writeReviewPage.selected') : ''}`}
           tabIndex={0}
         >
           {rating >= 2
@@ -37,7 +39,7 @@ export default function SelectRating({
         <button
           type="button"
           onClick={() => setRating(3)}
-          title="평점 3점 남기기"
+          title={`${t('writeReviewPage.rating')} 3 ${rating === 3 ? t('writeReviewPage.selected') : ''}`}
           tabIndex={0}
         >
           {rating >= 3
@@ -47,7 +49,7 @@ export default function SelectRating({
         <button
           type="button"
           onClick={() => setRating(4)}
-          title="평점 4점 남기기"
+          title={`${t('writeReviewPage.rating')} 4 ${rating === 4 ? t('writeReviewPage.selected') : ''}`}
           tabIndex={0}
         >
           {rating >= 4
@@ -57,7 +59,7 @@ export default function SelectRating({
         <button
           type="button"
           onClick={() => setRating(5)}
-          title="평점 5점 남기기"
+          title={`${t('writeReviewPage.rating')} 5 ${rating === 5 ? t('writeReviewPage.selected') : ''}`}
           tabIndex={0}
         >
           {rating >= 5

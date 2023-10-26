@@ -2,6 +2,7 @@ import {
   Dispatch, SetStateAction, useEffect, useRef, useState,
 } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import Image from '../atoms/image';
 import ImageCarousel from '../molecules/imageCarousel';
 import Icon from '../atoms/icon';
@@ -28,6 +29,8 @@ export default function UploadImage({
 
   const reviewTags = useMenuTagSelector((state) => state.menuTag);
   const menuTagDispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (imageCarouselRef.current) {
@@ -71,7 +74,12 @@ export default function UploadImage({
         className={`relative mb-2 w-full ${reviewImages.length === 0 ? 'bg-matgpt-gray' : ''}`}
         ref={imageCarouselRef}
       >
-        {reviewImages.length === 0 ? <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">선택된 사진 없음</div> : null}
+        {reviewImages.length === 0
+          ? (
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              {t('writeReviewPage.noImage')}
+            </div>
+          ) : null}
         <ImageCarousel swiperStyle="w-full h-full">
           {reviewImagesTempUrl.map((imageUrl, imageIndex) => (
             <div
@@ -96,7 +104,7 @@ export default function UploadImage({
                     }
                   }}
                 >
-                  메뉴 태그를 추가할 위치를 클릭하세요.
+                  {t('writeReviewPage.tagPosition')}
                 </button>
               ) : null}
               {reviewTags.map((reviewTag) => {
@@ -121,7 +129,7 @@ export default function UploadImage({
               })}
               <Image
                 imageSrc={imageUrl}
-                alt={`${imageIndex + 1}번째 음식 이미지`}
+                alt={`${t('writeReviewPage.image')} ${imageIndex + 1}`}
                 objectFitMode
                 className="object-cover"
               />
@@ -132,7 +140,7 @@ export default function UploadImage({
                 }}
                 extraStyle="absolute left-4 top-4 flex gap-2"
               >
-                메뉴 태그 추가
+                {t('writeReviewPage.addTag')}
               </Button>
               <button
                 type="button"
@@ -141,7 +149,7 @@ export default function UploadImage({
                   handleDeleteImage(imageIndex);
                 }}
               >
-                <Icon name="OutlineClose" ariaLabel="사진 삭제" size="1rem" />
+                <Icon name="OutlineClose" ariaLabel={t('writeReviewPage.deleteImage')} size="1rem" />
               </button>
             </div>
           ))}
@@ -150,7 +158,7 @@ export default function UploadImage({
       <div className="flex justify-center">
         <label htmlFor="uploadImage">
           <div className="text-center">
-            사진 추가하기
+            {t('writeReviewPage.addImage')}
           </div>
           <input
             id="uploadImage"

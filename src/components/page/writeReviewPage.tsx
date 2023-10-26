@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import WriteReviewTemplate from '../template/writeReviewTemplate';
 import { WriteReviewRefHandler } from '../../types/refHandler';
 import { useWriteReview } from '../../hooks/query';
@@ -12,6 +13,7 @@ export default function WriteReviewPage() {
   const writeReviewRef = useRef<WriteReviewRefHandler>(null);
   const menuTags = useMenuTagSelector((state) => state.menuTag);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { mutate } = useWriteReview();
 
@@ -48,17 +50,17 @@ export default function WriteReviewPage() {
       },
     }, {
       onSuccess: () => {
-        alert('리뷰가 등록되었습니다.');
+        alert(t('writeReviewPage.success'));
         navigate(`/stores/${storeId}`);
       },
       onError: () => {
-        alert('오류가 발생했습니다.\n잠시 후 다시 시도해 주세요.');
+        alert(t('writeReviewPage.failure'));
       },
     });
   };
 
   if (storeId === undefined || Number.isNaN(+storeId)) {
-    return <div>잘못된 접근입니다.</div>;
+    return <div>{t('writeReviewPage.wrongId')}</div>;
   }
 
   return (

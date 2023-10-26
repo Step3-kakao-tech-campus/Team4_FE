@@ -2,6 +2,7 @@ import {
   Dispatch, SetStateAction, forwardRef, useImperativeHandle, useRef,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Button from '../atoms/button';
 import Input from '../atoms/input';
 import PageTitleCard from '../molecules/pageTitleCard';
@@ -32,6 +33,7 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
   const contentRef = useRef<RefHandler>(null);
   const peopleCountRef = useRef<RefHandler>(null);
   const totalPriceRef = useRef<RefHandler>(null);
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -43,7 +45,7 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
 
   return (
     <main className="pb-[3.7rem]">
-      <PageTitleCard pageTitle="리뷰 작성" />
+      <PageTitleCard pageTitle={t('writeReviewPage.title')} />
       <UploadImage
         reviewImages={reviewImages}
         setReviewImages={setReviewImages}
@@ -54,7 +56,7 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
           setRating={setRating}
         />
         <div>
-          가게에 대한 리뷰를 남겨주세요.
+          {t('writeReviewPage.d2')}
         </div>
         <div className="h-80">
           <Input
@@ -63,23 +65,23 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
           />
         </div>
         <div className="flex flex-col items-center">
-          <div>몇 분이서 오셨나요?</div>
-          <div className="flex w-24 items-center gap-2">
+          <div>{t('writeReviewPage.d3')}</div>
+          <div className="flex w-36 items-center gap-2">
             <Input
               mode="number"
               ref={peopleCountRef}
             />
-            명
+            {t('writeReviewPage.people')}
           </div>
         </div>
         <div className="flex flex-col items-center">
-          <div>얼마나 지불하셨나요?</div>
-          <div className="flex w-36 items-center gap-2">
+          <div>{t('writeReviewPage.d4')}</div>
+          <div className="flex w-52 items-center gap-2">
             <Input
               mode="number"
               ref={totalPriceRef}
             />
-            원
+            {t('writeReviewPage.won')}
           </div>
         </div>
         <div className="flex justify-between">
@@ -89,10 +91,10 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
               navigate(`/stores/${storeId}`);
             }}
           >
-            작성 취소하기
+            {t('writeReviewPage.cancel')}
           </Button>
           <Button onClick={() => handleWriteReview()}>
-            작성 완료하기
+            {t('writeReviewPage.finish')}
           </Button>
         </div>
       </div>

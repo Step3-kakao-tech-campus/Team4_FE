@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import Cropper, { Area } from 'react-easy-crop';
 import ReactModal from 'react-modal';
+import { useTranslation } from 'react-i18next';
 import Button from '../atoms/button';
 import getCroppedImg from '../../utils/image';
 
@@ -49,6 +50,8 @@ export default function ImageCropModal({
   const [zoom, setZoom] = useState(1);
   const [currentCroppedAreaPixels, setCurrentCroppedAreaPixels] = useState<Area | null>(null);
 
+  const { t } = useTranslation();
+
   const onCropComplete = (croppedArea: Area, croppedAreaPixels: Area) => {
     setCurrentCroppedAreaPixels(croppedAreaPixels);
   };
@@ -86,7 +89,7 @@ export default function ImageCropModal({
       onRequestClose={() => setIsOpen(false)}
       shouldCloseOnOverlayClick={false}
     >
-      <h1 className="flex h-8 items-center justify-center font-bold">사진 자르기</h1>
+      <h1 className="flex h-8 items-center justify-center font-bold">{t('writeReviewPage.cropImage')}</h1>
       <div className="relative h-[calc(100%-6rem)] w-full">
         <Cropper
           image={imageUrl}
@@ -99,8 +102,8 @@ export default function ImageCropModal({
         />
       </div>
       <div className="flex h-16 items-center justify-between px-4">
-        <Button onClick={() => setIsOpen(false)} backgroundColor="bg-matgpt-gray">취소</Button>
-        <Button onClick={showCroppedImage}>추가</Button>
+        <Button onClick={() => setIsOpen(false)} backgroundColor="bg-matgpt-gray">{t('writeReviewPage.cancelCrop')}</Button>
+        <Button onClick={showCroppedImage}>{t('writeReviewPage.addCrop')}</Button>
       </div>
     </ReactModal>
   );

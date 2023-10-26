@@ -87,7 +87,7 @@ export default function MenuTag({
                 className="absolute right-2 top-2 text-white"
                 onClick={() => handleDeleteTag()}
               >
-                <Icon name="OutlineClose" size="1rem" ariaLabel="메뉴 태그 삭제" />
+                <Icon name="OutlineClose" size="1rem" ariaLabel={t('menuTag.delete')} />
               </button>
               <div className="mr-3">
                 <Input ref={inputRef} mode="singleLine" defaultValue={name} />
@@ -119,7 +119,7 @@ export default function MenuTag({
           </div>
         ) : (
           <DefaultTag
-            name={name === '' ? '메뉴 이름을 입력해주세요.' : name}
+            name={name === '' ? t('menuTag.noname') : name}
             rating={rating}
             onClick={() => setIsExpanded(true)}
           />
