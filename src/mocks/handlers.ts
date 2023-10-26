@@ -279,6 +279,20 @@ export const handlers = [
       ctx.json(recentlyViewdStoreData[2]),
     );
   }),
+  rest.put('/mypage/edit-profile', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json({ status: 200 }),
+  )),
+  rest.get('/mypage/profile', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json({
+      language: '한국어',
+      gender: '남자',
+      nickname: '닉네임',
+      profileImage: '/image/fakeDb/userPage/userImage.png',
+    }),
+  )),
+
   rest.get('/mypage/charge-coin', (req, res, ctx) => {
     const cursor = Number(req.url.searchParams.get('cursor'));
     const limits = Number(req.url.searchParams.get('limits'));

@@ -5,12 +5,13 @@ import { IoLanguage } from 'react-icons/io5';
 import {
   AiOutlineLike, AiOutlineStar, AiOutlineClose, AiOutlineHeart,
   AiOutlineLeft, AiOutlineBell, AiOutlineRight, AiFillHeart,
+  AiOutlineCheck,
 } from 'react-icons/ai';
 import { HiUserGroup, HiCreditCard } from 'react-icons/hi';
 
 interface IconProps {
   name: 'Person' | 'Home' | 'Search' | 'Moon' | 'Clipboard' | 'Language' | 'FillHeart' | 'OutlineLike' |
-  'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard' | 'OutlineRight' |
+  'OutlineCheck' | 'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard' | 'OutlineRight' |
   'OutlineHeart';
   size: string;
   ariaLabel: string;
@@ -53,6 +54,8 @@ function Icon({
       return <AiOutlineHeart size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineBell': // 종
       return <AiOutlineBell size={size} aria-label={ariaLabel} className={color} />;
+    case 'OutlineCheck': // 체크
+      return <AiOutlineCheck size={size} aria-label={ariaLabel} className={color} />;
     default:
       return <div>해당 이름의 아이콘이 없습니다.</div>;
   }
