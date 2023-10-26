@@ -32,6 +32,8 @@ interface ImageCropModalProps {
   imageUrl: string;
   reviewImages: Blob[];
   setReviewImages: Dispatch<SetStateAction<Blob[]>>;
+  reviewImagesTempUrl: string[];
+  setReviewImagesTempUrl: Dispatch<SetStateAction<string[]>>;
 }
 
 export default function ImageCropModal({
@@ -40,6 +42,8 @@ export default function ImageCropModal({
   imageUrl,
   reviewImages,
   setReviewImages,
+  reviewImagesTempUrl,
+  setReviewImagesTempUrl,
 }: ImageCropModalProps) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
@@ -58,8 +62,14 @@ export default function ImageCropModal({
 
       if (croppedImage) {
         const prevData = reviewImages.slice();
+        const prevUrls = reviewImagesTempUrl.slice();
+
         prevData.push(croppedImage);
+        prevUrls.push(URL.createObjectURL(croppedImage));
+
         setReviewImages(prevData);
+        setReviewImagesTempUrl(prevUrls);
+
         setIsOpen(false);
         setZoom(1);
         setCrop({ x: 0, y: 0 });

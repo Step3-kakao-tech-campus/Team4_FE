@@ -67,6 +67,7 @@ export default function MenuTag({
       name: modifiedName,
       rating: modifyRating,
     }));
+    setIsExpanded(false);
   };
 
   const handleDeleteTag = () => {
