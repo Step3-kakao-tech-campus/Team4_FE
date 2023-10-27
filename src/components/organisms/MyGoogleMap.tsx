@@ -1,15 +1,12 @@
+import { useCallback, useState } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { MarkerInfo } from '../../types/map';
 import Marker from '../molecules/marker';
+import { useGeolocation } from '../../hooks/geolocation';
 
 const containerStyle = {
   width: '100%',
   height: '100%',
-};
-
-const center = {
-  lat: 37.563752,
-  lng: 126.984487,
 };
 
 interface MyGoogleMapProps {
@@ -17,6 +14,13 @@ interface MyGoogleMapProps {
 }
 
 export default function MyGoogleMap({ stores }: MyGoogleMapProps) {
+  const [map, setMap] = useState<google.maps.Map | null>(null);
+  const { location } = useGeolocation();
+
+  const onLoad = useCallback((loadedMap: google.maps.Map) => {
+    setMap(loadedMap);
+  }, []);
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY!,
@@ -26,8 +30,12 @@ export default function MyGoogleMap({ stores }: MyGoogleMapProps) {
     isLoaded ? (
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={location}
         zoom={18}
+        onLoad={onLoad}
+        onDragEnd={() => {
+          console.log(map?.getBounds());
+        }}
         options={{
           mapTypeControl: false,
           streetViewControl: false,
