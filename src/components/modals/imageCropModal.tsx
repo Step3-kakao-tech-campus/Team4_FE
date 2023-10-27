@@ -3,7 +3,7 @@ import Cropper, { Area } from 'react-easy-crop';
 import ReactModal from 'react-modal';
 import { useTranslation } from 'react-i18next';
 import Button from '../atoms/button';
-import getCroppedImg from '../../utils/image';
+import getCroppedImg from '../../utils/cropImage';
 
 const customModalStyles = {
   overlay: {

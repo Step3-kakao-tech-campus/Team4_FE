@@ -11,6 +11,7 @@ import Button from '../atoms/button';
 import { useMenuTagSelector } from '../../hooks/store';
 import MenuTag from '../molecules/menuTag';
 import { addMenuTag, removeAllMenuTagFromCurrentImage, resetMenuTag } from '../../store/slices/menuTagSlice';
+import { isImageType, isValidFileSize } from '../../utils/image';
 
 interface UploadImageProps {
   reviewImages: Blob[];
@@ -57,6 +58,27 @@ export default function UploadImage({
       locationX,
       locationY,
     }));
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = e.target.files;
+
+    if (fileList && fileList.length > 0) {
+      if (!isImageType(fileList[0].type)) {
+        alert('유효하지 않은 파일 유형입니다.');
+        return;
+      }
+
+      if (!isValidFileSize(fileList[0].size)) {
+        alert('파일 크기는 5MB 이하여야 합니다.');
+        return;
+      }
+
+      const url = URL.createObjectURL(fileList[0]);
+
+      setIsImageCropModalOpen(true);
+      setCurrentCroppingImageUrl(url);
+    }
   };
 
   return (
@@ -164,16 +186,7 @@ export default function UploadImage({
             id="uploadImage"
             type="file"
             accept="image/*"
-            onChange={(e) => {
-              const fileList = e.target.files;
-
-              if (fileList) {
-                const url = URL.createObjectURL(fileList[0]);
-
-                setIsImageCropModalOpen(true);
-                setCurrentCroppingImageUrl(url);
-              }
-            }}
+            onChange={handleImageUpload}
           />
         </label>
       </div>
