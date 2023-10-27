@@ -12,7 +12,9 @@
     "react/jsx-props-no-spreading": "off",
     "import/prefer-default-export": "off",
     "react/require-default-props": "off",
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./src/test/**/*", "./src/mocks/**/*"]}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./src/test/**/*", "./src/mocks/**/*"]}],
+    "react/jsx-no-useless-fragment": "off",
+    "jsx-a11y/no-noninteractive-tabindex": "off"
   },
   "env": {
     "node": true,

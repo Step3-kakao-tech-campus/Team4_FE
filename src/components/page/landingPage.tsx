@@ -1,46 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { IoLanguage } from 'react-icons/io5';
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../atoms/button';
-import OptionSelectPopup from '../organisms/optionSelectPopup';
-import { LANGUAGE_SET } from '../../utils/language';
-import { preventScrollWhenModalOpen, restorePreventScroll } from '../../utils/modal';
-import { getLocalStorageItem, setLocalStorageItem } from '../../utils/localStorage';
+import { useModal } from '../../hooks/modal';
+import Icon from '../atoms/icon';
 
 export default function LandingPage() {
-  const { t, i18n } = useTranslation();
-  const dialogRef = useRef<HTMLDialogElement>(null);
+  const { t } = useTranslation();
 
-  useEffect(() => {
-    if (dialogRef.current !== null && getLocalStorageItem('visited') === null) {
-      dialogRef.current.showModal();
-      setLocalStorageItem('visited', 'true');
-    }
-  }, []);
-
-  const showLanguageSelectModal = () => {
-    if (dialogRef.current !== null) {
-      dialogRef.current.showModal();
-      preventScrollWhenModalOpen();
-    }
-  };
-
-  const onLanguageSelect = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const selectedLanguage = Object.fromEntries(formData.entries()).languageSelect;
-
-    if (selectedLanguage !== undefined
-      && i18n.language !== selectedLanguage.toString()) {
-      i18n.changeLanguage(selectedLanguage.toString());
-    }
-
-    if (dialogRef.current !== null) {
-      dialogRef.current.close();
-      restorePreventScroll();
-    }
-  };
+  const { openModal } = useModal('Language');
 
   return (
     <main className="flex h-[100dvh] flex-col items-center justify-center gap-32 p-16 text-center">
@@ -57,18 +24,12 @@ export default function LandingPage() {
         </div>
       </div>
       <div className="flex flex-col gap-20">
-        <OptionSelectPopup
-          options={LANGUAGE_SET}
-          optionGroup="languageSelect"
-          currentValue={i18n.language}
-          onOptionSelect={onLanguageSelect}
-          ref={dialogRef}
-        />
         <Button
-          onClick={showLanguageSelectModal}
+          onClick={openModal}
+          aria-haspopup="dialog"
         >
           <div className="flex items-center gap-1">
-            <IoLanguage aria-label={t('landingPage.languageSelect')} size="1.2rem" />
+            <Icon name="Language" ariaLabel={t('landingPage.languageSelect')} size="1.2rem" />
             {t('landingPage.language')}
           </div>
         </Button>
