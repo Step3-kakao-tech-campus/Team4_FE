@@ -1,3 +1,6 @@
+/* https://github.com/ValentinH/react-easy-crop */
+/* https://codesandbox.io/s/q8q1mnr01w */
+
 export const createImage = (url) => new Promise((resolve, reject) => {
   const image = new Image();
   image.addEventListener('load', () => resolve(image));
