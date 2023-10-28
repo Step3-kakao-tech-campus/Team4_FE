@@ -2,7 +2,7 @@ import React from 'react';
 import ImageCarousel from '../molecules/imageCarousel';
 import { ReviewImageInfo } from '../../types/review';
 import Image from '../atoms/image';
-import { DefaultTag } from '../molecules/menuTag';
+import MenuTag from '../molecules/menuTag';
 
 interface ReviewImageCarouselProps {
   reviewImages: ReviewImageInfo[],
@@ -15,15 +15,19 @@ function ReviewImageCarousel({ reviewImages }: ReviewImageCarouselProps) {
         {reviewImages.map(({
           imageData, tags,
         }) => (
-          <Image className="relative" smallImageSrc={String(imageData)} largeImageSrc={String(imageData)} imageSrc={String(imageData)} alt="사진">
+          <div className="relative h-full w-full">
+            <div className="h-[500px] w-[500px] bg-white">
+              <Image smallImageSrc={String(imageData)} largeImageSrc={String(imageData)} imageSrc={String(imageData)} alt="사진" />
+            </div>
             {tags.map(({
               tagIndex, locationX, locationY, name, rating,
             }) => (
-              <li key={tagIndex} className={`top-[ absolute${locationX}] left-[${locationY}]`}>
-                <DefaultTag name={name} rating={rating} onClick={() => { console.log('반가워'); }} />
+              <li key={tagIndex} className="absolute" style={{ top: `${locationY}%`, left: `${locationX}%` }}>
+                <MenuTag tagIndex={tagIndex} name={name} rating={rating} mode="prompt" />
               </li>
             ))}
-          </Image>
+          </div>
+
         ))}
       </ImageCarousel>
     </div>

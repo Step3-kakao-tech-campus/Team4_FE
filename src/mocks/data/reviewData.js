@@ -5,25 +5,25 @@ export const reviewData = {
     peopleCount: 2,
     rating: 5,
     reviewImages: [{
-      imageData: '/image/fakeDb/review/reviewImage.png',
+      imageData: '/image/fakeDb/review/reviewImage1.png',
       tags: [{
         imageIndex: 0,
         tagindex: 0,
         name: '짜장면',
-        locationX: 61.8,
-        locationY: 26.8,
+        locationX: 30.8,
+        locationY: 60.8,
         rating: 5,
       },
       {
         imageIndex: 0,
         tagindex: 1,
         name: '탕수육',
-        locationX: 80.8,
-        locationY: 6.8,
+        locationX: 70.8,
+        locationY: 12.8,
         rating: 1,
       }],
     }, {
-      imageData: '/image/fakeDb/store/store2.png',
+      imageData: '/image/fakeDb/review/reviewImage2.png',
       tags: [{
         imageIndex: 1,
         tagindex: 0,

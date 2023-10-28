@@ -11,7 +11,7 @@ function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {
   console.log(data);
   return (
     <main>
-      <ReviewImageCarousel />
+      <ReviewImageCarousel reviewImages={data.reviewImages} />
       <ReviewInformation />
       <section>
         {data.content}
