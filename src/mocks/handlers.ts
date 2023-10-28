@@ -2,7 +2,7 @@ import { rest } from 'msw';
 import { writedReviewData } from './data/writedReview';
 import recentlyViewdStoreData from './data/recentlyViewdStore';
 import { coinRechargeData, coinUsageData } from './data/coinData';
-import { reviewData } from './data/reviewData';
+import { reviewDetailData } from './data/reviewDetailData';
 
 export const handlers = [
   rest.get('/search', (req, res, ctx) => {
@@ -365,7 +365,7 @@ export const handlers = [
     }
     return res(
       ctx.status(200),
-      ctx.json(reviewData),
+      ctx.json(reviewDetailData),
     );
   }),
 

@@ -1,4 +1,4 @@
-import { ReviewCardInfo, ReviewInfo } from '../types/review';
+import { ReviewCardInfo, ReviewInfo, ReviewDetailInfo } from '../types/review';
 
 import { fetchInstance } from './instance';
 
@@ -20,7 +20,7 @@ export async function getLikedReview(
 
 export async function getReviewDetail(
   reviewId: number,
-): Promise<ReviewInfo> {
+): Promise<ReviewDetailInfo> {
   const response = await fetchInstance.get(`/reviews/${reviewId}`);
   return response.data.response;
 }

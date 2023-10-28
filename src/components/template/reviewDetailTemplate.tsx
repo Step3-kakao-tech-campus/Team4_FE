@@ -1,10 +1,10 @@
 import React from 'react';
 import ReviewImageCarousel from '../organisms/reviewImageCarousel';
 import ReviewInformation from '../molecules/reviewInformation';
-import { ReviewInfo } from '../../types/review';
+import { ReviewDetailInfo } from '../../types/review';
 
 interface ReviewDetailTemplateProps {
-  data: ReviewInfo,
+  data: ReviewDetailInfo,
 }
 
 function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {

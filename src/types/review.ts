@@ -31,3 +31,13 @@ export interface ReviewInfo {
   peopleCount: number;
   totalPrice: number;
 }
+
+export interface ReviewDetailInfo {
+  reviewImages: ReviewImageInfo[];
+  createdAt: string,
+  reviewerName: string,
+  content: string;
+  rating: number;
+  peopleCount: number;
+  totalPrice: number;
+}

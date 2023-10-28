@@ -15,7 +15,7 @@ function ReviewImageCarousel({ reviewImages }: ReviewImageCarouselProps) {
         {reviewImages.map(({
           imageData, tags,
         }) => (
-          <div className="relative h-full w-full">
+          <div className="relative h-full w-full" key={String(imageData)}>
             <div className="h-[500px] w-[500px] bg-white">
               <Image smallImageSrc={String(imageData)} largeImageSrc={String(imageData)} imageSrc={String(imageData)} alt="사진" />
             </div>
@@ -27,7 +27,6 @@ function ReviewImageCarousel({ reviewImages }: ReviewImageCarouselProps) {
               </li>
             ))}
           </div>
-
         ))}
       </ImageCarousel>
     </div>
