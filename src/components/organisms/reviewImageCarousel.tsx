@@ -1,9 +1,31 @@
 import React from 'react';
+import ImageCarousel from '../molecules/imageCarousel';
+import { ReviewImageInfo } from '../../types/review';
+import { Image } from '../atoms/image';
+import { DefaultTag } from '../molecules/menuTag';
 
-function ReviewImageCarousel() {
+interface ReviewImageCarouselProps {
+  reviewImages: ReviewImageInfo[],
+}
+
+function ReviewImageCarousel({ reviewImages }: ReviewImageCarouselProps) {
   return (
     <div>
-      ss
+      <ImageCarousel swiperStyle="w-full h-full">
+        {reviewImages.map(({
+          imageData, tags,
+        }) => (
+          <Image className="relative" smallImageSrc={imageData} largeImageSrc={imageData} imageSrc={imageData} alt="사진">
+            {tags.map(({
+              tagIndex, locationX, locationY, name, rating,
+            }) => (
+              <li key={tagIndex} className={`top-[ absolute${locationX}] left-[${locationY}]`}>
+                <MenuTag name={name} />
+              </li>
+            ))}
+          </Image>
+        ))}
+      </ImageCarousel>
     </div>
   );
 }
