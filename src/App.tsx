@@ -43,7 +43,7 @@ function App() {
                 <Route path="/mypage" element={<UserPage />} />
                 <Route path="/search" element={<SearchResultPage />} />
                 <Route path="/stores/:storeId" element={<StoreDetailPage />} />
-                <Route path="/reviews/:reviewId" element={<ReviewDetailPage />} />
+                <Route path="stores/:storeId/reviews/:reviewId" element={<ReviewDetailPage />} />
                 <Route path="/likedStores" element={<LikedStorePage />} />
                 <Route path="/coinRechargeHistory" element={<CoinRechargePage />} />
                 <Route path="/writtenReview" element={<WritedReviewPage />} />

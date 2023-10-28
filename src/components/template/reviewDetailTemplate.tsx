@@ -1,6 +1,7 @@
 import React from 'react';
 import ReviewImageCarousel from '../organisms/reviewImageCarousel';
 import ReviewInformation from '../molecules/reviewInformation';
+import PageTitleCard from '../molecules/pageTitleCard';
 import { ReviewDetailInfo } from '../../types/review';
 
 interface ReviewDetailTemplateProps {
@@ -11,6 +12,7 @@ function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {
   console.log(data);
   return (
     <main>
+      <PageTitleCard pageTitle="리뷰 상세 페이지" />
       <ReviewImageCarousel reviewImages={data.reviewImages} />
       <ReviewInformation
         rating={data.rating}

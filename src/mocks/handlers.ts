@@ -380,4 +380,26 @@ export const handlers = [
     }),
   )),
 
+  rest.post('/stores/:storeId/reviews/:reviewId/like', (req, res, ctx) => res(
+    ctx.status(201),
+    ctx.json({
+      success: true,
+      response: {
+        reviewId: 1,
+      },
+      error: null,
+    }),
+  )),
+
+  rest.post('/stores/:storeId/reviews/:reviewId/like-cancel', (req, res, ctx) => res(
+    ctx.status(201),
+    ctx.json({
+      success: true,
+      response: {
+        reviewId: 1,
+      },
+      error: null,
+    }),
+  )),
+
 ];

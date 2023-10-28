@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useMutation } from 'react-query';
+import { useParams } from 'react-router-dom';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 import { comma } from '../../utils/convert';
+import { likeReview, cancelLikeReview } from '../../apis/review';
 
 interface ReviewInformationProps {
   rating: number,
@@ -15,11 +18,44 @@ interface ReviewInformationProps {
 function ReviewInformation({
   rating, createdAt, reviewerName, reviewerImage, peopleCount, totalPrice,
 }: ReviewInformationProps) {
+  const { storeId, reviewId } = useParams();
+  const [isLikeReview, setIsLikeReview] = useState(false);
+
+  const { mutate: likeStoreMutation } = useMutation({
+    mutationKey: 'likeStore',
+    mutationFn: () => {
+      if (storeId === undefined || reviewId === undefined) { return likeReview(0, 0); }
+      return likeReview(+storeId, +reviewId);
+    },
+    onSuccess: () => { setIsLikeReview(true); alert('맛집 좋아요 성공'); },
+    onError: () => { setIsLikeReview(false); alert('맛집 좋아요 실패'); },
+  });
+
+  const { mutate: cancelLikeMutation } = useMutation({
+    mutationKey: 'canceLikeStore',
+    mutationFn: () => {
+      if (storeId === undefined || reviewId === undefined) { return cancelLikeReview(0, 0); }
+      return cancelLikeReview(+storeId, +reviewId);
+    },
+    onSuccess: () => { setIsLikeReview(false); alert('맛집 좋아요 취소 성공'); },
+    onError: () => { setIsLikeReview(true); alert('맛집 좋아요 취소 실패'); },
+  });
+
   return (
     <div className="my-4 flex items-center justify-between pl-2 pr-3">
       <div className="flex flex-col">
         <div className="flex items-center pl-1">
-          <Icon name="OutlineHeart" ariaLabel="리뷰 좋아요 버튼" size="2rem" />
+          {isLikeReview
+            ? (
+              <button type="button" onClick={() => { cancelLikeMutation(); }}>
+                <Icon name="FillHeart" color="text-matgpt-red" ariaLabel="리뷰 좋아요 버튼" size="2rem" />
+              </button>
+            )
+            : (
+              <button type="button" onClick={() => { likeStoreMutation(); }}>
+                <Icon name="OutlineHeart" ariaLabel="리뷰 좋아요 버튼" size="2rem" />
+              </button>
+            )}
           <span className="pl-[0.5rem] text-2xl">{rating}</span>
         </div>
         <div className="mt-3 flex items-center">

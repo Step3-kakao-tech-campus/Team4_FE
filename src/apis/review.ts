@@ -31,3 +31,17 @@ export async function writeReview(
 ) {
   return fetchInstance.post(`/stores/${storeId}/reviews`, reviewData);
 }
+
+export async function likeReview(
+  storeId: number,
+  reviewId: number,
+) {
+  return fetchInstance.post(`/stores/${storeId}/reviews/${reviewId}/like`);
+}
+
+export async function cancelLikeReview(
+  storeId: number,
+  reviewId: number,
+) {
+  return fetchInstance.post(`/stores/${storeId}/reviews/${reviewId}/like-cancel`);
+}
