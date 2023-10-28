@@ -18,6 +18,7 @@ import RecentlyViewdStorePage from './components/page/recentlyViewdStorePage';
 import UserEditProfilePage from './components/page/userEditProfilePage';
 import CoinUsagePage from './components/page/coinUsagePage';
 import LikedReviewPage from './components/page/likedReviewPage';
+import ReviewDetailPage from './components/page/reviewDetailPage';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/mypage" element={<UserPage />} />
                 <Route path="/search" element={<SearchResultPage />} />
                 <Route path="/stores/:storeId" element={<StoreDetailPage />} />
+                <Route path="/reviews/:reviewId" element={<ReviewDetailPage />} />
                 <Route path="/likedStores" element={<LikedStorePage />} />
                 <Route path="/coinRechargeHistory" element={<CoinRechargePage />} />
                 <Route path="/writtenReview" element={<WritedReviewPage />} />
