@@ -50,19 +50,16 @@ function App() {
                 <Route path="/likedReview" element={<LikedReviewPage />} />
                 <Route path="/recentStores" element={<RecentlyViewdStorePage />} />
                 <Route path="/coinUsageHistory" element={<CoinUsagePage />} />
-<<<<<<< HEAD
-  <Route path="/profileEditing" element={<UserEditProfilePage />} />
-=======
+                <Route path="/profileEditing" element={<UserEditProfilePage />} />
                 <Route path="/stores/:storeId/writeReview" element={<WriteReviewPage />} />
->>>>>>> 189006208538836c4e9a659a81b16f2fb8b84a16
-              </Route >
-    {/* 단독 레이아웃 */ }
-    < Route path = "/landing" element = {< LandingPage />} />
-            </Routes >
-          </ModalContainer >
-        </BrowserRouter >
-      </Provider >
-    </QueryClientProvider >
+              </Route>
+              {/* 단독 레이아웃 */}
+              <Route path="/landing" element={<LandingPage />} />
+            </Routes>
+          </ModalContainer>
+        </BrowserRouter>
+      </Provider>
+    </QueryClientProvider>
   );
 }
 
