@@ -3,6 +3,7 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { MarkerInfo } from '../../types/map';
 import Marker from '../molecules/marker';
 import { useGeolocation } from '../../hooks/geolocation';
+// import { useStoreBound } from '../../hooks/query';
 
 const containerStyle = {
   width: '100%',
@@ -15,10 +16,12 @@ interface MyGoogleMapProps {
 
 export default function MyGoogleMap({ stores }: MyGoogleMapProps) {
   const [map, setMap] = useState<google.maps.Map | null>(null);
+  const [bound, setBound] = useState<google.maps.LatLngBounds>();
   const { location } = useGeolocation();
 
   const onLoad = useCallback((loadedMap: google.maps.Map) => {
     setMap(loadedMap);
+    setBound(loadedMap.getBounds());
   }, []);
 
   const { isLoaded } = useJsApiLoader({
@@ -34,7 +37,7 @@ export default function MyGoogleMap({ stores }: MyGoogleMapProps) {
         zoom={18}
         onLoad={onLoad}
         onDragEnd={() => {
-          console.log(map?.getBounds());
+          setBound(map?.getBounds());
         }}
         options={{
           mapTypeControl: false,
@@ -46,6 +49,7 @@ export default function MyGoogleMap({ stores }: MyGoogleMapProps) {
               visibility: 'off',
             }],
           }],
+          minZoom: 14,
         }}
       >
         {stores.map(({
