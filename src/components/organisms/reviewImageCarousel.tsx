@@ -20,7 +20,7 @@ function ReviewImageCarousel({ reviewImages }: ReviewImageCarouselProps) {
               tagIndex, locationX, locationY, name, rating,
             }) => (
               <li key={tagIndex} className={`top-[ absolute${locationX}] left-[${locationY}]`}>
-                <MenuTag name={name} />
+                <DefaultTag name={name} rating={rating} onClick={() => { console.log('반가워'); }} />
               </li>
             ))}
           </Image>

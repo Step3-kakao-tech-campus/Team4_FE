@@ -346,6 +346,7 @@ export const handlers = [
       ),
     );
   }),
+
   rest.get('/reviews/:reviewId', (req, res, ctx) => {
     const { reviewId } = req.params;
 
@@ -362,10 +363,21 @@ export const handlers = [
         }),
       );
     }
-
     return res(
       ctx.status(200),
       ctx.json(reviewData),
     );
   }),
+
+  rest.post('/stores/:storeId/reviews', (req, res, ctx) => res(
+    ctx.status(201),
+    ctx.json({
+      success: true,
+      response: {
+        reviewId: 1,
+      },
+      error: null,
+    }),
+  )),
+
 ];

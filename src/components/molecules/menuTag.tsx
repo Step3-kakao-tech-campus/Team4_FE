@@ -17,7 +17,7 @@ interface DefaultTagProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function DefaultTag({
+export function DefaultTag({
   name,
   rating,
   onClick,
