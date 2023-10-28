@@ -1,14 +1,20 @@
 import React from 'react';
 import ReviewImageCarousel from '../organisms/reviewImageCarousel';
 import ReviewInformation from '../molecules/reviewInformation';
+import { ReviewInfo } from '../../types/review';
 
-function ReviewDetailTemplate() {
+interface ReviewDetailTemplateProps {
+  data: ReviewInfo,
+}
+
+function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {
+  console.log(data);
   return (
     <main>
       <ReviewImageCarousel />
       <ReviewInformation />
       <section>
-        리뷰내용입니다.
+        {data.content}
       </section>
     </main>
   );

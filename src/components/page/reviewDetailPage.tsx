@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import ReviewDetailTemplate from '../template/reviewDetailTemplate';
+import { getReviewDetail } from '../../apis/review';
 
 function ReviewDetailPage() {
   const { reviewId } = useParams();
@@ -8,8 +10,21 @@ function ReviewDetailPage() {
   if (reviewId === undefined || Number.isNaN(+reviewId)) {
     return <div>잘못된 접근입니다.</div>;
   }
+
+  const { data, isLoading, isFetching } = useQuery({
+    queryKey: [`getReviewDetail${reviewId}`],
+    queryFn: () => getReviewDetail(+reviewId),
+  });
+
+  if (data && !isLoading && !isFetching) {
+    return (
+      <ReviewDetailTemplate
+        data={data}
+      />
+    );
+  }
   return (
-    <ReviewDetailTemplate />
+    <div>Loading..</div>
   );
 }
 
