@@ -67,7 +67,7 @@ function ReviewInformation({
       </div>
       <div>
         <span>{createdAt}</span>
-        <div className="my-2 flex items-center justify-end">
+        <div className="my-3 flex items-center justify-end">
           <Icon name="UserGroup" ariaLabel="다녀간 사람 수 아이콘" size="1rem" />
           <span className="pl-2">{peopleCount}</span>
         </div>

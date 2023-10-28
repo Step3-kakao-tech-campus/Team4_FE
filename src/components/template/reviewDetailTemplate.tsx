@@ -22,7 +22,7 @@ function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {
         peopleCount={data.peopleCount}
         totalPrice={data.totalPrice}
       />
-      <section>
+      <section className="mb-20 px-2">
         {data.content}
       </section>
     </main>
