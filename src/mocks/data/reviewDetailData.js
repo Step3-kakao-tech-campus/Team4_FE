@@ -5,6 +5,7 @@ export const reviewDetailData = {
     peopleCount: 2,
     createdAt: '6개월전',
     reviewerName: '김땡떙',
+    reviewerImage: '/image/fakeDb/userPage/userImage.png',
     rating: 5,
     reviewImages: [{
       imageData: '/image/fakeDb/review/reviewImage1.png',

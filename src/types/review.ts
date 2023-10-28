@@ -34,6 +34,7 @@ export interface ReviewInfo {
 
 export interface ReviewDetailInfo {
   reviewImages: ReviewImageInfo[];
+  reviewerImage: string,
   createdAt: string,
   reviewerName: string,
   content: string;

@@ -12,7 +12,14 @@ function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {
   return (
     <main>
       <ReviewImageCarousel reviewImages={data.reviewImages} />
-      <ReviewInformation />
+      <ReviewInformation
+        rating={data.rating}
+        createdAt={data.createdAt}
+        reviewerName={data.reviewerName}
+        reviewerImage={data.reviewerImage}
+        peopleCount={data.peopleCount}
+        totalPrice={data.totalPrice}
+      />
       <section>
         {data.content}
       </section>
