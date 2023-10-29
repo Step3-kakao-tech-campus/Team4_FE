@@ -1,28 +1,66 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { MarkerInfo } from '../../types/map';
 import Marker from '../molecules/marker';
 import { useGeolocation } from '../../hooks/geolocation';
-// import { useStoreBound } from '../../hooks/query';
+import Button from '../atoms/button';
+import { getStoresInBound } from '../../apis/map';
+import { fetchWithHandler } from '../../utils/fetchWithHandler';
 
 const containerStyle = {
   width: '100%',
   height: '100%',
 };
 
-interface MyGoogleMapProps {
-  stores: MarkerInfo[];
-}
-
-export default function MyGoogleMap({ stores }: MyGoogleMapProps) {
-  const [map, setMap] = useState<google.maps.Map | null>(null);
+export default function MyGoogleMap() {
+  const [map, setMap] = useState<google.maps.Map>();
   const [bound, setBound] = useState<google.maps.LatLngBounds>();
+  const [stores, setStores] = useState<MarkerInfo[]>([]);
+  const [tilesLoaded, setTilesLoaded] = useState(false);
   const { location } = useGeolocation();
 
-  const onLoad = useCallback((loadedMap: google.maps.Map) => {
+  const fetchStores = async (curentBound: google.maps.LatLngBounds) => {
+    const lowLat = curentBound.getSouthWest().lat();
+    const lowLng = curentBound.getSouthWest().lng();
+    const highLat = curentBound.getNorthEast().lat();
+    const highLng = curentBound.getNorthEast().lng();
+
+    fetchWithHandler(
+      async () => getStoresInBound({
+        lowLat, lowLng, highLat, highLng,
+      }),
+      {
+        onSuccess: (response) => {
+          const data = response?.data.response;
+          setStores(data);
+        },
+        onError: (error) => {
+          console.error(error);
+        },
+      },
+    );
+  };
+
+  const handleLoad = (loadedMap: google.maps.Map) => {
     setMap(loadedMap);
-    setBound(loadedMap.getBounds());
-  }, []);
+  };
+
+  const handleTilesLoaded = () => {
+    if (!tilesLoaded) { // initial load
+      const currentBound = map?.getBounds();
+      setBound(currentBound);
+
+      fetchStores(currentBound!);
+      setTilesLoaded(true);
+    }
+  };
+
+  const handleDragEnd = () => {
+    const currentBound = map?.getBounds();
+    if (currentBound) {
+      setBound(currentBound);
+    }
+  };
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -35,10 +73,9 @@ export default function MyGoogleMap({ stores }: MyGoogleMapProps) {
         mapContainerStyle={containerStyle}
         center={location}
         zoom={18}
-        onLoad={onLoad}
-        onDragEnd={() => {
-          setBound(map?.getBounds());
-        }}
+        onTilesLoaded={handleTilesLoaded}
+        onLoad={handleLoad}
+        onDragEnd={handleDragEnd}
         options={{
           mapTypeControl: false,
           streetViewControl: false,
@@ -52,6 +89,12 @@ export default function MyGoogleMap({ stores }: MyGoogleMapProps) {
           minZoom: 14,
         }}
       >
+        <Button
+          extraStyle="absolute bottom-4 left-1/2 -translate-x-1/2"
+          onClick={() => fetchStores(bound!)}
+        >
+          범위 내 음식점 검색
+        </Button>
         {stores.map(({
           lat, lng, storeId, storeName, image,
         }) => (
