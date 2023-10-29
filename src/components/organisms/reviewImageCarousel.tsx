@@ -20,7 +20,7 @@ function ReviewImageCarousel({ reviewImages, setPrompts }: ReviewImageCarouselPr
     if (token === null) {
       openModal();
     } else {
-      // 프롬프트 상태값 업데이트
+      setPrompts('dsd');
     }
   };
 

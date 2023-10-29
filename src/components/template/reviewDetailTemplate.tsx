@@ -3,6 +3,8 @@ import ReviewImageCarousel from '../organisms/reviewImageCarousel';
 import ReviewInformation from '../molecules/reviewInformation';
 import PageTitleCard from '../molecules/pageTitleCard';
 import { ReviewDetailInfo } from '../../types/review';
+import Icon from '../atoms/icon';
+import PromptEdit from '../organisms/promptEdit';
 
 interface ReviewDetailTemplateProps {
   data: ReviewDetailInfo,
@@ -24,9 +26,15 @@ function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {
         peopleCount={data.peopleCount}
         totalPrice={data.totalPrice}
       />
-      <section className="mb-20 px-2">
-        {data.content}
-      </section>
+      {isClick ? <PromptEdit prompts={prompts} /> : (
+        <section className="mb-20 px-2">
+          {data.content}
+        </section>
+      )}
+
+      <button type="button" onClick={() => { setIsClick((prev) => !prev); }}>
+        <Icon name="FillBook" ariaLabel="주문 프롬프트 수정 페이지 열기" size="1rem" />
+      </button>
     </main>
   );
 }
