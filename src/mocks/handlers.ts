@@ -2,6 +2,7 @@ import { rest } from 'msw';
 import { writedReviewData } from './data/writedReview';
 import recentlyViewdStoreData from './data/recentlyViewdStore';
 import { coinRechargeData, coinUsageData } from './data/coinData';
+import { storeMarkers } from './data/storeMarker';
 
 export const handlers = [
   rest.get('/search', (req, res, ctx) => {
@@ -345,4 +346,13 @@ export const handlers = [
       ),
     );
   }),
+
+  rest.get('/', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json({
+      success: true,
+      response: storeMarkers,
+      error: null,
+    }),
+  )),
 ];
