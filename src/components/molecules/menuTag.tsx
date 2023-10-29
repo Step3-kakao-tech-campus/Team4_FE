@@ -1,63 +1,102 @@
-import { forwardRef, useState } from 'react';
+import {
+  useState, useRef,
+} from 'react';
 import { useTranslation } from 'react-i18next';
-import { RefHandler } from '../../types/refHandler';
+import { useDispatch } from 'react-redux';
 import Input from '../atoms/input';
 import Button from '../atoms/button';
+import Icon from '../atoms/icon';
+import { RefHandler } from '../../types/refHandler';
+import { modifyMenuTag, removeMenuTag } from '../../store/slices/menuTagSlice';
+import SelectTagRating from './selectTagRating';
+import TagRating from './tagRating';
 
 interface DefaultTagProps {
   name: string;
+  rating: number;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function DefaultTag({ name, onClick }: DefaultTagProps) {
+function DefaultTag({
+  name,
+  rating,
+  onClick,
+}: DefaultTagProps) {
   return (
-    <div className="relative flex w-[10rem] flex-col items-center">
+    <div className="relative w-4 -translate-x-2 -translate-y-2 border-[0.5rem] border-transparent border-t-black">
       <button
         type="button"
-        className="flex rounded-lg bg-black px-3 py-2"
+        className="absolute left-1/2 top-1/2 flex
+          -translate-x-1/2 translate-y-[calc(-100%-0.5rem)] whitespace-nowrap
+          break-all rounded-lg bg-black px-3 py-2"
         onClick={onClick}
       >
-        <span className="text-sm text-white">{name}</span>
+        <div className="flex items-center gap-1 text-white">
+          <span className="text-sm">{name}</span>
+          {rating !== 0 ? <TagRating rating={rating} /> : null}
+        </div>
       </button>
-      <div className="w-4 border-[0.5rem] border-transparent border-t-black" />
     </div>
   );
 }
 
 interface MenuTagProps {
+  tagIndex: number;
   name: string;
+  rating: number;
   mode: 'modify' | 'prompt';
-  onModifyEvent?: React.MouseEventHandler<HTMLButtonElement>;
   onPromptEvent?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const MenuTag = forwardRef<RefHandler, MenuTagProps>((
-  {
-    name,
-    mode,
-    onModifyEvent = () => {},
-    onPromptEvent = () => {},
-  },
-  ref,
-) => {
+export default function MenuTag({
+  tagIndex,
+  name,
+  rating,
+  mode,
+  onPromptEvent = () => {},
+}: MenuTagProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [modifyRating, setModifyRating] = useState(rating);
   const { t } = useTranslation();
+  const inputRef = useRef<RefHandler>(null);
+  const menuTagDispatch = useDispatch();
+
+  const handleModifyTag = (modifiedName: string) => {
+    menuTagDispatch(modifyMenuTag({
+      tagIndex,
+      name: modifiedName,
+      rating: modifyRating,
+    }));
+    setIsExpanded(false);
+  };
+
+  const handleDeleteTag = () => {
+    menuTagDispatch(removeMenuTag({
+      tagIndex,
+    }));
+  };
 
   if (mode === 'modify') {
     return (
-      <div>
+      <>
         {isExpanded ? (
-          <div className="relative flex w-[10rem] flex-col items-center">
-            <div className="flex flex-col gap-2 rounded-xl bg-black px-4 py-2">
-              <Input ref={ref} mode="singleLine" defaultValue={name} />
-              <div className="flex flex-row justify-around">
-                <Button
-                  size="small"
-                  textColor="text-black"
-                  onClick={onModifyEvent}
-                >
-                  {t('menuTag.modify')}
-                </Button>
+          <div className="relative w-4 -translate-x-2 -translate-y-2 border-[0.5rem] border-transparent border-t-black">
+            <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 translate-y-[calc(-100%-0.5rem)] flex-col gap-2 rounded-xl bg-black px-4 py-2">
+              <button
+                type="button"
+                className="absolute right-2 top-2 text-white"
+                onClick={() => handleDeleteTag()}
+              >
+                <Icon name="OutlineClose" size="1rem" ariaLabel={t('menuTag.delete')} />
+              </button>
+              <div className="mr-3">
+                <Input ref={inputRef} mode="singleLine" defaultValue={name} />
+              </div>
+              <SelectTagRating
+                rating={modifyRating}
+                setRating={setModifyRating}
+              />
+              <div className="flex flex-row justify-around gap-2">
                 <Button
                   size="small"
                   backgroundColor="bg-matgpt-gray"
@@ -66,14 +105,26 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
                 >
                   {t('menuTag.cancel')}
                 </Button>
+                <Button
+                  size="small"
+                  textColor="text-black"
+                  onClick={() => {
+                    handleModifyTag(inputRef.current?.getInputValue() || '');
+                  }}
+                >
+                  {t('menuTag.modify')}
+                </Button>
               </div>
             </div>
-            <div className="w-4 border-[0.5rem] border-transparent border-t-black" />
           </div>
         ) : (
-          <DefaultTag name={name} onClick={() => setIsExpanded(true)} />
+          <DefaultTag
+            name={name === '' ? t('menuTag.noname') : name}
+            rating={rating}
+            onClick={() => setIsExpanded(true)}
+          />
         )}
-      </div>
+      </>
     );
   }
 
@@ -81,18 +132,11 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
     return (
       <div>
         {isExpanded ? (
-          <div className="relative flex w-[10rem] flex-col items-center">
-            <section className="flex flex-col gap-1 rounded-xl bg-black px-4 py-2 text-white">
+          <div className="relative w-4 -translate-x-2 -translate-y-2 border-[0.5rem] border-transparent border-t-black">
+            <section className="absolute left-1/2 top-1/2 flex -translate-x-1/2 translate-y-[calc(-100%-0.5rem)] flex-col gap-1 rounded-xl bg-black px-4 py-2 text-white">
               <h3 className="font-bold">{name}</h3>
               <p className="text-xs">{t('menuTag.prompt')}</p>
               <div className="mt-1 flex flex-row justify-around">
-                <Button
-                  size="small"
-                  textColor="text-black"
-                  onClick={onPromptEvent}
-                >
-                  {t('menuTag.add')}
-                </Button>
                 <Button
                   size="small"
                   backgroundColor="bg-matgpt-gray"
@@ -101,18 +145,26 @@ const MenuTag = forwardRef<RefHandler, MenuTagProps>((
                 >
                   {t('menuTag.cancel')}
                 </Button>
+                <Button
+                  size="small"
+                  textColor="text-black"
+                  onClick={onPromptEvent}
+                >
+                  {t('menuTag.add')}
+                </Button>
               </div>
             </section>
-            <div className="w-4 border-[0.5rem] border-transparent border-t-black" />
           </div>
         ) : (
-          <DefaultTag name={name} onClick={() => setIsExpanded(true)} />
+          <DefaultTag
+            name={name}
+            rating={rating}
+            onClick={() => setIsExpanded(true)}
+          />
         ) }
       </div>
     );
   }
 
   return null;
-});
-
-export default MenuTag;
+}

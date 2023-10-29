@@ -6,11 +6,12 @@ import { GoSearch } from 'react-icons/go';
 import { RefHandler } from '../../types/refHandler';
 
 interface InputProps {
-  id?: string,
-  mode: 'search' | 'singleLine' | 'multiLine';
+  id?: string;
+  mode: 'search' | 'singleLine' | 'number' | 'multiLine';
   placeholder?: string;
   defaultValue?: string;
-  onSearchClick?: React.FormEventHandler<HTMLFormElement>;
+  onSearchClick? : React.FormEventHandler<HTMLFormElement>;
+  step?: number;
 }
 
 const Input = forwardRef<RefHandler, InputProps>((
@@ -20,6 +21,7 @@ const Input = forwardRef<RefHandler, InputProps>((
     placeholder,
     defaultValue,
     onSearchClick = (e) => { e.preventDefault(); },
+    step = 1,
   },
   ref,
 ) => {
@@ -29,7 +31,7 @@ const Input = forwardRef<RefHandler, InputProps>((
 
   useImperativeHandle(ref, () => ({
     getInputValue: () => {
-      if (mode === 'search' || mode === 'singleLine') {
+      if (mode === 'search' || mode === 'singleLine' || mode === 'number') {
         return inputRef.current?.value;
       }
 
@@ -80,11 +82,28 @@ const Input = forwardRef<RefHandler, InputProps>((
     );
   }
 
+  if (mode === 'number') {
+    return (
+      <div className="w-full rounded-full border border-black bg-white px-4 py-2">
+        <input
+          type="number"
+          ref={inputRef}
+          className="w-full focus:outline-none"
+          placeholder={placeholder}
+          min={0}
+          inputMode="numeric"
+          pattern="[0-9]*"
+          step={step}
+        />
+      </div>
+    );
+  }
+
   if (mode === 'multiLine') {
     return (
       <textarea
         ref={textareaRef}
-        className="h-full w-full resize-none p-4"
+        className="h-full w-full resize-none rounded-xl border border-matgpt-gray p-4"
         placeholder={placeholder}
       />
     );
