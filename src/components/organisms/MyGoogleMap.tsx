@@ -17,6 +17,7 @@ export default function MyGoogleMap() {
   const [bound, setBound] = useState<google.maps.LatLngBounds>();
   const [stores, setStores] = useState<MarkerInfo[]>([]);
   const [tilesLoaded, setTilesLoaded] = useState(false);
+  const [isStoreLoading, setIsStoreLoading] = useState(false);
   const { location } = useGeolocation();
 
   const fetchStores = async (curentBound: google.maps.LatLngBounds) => {
@@ -26,16 +27,23 @@ export default function MyGoogleMap() {
     const highLng = curentBound.getNorthEast().lng();
 
     fetchWithHandler(
-      async () => getStoresInBound({
-        lowLat, lowLng, highLat, highLng,
-      }),
+      async () => {
+        setIsStoreLoading(true);
+        const response = await getStoresInBound({
+          lowLat, lowLng, highLat, highLng,
+        });
+
+        return response;
+      },
       {
         onSuccess: (response) => {
           const data = response?.data.response;
           setStores(data);
+          setIsStoreLoading(false);
         },
         onError: (error) => {
           console.error(error);
+          setIsStoreLoading(false);
         },
       },
     );
@@ -90,8 +98,9 @@ export default function MyGoogleMap() {
         }}
       >
         <Button
-          extraStyle="absolute bottom-4 left-1/2 -translate-x-1/2"
+          extraStyle={`absolute bottom-4 left-1/2 -translate-x-1/2 ${isStoreLoading ? 'bg-matgpt-gray' : ''}`}
           onClick={() => fetchStores(bound!)}
+          disabled={isStoreLoading}
         >
           범위 내 음식점 검색
         </Button>
