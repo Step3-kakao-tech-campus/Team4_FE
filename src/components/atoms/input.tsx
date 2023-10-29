@@ -100,7 +100,7 @@ const Input = forwardRef<RefHandler, InputProps>((
     return (
       <textarea
         ref={textareaRef}
-        className="h-full w-full resize-none p-4"
+        className="h-full w-full resize-none rounded-xl border border-matgpt-gray p-4"
         placeholder={placeholder}
       />
     );
