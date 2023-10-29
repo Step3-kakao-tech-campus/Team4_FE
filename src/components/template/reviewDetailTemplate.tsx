@@ -31,9 +31,11 @@ function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {
           {data.content}
         </section>
       )}
-
-      <button type="button" onClick={() => { setIsClick((prev) => !prev); }}>
-        <Icon name="FillBook" ariaLabel="주문 프롬프트 수정 페이지 열기" size="1rem" />
+      <div className="solid fixed bottom-16 right-4 z-10 mb-10 h-5 w-5 rounded-3xl bg-matgpt-red text-center leading-4">
+        <span className="text-[0.75rem] font-bold">12</span>
+      </div>
+      <button type="button" onClick={() => { setIsClick((prev) => !prev); }} className="solid fixed bottom-8 right-5 mb-10 rounded-3xl border-8 border-matgpt-blue bg-matgpt-blue">
+        <Icon name="JournalBookmarkFill" ariaLabel="주문 프롬프트 수정 페이지 열기" size="1.5rem" />
       </button>
     </main>
   );

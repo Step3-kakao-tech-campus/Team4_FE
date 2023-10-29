@@ -1,18 +1,18 @@
-import { BsPerson } from 'react-icons/bs';
+import { BsPerson, BsJournalBookmarkFill } from 'react-icons/bs';
 import { GoHome, GoSearch } from 'react-icons/go';
 import { PiMoon, PiClipboard } from 'react-icons/pi';
 import { IoLanguage, IoEllipseOutline, IoEllipse } from 'react-icons/io5';
 import {
   AiOutlineLike, AiOutlineStar, AiOutlineClose, AiOutlineHeart,
   AiOutlineLeft, AiOutlineBell, AiOutlineRight, AiFillHeart, AiFillStar, AiOutlineCheck,
-  AiOutlineDislike, AiFillDislike, AiFillLike, AiFillBook,
+  AiOutlineDislike, AiFillDislike, AiFillLike,
 } from 'react-icons/ai';
 import { HiUserGroup, HiCreditCard } from 'react-icons/hi';
 
 interface IconProps {
   name: 'Person' | 'Home' | 'Search' | 'Moon' | 'Clipboard' | 'Language' | 'FillHeart' | 'OutlineLike' |
   'OutlineCheck' | 'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard' | 'OutlineRight' |
-  'OutlineHeart' | 'FillStar' | 'OutlineDislike' | 'EllipseOutline' | 'Ellipse' | 'FillDislike' | 'FillLike' | 'FillBook';
+  'OutlineHeart' | 'FillStar' | 'OutlineDislike' | 'EllipseOutline' | 'Ellipse' | 'FillDislike' | 'FillLike' | 'JournalBookmarkFill';
   size: string;
   ariaLabel: string;
   color?: string;
@@ -68,8 +68,8 @@ function Icon({
       return <AiFillDislike size={size} aria-label={ariaLabel} className={color} />;
     case 'FillLike': // 좋아요 채워짐
       return <AiFillLike size={size} aria-label={ariaLabel} className={color} />;
-    case 'FillBook': // 프롬프트 선택
-      return <AiFillBook size={size} aria-label={ariaLabel} className={color} />;
+    case 'JournalBookmarkFill': // 프롬프트 선택
+      return <BsJournalBookmarkFill size={size} aria-label={ariaLabel} className={color} />;
     default:
       return <div>해당 이름의 아이콘이 없습니다.</div>;
   }
