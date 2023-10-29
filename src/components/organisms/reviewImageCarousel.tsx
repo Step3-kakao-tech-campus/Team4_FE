@@ -16,7 +16,7 @@ function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageC
 
   const onHandlePromptEvent = (name: string) => {
     const token = localStorage.getItem('token');
-    if (token !== null) {
+    if (token === null) {
       openModal();
     } else if (prompts[name] === undefined) {
       // 프롬프트에 메뉴가 없다면

@@ -402,4 +402,34 @@ export const handlers = [
     }),
   )),
 
+  rest.get('/prompt/:promptId', (req, res, ctx) => {
+    const { promptId } = req.params;
+    console.log(promptId);
+
+    if (Number.isNaN(+promptId)) {
+      return res(
+        ctx.status(400),
+        ctx.json({
+          success: false,
+          response: null,
+          error: {
+            status: 400,
+            message: '잘못된 요청입니다.',
+          },
+        }),
+      );
+    }
+    return res(
+      ctx.status(201),
+      ctx.json({
+        success: true,
+        response: {
+          짜장면: 2,
+          탕수육: 3,
+          삼겹살: 5,
+        },
+        error: null,
+      }),
+    );
+  }),
 ];

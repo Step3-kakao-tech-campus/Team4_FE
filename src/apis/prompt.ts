@@ -7,3 +7,10 @@ export async function createPrompt(
 ) {
   return fetchInstance.post(`/stores/${storeId}/reviews/${reviewId}/create-prompt`, prompts);
 }
+
+export async function getPrompt(
+  promptId: number,
+): Promise<{ [key: string]: number }> {
+  const response = await fetchInstance.get(`/prompt/${promptId}`);
+  return response.data.response;
+}

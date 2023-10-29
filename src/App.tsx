@@ -21,6 +21,7 @@ import CoinUsagePage from './components/page/coinUsagePage';
 import LikedReviewPage from './components/page/likedReviewPage';
 import ReviewDetailPage from './components/page/reviewDetailPage';
 import WriteReviewPage from './components/page/writeReviewPage';
+import PromptPage from './components/page/promptPage';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -52,6 +53,7 @@ function App() {
                 <Route path="/coinUsageHistory" element={<CoinUsagePage />} />
                 <Route path="/profileEditing" element={<UserEditProfilePage />} />
                 <Route path="/stores/:storeId/writeReview" element={<WriteReviewPage />} />
+                <Route path="/prompt/:promptId" element={<PromptPage />} />
               </Route>
               {/* 단독 레이아웃 */}
               <Route path="/landing" element={<LandingPage />} />

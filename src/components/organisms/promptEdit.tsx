@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMutation } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Icon from '../atoms/icon';
 import PromptList from '../molecules/promptList';
 import Button from '../atoms/button';
@@ -13,18 +13,24 @@ interface PromptEditProps {
 }
 
 function PromptEdit({ prompts, setPrompts, setIsClick }: PromptEditProps) {
+  const navigate = useNavigate();
   const { storeId, reviewId } = useParams();
-  const { mutate: createPromptMutation } = useMutation({
+  const promptId = 1;
+  const { mutate: createPromptMutation } = useMutation({ // post 요청 성공 시 promptId 값 받음
     mutationKey: 'createPrompt',
     mutationFn: () => {
       if (storeId === undefined || reviewId === undefined) { return createPrompt(0, 0, {}); }
       return createPrompt(+storeId, +reviewId, prompts);
     },
-    onSuccess: () => { alert('프롬프트 생성 성공'); },
+    onSuccess: () => { alert('프롬프트 생성 성공'); navigate(`/prompt/${promptId}`); },
     onError: () => { alert('프롬프트 생성 실패'); },
   });
 
   const onHandleCreatePrompt = () => {
+    if (Object.keys(prompts).length < 1) {
+      alert('생성할 메뉴가 없습니다.');
+      return;
+    }
     createPromptMutation();
   };
 
