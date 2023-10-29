@@ -42,7 +42,7 @@ function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {
           </section>
           <div className="absolute right-12">
             <div className="solid fixed bottom-16 z-10 mb-10 ml-5 h-5 w-5 rounded-3xl bg-matgpt-red text-center leading-4">
-              <span className="text-[0.75rem] font-bold">12</span>
+              <span className="text-[0.75rem] font-bold">{Object.keys(prompts).length}</span>
             </div>
             <div>
               <button type="button" onClick={() => { setIsClick((prev) => !prev); }} className="solid fixed bottom-8 mb-11 rounded-3xl border-8 border-matgpt-blue bg-matgpt-blue">

@@ -1,6 +1,10 @@
 import React from 'react';
+import { useMutation } from 'react-query';
+import { useParams } from 'react-router-dom';
 import Icon from '../atoms/icon';
 import PromptList from '../molecules/promptList';
+import Button from '../atoms/button';
+import { createPrompt } from '../../apis/prompt';
 
 interface PromptEditProps {
   prompts: { [key: string]: number },
@@ -9,6 +13,21 @@ interface PromptEditProps {
 }
 
 function PromptEdit({ prompts, setPrompts, setIsClick }: PromptEditProps) {
+  const { storeId, reviewId } = useParams();
+  const { mutate: createPromptMutation } = useMutation({
+    mutationKey: 'createPrompt',
+    mutationFn: () => {
+      if (storeId === undefined || reviewId === undefined) { return createPrompt(0, 0, {}); }
+      return createPrompt(+storeId, +reviewId, prompts);
+    },
+    onSuccess: () => { alert('프롬프트 생성 성공'); },
+    onError: () => { alert('프롬프트 생성 실패'); },
+  });
+
+  const onHandleCreatePrompt = () => {
+    createPromptMutation();
+  };
+
   return (
     <div>
       <div className="my-6 flex items-center justify-between">
@@ -36,6 +55,9 @@ function PromptEdit({ prompts, setPrompts, setIsClick }: PromptEditProps) {
           </div>
         ))
       }
+      <Button onClick={() => { onHandleCreatePrompt(); }} size="medium" extraStyle="w-full mb-20 ">
+        프롬프트 생성
+      </Button>
     </div>
   );
 }
