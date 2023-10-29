@@ -7,9 +7,11 @@ import { useModal } from '../../hooks/modal';
 
 interface ReviewImageCarouselProps {
   reviewImages: ReviewImageInfo[],
+  setPrompts: React.Dispatch<React.SetStateAction<{}>>;
+
 }
 
-function ReviewImageCarousel({ reviewImages }: ReviewImageCarouselProps) {
+function ReviewImageCarousel({ reviewImages, setPrompts }: ReviewImageCarouselProps) {
   const { openModal } = useModal('Login');
 
   const onHandlePromptEvent = () => {
