@@ -6,6 +6,7 @@ import { GoSearch } from 'react-icons/go';
 import { RefHandler } from '../../types/refHandler';
 
 interface InputProps {
+  id?: string;
   mode: 'search' | 'singleLine' | 'number' | 'multiLine';
   placeholder?: string;
   defaultValue?: string;
@@ -15,6 +16,7 @@ interface InputProps {
 
 const Input = forwardRef<RefHandler, InputProps>((
   {
+    id,
     mode,
     placeholder,
     defaultValue,
@@ -38,7 +40,7 @@ const Input = forwardRef<RefHandler, InputProps>((
   }));
 
   useEffect(() => {
-    if (defaultValue !== undefined) {
+    if (defaultValue) {
       if ((mode === 'search' || mode === 'singleLine') && inputRef.current !== null) {
         inputRef.current.value = defaultValue;
       } else if (mode === 'multiLine' && textareaRef.current !== null) {
@@ -70,6 +72,7 @@ const Input = forwardRef<RefHandler, InputProps>((
     return (
       <div className="w-full rounded-full border border-black bg-white px-4 py-2">
         <input
+          id={id}
           type="text"
           ref={inputRef}
           className="w-full focus:outline-none"
@@ -106,10 +109,7 @@ const Input = forwardRef<RefHandler, InputProps>((
     );
   }
 
-  return (
-    <>
-    </>
-  );
+  return null;
 });
 
 export default Input;

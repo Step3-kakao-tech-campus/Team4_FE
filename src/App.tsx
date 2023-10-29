@@ -16,6 +16,7 @@ import { store } from './store';
 import ModalContainer from './components/modals/modalContainer';
 import WritedReviewPage from './components/page/writedReviewPage';
 import RecentlyViewdStorePage from './components/page/recentlyViewdStorePage';
+import UserEditProfilePage from './components/page/userEditProfilePage';
 import CoinUsagePage from './components/page/coinUsagePage';
 import LikedReviewPage from './components/page/likedReviewPage';
 import WriteReviewPage from './components/page/writeReviewPage';
@@ -48,6 +49,7 @@ function App() {
                 <Route path="/recentStores" element={<RecentlyViewdStorePage />} />
                 <Route path="/coinUsageHistory" element={<CoinUsagePage />} />
                 <Route path="/stores/:storeId/writeReview" element={<WriteReviewPage />} />
+                <Route path="/profileEditing" element={<UserEditProfilePage />} />
               </Route>
               {/* 단독 레이아웃 */}
               <Route path="/landing" element={<LandingPage />} />

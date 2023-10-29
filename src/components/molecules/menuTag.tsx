@@ -166,8 +166,5 @@ export default function MenuTag({
     );
   }
 
-  return (
-    <>
-    </>
-  );
+  return null;
 }

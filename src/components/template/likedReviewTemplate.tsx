@@ -5,13 +5,13 @@ import { ReviewCardInfo } from '../../types/review';
 import ReviewCard from '../molecules/reviewCard';
 import Page from '../molecules/page';
 
-interface WritedReviewType {
+interface WritedReviewProps {
   likedReview: ReviewCardInfo[],
   page: number,
   onChangePage: (type: 'left' | 'right') => void,
 }
 
-function LikedReviewTemplate({ likedReview, page, onChangePage }: WritedReviewType) {
+function LikedReviewTemplate({ likedReview, page, onChangePage }: WritedReviewProps) {
   const { t } = useTranslation();
   const [isLastPage, setIsLastPage] = useState(false);
 

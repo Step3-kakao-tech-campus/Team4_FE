@@ -5,13 +5,13 @@ import { CoinUsageInfo } from '../../types/coin';
 import CoinListCard from '../molecules/coinListCard';
 import Page from '../molecules/page';
 
-interface CoinUsageTemplateType {
+interface CoinUsageTemplateProps {
   coinUsage: CoinUsageInfo[];
   page: number,
   onChangePage: (type: 'left' | 'right') => void,
 }
 
-function CoinUsageTemlate({ coinUsage, page, onChangePage }: CoinUsageTemplateType) {
+function CoinUsageTemlate({ coinUsage, page, onChangePage }: CoinUsageTemplateProps) {
   const { t } = useTranslation();
 
   const [isLastPage, setIsLastPage] = useState(false);

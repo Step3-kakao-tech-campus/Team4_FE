@@ -2,13 +2,13 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Icon from '../atoms/icon';
 
-interface PageInterface {
+interface PageProps {
   page: number,
   isLastPage: boolean,
   onChangePage: (type: 'left' | 'right') => void,
 }
 
-function Page({ page, isLastPage, onChangePage }: PageInterface) {
+function Page({ page, isLastPage, onChangePage }: PageProps) {
   const { t } = useTranslation();
   function rightPage() {
     if (isLastPage) alert(t('page.lastPage')); else onChangePage('right');
