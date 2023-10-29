@@ -404,7 +404,6 @@ export const handlers = [
 
   rest.get('/prompt/:promptId', (req, res, ctx) => {
     const { promptId } = req.params;
-    console.log(promptId);
 
     if (Number.isNaN(+promptId)) {
       return res(

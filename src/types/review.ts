@@ -24,6 +24,11 @@ export interface ReviewImageInfo {
   tags: ReviewImageTagInfo[];
 }
 
+export interface ReviewDetailImageInfo {
+  imageData: string;
+  tags: ReviewImageTagInfo[];
+}
+
 export interface ReviewInfo {
   reviewImages: ReviewImageInfo[];
   content: string;
@@ -33,7 +38,7 @@ export interface ReviewInfo {
 }
 
 export interface ReviewDetailInfo {
-  reviewImages: ReviewImageInfo[];
+  reviewImages: ReviewDetailImageInfo[];
   reviewerImage: string,
   createdAt: string,
   reviewerName: string,

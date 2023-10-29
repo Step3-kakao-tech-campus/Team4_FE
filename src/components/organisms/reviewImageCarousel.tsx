@@ -1,12 +1,12 @@
 import React from 'react';
 import ImageCarousel from '../molecules/imageCarousel';
-import { ReviewImageInfo } from '../../types/review';
+import { ReviewDetailImageInfo } from '../../types/review';
 import Image from '../atoms/image';
 import MenuTag from '../molecules/menuTag';
 import { useModal } from '../../hooks/modal';
 
 interface ReviewImageCarouselProps {
-  reviewImages: ReviewImageInfo[],
+  reviewImages: ReviewDetailImageInfo[],
   prompts: { [key: string]: number },
   setPrompts: React.Dispatch<React.SetStateAction<{}>>;
 }
@@ -36,9 +36,9 @@ function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageC
         {reviewImages.map(({
           imageData, tags,
         }) => (
-          <div className="relative h-full w-full" key={String(imageData)}>
+          <div className="relative h-full w-full" key={imageData}>
             <div className="h-[500px] w-[500px] bg-white">
-              <Image smallImageSrc={String(imageData)} largeImageSrc={String(imageData)} imageSrc={String(imageData)} alt="사진" />
+              <Image smallImageSrc={imageData} largeImageSrc={imageData} imageSrc={imageData} alt="사진" />
             </div>
             {tags.map(({
               tagIndex, locationX, locationY, name, rating,
