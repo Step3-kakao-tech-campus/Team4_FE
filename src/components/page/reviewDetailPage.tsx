@@ -13,7 +13,7 @@ function ReviewDetailPage() {
   }
 
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: [`getReviewDetail${reviewId}`],
+    queryKey: [`getReviewDetail/stores/${storeId}/reviews${reviewId}`],
     queryFn: () => getReviewDetail(+reviewId),
   });
 

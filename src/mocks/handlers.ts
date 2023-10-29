@@ -369,7 +369,7 @@ export const handlers = [
     );
   }),
 
-  rest.post('/stores/:storeId/reviews', (req, res, ctx) => res(
+  rest.post('/stores/:storeId/reviews/:reviewId', (req, res, ctx) => res(
     ctx.status(201),
     ctx.json({
       success: true,
