@@ -3,12 +3,25 @@ import ImageCarousel from '../molecules/imageCarousel';
 import { ReviewImageInfo } from '../../types/review';
 import Image from '../atoms/image';
 import MenuTag from '../molecules/menuTag';
+import { useModal } from '../../hooks/modal';
 
 interface ReviewImageCarouselProps {
   reviewImages: ReviewImageInfo[],
 }
 
 function ReviewImageCarousel({ reviewImages }: ReviewImageCarouselProps) {
+  const { openModal } = useModal('Login');
+
+  const onHandlePromptEvent = () => {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    if (token === null) {
+      openModal();
+    } else {
+      // 프롬프트 상태값 업데이트
+    }
+  };
+
   return (
     <div>
       <ImageCarousel swiperStyle="w-full h-full">
@@ -23,7 +36,7 @@ function ReviewImageCarousel({ reviewImages }: ReviewImageCarouselProps) {
               tagIndex, locationX, locationY, name, rating,
             }) => (
               <li key={tagIndex} className="absolute" style={{ top: `${locationY}%`, left: `${locationX}%` }}>
-                <MenuTag tagIndex={tagIndex} name={name} rating={rating} mode="prompt" />
+                <MenuTag tagIndex={tagIndex} name={name} rating={rating} mode="prompt" onPromptEvent={() => { onHandlePromptEvent(); }} />
               </li>
             ))}
           </div>

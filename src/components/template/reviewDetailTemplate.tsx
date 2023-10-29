@@ -10,6 +10,7 @@ interface ReviewDetailTemplateProps {
 
 function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {
   console.log(data);
+
   return (
     <main>
       <PageTitleCard pageTitle="리뷰 상세 페이지" />
