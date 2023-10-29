@@ -11,7 +11,7 @@ export const reviewDetailData = {
       imageData: '/image/fakeDb/review/reviewImage1.png',
       tags: [{
         imageIndex: 0,
-        tagindex: 0,
+        tagIndex: 0,
         name: '짜장면',
         locationX: 30.8,
         locationY: 60.8,
@@ -19,7 +19,7 @@ export const reviewDetailData = {
       },
       {
         imageIndex: 0,
-        tagindex: 1,
+        tagIndex: 1,
         name: '탕수육',
         locationX: 70.8,
         locationY: 12.8,
@@ -29,7 +29,7 @@ export const reviewDetailData = {
       imageData: '/image/fakeDb/review/reviewImage2.png',
       tags: [{
         imageIndex: 1,
-        tagindex: 0,
+        tagIndex: 2,
         name: '삼겹살',
         locationX: 40.8,
         locationY: 40.8,

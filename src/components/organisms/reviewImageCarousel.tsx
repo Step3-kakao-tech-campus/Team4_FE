@@ -16,7 +16,6 @@ function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageC
 
   const onHandlePromptEvent = (name: string) => {
     const token = localStorage.getItem('token');
-    console.log(token);
     if (token !== null) {
       openModal();
     } else if (prompts[name] === undefined) {
@@ -25,6 +24,7 @@ function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageC
         ...prev,
         [name]: 1,
       }));
+      alert(`${name}이 추가 되었습니다!`);
     } else { // 프롬프트에 메뉴가 있다면
       alert('이미 추가된 메뉴 입니다');
     }

@@ -5,14 +5,15 @@ import { IoLanguage, IoEllipseOutline, IoEllipse } from 'react-icons/io5';
 import {
   AiOutlineLike, AiOutlineStar, AiOutlineClose, AiOutlineHeart,
   AiOutlineLeft, AiOutlineBell, AiOutlineRight, AiFillHeart, AiFillStar, AiOutlineCheck,
-  AiOutlineDislike, AiFillDislike, AiFillLike,
+  AiOutlineDislike, AiFillDislike, AiFillLike, AiOutlinePlus, AiOutlineMinus,
 } from 'react-icons/ai';
 import { HiUserGroup, HiCreditCard } from 'react-icons/hi';
 
 interface IconProps {
   name: 'Person' | 'Home' | 'Search' | 'Moon' | 'Clipboard' | 'Language' | 'FillHeart' | 'OutlineLike' |
   'OutlineCheck' | 'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard' | 'OutlineRight' |
-  'OutlineHeart' | 'FillStar' | 'OutlineDislike' | 'EllipseOutline' | 'Ellipse' | 'FillDislike' | 'FillLike' | 'JournalBookmarkFill';
+  'OutlineHeart' | 'FillStar' | 'OutlineDislike' | 'EllipseOutline' | 'Ellipse' | 'FillDislike' | 'FillLike'
+  | 'JournalBookmarkFill' | 'OutlinePlus' | 'OutlineMinus'
   size: string;
   ariaLabel: string;
   color?: string;
@@ -70,6 +71,10 @@ function Icon({
       return <AiFillLike size={size} aria-label={ariaLabel} className={color} />;
     case 'JournalBookmarkFill': // 프롬프트 선택
       return <BsJournalBookmarkFill size={size} aria-label={ariaLabel} className={color} />;
+    case 'OutlinePlus': // +
+      return <AiOutlinePlus size={size} aria-label={ariaLabel} className={color} />;
+    case 'OutlineMinus': // -
+      return <AiOutlineMinus size={size} aria-label={ariaLabel} className={color} />;
     default:
       return <div>해당 이름의 아이콘이 없습니다.</div>;
   }
