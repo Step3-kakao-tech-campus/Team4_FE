@@ -21,6 +21,7 @@ import CoinUsagePage from './components/page/coinUsagePage';
 import LikedReviewPage from './components/page/likedReviewPage';
 import WriteReviewPage from './components/page/writeReviewPage';
 import ErrorBoundary from './components/layouts/errorBoundary';
+import NotFoundPage from './components/page/notFoundPage';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -55,6 +56,7 @@ function App() {
                 </Route>
                 {/* 단독 레이아웃 */}
                 <Route path="/landing" element={<LandingPage />} />
+                <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </ErrorBoundary>
           </ModalContainer>

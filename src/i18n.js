@@ -190,6 +190,10 @@ i18n
             fail: '페이지를 가져오지 못했습니다.',
             mainPage: '메인 페이지로',
           },
+          notFoundPage: {
+            notFound: '없는 페이지입니다.',
+            mainPage: '메인 페이지로',
+          },
         },
       },
       en: {
@@ -360,6 +364,10 @@ i18n
           },
           errorPage: {
             fail: 'Failed to fetch page.',
+            mainPage: 'Go to main page',
+          },
+          notFoundPage: {
+            notFound: 'The page does not exist.',
             mainPage: 'Go to main page',
           },
         },
