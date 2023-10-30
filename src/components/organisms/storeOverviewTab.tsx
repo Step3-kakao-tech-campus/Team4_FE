@@ -10,7 +10,7 @@ export default function StoreOverviewTab({
   highRatingReview,
 }: StoreOverviewTabProps) {
   return (
-    <pre className="flex flex-col gap-4 p-4 font-noto">
+    <pre className="flex flex-col gap-4 whitespace-pre-line break-words p-4 font-noto">
       <section>
         <h3 className="my-2 text-lg font-bold">음식점 정보</h3>
         <p>{storeInfo}</p>
