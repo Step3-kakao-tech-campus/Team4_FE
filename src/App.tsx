@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 import ReactModal from 'react-modal';
+import { Suspense } from 'react';
 import LandingPage from './components/page/landingPage';
 import UserPage from './components/page/userPage';
 import MainPage from './components/page/mainPage';
@@ -22,6 +23,7 @@ import LikedReviewPage from './components/page/likedReviewPage';
 import WriteReviewPage from './components/page/writeReviewPage';
 import ErrorBoundary from './components/layouts/errorBoundary';
 import NotFoundPage from './components/page/notFoundPage';
+import GlobalLoader from './components/atoms/globalLoader';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -38,26 +40,28 @@ function App() {
         <BrowserRouter>
           <ModalContainer>
             <ErrorBoundary>
-              <Routes>
-                {/* 공통 레이아웃 */}
-                <Route element={<MainLayout />}>
-                  <Route path="/" element={<MainPage />} />
-                  <Route path="/mypage" element={<UserPage />} />
-                  <Route path="/search" element={<SearchResultPage />} />
-                  <Route path="/stores/:storeId" element={<StoreDetailPage />} />
-                  <Route path="/likedStores" element={<LikedStorePage />} />
-                  <Route path="/coinRechargeHistory" element={<CoinRechargePage />} />
-                  <Route path="/writtenReview" element={<WritedReviewPage />} />
-                  <Route path="/likedReview" element={<LikedReviewPage />} />
-                  <Route path="/recentStores" element={<RecentlyViewdStorePage />} />
-                  <Route path="/coinUsageHistory" element={<CoinUsagePage />} />
-                  <Route path="/stores/:storeId/writeReview" element={<WriteReviewPage />} />
-                  <Route path="/profileEditing" element={<UserEditProfilePage />} />
-                </Route>
-                {/* 단독 레이아웃 */}
-                <Route path="/landing" element={<LandingPage />} />
-                <Route path="*" element={<NotFoundPage />} />
-              </Routes>
+              <Suspense fallback={<GlobalLoader />}>
+                <Routes>
+                  {/* 공통 레이아웃 */}
+                  <Route element={<MainLayout />}>
+                    <Route path="/" element={<MainPage />} />
+                    <Route path="/mypage" element={<UserPage />} />
+                    <Route path="/search" element={<SearchResultPage />} />
+                    <Route path="/stores/:storeId" element={<StoreDetailPage />} />
+                    <Route path="/likedStores" element={<LikedStorePage />} />
+                    <Route path="/coinRechargeHistory" element={<CoinRechargePage />} />
+                    <Route path="/writtenReview" element={<WritedReviewPage />} />
+                    <Route path="/likedReview" element={<LikedReviewPage />} />
+                    <Route path="/recentStores" element={<RecentlyViewdStorePage />} />
+                    <Route path="/coinUsageHistory" element={<CoinUsagePage />} />
+                    <Route path="/stores/:storeId/writeReview" element={<WriteReviewPage />} />
+                    <Route path="/profileEditing" element={<UserEditProfilePage />} />
+                  </Route>
+                  {/* 단독 레이아웃 */}
+                  <Route path="/landing" element={<LandingPage />} />
+                  <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+              </Suspense>
             </ErrorBoundary>
           </ModalContainer>
         </BrowserRouter>

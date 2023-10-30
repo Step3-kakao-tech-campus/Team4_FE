@@ -194,6 +194,9 @@ i18n
             notFound: '없는 페이지입니다.',
             mainPage: '메인 페이지로',
           },
+          loader: {
+            loading: '불러오는 중...',
+          },
         },
       },
       en: {
@@ -369,6 +372,9 @@ i18n
           notFoundPage: {
             notFound: 'The page does not exist.',
             mainPage: 'Go to main page',
+          },
+          loader: {
+            loading: 'Loading...',
           },
         },
       },
