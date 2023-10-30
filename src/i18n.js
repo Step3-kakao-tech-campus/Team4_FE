@@ -186,6 +186,10 @@ i18n
             deleteImage: '사진 삭제',
             image: '리뷰 이미지',
           },
+          errorPage: {
+            fail: '페이지를 가져오지 못했습니다.',
+            mainPage: '메인 페이지로',
+          },
         },
       },
       en: {
@@ -353,6 +357,10 @@ i18n
             title: 'Create a review',
             deleteImage: 'Delete image',
             image: 'Review image',
+          },
+          errorPage: {
+            fail: 'Failed to fetch page.',
+            mainPage: 'Go to main page',
           },
         },
       },
