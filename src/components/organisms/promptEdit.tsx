@@ -45,23 +45,25 @@ function PromptEdit({ prompts, setPrompts, setIsClick }: PromptEditProps) {
             개
           </span>
         </div>
-        <button type="button" className="mr-8" onClick={() => { setIsClick(false); }}>
+        <button type="button" className="mr-2" onClick={() => { setIsClick(false); }}>
           <Icon name="OutlineClose" ariaLabel="프롬프트 창 닫기" size="2rem" />
         </button>
       </div>
-      {
-        Object.keys(prompts).map((key) => (
-          <div key={key}>
-            <PromptList
-              menu={key}
-              number={prompts[key]}
-              setPrompts={setPrompts}
-              prompts={prompts}
-            />
-          </div>
-        ))
-      }
-      <Button onClick={() => { onHandleCreatePrompt(); }} size="medium" extraStyle="w-full mb-20 ">
+      <div className="mb-36">
+        {
+          Object.keys(prompts).map((key) => (
+            <div key={key}>
+              <PromptList
+                menu={key}
+                number={prompts[key]}
+                setPrompts={setPrompts}
+                prompts={prompts}
+              />
+            </div>
+          ))
+        }
+      </div>
+      <Button onClick={() => { onHandleCreatePrompt(); }} size="medium" extraStyle="w-full max-w-[500px] fixed bottom-20">
         프롬프트 생성
       </Button>
     </div>
