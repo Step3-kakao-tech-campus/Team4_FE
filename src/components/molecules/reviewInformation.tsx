@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from 'react-query';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 import { comma } from '../../utils/convert';
@@ -18,6 +19,7 @@ interface ReviewInformationProps {
 function ReviewInformation({
   rating, createdAt, reviewerName, reviewerImage, peopleCount, totalPrice,
 }: ReviewInformationProps) {
+  const { t } = useTranslation();
   const { storeId, reviewId } = useParams();
   const [isLikeReview, setIsLikeReview] = useState(false);
 
@@ -27,8 +29,8 @@ function ReviewInformation({
       if (storeId === undefined || reviewId === undefined) { return likeReview(0, 0); }
       return likeReview(+storeId, +reviewId);
     },
-    onSuccess: () => { setIsLikeReview(true); alert('맛집 좋아요 성공'); },
-    onError: () => { setIsLikeReview(false); alert('맛집 좋아요 실패'); },
+    onSuccess: () => { setIsLikeReview(true); alert(t('reviewDetailPage.successReviewLike')); },
+    onError: () => { setIsLikeReview(false); alert(t('reviewDetailPage.failReviewLike')); },
   });
 
   const { mutate: cancelLikeMutation } = useMutation({
@@ -37,8 +39,8 @@ function ReviewInformation({
       if (storeId === undefined || reviewId === undefined) { return cancelLikeReview(0, 0); }
       return cancelLikeReview(+storeId, +reviewId);
     },
-    onSuccess: () => { setIsLikeReview(false); alert('맛집 좋아요 취소 성공'); },
-    onError: () => { setIsLikeReview(true); alert('맛집 좋아요 취소 실패'); },
+    onSuccess: () => { setIsLikeReview(false); alert(t('reviewDetailPage.successReviewLikeCanel')); },
+    onError: () => { setIsLikeReview(true); alert(t('reviewDetailPage.failReviewLikeCanel')); },
   });
 
   return (
@@ -48,19 +50,19 @@ function ReviewInformation({
           {isLikeReview
             ? (
               <button type="button" onClick={() => { cancelLikeMutation(); }}>
-                <Icon name="FillHeart" color="text-matgpt-red" ariaLabel="리뷰 좋아요 버튼" size="2rem" />
+                <Icon name="FillHeart" color="text-matgpt-red" ariaLabel={t('reviewDetailPage.canelLikeReviewButton')} size="2rem" />
               </button>
             )
             : (
               <button type="button" onClick={() => { likeStoreMutation(); }}>
-                <Icon name="OutlineHeart" ariaLabel="리뷰 좋아요 버튼" size="2rem" />
+                <Icon name="OutlineHeart" ariaLabel={t('reviewDetailPage.likeReviewButton')} size="2rem" />
               </button>
             )}
           <span className="pl-[0.5rem] text-2xl">{rating}</span>
         </div>
         <div className="mt-3 flex items-center">
           <div className="h-12 w-12">
-            <Image imageSrc={reviewerImage} alt="유저 이미지" />
+            <Image imageSrc={reviewerImage} alt={t('reviewDetailPage.reviewerProfileImage')} />
           </div>
           <span className="pl-[0.5rem]">{reviewerName}</span>
         </div>
@@ -68,7 +70,7 @@ function ReviewInformation({
       <div>
         <span>{createdAt}</span>
         <div className="my-3 flex items-center justify-end">
-          <Icon name="UserGroup" ariaLabel="다녀간 사람 수 아이콘" size="1rem" />
+          <Icon name="UserGroup" ariaLabel={t('reviewDetailPage.peopleCount')} size="1rem" />
           <span className="pl-2">{peopleCount}</span>
         </div>
         <span>{comma(totalPrice)}</span>

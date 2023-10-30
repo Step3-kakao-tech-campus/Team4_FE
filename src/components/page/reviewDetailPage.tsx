@@ -1,15 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { useTranslation } from 'react-i18next';
 import ReviewDetailTemplate from '../template/reviewDetailTemplate';
 import { getReviewDetail } from '../../apis/review';
 
 function ReviewDetailPage() {
+  const { t } = useTranslation();
   const { storeId, reviewId } = useParams();
 
   if (reviewId === undefined || Number.isNaN(+reviewId)
     || storeId === undefined || Number.isNaN(+storeId)) {
-    return <div>잘못된 접근입니다.</div>;
+    return <div>{t('reviewDetailPage.wrongApiAccess')}</div>;
   }
 
   const { data, isLoading, isFetching } = useQuery({

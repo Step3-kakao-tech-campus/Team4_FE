@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ReviewImageCarousel from '../organisms/reviewImageCarousel';
 import ReviewInformation from '../molecules/reviewInformation';
 import PageTitleCard from '../molecules/pageTitleCard';
@@ -11,11 +12,12 @@ interface ReviewDetailTemplateProps {
 }
 
 function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {
+  const { t } = useTranslation();
   const [prompts, setPrompts] = useState({}); // 프롬프트 데이터를 저장할 상태 값
   const [isClick, setIsClick] = useState(false); // 프롬프트 창을 열었는지 확인하는 상태 값
   return (
     <main>
-      <PageTitleCard pageTitle="리뷰 상세 페이지" />
+      <PageTitleCard pageTitle={t('reviewDetailPage.pageTitle')} />
       <ReviewImageCarousel
         reviewImages={data.reviewImages}
         prompts={prompts}
@@ -46,7 +48,7 @@ function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {
             </div>
             <div>
               <button type="button" onClick={() => { setIsClick((prev) => !prev); }} className="solid fixed bottom-8 mb-11 rounded-3xl border-8 border-matgpt-blue bg-matgpt-blue">
-                <Icon name="JournalBookmarkFill" ariaLabel="주문 프롬프트 수정 페이지 열기" size="1.5rem" />
+                <Icon name="JournalBookmarkFill" ariaLabel={t('reviewDetailPage.openPrompEditPage')} size="1.5rem" />
               </button>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import ImageCarousel from '../molecules/imageCarousel';
 import { ReviewDetailImageInfo } from '../../types/review';
 import Image from '../atoms/image';
@@ -12,6 +13,7 @@ interface ReviewImageCarouselProps {
 }
 
 function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageCarouselProps) {
+  const { t } = useTranslation();
   const { openModal } = useModal('Login');
 
   const onHandlePromptEvent = (name: string) => {
@@ -24,9 +26,9 @@ function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageC
         ...prev,
         [name]: 1,
       }));
-      alert(`${name}이 추가 되었습니다!`);
+      alert(t('reviewDetailPage.menuAdd'));
     } else { // 프롬프트에 메뉴가 있다면
-      alert('이미 추가된 메뉴 입니다');
+      alert(t('reviewDetailPage.alreadyAddMenu'));
     }
   };
 
@@ -38,7 +40,7 @@ function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageC
         }) => (
           <div className="relative h-full w-full" key={imageData}>
             <div className="h-[500px] w-[500px] bg-white">
-              <Image smallImageSrc={imageData} largeImageSrc={imageData} imageSrc={imageData} alt="사진" />
+              <Image smallImageSrc={imageData} largeImageSrc={imageData} imageSrc={imageData} alt={t('reviewDetailPage.reviewImage')} />
             </div>
             {tags.map(({
               tagIndex, locationX, locationY, name, rating,
