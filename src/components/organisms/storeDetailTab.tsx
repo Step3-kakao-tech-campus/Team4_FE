@@ -6,12 +6,16 @@ import StoreReviewTab from './storeReviewTab';
 
 interface StoreDetailTabProps {
   storeInfo: string;
+  lowRatingReview: string;
+  highRatingReview: string;
   reviews: ReviewCardInfo[] | undefined;
   fetchReview: () => void;
 }
 
 export default function StoreDetailTab({
   storeInfo,
+  lowRatingReview,
+  highRatingReview,
   reviews,
   fetchReview,
 }: StoreDetailTabProps) {
@@ -36,8 +40,14 @@ export default function StoreDetailTab({
           {t('storeDetail.review')}
         </button>
       </div>
-      <div>
-        {tab === 0 ? <StoreOverviewTab storeInfo={storeInfo} /> : null}
+      <div className="pb-[3.7rem]">
+        {tab === 0 ? (
+          <StoreOverviewTab
+            storeInfo={storeInfo}
+            lowRatingReview={lowRatingReview}
+            highRatingReview={highRatingReview}
+          />
+        ) : null}
         {tab === 1 && reviews ? (
           <StoreReviewTab
             reviews={reviews}
