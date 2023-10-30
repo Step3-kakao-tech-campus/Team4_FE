@@ -355,4 +355,15 @@ export const handlers = [
       error: null,
     }),
   )),
+
+  rest.post('/stores/:storeId/reviews', (req, res, ctx) => res(
+    ctx.status(201),
+    ctx.json({
+      success: true,
+      response: {
+        reviewId: 1,
+      },
+      error: null,
+    }),
+  )),
 ];
