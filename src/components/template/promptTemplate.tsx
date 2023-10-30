@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Button from '../atoms/button';
 
 interface PromptTemplateProps {
@@ -7,6 +8,7 @@ interface PromptTemplateProps {
 }
 
 function PromptTemplate({ prompt }: PromptTemplateProps) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <div>
@@ -30,7 +32,7 @@ function PromptTemplate({ prompt }: PromptTemplateProps) {
         ))}
       </div>
       <Button size="medium" onClick={() => { navigate(-1); }} extraStyle="fixed bottom-24 w-full max-w-[500px]">
-        확인
+        {t('promptPage.confirm')}
       </Button>
     </div>
   );

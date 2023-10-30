@@ -210,6 +210,9 @@ i18n
             closePrompt: '프롬프트 수정 창 닫기',
             createPrompt: '프롬프트 생성',
           },
+          promptPage: {
+            confirm: '확인',
+          },
         },
       },
       en: {
@@ -401,6 +404,9 @@ i18n
             num: ' Quantity.',
             closePrompt: 'Close the prompt editing window.',
             createPrompt: 'Create a prompt.',
+          },
+          promptPage: {
+            confirm: 'Confrim',
           },
         },
       },
