@@ -2,6 +2,7 @@ import { rest } from 'msw';
 import { writedReviewData } from './data/writedReview';
 import recentlyViewdStoreData from './data/recentlyViewdStore';
 import { coinRechargeData, coinUsageData } from './data/coinData';
+import { reviewDetailData } from './data/reviewDetailData';
 import { storeMarkers } from './data/storeMarker';
 
 export const handlers = [
@@ -347,6 +348,22 @@ export const handlers = [
     );
   }),
 
+  rest.get('/stores/:storeId/reviews/:reviewId', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json(reviewDetailData),
+  )),
+
+  rest.post('/stores/:storeId/reviews/:reviewId', (req, res, ctx) => res(
+    ctx.status(201),
+    ctx.json({
+      success: true,
+      response: {
+        reviewId: 1,
+      },
+      error: null,
+    }),
+  )),
+
   rest.get('/', (req, res, ctx) => res(
     ctx.status(200),
     ctx.json({
@@ -366,4 +383,56 @@ export const handlers = [
       error: null,
     }),
   )),
+
+  rest.post('/stores/:storeId/reviews/:reviewId/like', (req, res, ctx) => res(
+    ctx.status(201),
+    ctx.json({
+      success: true,
+      response: {
+        reviewId: 1,
+      },
+      error: null,
+    }),
+  )),
+
+  rest.post('/stores/:storeId/reviews/:reviewId/like-cancel', (req, res, ctx) => res(
+    ctx.status(201),
+    ctx.json({
+      success: true,
+      response: {
+        reviewId: 1,
+      },
+      error: null,
+    }),
+  )),
+
+  rest.get('/prompt/:promptId', (req, res, ctx) => {
+    const { promptId } = req.params;
+
+    if (Number.isNaN(+promptId)) {
+      return res(
+        ctx.status(400),
+        ctx.json({
+          success: false,
+          response: null,
+          error: {
+            status: 400,
+            message: '잘못된 요청입니다.',
+          },
+        }),
+      );
+    }
+    return res(
+      ctx.status(201),
+      ctx.json({
+        success: true,
+        response: {
+          짜장면: 2,
+          탕수육: 3,
+          삼겹살: 5,
+        },
+        error: null,
+      }),
+    );
+  }),
 ];

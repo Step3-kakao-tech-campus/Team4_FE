@@ -1,19 +1,20 @@
-import { BsPerson } from 'react-icons/bs';
+import { BsPerson, BsJournalBookmarkFill } from 'react-icons/bs';
 import { GoHome, GoSearch } from 'react-icons/go';
 import { PiMoon, PiClipboard } from 'react-icons/pi';
 import { IoLanguage, IoEllipseOutline, IoEllipse } from 'react-icons/io5';
 import {
   AiOutlineLike, AiOutlineStar, AiOutlineClose, AiOutlineHeart,
-  AiOutlineLeft, AiOutlineBell, AiOutlineRight, AiFillHeart, AiFillStar,
-  AiOutlineDislike, AiFillDislike, AiFillLike, AiOutlineCheck,
+  AiOutlineLeft, AiOutlineBell, AiOutlineRight, AiFillHeart, AiFillStar, AiOutlineCheck,
+  AiOutlineDislike, AiFillDislike, AiFillLike, AiOutlinePlus, AiOutlineMinus,
+
 } from 'react-icons/ai';
 import { HiUserGroup, HiCreditCard } from 'react-icons/hi';
 
 interface IconProps {
   name: 'Person' | 'Home' | 'Search' | 'Moon' | 'Clipboard' | 'Language' | 'FillHeart' | 'OutlineLike' |
-  'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard' | 'OutlineRight' |
-  'OutlineHeart' | 'FillStar' | 'OutlineDislike' | 'EllipseOutline' | 'Ellipse' | 'FillDislike' | 'FillLike' |
-  'OutlineCheck';
+  'OutlineCheck' | 'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard' | 'OutlineRight' |
+  'OutlineHeart' | 'FillStar' | 'OutlineDislike' | 'EllipseOutline' | 'Ellipse' | 'FillDislike' | 'FillLike'
+  | 'JournalBookmarkFill' | 'OutlinePlus' | 'OutlineMinus'
   size: string;
   ariaLabel: string;
   color?: string;
@@ -57,6 +58,8 @@ function Icon({
       return <AiOutlineHeart size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineBell': // 종
       return <AiOutlineBell size={size} aria-label={ariaLabel} className={color} />;
+    case 'OutlineCheck': // 체크
+      return <AiOutlineCheck size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineDislike': // 싫어요
       return <AiOutlineDislike size={size} aria-label={ariaLabel} className={color} />;
     case 'EllipseOutline': // 빈 원
@@ -67,8 +70,12 @@ function Icon({
       return <AiFillDislike size={size} aria-label={ariaLabel} className={color} />;
     case 'FillLike': // 좋아요 채워짐
       return <AiFillLike size={size} aria-label={ariaLabel} className={color} />;
-    case 'OutlineCheck': // 체크
-      return <AiOutlineCheck size={size} aria-label={ariaLabel} className={color} />;
+    case 'JournalBookmarkFill': // 프롬프트 선택
+      return <BsJournalBookmarkFill size={size} aria-label={ariaLabel} className={color} />;
+    case 'OutlinePlus': // +
+      return <AiOutlinePlus size={size} aria-label={ariaLabel} className={color} />;
+    case 'OutlineMinus': // -
+      return <AiOutlineMinus size={size} aria-label={ariaLabel} className={color} />;
     default:
       return <div>해당 이름의 아이콘이 없습니다.</div>;
   }
