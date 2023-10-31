@@ -19,9 +19,10 @@ export async function getLikedReview(
 }
 
 export async function getReviewDetail(
+  storeId: number,
   reviewId: number,
 ): Promise<ReviewDetailInfo> {
-  const response = await fetchInstance.get(`/reviews/${reviewId}`);
+  const response = await fetchInstance.get(`/stores/${storeId}/reviews/${reviewId}`);
   return response.data.response;
 }
 

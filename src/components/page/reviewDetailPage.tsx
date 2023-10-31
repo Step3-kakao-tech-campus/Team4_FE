@@ -8,6 +8,7 @@ import { getReviewDetail } from '../../apis/review';
 function ReviewDetailPage() {
   const { t } = useTranslation();
   const { storeId, reviewId } = useParams();
+  console.log(storeId, reviewId);
 
   if (reviewId === undefined || Number.isNaN(+reviewId)
     || storeId === undefined || Number.isNaN(+storeId)) {
@@ -16,7 +17,7 @@ function ReviewDetailPage() {
 
   const { data, isLoading, isFetching } = useQuery({
     queryKey: [`getReviewDetail/stores/${storeId}/reviews${reviewId}`],
-    queryFn: () => getReviewDetail(+reviewId),
+    queryFn: () => getReviewDetail(+storeId, +reviewId),
   });
 
   if (data && !isLoading && !isFetching) {
