@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import SocialLoginButton from '../atoms/socialLoginButton';
 import Icon from '../atoms/icon';
 
 function SocialLoginModalContent() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <div className="absolute left-1/2 top-1/2 h-[360px] w-[300px] -translate-x-1/2 -translate-y-1/2
@@ -13,7 +15,7 @@ function SocialLoginModalContent() {
         <button
           type="button"
           onClick={() => {
-            window.location.hash = '';
+            navigate(-1);
           }}
           className="absolute right-[-0.5rem] top-[-3.5em]"
         >

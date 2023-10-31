@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import RadioOption from '../molecules/radioOption';
 import { LANGUAGE_SET } from '../../utils/language';
 
 export default function LanguageModal() {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const onLanguageSelect = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -15,7 +17,7 @@ export default function LanguageModal() {
       i18n.changeLanguage(selectedLanguage.toString());
     }
 
-    window.location.hash = '';
+    navigate(-1);
   };
 
   return (
