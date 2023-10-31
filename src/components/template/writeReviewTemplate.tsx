@@ -80,6 +80,7 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
             <Input
               mode="number"
               ref={totalPriceRef}
+              step={100}
             />
             {t('writeReviewPage.won')}
           </div>

@@ -11,6 +11,7 @@ interface InputProps {
   placeholder?: string;
   defaultValue?: string;
   onSearchClick?: React.FormEventHandler<HTMLFormElement>;
+  step?: number;
 }
 
 const Input = forwardRef<RefHandler, InputProps>((
@@ -20,6 +21,7 @@ const Input = forwardRef<RefHandler, InputProps>((
     placeholder,
     defaultValue,
     onSearchClick = (e) => { e.preventDefault(); },
+    step = 1,
   },
   ref,
 ) => {
@@ -91,6 +93,7 @@ const Input = forwardRef<RefHandler, InputProps>((
           min={0}
           inputMode="numeric"
           pattern="[0-9]*"
+          step={step}
         />
       </div>
     );
@@ -100,7 +103,7 @@ const Input = forwardRef<RefHandler, InputProps>((
     return (
       <textarea
         ref={textareaRef}
-        className="h-full w-full resize-none p-4"
+        className="h-full w-full resize-none rounded-xl border border-matgpt-gray p-4"
         placeholder={placeholder}
       />
     );

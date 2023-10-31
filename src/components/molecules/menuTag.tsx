@@ -165,9 +165,5 @@ export default function MenuTag({
       </div>
     );
   }
-
-  return (
-    <>
-    </>
-  );
+  return null;
 }

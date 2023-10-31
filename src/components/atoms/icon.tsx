@@ -6,6 +6,7 @@ import {
   AiOutlineLike, AiOutlineStar, AiOutlineClose, AiOutlineHeart,
   AiOutlineLeft, AiOutlineBell, AiOutlineRight, AiFillHeart, AiFillStar, AiOutlineCheck,
   AiOutlineDislike, AiFillDislike, AiFillLike, AiOutlinePlus, AiOutlineMinus,
+
 } from 'react-icons/ai';
 import { HiUserGroup, HiCreditCard } from 'react-icons/hi';
 
