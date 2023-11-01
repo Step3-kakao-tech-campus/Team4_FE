@@ -150,8 +150,6 @@ export const handlers = [
           reviewCount: 2000,
           rating: 4.3,
           information: '영업시간: 월-금 10:00~22:00\n토 10:00~14:00\n일 휴무',
-          lowRatingReview: '아쉬워요',
-          highRatingReview: '좋아요',
         },
         error: null,
       }),
@@ -356,6 +354,30 @@ export const handlers = [
         reviewId: 1,
       },
       error: null,
+    }),
+  )),
+
+  rest.get('/gpt/store/:storeId/review/best', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json({
+      data: {
+        isExist: false,
+        content: {
+          BEST: '수육이 최고에요. 맛있어서 다시 오고 싶어요. 깔끔하고 개운해요. 특히 깍두기와 김치가 맛있어요. 진짜 맛있는 곳이에요.',
+        },
+      },
+    }),
+  )),
+
+  rest.get('/gpt/store/:storeId/review/worst', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json({
+      data: {
+        isExist: true,
+        content: {
+          WORST: '음식이 자극적이고 양이 부족하며, 맛은 짜고 기다리기도 하고, 일본인들이 많이 찾아오는 것 같은 맛집이다.',
+        },
+      },
     }),
   )),
 ];

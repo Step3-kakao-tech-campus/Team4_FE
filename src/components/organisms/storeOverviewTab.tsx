@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
+import { GPTBestReviewContent, GPTWorstReviewContent } from '../../types/review';
 
 interface StoreOverviewTabProps {
   storeInfo: string;
-  lowRatingReview: string;
-  highRatingReview: string;
+  lowRatingReview: GPTWorstReviewContent;
+  highRatingReview: GPTBestReviewContent;
 }
 
 export default function StoreOverviewTab({
@@ -22,19 +23,35 @@ export default function StoreOverviewTab({
         <h3 className="text-lg font-bold">{t('storeDetail.gpt')}</h3>
         <section>
           <h4 className="my-2 font-bold">{t('storeDetail.highRatingReview')}</h4>
-          <p>
-            &ldquo;
-            {highRatingReview}
-            &rdquo;
-          </p>
+          {highRatingReview && highRatingReview.isExist
+            ? (
+              <p>
+                &ldquo;
+                {highRatingReview.content.BEST}
+                &rdquo;
+              </p>
+            )
+            : (
+              <p className="rounded-lg bg-matgpt-gray/25 p-4 text-center text-black/75">
+                ChatGPT로 요약한 후기를 검토중이에요
+              </p>
+            )}
         </section>
         <section>
           <h4 className="my-2 font-bold">{t('storeDetail.lowRatingReview')}</h4>
-          <p>
-            &ldquo;
-            {lowRatingReview}
-            &rdquo;
-          </p>
+          {highRatingReview && lowRatingReview.isExist
+            ? (
+              <p>
+                &ldquo;
+                {lowRatingReview.content.WORST}
+                &rdquo;
+              </p>
+            )
+            : (
+              <p className="rounded-lg bg-matgpt-gray/25 p-4 text-center text-black/75">
+                ChatGPT로 요약한 후기를 검토중이에요
+              </p>
+            )}
         </section>
       </section>
     </pre>

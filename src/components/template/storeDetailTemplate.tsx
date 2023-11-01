@@ -24,9 +24,8 @@ export default function StoreDetailTemplate({
         reviewCount={storeDetail.reviewCount}
       />
       <StoreDetailTab
+        storeId={storeDetail.storeId}
         storeInfo={storeDetail.information}
-        lowRatingReview={storeDetail.lowRatingReview}
-        highRatingReview={storeDetail.highRatingReview}
         reviews={reviews}
         fetchReview={fetchReview}
       />

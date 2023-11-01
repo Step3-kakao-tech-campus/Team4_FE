@@ -1,6 +1,8 @@
 import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
 import { getSearchedStore } from '../apis/search';
-import { getReviews, getStoreDetail } from '../apis/storeDetail';
+import {
+  getGPTBestReview, getGPTWorstReview, getReviews, getStoreDetail,
+} from '../apis/storeDetail';
 import { writeReview } from '../apis/review';
 import { ReviewInfo } from '../types/review';
 
@@ -41,5 +43,19 @@ export function useWriteReview() {
       storeId: number,
       reviewData: ReviewInfo
     }) => writeReview(storeId, reviewData),
+  });
+}
+
+export function useGPTBestReview(storeId: number) {
+  return useQuery({
+    queryKey: ['GPTBestReview', { storeId }],
+    queryFn: async () => getGPTBestReview(storeId),
+  });
+}
+
+export function useGPTWorstReview(storeId: number) {
+  return useQuery({
+    queryKey: ['GPTWorstReview', { storeId }],
+    queryFn: async () => getGPTWorstReview(storeId),
   });
 }
