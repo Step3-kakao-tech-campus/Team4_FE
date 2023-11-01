@@ -33,7 +33,7 @@ export default function StoreOverviewTab({
             )
             : (
               <p className="rounded-lg bg-matgpt-gray/25 p-4 text-center text-black/75">
-                ChatGPT로 요약한 후기를 검토중이에요
+                {t('storeDetail.gptNotExist')}
               </p>
             )}
         </section>
@@ -49,7 +49,7 @@ export default function StoreOverviewTab({
             )
             : (
               <p className="rounded-lg bg-matgpt-gray/25 p-4 text-center text-black/75">
-                ChatGPT로 요약한 후기를 검토중이에요
+                {t('storeDetail.gptNotExist')}
               </p>
             )}
         </section>
