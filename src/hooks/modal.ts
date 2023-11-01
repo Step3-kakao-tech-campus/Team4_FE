@@ -12,7 +12,7 @@ export function useModal(type: ModalType) {
       if (hash === `#${type}`) {
         dispatch(open(type));
       } else {
-        dispatch(close());
+        dispatch(close(type));
       }
     };
     window.addEventListener('hashchange', handleModalOpen);

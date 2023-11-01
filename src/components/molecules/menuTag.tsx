@@ -17,7 +17,7 @@ interface DefaultTagProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function DefaultTag({
+export function DefaultTag({
   name,
   rating,
   onClick,
@@ -53,7 +53,7 @@ export default function MenuTag({
   name,
   rating,
   mode,
-  onPromptEvent = () => {},
+  onPromptEvent = () => { },
 }: MenuTagProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [modifyRating, setModifyRating] = useState(rating);
@@ -161,10 +161,9 @@ export default function MenuTag({
             rating={rating}
             onClick={() => setIsExpanded(true)}
           />
-        ) }
+        )}
       </div>
     );
   }
-
   return null;
 }

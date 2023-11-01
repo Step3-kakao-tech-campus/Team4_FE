@@ -20,10 +20,12 @@ import RecentlyViewdStorePage from './components/page/recentlyViewdStorePage';
 import UserEditProfilePage from './components/page/userEditProfilePage';
 import CoinUsagePage from './components/page/coinUsagePage';
 import LikedReviewPage from './components/page/likedReviewPage';
+import ReviewDetailPage from './components/page/reviewDetailPage';
 import WriteReviewPage from './components/page/writeReviewPage';
 import ErrorBoundary from './components/layouts/errorBoundary';
 import NotFoundPage from './components/page/notFoundPage';
 import GlobalLoader from './components/atoms/globalLoader';
+import PromptPage from './components/page/promptPage';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -56,6 +58,8 @@ function App() {
                     <Route path="/coinUsageHistory" element={<CoinUsagePage />} />
                     <Route path="/stores/:storeId/writeReview" element={<WriteReviewPage />} />
                     <Route path="/profileEditing" element={<UserEditProfilePage />} />
+                    <Route path="/prompt/:promptId" element={<PromptPage />} />
+                    <Route path="stores/:storeId/reviews/:reviewId" element={<ReviewDetailPage />} />
                   </Route>
                   {/* 단독 레이아웃 */}
                   <Route path="/landing" element={<LandingPage />} />

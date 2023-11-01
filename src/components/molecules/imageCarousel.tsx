@@ -11,7 +11,7 @@ interface ImageCarouselProps {
   children: React.ReactNode;
 }
 
-function ImageCarousel({ swiperStyle, children }:ImageCarouselProps) {
+function ImageCarousel({ swiperStyle, children }: ImageCarouselProps) {
   let global = 0;
   const modifiedChildren = React.Children.map(children, (child) => {
     global += 1;

@@ -6,11 +6,11 @@ import { GoSearch } from 'react-icons/go';
 import { RefHandler } from '../../types/refHandler';
 
 interface InputProps {
-  id?: string;
+  id?: string,
   mode: 'search' | 'singleLine' | 'number' | 'multiLine';
   placeholder?: string;
   defaultValue?: string;
-  onSearchClick? : React.FormEventHandler<HTMLFormElement>;
+  onSearchClick?: React.FormEventHandler<HTMLFormElement>;
   step?: number;
 }
 
