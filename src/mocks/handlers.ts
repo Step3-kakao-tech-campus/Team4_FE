@@ -141,6 +141,20 @@ export const handlers = [
       );
     }
 
+    if (Number(storeId) > 3) {
+      return res(
+        ctx.status(404),
+        ctx.json({
+          success: false,
+          response: null,
+          error: {
+            status: 404,
+            message: '해당 음식점을 찾을 수 없습니다.',
+          },
+        }),
+      );
+    }
+
     return res(
       ctx.status(200),
       ctx.json({

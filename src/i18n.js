@@ -191,6 +191,17 @@ i18n
             deleteImage: '사진 삭제',
             image: '리뷰 이미지',
           },
+          errorPage: {
+            fail: '페이지를 가져오지 못했습니다.',
+            mainPage: '메인 페이지로',
+          },
+          notFoundPage: {
+            notFound: '없는 페이지입니다.',
+            mainPage: '메인 페이지로',
+          },
+          loader: {
+            loading: '불러오는 중...',
+          },
           reviewDetailPage: {
             wrongApiAccess: '잘못된 접근입니다.',
             pageTitle: '리뷰 상세 페이지',
@@ -390,6 +401,17 @@ i18n
             title: 'Create a review',
             deleteImage: 'Delete image',
             image: 'Review image',
+          },
+          errorPage: {
+            fail: 'Failed to fetch page.',
+            mainPage: 'Go to main page',
+          },
+          notFoundPage: {
+            notFound: 'The page does not exist.',
+            mainPage: 'Go to main page',
+          },
+          loader: {
+            loading: 'Loading...',
           },
           reviewDetailPage: {
             wrongApiAccess: 'That is an incorrect approach.',
