@@ -16,4 +16,6 @@ export interface StoreDetail {
   reviewCount: number;
   rating: number;
   information: string;
+  lowRatingReview: string;
+  highRatingReview: string;
 }

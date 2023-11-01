@@ -13,3 +13,11 @@ export async function getReviews(
 
   return response.data.response;
 }
+
+export async function getGPTBestReview(storeId: number) {
+  return fetchInstance.get(`/gpt/store/${storeId}/review/best`);
+}
+
+export async function getGPTWorstReview(storeId: number) {
+  return fetchInstance.get(`/gpt/store/${storeId}/review/worst`);
+}

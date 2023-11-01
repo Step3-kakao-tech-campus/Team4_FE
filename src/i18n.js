@@ -112,6 +112,11 @@ i18n
             addLikedStore: '좋아요 한 음식점에 추가',
             rating: '별점',
             writeReview: '리뷰 작성',
+            information: '음식점 정보',
+            gpt: 'ChatGPT로 요약한 최근 후기',
+            lowRatingReview: '낮은 평점 요약',
+            highRatingReview: '높은 평점 요약',
+            gptNotExist: 'ChatGPT로 요약한 후기를 검토중이에요.',
           },
           likedStorePage: {
             pageTitle: '좋아요 한 맛집',
@@ -307,6 +312,11 @@ i18n
             addLikedStore: 'Add to the store you liked',
             rating: 'Rating',
             writeReview: 'Write review',
+            information: 'Store information',
+            gpt: 'ChatGPT\'s Recent Review Summary',
+            lowRatingReview: 'Low rating review summary',
+            highRatingReview: 'High rating review summary',
+            gptNotExist: 'We\'re reviewing the review summarized by ChatGPT.',
           },
           likedStorePage: {
             pageTitle: 'A Restaurant with Likes',

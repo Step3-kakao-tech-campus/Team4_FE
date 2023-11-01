@@ -37,6 +37,20 @@ export interface ReviewInfo {
   totalPrice: number;
 }
 
+export interface GPTBestReviewContent {
+  isExist: boolean;
+  content: {
+    BEST: string;
+  }
+}
+
+export interface GPTWorstReviewContent {
+  isExist: boolean;
+  content: {
+    WORST: string;
+  }
+}
+
 export interface ReviewDetailInfo {
   reviewImages: ReviewDetailImageInfo[];
   reviewerImage: string,
