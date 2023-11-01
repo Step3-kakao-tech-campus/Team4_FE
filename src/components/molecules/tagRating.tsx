@@ -15,13 +15,13 @@ export default function TagRating({ rating }: TagRatingProps) {
     if (rating < 0) {
       for (let i = 0; i > rating; i -= 1) {
         list.push(
-          <Icon name="FillDislike" size="1rem" ariaLabel={t('menuTag.dislike')} />,
+          <Icon name="FillDislike" key={i} size="1rem" ariaLabel={t('menuTag.dislike')} />,
         );
       }
     } else if (rating > 0) {
       for (let i = 0; i < rating; i += 1) {
         list.push(
-          <Icon name="FillLike" size="1rem" ariaLabel={t('menuTag.like')} />,
+          <Icon name="FillLike" key={i} size="1rem" ariaLabel={t('menuTag.like')} />,
         );
       }
     }
