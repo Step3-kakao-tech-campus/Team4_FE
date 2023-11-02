@@ -26,6 +26,7 @@ import ErrorBoundary from './components/layouts/errorBoundary';
 import NotFoundPage from './components/page/notFoundPage';
 import GlobalLoader from './components/atoms/globalLoader';
 import PromptPage from './components/page/promptPage';
+import LoginRedriect from './components/page/loginRedriect';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -63,6 +64,7 @@ function App() {
                   </Route>
                   {/* 단독 레이아웃 */}
                   <Route path="/landing" element={<LandingPage />} />
+                  <Route path="/login-redirect" element={<LoginRedriect />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>
               </Suspense>
