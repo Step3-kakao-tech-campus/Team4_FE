@@ -472,16 +472,4 @@ export const handlers = [
       }),
     );
   }),
-
-  rest.get('/login-redirect', (req, res, ctx) => res(
-    ctx.status(201),
-    ctx.json({
-      data: {
-        grantType: 'Bearer',
-        accessToken: 'ededa2dwd2XSsa2',
-        refreshToken: 'dasx2d1233DSD23d',
-        accessTokenExpiresin: 12234324,
-      },
-    }),
-  )),
 ];
