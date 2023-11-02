@@ -9,5 +9,5 @@ interface GetTokenInfo {
 
 export async function getToken(): Promise<GetTokenInfo> {
   const response = await fetchInstance.get('/login-redirect');
-  return response.data.response;
+  return response.data.data;
 }

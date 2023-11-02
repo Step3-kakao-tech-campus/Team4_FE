@@ -1,31 +1,28 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux/es/exports';
-import { RootState } from '../../store/index';
-import { getToken } from '../../apis/useToken';
+import { getToken } from '../../apis/getToken';
 
 function LoginRedriect() {
   const navigate = useNavigate();
-  const redirectUrl = useSelector((state: RootState) => state.redirectUrl);
 
   useEffect(() => {
     getToken()
-      .then((res) => {
+      .then((data) => {
         const {
           grantType, accessToken, refreshToken, accessTokenExpiresin,
-        } = res;
+        } = data;
         localStorage.setItem('accessToken', `${grantType}${accessToken}`);
         localStorage.setItem('refreshToken', `${grantType}${refreshToken}`);
         localStorage.setItem('refreshToken', `${accessTokenExpiresin}`);
-        navigate(redirectUrl.url);
+        navigate(localStorage.getItem('previouseUrl') || '/');
       })
       .catch((err) => {
         console.log(err);
-        navigate(redirectUrl.url);
+        navigate(localStorage.getItem('previouseUrl') || '/');
       });
-  });
+  }, []);
   return (
-    <div>LoginRedirect</div>
+    <div>리다이렉트 됩니다.</div>
   );
 }
 
