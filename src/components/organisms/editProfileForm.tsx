@@ -7,10 +7,14 @@ import Input from '../atoms/input';
 import Button from '../atoms/button';
 import DropdownList from '../molecules/dropdownList';
 import { RefHandler } from '../../types/refHandler';
-import { profileEdit } from '../../apis/profile';
+import { profileEdit, profileCreate } from '../../apis/profile';
 import { editProfile } from '../../store/slices/userProfileState';
 
-function EditProfileForm() {
+interface EditProfileFormProps {
+  isRegister?: boolean;
+}
+
+function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
   const { t } = useTranslation();
   const profile = useSelector((state: RootState) => state.profile);
   const dispatch = useDispatch();
@@ -24,6 +28,43 @@ function EditProfileForm() {
 
   // 페이지 렌더링 시 닉네임, 성별, 언어 서버에서 받아오기
 
+  function checkInputValidation() {
+    if (inputRef.current !== null) {
+      const nickname = inputRef.current.getInputValue();
+      if (nickname === undefined) {
+        return false;
+      }
+      if (nickname.length < 2) {
+        alert(t('userEditProfilePage.nickNameLengthError'));
+        return false;
+      }
+      console.log(language, gender);
+      if (language === '설정 안됨') {
+        alert('언어 정보가 선택되지 않았습니다.');
+        return false;
+      }
+      if (gender === '설정 안됨') {
+        alert('성별 정보가 선택되지 않았습니다.');
+        return false;
+      }
+      return true;
+    }
+    return false;
+  }
+
+  function updateUserInfoState() {
+    if (inputRef.current !== null) {
+      const nickname = inputRef.current.getInputValue();
+      if (nickname !== undefined) {
+        dispatch(editProfile({
+          language,
+          gender,
+          nickname,
+        }));
+      }
+    }
+  }
+
   async function onClickProfileEdit() {
     if (inputRef.current !== null) {
       const nickname = inputRef.current.getInputValue();
@@ -31,23 +72,41 @@ function EditProfileForm() {
         alert(t('userEditProfilePage.error'));
         return;
       }
-      if (nickname.length < 2) { alert(t('userEditProfilePage.nickNameLengthError')); } else {
-        // 리팩토링 때 값이 변경 되지 않았으면 api 요청안하는 기능 추가
+      if (checkInputValidation()) {
         // 닉네임, 성별, 언어를 백앤드에 전송
         const result = await profileEdit({ language, gender, nickname });
         if (result.status === 200) {
           alert(t('userEditProfilePage.success'));
-          dispatch(editProfile({
-            language,
-            gender,
-            nickname,
-          }));
+          updateUserInfoState();
+          navigate('/');
+        } else {
+          alert(t('userEditProfilePage.error'));
         }
       }
-    } else {
-      alert(t('userEditProfilePage.error'));
     }
   }
+
+  async function onClickProfileCraete() {
+    if (inputRef.current !== null) {
+      const nickname = inputRef.current.getInputValue();
+      if (nickname === undefined) {
+        alert(t('userEditProfilePage.error'));
+        return;
+      }
+      if (checkInputValidation()) {
+        // 닉네임, 성별, 언어를 백앤드에 전송
+        const result = await profileCreate({ language, gender, nickname });
+        if (result.status === 200) {
+          alert(t('userEditProfilePage.success'));
+          updateUserInfoState();
+          navigate('/');
+        } else {
+          alert(t('userEditProfilePage.error'));
+        }
+      }
+    }
+  }
+
   return (
     <form>
       <div className="my-6 px-12">
@@ -95,8 +154,12 @@ function EditProfileForm() {
         </div>
       </div>
       <div className="my-24 text-center">
-        <Button size="medium" extraStyle="px-12 mr-6" onClick={() => { onClickProfileEdit(); }}>{t('userEditProfilePage.change')}</Button>
-        <Button size="medium" extraStyle="px-12 ml-6" backgroundColor="bg-matgpt-gray" onClick={() => { navigate('/mypage'); }}>{t('userEditProfilePage.cancel')}</Button>
+        {isRegister ? <Button size="medium" extraStyle="px-12 mr-6" onClick={() => { onClickProfileCraete(); }}>회원정보 저장</Button> : (
+          <div>
+            <Button size="medium" extraStyle="px-12 mr-6" onClick={() => { onClickProfileEdit(); }}>{t('userEditProfilePage.change')}</Button>
+            <Button size="medium" extraStyle="px-12 ml-6" backgroundColor="bg-matgpt-gray" onClick={() => { navigate('/mypage'); }}>{t('userEditProfilePage.cancel')}</Button>
+          </div>
+        )}
       </div>
     </form>
   );
