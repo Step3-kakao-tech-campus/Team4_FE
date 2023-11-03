@@ -229,6 +229,9 @@ i18n
           promptPage: {
             confirm: '확인',
           },
+          mainPage: {
+            search: '범위 내 음식점 검색',
+          },
         },
       },
       en: {
@@ -439,6 +442,9 @@ i18n
           },
           promptPage: {
             confirm: 'Confrim',
+          },
+          mainPage: {
+            search: 'Search stores in range',
           },
         },
       },

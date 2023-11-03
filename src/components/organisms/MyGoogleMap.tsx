@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { useTranslation } from 'react-i18next';
 import { MarkerInfo } from '../../types/map';
 import Marker from '../molecules/marker';
 import { useGeolocation } from '../../hooks/geolocation';
@@ -19,6 +20,7 @@ export default function MyGoogleMap() {
   const [tilesLoaded, setTilesLoaded] = useState(false);
   const [isStoreLoading, setIsStoreLoading] = useState(false);
   const { location } = useGeolocation();
+  const { t } = useTranslation();
 
   const fetchStores = async (curentBound: google.maps.LatLngBounds) => {
     const lowLat = curentBound.getSouthWest().lat();
@@ -102,7 +104,7 @@ export default function MyGoogleMap() {
           onClick={() => fetchStores(bound!)}
           disabled={isStoreLoading}
         >
-          범위 내 음식점 검색
+          {t('mainPage.search')}
         </Button>
         {stores && stores.map(({
           latitude, longitude, storeId, storeName, storeImage,
