@@ -13,13 +13,13 @@ export const createFetchInstance = (
     },
   });
 
-  instance.interceptors.request.use((config) => {
+  instance.interceptors.request.use(async (config) => {
     const newConfig = { ...config };
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken !== 'null') {
       const accessTokenExpiresIn = localStorage.get('accessTokenExpiresIn');
       if (moment(accessTokenExpiresIn).diff(moment()) < 0) { // 발급 유효 시간 초과 시 재 발급
-        axios.post(
+        await axios.post(
           '/auth/reissue',
           {
             accessToken: localStorage.getItem('accessToken'),
