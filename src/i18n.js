@@ -163,6 +163,8 @@ i18n
             notSelected: '설정 안됨',
             fileIsNotUpload: '파일이 업로드 되지 않았습니다.',
             userInfoSave: '회원정보 저장',
+            languageNotSelectedError: '언어 정보가 선택되지 않았습니다.',
+            genderNotSelectedError: '성별 정보가 선택되지 않았습니다.',
           },
           likedReviewPage: {
             pageTitle: '좋아요 한 리뷰',

@@ -39,12 +39,12 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
         return false;
       }
       console.log(language, gender);
-      if (language === '설정 안됨') {
-        alert('언어 정보가 선택되지 않았습니다.');
+      if (language === t('userEditProfilePage.notSelected')) {
+        alert(t('userEditProfilePage.languageNotSelectedError'));
         return false;
       }
-      if (gender === '설정 안됨') {
-        alert('성별 정보가 선택되지 않았습니다.');
+      if (gender === t('userEditProfilePage.notSelected')) {
+        alert(t('userEditProfilePage.genderNotSelectedError'));
         return false;
       }
       return true;
@@ -154,7 +154,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
         </div>
       </div>
       <div className="my-24 text-center">
-        {isRegister ? <Button size="medium" extraStyle="px-12 mr-6" onClick={() => { onClickProfileCraete(); }}>회원정보 저장</Button> : (
+        {isRegister ? <Button size="medium" extraStyle="px-12 mr-6" onClick={() => { onClickProfileCraete(); }}>{t('userEditProfilePage.userInfoSave')}</Button> : (
           <div>
             <Button size="medium" extraStyle="px-12 mr-6" onClick={() => { onClickProfileEdit(); }}>{t('userEditProfilePage.change')}</Button>
             <Button size="medium" extraStyle="px-12 ml-6" backgroundColor="bg-matgpt-gray" onClick={() => { navigate('/mypage'); }}>{t('userEditProfilePage.cancel')}</Button>
