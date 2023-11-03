@@ -421,7 +421,7 @@ export const handlers = [
       },
     }),
   )),
-  
+
   rest.post('/stores/:storeId/reviews/:reviewId/like', (req, res, ctx) => res(
     ctx.status(201),
     ctx.json({

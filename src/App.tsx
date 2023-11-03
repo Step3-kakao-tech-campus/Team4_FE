@@ -9,7 +9,6 @@ import MainPage from './components/page/mainPage';
 import SearchResultPage from './components/page/searchResultPage';
 import MainLayout from './components/layouts/mainLayout';
 import { queryClient } from './utils/query';
-import { worker } from './mocks/worker';
 import StoreDetailPage from './components/page/storeDetailPage';
 import LikedStorePage from './components/page/likedStorePage';
 import CoinRechargePage from './components/page/coinRechargePage';
@@ -26,12 +25,6 @@ import ErrorBoundary from './components/layouts/errorBoundary';
 import NotFoundPage from './components/page/notFoundPage';
 import GlobalLoader from './components/atoms/globalLoader';
 import PromptPage from './components/page/promptPage';
-
-if (process.env.NODE_ENV === 'development') {
-  worker.start({
-    onUnhandledRequest: 'bypass',
-  });
-}
 
 ReactModal.setAppElement('#root');
 
