@@ -75,5 +75,6 @@
   },
   "msw": {
     "workerDirectory": "public"
-  }
+  },
+  "proxy": "http://43.201.187.182:8080"
 }
