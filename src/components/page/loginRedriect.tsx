@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import base64 from 'base-64';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function LoginRedriect() {
@@ -8,10 +7,9 @@ function LoginRedriect() {
 
   useEffect(() => {
     const isFirstLogin = Boolean(serchParams.get('isFirstLogin'));
-    const accessToken = base64.decode(serchParams.get('accessToken') || '');
-    const refreshToken = base64.decode(serchParams.get('refreshToken') || '');
+    const accessToken = serchParams.get('accessToken') || '';
+    const refreshToken = serchParams.get('refreshToken') || '';
     const accessTokenExpiresIn = Number(serchParams.get('accessTokenExpiresIn') || '');
-
     localStorage.setItem('accessToken', `Bearer ${accessToken}`);
     localStorage.setItem('refreshToken', `Bearer ${refreshToken}`);
     localStorage.setItem('accessTokenExpiresIn', `${accessTokenExpiresIn}`);

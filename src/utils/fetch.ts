@@ -19,16 +19,17 @@ export const createFetchInstance = (
     if (accessToken !== 'null') {
       const accessTokenExpiresIn = localStorage.get('accessTokenExpiresIn');
       if (moment(accessTokenExpiresIn).diff(moment()) < 0) { // 발급 유효 시간 초과 시 재 발급
-        axios({
-          url: 'api url',
-          method: 'post',
-          headers: {
+        axios.post(
+          '/auth/reissue',
+          {
             accessToken: localStorage.getItem('accessToken'),
             refreshToken: localStorage.getItem('refreshToken'),
           },
-        }).then((res) => {
+        ).then((res) => {
           localStorage.setItem('accessToken', `Bearer ${res.data.accessToken}`);
           localStorage.setItem('accessTokenExpiresIn', `Bearer ${res.data.accessTokenExpiresIn}`);
+        }).catch((error) => {
+          console.log(error);
         });
       }
       newConfig.headers.Authorization = accessToken;
