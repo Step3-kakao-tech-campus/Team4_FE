@@ -17,7 +17,7 @@ export const createFetchInstance = (
     const newConfig = { ...config };
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken !== 'null') {
-      const accessTokenExpiresIn = localStorage.get('accessTokenExpiresIn');
+      const accessTokenExpiresIn = localStorage.getItem('accessTokenExpiresIn');
       if (moment(accessTokenExpiresIn).diff(moment()) < 0) { // 발급 유효 시간 초과 시 재 발급
         await axios.post(
           '/auth/reissue',
