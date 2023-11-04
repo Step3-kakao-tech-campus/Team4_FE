@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import WriteReviewTemplate from '../template/writeReviewTemplate';
@@ -18,6 +18,11 @@ export default function WriteReviewPage() {
   const { mutate } = useWriteReview();
 
   const { storeId } = useParams();
+
+  useEffect(() => {
+    // 로그인 상태가 아니면 로그인 레이아웃으로 이동
+    if (localStorage.getItem('accessToken') === null) { navigate('/login'); }
+  }, []);
 
   const handleWriteReview = () => {
     if (storeId === undefined || Number.isNaN(+storeId)) {
