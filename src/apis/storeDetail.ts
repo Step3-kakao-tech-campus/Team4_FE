@@ -7,11 +7,13 @@ export async function getStoreDetail(storeId: number) {
 
 export async function getReviews(
   storeId: number,
-  cursor: number,
+  sortBy: 'latest' | 'rating',
+  cursorId: number,
+  cursorRating: number,
 ): Promise<ReviewCardInfo[]> {
-  const response = await fetchInstance.get(`/stores/${storeId}/reviews?c=${cursor}`);
+  const response = await fetchInstance.get(`/stores/${storeId}/reviews?sortBy=${sortBy}&cursorId=${cursorId}&cursorRating=${cursorRating}`);
 
-  return response.data.response;
+  return response.data.data;
 }
 
 export async function getGPTBestReview(storeId: number) {

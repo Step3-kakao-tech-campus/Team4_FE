@@ -11,7 +11,7 @@ export default function StoreDetailPage() {
 
   const {
     data: reviewData, hasNextPage, fetchNextPage,
-  } = useStoreReview(storeIdToNum);
+  } = useStoreReview(storeIdToNum, 'latest', 5);
 
   const fetchReview = () => {
     if (hasNextPage) {

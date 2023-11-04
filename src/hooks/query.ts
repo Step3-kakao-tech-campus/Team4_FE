@@ -23,10 +23,10 @@ export function useStoreDetail(storeId: number) {
   });
 }
 
-export function useStoreReview(storeId: number) {
+export function useStoreReview(storeId: number, sortBy: 'latest' | 'rating', cursorRating: number) {
   return useInfiniteQuery({
     queryKey: ['storeReview', { storeId }],
-    queryFn: async ({ pageParam = 0 }) => getReviews(storeId, pageParam),
+    queryFn: async ({ pageParam = 0 }) => getReviews(storeId, sortBy, pageParam + 7, cursorRating),
     getNextPageParam: (lastPage, allPages) => (
       lastPage.length === 0 ? undefined : allPages.flat().length
     ),
