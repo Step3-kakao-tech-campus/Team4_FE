@@ -1,13 +1,12 @@
 export interface ReviewCardInfo {
-  storeId: number,
-  reviewId: number,
-  storeImage: string,
-  storeName: string,
-  profileImage: string,
-  reviewerName: string,
-  reviewRating: number,
-  visitedCount: number,
-  createdAt: string,
+  storeId: number;
+  reviewId: number;
+  storeImage: string;
+  storeName: string;
+  userId: number;
+  rating: number;
+  createdAt: string;
+  updated: boolean;
 }
 
 export interface ReviewImageTagInfo {

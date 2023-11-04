@@ -5,8 +5,14 @@ import Image from '../atoms/image';
 import { ReviewCardInfo } from '../../types/review';
 
 function ReviewCard({
-  storeId, reviewId, storeImage,
-  storeName, profileImage, reviewerName, reviewRating, visitedCount, createdAt,
+  storeId,
+  reviewId,
+  storeImage,
+  storeName,
+  userId,
+  rating,
+  createdAt,
+  updated,
 }: ReviewCardInfo) {
   const { t } = useTranslation();
   return (
@@ -25,21 +31,25 @@ function ReviewCard({
           </div>
           <div className="flex items-center">
             <div className="h-[31.901px] w-[2.5rem] ">
-              <Image imageSrc={profileImage} alt={t('reviewCard.userImage')} threshold={{ smallToMedium: '0', mediumToLarge: '0' }} className="pr-2" />
+              <Image imageSrc="" alt={t('reviewCard.userImage')} threshold={{ smallToMedium: '0', mediumToLarge: '0' }} className="pr-2" />
             </div>
-            <span className="h-[1.5rem] overflow-hidden text-ellipsis">{reviewerName}</span>
+            <span className="h-[1.5rem] overflow-hidden text-ellipsis">{userId}</span>
           </div>
           <div className="flex justify-between">
             <div className="flex items-center">
               <Icon name="OutlineStar" size="1.5rem" ariaLabel={t('reviewCard.ratingIcon')} />
-              <span className="pl-1 pr-3">{reviewRating}</span>
-              <Icon name="UserGroup" size="1.2rem" ariaLabel={t('reviewCard.memberNumIcon')} />
-              <span className="pl-1">
+              <span className="pl-1 pr-3">{rating}</span>
+              {/* <Icon name="UserGroup"
+               size="1.2rem" ariaLabel={t('reviewCard.memberNumIcon')} /> */}
+              {/* <span className="pl-1">
                 {visitedCount}
                 명
-              </span>
+              </span> */}
             </div>
-            <span>{createdAt}</span>
+            <span>
+              {createdAt}
+              {updated ? <span>(수정됨)</span> : null}
+            </span>
           </div>
         </div>
       </div>

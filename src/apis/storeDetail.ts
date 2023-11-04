@@ -13,7 +13,7 @@ export async function getReviews(
 ): Promise<ReviewCardInfo[]> {
   const response = await fetchInstance.get(`/stores/${storeId}/reviews?sortBy=${sortBy}&cursorId=${cursorId}&cursorRating=${cursorRating}`);
 
-  return response.data.data;
+  return response.data.data.reverse();
 }
 
 export async function getGPTReview(storeId: number) {

@@ -21,13 +21,12 @@ export default function StoreReviewTab({
             <ReviewCard
               storeId={review.storeId}
               reviewId={review.reviewId}
-              reviewRating={review.reviewRating}
-              reviewerName={review.reviewerName}
+              rating={review.rating}
+              userId={review.userId}
               storeImage={review.storeImage}
               storeName={review.storeName}
-              profileImage={review.profileImage}
-              visitedCount={review.visitedCount}
               createdAt={review.createdAt}
+              updated={review.updated}
             />
           </li>
         ))}
