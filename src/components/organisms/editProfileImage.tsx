@@ -19,12 +19,12 @@ function EditProfileImage() {
     }
 
     if (!isImageType(fileList[0].type)) {
-      alert('유효하지 않은 파일 유형입니다.');
+      alert(t('imageUploadError.fileTypeError'));
       return;
     }
 
     if (!isValidFileSize(fileList[0].size)) {
-      alert('파일 크기는 5MB 이하여야 합니다.');
+      alert(t('imageUploadError.fileSizeError'));
     }
 
     // 브라우저에서 AWS preSignedURL로 이미지 upload
