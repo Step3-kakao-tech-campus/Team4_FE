@@ -15,7 +15,7 @@ function LoginRedriect() {
     localStorage.setItem('accessTokenExpiresIn', `${accessTokenExpiresIn}`);
 
     if (isFirstLogin) {
-      // 회원 추가 정보 입력 페이지로 navigate
+      navigate('/registerUserInfo');
     } else {
       // 기존 유저면 원래 있던 페이지로 이동
       navigate(localStorage.getItem('previouseUrl') || '/');
