@@ -23,7 +23,6 @@ export default function WriteReviewPage() {
 
   // presignedUrl을 요청하고, 각 이미지를 업로드
   const uploadImage = async (content: string, peopleCount: number, totalPrice: number) => {
-    let i = 0;
     if (storeId === undefined || Number.isNaN(+storeId)) {
       return;
     }
@@ -38,13 +37,12 @@ export default function WriteReviewPage() {
         reviewImages.length,
       );
       // 이미지별로 presignedUrl로 이미지 업로드, presingedUrl배열 상태 값에 push
-      reviewImages.forEach(async (reviewImage) => {
+      reviewImages.forEach(async (reviewImage, index) => {
         try {
-          await uploadImageToS3(response.presignedUrls[i].presignedUrl, reviewImage);
+          await uploadImageToS3(response.presignedUrls[index].presignedUrl, reviewImage);
           const prev = presignedUrl.slice();
-          prev.push(response.presignedUrls[i].presignedUrl);
+          prev.push(response.presignedUrls[index].presignedUrl);
           setPresignedUrl(prev);
-          i += 1;
         } catch (err) {
           alert(err);
         }

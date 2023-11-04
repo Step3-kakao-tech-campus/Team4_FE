@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux/es/exports';
 import { useTranslation } from 'react-i18next';
 import { RootState } from '../../store/index';
 import Button from '../atoms/button';
+import { isImageType, isValidFileSize } from '../../utils/image';
 
 function EditProfileImage() {
   const { t } = useTranslation();
@@ -11,13 +12,21 @@ function EditProfileImage() {
   const profile = useSelector((state: RootState) => state.profile);
 
   const handleChange = () => {
-    if (imgRef.current?.files?.length === undefined || imgRef.current?.files?.length < 1) {
+    const fileList = imgRef.current?.files;
+    if (fileList === undefined || fileList === null || fileList.length < 1) {
       alert(t('userPage.fileIsNotUpload'));
       return;
     }
-    // 사진이 정상적으로 업로드 됨
-    console.log(imgRef.current?.files[0]);
-    // 서버에서 AWS S3에 preSignedURL 요청
+
+    if (!isImageType(fileList[0].type)) {
+      alert('유효하지 않은 파일 유형입니다.');
+      return;
+    }
+
+    if (!isValidFileSize(fileList[0].size)) {
+      alert('파일 크기는 5MB 이하여야 합니다.');
+    }
+
     // 브라우저에서 AWS preSignedURL로 이미지 upload
     // 전역 상태 값 업데이트
   };
