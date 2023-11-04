@@ -16,10 +16,6 @@ export async function getReviews(
   return response.data.data;
 }
 
-export async function getGPTBestReview(storeId: number) {
-  return fetchInstance.get(`/gpt/store/${storeId}/review/best`);
-}
-
-export async function getGPTWorstReview(storeId: number) {
-  return fetchInstance.get(`/gpt/store/${storeId}/review/worst`);
+export async function getGPTReview(storeId: number) {
+  return fetchInstance.get(`/gpt/store/${storeId}/review`);
 }
