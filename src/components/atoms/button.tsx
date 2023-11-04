@@ -19,7 +19,7 @@ export default function Button({
     <button
       type="button"
       {...props}
-      className={`${size === 'medium' ? 'px-8 py-2 text-base' : `${size === 'large' ? 'px-36 py-2 text-base' : 'px-4 py-1 text-xs'}`} 
+      className={`${size === 'medium' ? 'px-8 py-2 text-base' : `${size === 'large' ? 'px-28 py-2 text-base' : 'px-4 py-1 text-xs'}`} 
         ${backgroundColor} ${textColor} break-keep rounded-full ${extraStyle}`}
     >
       {children}

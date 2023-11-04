@@ -8,7 +8,7 @@ function Login() {
   const navigate = useNavigate();
   useEffect(() => {
     // 로그인 상태인데 이 레이아웃에 들어오면 바로 메인 페이지로 이동
-    if (localStorage.getItem('accessToken') !== null) { navigate('/'); }
+    if (localStorage.getItem('accessToken') === null) { navigate('/'); }
   }, []);
 
   return (
@@ -25,10 +25,10 @@ function Login() {
       </div>
       <div>
         <div className="mb-6">
-          <SocialLoginButton size="large" name="kakao" />
+          <SocialLoginButton size="medium" name="kakao" />
         </div>
         <div>
-          <SocialLoginButton size="large" name="google" />
+          <SocialLoginButton size="medium" name="google" />
         </div>
       </div>
       <div className="mt-36">
