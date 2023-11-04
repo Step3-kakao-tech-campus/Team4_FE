@@ -232,6 +232,14 @@ i18n
           mainPage: {
             search: '범위 내 음식점 검색',
           },
+          elapsedDate: {
+            moment: '방금 전',
+            minute: '분 전',
+            hour: '시간 전',
+            day: '일 전',
+            month: '달 전',
+            year: '년 전',
+          },
         },
       },
       en: {
@@ -445,6 +453,14 @@ i18n
           },
           mainPage: {
             search: 'Search stores in range',
+          },
+          elapsedDate: {
+            moment: 'just a moment ago',
+            minute: 'minutes ago',
+            hour: 'hours ago',
+            day: 'days ago',
+            month: 'months ago',
+            year: 'years ago',
           },
         },
       },

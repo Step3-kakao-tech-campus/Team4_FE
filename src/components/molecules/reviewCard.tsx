@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 import { ReviewCardInfo } from '../../types/review';
+import useElapsedDate from '../../hooks/convert';
 
 function ReviewCard({
   storeId,
@@ -15,6 +16,9 @@ function ReviewCard({
   updated,
 }: ReviewCardInfo) {
   const { t } = useTranslation();
+
+  const elapsedDate = useElapsedDate({ dateString: createdAt });
+
   return (
     <Link
       to={`/stores/${storeId}/reviews/${reviewId}`}
@@ -47,8 +51,13 @@ function ReviewCard({
               </span> */}
             </div>
             <span>
-              {createdAt}
-              {updated ? <span>(수정됨)</span> : null}
+              {elapsedDate}
+              {updated ? (
+                <span>
+                  {' '}
+                  (수정됨)
+                </span>
+              ) : null}
             </span>
           </div>
         </div>
