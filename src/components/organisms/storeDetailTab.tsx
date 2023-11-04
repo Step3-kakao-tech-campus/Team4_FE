@@ -7,14 +7,18 @@ import { useGPTBestReview, useGPTWorstReview } from '../../hooks/query';
 
 interface StoreDetailTabProps {
   storeId: number;
-  storeInfo: string;
+  phoneNumber: string;
+  address: string;
+  businessHours: string;
   reviews: ReviewCardInfo[] | undefined;
   fetchReview: () => void;
 }
 
 export default function StoreDetailTab({
   storeId,
-  storeInfo,
+  phoneNumber,
+  address,
+  businessHours,
   reviews,
   fetchReview,
 }: StoreDetailTabProps) {
@@ -48,7 +52,9 @@ export default function StoreDetailTab({
       <div className="pb-[3.7rem]">
         {tab === 0 ? (
           <StoreOverviewTab
-            storeInfo={storeInfo}
+            phoneNumber={phoneNumber}
+            address={address}
+            businessHours={businessHours}
             lowRatingReview={worstReviewData}
             highRatingReview={bestReviewData}
           />

@@ -7,7 +7,7 @@ export default function StoreDetailPage() {
   const storeIdToNum = Number(storeId);
 
   const { data: storeDetailData } = useStoreDetail(storeIdToNum);
-  const storeDetail = storeDetailData?.data.response;
+  const storeDetail = storeDetailData?.data.data;
 
   const {
     data: reviewData, hasNextPage, fetchNextPage,

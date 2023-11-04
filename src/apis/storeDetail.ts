@@ -2,7 +2,7 @@ import { ReviewCardInfo } from '../types/review';
 import { fetchInstance } from './instance';
 
 export async function getStoreDetail(storeId: number) {
-  return fetchInstance.get(`/stores/${storeId}`);
+  return fetchInstance.get(`/store/${storeId}`);
 }
 
 export async function getReviews(
