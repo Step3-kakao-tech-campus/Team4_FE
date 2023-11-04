@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PageTitleCard from '../molecules/pageTitleCard';
 import SocialLoginButton from '../atoms/socialLoginButton';
 import Button from '../atoms/button';
 
 function Login() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    // 로그인 상태인데 이 레이아웃에 들어오면 바로 메인 페이지로 이동
+    if (localStorage.getItem('accessToken') !== null) { navigate('/'); }
+  }, []);
+
   return (
     <div className="flex flex-col items-center">
       <PageTitleCard pageTitle="로그인 페이지" />
@@ -25,7 +32,17 @@ function Login() {
         </div>
       </div>
       <div className="mt-36">
-        <Button size="large" backgroundColor="bg-matgpt-gray" extraStyle="px-12">나중에 로그인 하기</Button>
+        <Button
+          size="large"
+          backgroundColor="bg-matgpt-gray"
+          extraStyle="px-12"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          나중에 로그인 하기
+
+        </Button>
       </div>
     </div>
   );
