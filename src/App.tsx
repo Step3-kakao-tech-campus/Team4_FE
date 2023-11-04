@@ -26,6 +26,7 @@ import ErrorBoundary from './components/layouts/errorBoundary';
 import NotFoundPage from './components/page/notFoundPage';
 import GlobalLoader from './components/atoms/globalLoader';
 import PromptPage from './components/page/promptPage';
+import RegisterUserInfoPage from './components/page/registerUserInfoPage';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -60,6 +61,7 @@ function App() {
                     <Route path="/profileEditing" element={<UserEditProfilePage />} />
                     <Route path="/prompt/:promptId" element={<PromptPage />} />
                     <Route path="stores/:storeId/reviews/:reviewId" element={<ReviewDetailPage />} />
+                    <Route path="/registerUserInfo" element={<RegisterUserInfoPage />} />
                   </Route>
                   {/* 단독 레이아웃 */}
                   <Route path="/landing" element={<LandingPage />} />

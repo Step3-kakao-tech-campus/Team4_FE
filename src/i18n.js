@@ -162,6 +162,9 @@ i18n
             cancel: '취소',
             notSelected: '설정 안됨',
             fileIsNotUpload: '파일이 업로드 되지 않았습니다.',
+            userInfoSave: '회원정보 저장',
+            languageNotSelectedError: '언어 정보가 선택되지 않았습니다.',
+            genderNotSelectedError: '성별 정보가 선택되지 않았습니다.',
           },
           likedReviewPage: {
             pageTitle: '좋아요 한 리뷰',
@@ -228,6 +231,9 @@ i18n
           },
           promptPage: {
             confirm: '확인',
+          },
+          registerUserInfoPage: {
+            pageTitle: '유저 정보 입력',
           },
         },
       },
@@ -373,6 +379,7 @@ i18n
             cancel: 'Cancel',
             notSelected: 'not Selected',
             fileIsNotUpload: 'The file was not uploaded.',
+            userInfoSave: 'Save Your Information',
           },
           likedReviewPage: {
             pageTitle: 'Liked review',
@@ -439,6 +446,9 @@ i18n
           },
           promptPage: {
             confirm: 'Confrim',
+          },
+          registerUserInfoPage: {
+            pageTitle: 'Sign-up Page',
           },
         },
       },
