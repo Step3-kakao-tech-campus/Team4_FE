@@ -67,6 +67,7 @@ export default function WriteReviewPage() {
       return;
     }
 
+    // 리뷰작성 요청을 위한 데이터 만들기
     const reviewImagesWithMenuTag: PostWriteReviewInfo[] = reviewImages.map(
       (reviewImage, imageIndex) => {
         const tempTag: Tag[] = [];
@@ -85,9 +86,7 @@ export default function WriteReviewPage() {
           tags: tempTag,
         });
       },
-    ); // 리뷰작성 요청을 위한 데이터 만들기
-
-    console.log(reviewImagesWithMenuTag);
+    );
 
     // presignedUrl 획득 및 이미지 업로드 구현
     uploadImage(content, +peopleCount, +totalPrice);
