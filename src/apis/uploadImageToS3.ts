@@ -2,7 +2,7 @@ import { fetchInstance } from './instance';
 
 export async function uploadImageToS3(
   presignendUrl: string,
-  file: File,
+  file: Blob,
 ): Promise<{ data: {} }> {
   const response = await fetchInstance.put(
     `${presignendUrl}`,

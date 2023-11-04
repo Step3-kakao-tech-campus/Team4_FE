@@ -3,21 +3,56 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import WriteReviewTemplate from '../template/writeReviewTemplate';
 import { WriteReviewRefHandler } from '../../types/refHandler';
-import { useWriteReview } from '../../hooks/query';
-import { ReviewImageInfo } from '../../types/review';
+import { Tag, PostWriteReviewInfo } from '../../types/review';
 import { useMenuTagSelector } from '../../hooks/store';
+import { getReviewImagesPresignedUrls } from '../../apis/getPresignedUrl';
+import { uploadImageToS3 } from '../../apis/uploadImageToS3';
+import { useWriteReview } from '../../hooks/query';
 
 export default function WriteReviewPage() {
   const [reviewImages, setReviewImages] = useState<Blob[]>([]);
   const [rating, setRating] = useState(5);
+  const [presignedUrl, setPresignedUrl] = useState<string[]>([]);
   const writeReviewRef = useRef<WriteReviewRefHandler>(null);
   const menuTags = useMenuTagSelector((state) => state.menuTag);
+  const { mutate } = useWriteReview();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const { mutate } = useWriteReview();
-
   const { storeId } = useParams();
+
+  // presignedUrl을 요청하고, 각 이미지를 업로드
+  const uploadImage = async (content: string, peopleCount: number, totalPrice: number) => {
+    let i = 0;
+    if (storeId === undefined || Number.isNaN(+storeId)) {
+      return;
+    }
+    // presignedUrl 배열을 요청
+    try {
+      const response = await getReviewImagesPresignedUrls(
+        +storeId,
+        content,
+        rating,
+        +peopleCount,
+        +totalPrice,
+        reviewImages.length,
+      );
+      // 이미지별로 presignedUrl로 이미지 업로드, presingedUrl배열 상태 값에 push
+      reviewImages.forEach(async (reviewImage) => {
+        try {
+          await uploadImageToS3(response.presignedUrls[i].presignedUrl, reviewImage);
+          const prev = presignedUrl.slice();
+          prev.push(response.presignedUrls[i].presignedUrl);
+          setPresignedUrl(prev);
+          i += 1;
+        } catch (err) {
+          alert(err);
+        }
+      });
+    } catch (err) {
+      alert(err);
+    }
+  };
 
   const handleWriteReview = () => {
     if (storeId === undefined || Number.isNaN(+storeId)) {
@@ -32,22 +67,35 @@ export default function WriteReviewPage() {
       return;
     }
 
-    const reviewImagesWithMenuTag: ReviewImageInfo[] = reviewImages.map(
-      (reviewImage, imageIndex) => ({
-        imageData: reviewImage,
-        tags: menuTags.filter((menuTag) => menuTag.imageIndex === imageIndex),
-      }),
-    );
+    const reviewImagesWithMenuTag: PostWriteReviewInfo[] = reviewImages.map(
+      (reviewImage, imageIndex) => {
+        const tempTag: Tag[] = [];
+        menuTags.forEach((menuTag) => {
+          if (menuTag.imageIndex === imageIndex) {
+            tempTag.push({
+              name: menuTag.name,
+              locationX: menuTag.locationX,
+              locationY: menuTag.locationY,
+              rating: menuTag.rating,
+            });
+          }
+        });
+        return ({
+          imageUrl: presignedUrl[imageIndex],
+          tags: tempTag,
+        });
+      },
+    ); // 리뷰작성 요청을 위한 데이터 만들기
 
+    console.log(reviewImagesWithMenuTag);
+
+    // presignedUrl 획득 및 이미지 업로드 구현
+    uploadImage(content, +peopleCount, +totalPrice);
+
+    // 리뷰 작성 요청
     mutate({
       storeId: +storeId,
-      reviewData: {
-        reviewImages: reviewImagesWithMenuTag,
-        rating,
-        content,
-        peopleCount: +peopleCount,
-        totalPrice: +totalPrice,
-      },
+      reviewData: reviewImagesWithMenuTag,
     }, {
       onSuccess: () => {
         alert(t('writeReviewPage.success'));

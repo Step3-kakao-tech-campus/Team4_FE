@@ -16,7 +16,7 @@ export async function getReviewImagesPresignedUrls(
   peopleCount: number,
   totalPrice: number,
   imageCount: number,
-): Promise<ReviewImagesPresignedUrlInfo[]> {
+): Promise<ReviewImagesPresignedUrlInfo> {
   const response = await fetchInstance.post(`/stores/${storeId}/reviews/temp`, {
     content, rating, peopleCount, totalPrice, imageCount,
   });

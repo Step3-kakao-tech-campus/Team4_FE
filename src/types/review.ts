@@ -61,3 +61,15 @@ export interface ReviewDetailInfo {
   peopleCount: number;
   totalPrice: number;
 }
+
+export interface Tag {
+  name: string;
+  locationX: number;
+  locationY: number;
+  rating: number;
+}
+
+export interface PostWriteReviewInfo {
+  imageUrl: string;
+  tags: Tag[];
+}
