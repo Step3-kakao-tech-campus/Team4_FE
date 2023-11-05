@@ -86,9 +86,6 @@ i18n
             rating: '별점',
             review: '리뷰',
           },
-          pageTitle: {
-            back: '이전 페이지로 이동',
-          },
           searchBar: {
             cancelSearch: '검색 취소',
             popularStore: '인기 음식점',
@@ -162,6 +159,9 @@ i18n
             cancel: '취소',
             notSelected: '설정 안됨',
             fileIsNotUpload: '파일이 업로드 되지 않았습니다.',
+            userInfoSave: '회원정보 저장',
+            languageNotSelectedError: '언어 정보가 선택되지 않았습니다.',
+            genderNotSelectedError: '성별 정보가 선택되지 않았습니다.',
           },
           likedReviewPage: {
             pageTitle: '좋아요 한 리뷰',
@@ -240,6 +240,9 @@ i18n
             month: '달 전',
             year: '년 전',
           },
+          registerUserInfoPage: {
+            pageTitle: '유저 정보 입력',
+          },
         },
       },
       en: {
@@ -307,9 +310,6 @@ i18n
             moveDetail: 'Move to the detail page',
             rating: 'Rating',
             review: 'Review',
-          },
-          pageTitle: {
-            back: 'Go to previous page',
           },
           searchBar: {
             cancelSearch: 'Cancel search',
@@ -384,6 +384,7 @@ i18n
             cancel: 'Cancel',
             notSelected: 'not Selected',
             fileIsNotUpload: 'The file was not uploaded.',
+            userInfoSave: 'Save Your Information',
           },
           likedReviewPage: {
             pageTitle: 'Liked review',
@@ -461,6 +462,9 @@ i18n
             day: 'days ago',
             month: 'months ago',
             year: 'years ago',
+          },
+          registerUserInfoPage: {
+            pageTitle: 'Sign-up Page',
           },
         },
       },

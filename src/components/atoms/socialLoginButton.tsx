@@ -1,25 +1,42 @@
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 
 interface SocialLoginButtonProps {
   name: 'kakao' | 'google';
+  size?: 'medium' | 'large';
 }
 
-function SocialLoginButton({ name } :SocialLoginButtonProps) {
+function SocialLoginButton({ name, size = 'medium' }: SocialLoginButtonProps) {
   const { t } = useTranslation();
+  const currentLocation = useLocation();
+
+  const onClickHandleSocialLogin = (socialType: string) => {
+    localStorage.setItem('previouseUrl', currentLocation.pathname);
+    window.location.href = `http://43.201.187.182:8080/oauth2/authorization/${socialType}`;
+  };
+
   if (name === 'kakao') {
     return (
-      <a href="http://localhost:8080/oauth2/authorization/kakao" className="flex items-center justify-center bg-[#FEE500] w-[250px] h-[40px] rounded-xl mb-2">
+      <button
+        type="button"
+        onClick={() => { onClickHandleSocialLogin('kakao'); }}
+        className={`mb-2 flex h-[40px] items-center justify-center rounded-xl bg-white shadow-md ${size === 'medium' ? 'px-16' : 'px-[6.5rem]'}`}
+      >
         <img src="/img/social-login/kakao-ballon.png" alt={t('loginModal.kakaoLogo')} className="w-6" />
-        <span className="ml-4 text-md">{t('loginModal.loginKakao')}</span>
-      </a>
+        <span className="text-md ml-4">{t('loginModal.loginKakao')}</span>
+      </button>
     );
   }
   if (name === 'google') {
     return (
-      <a href="http://localhost:8080/oauth2/authorization/Google" className="flex items-center justify-center bg-white w-[250px] h-[40px] shadow-md rounded-xl mb-2">
+      <button
+        type="button"
+        onClick={() => { onClickHandleSocialLogin('google'); }}
+        className={`mb-2 flex h-[40px] items-center justify-center rounded-xl bg-white shadow-md ${size === 'medium' ? 'px-6' : 'px-16'}`}
+      >
         <img src="/img/social-login/google-logo.png" alt={t('loginModal.googleLogo')} className="w-6" />
-        <span className="ml-4 font-roboto text-md">{t('loginModal.loginGoogle')}</span>
-      </a>
+        <span className="text-md ml-4 font-roboto">{t('loginModal.loginGoogle')}</span>
+      </button>
     );
   }
   return (<div>해당하는 소셜 로그인 버튼이 없습니다.</div>);
