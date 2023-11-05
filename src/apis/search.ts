@@ -1,11 +1,11 @@
-import { StoreCardInfo } from '../types/store';
 import { fetchInstance } from './instance';
 
 export async function getSearchedStore(
   searchString: string | null,
   cursor: number,
-): Promise<StoreCardInfo[]> {
-  const response = await fetchInstance.get(`/search?q=${searchString}&c=${cursor}`);
+  lastId: number,
+) {
+  const response = await fetchInstance.get(`/store/search?sort=id&q=${searchString}&cursor=${cursor}&lastid=${lastId}`);
 
-  return response.data.response;
+  return response.data.data;
 }

@@ -17,13 +17,15 @@ export default function SearchResultPage() {
     }
   }, { threshold: 1 });
 
+  const result = data?.pages.map((page) => page.body).flat();
+
   return (
     <>
       {isFetching && isLoading ? <div>...</div> : null}
       {data ? (
         <SearchResultTemplate
           searchString={searchString || ''}
-          stores={data.pages.flat()}
+          stores={result!}
         />
       ) : null}
       <div ref={bottomObserverRef} className="mb-[3.7rem]" />

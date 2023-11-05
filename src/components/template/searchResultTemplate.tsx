@@ -18,7 +18,7 @@ export default function SearchResultTemplate({
       </div>
       <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
         {stores.map(({
-          storeId, storeName, category, review, reviewCount, rating, image,
+          storeId, storeName, category, review, numsOfReview, ratingAvg, image,
         }) => (
           <li key={storeId}>
             <StoreCard
@@ -26,8 +26,8 @@ export default function SearchResultTemplate({
               storeName={storeName}
               category={category}
               review={review}
-              reviewCount={reviewCount}
-              rating={rating}
+              numsOfReview={numsOfReview}
+              ratingAvg={ratingAvg}
               image={image}
             />
           </li>

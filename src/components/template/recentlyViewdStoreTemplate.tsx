@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StoreCardInfo } from '../../types/store';
 import PageTitleCard from '../molecules/pageTitleCard';
-import StoreCard from '../molecules/storeCard';
+// import StoreCard from '../molecules/storeCard';
 import Page from '../molecules/page';
 
 interface RecentlyViewdStoreTemplateProps {
@@ -38,7 +38,7 @@ function RecentlyViewdStoreTemplate(
       </nav>
       <main>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {recentlyViewdStore.map(({
+          {/* {recentlyViewdStore.map(({
             storeId, storeName, category, review, reviewCount, rating, image,
           }) => (
             <li key={storeId}>
@@ -53,7 +53,7 @@ function RecentlyViewdStoreTemplate(
                 likedCard
               />
             </li>
-          ))}
+          ))} */}
         </ul>
       </main>
     </div>

@@ -1,11 +1,14 @@
 export interface StoreCardInfo {
   storeId: number;
   storeName: string;
-  category: string;
+  category: {
+    id: number;
+    name: string;
+  };
   review: string;
   image: string;
-  rating: number;
-  reviewCount: number;
+  ratingAvg: number;
+  numsOfReview: number;
   likedCard?: boolean;
 }
 
