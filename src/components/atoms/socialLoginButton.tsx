@@ -20,7 +20,7 @@ function SocialLoginButton({ name, size = 'medium' }: SocialLoginButtonProps) {
       <button
         type="button"
         onClick={() => { onClickHandleSocialLogin('kakao'); }}
-        className={`mb-2 flex h-[40px] items-center justify-center rounded-xl bg-white shadow-md ${size === 'medium' ? 'px-16' : 'px-[6.5rem]'}`}
+        className={`mb-2 flex h-[40px] items-center justify-center rounded-xl bg-white shadow-md ${size === 'medium' ? 'px-14' : 'px-[6.5rem]'}`}
       >
         <img src="/img/social-login/kakao-ballon.png" alt={t('loginModal.kakaoLogo')} className="w-6" />
         <span className="text-md ml-4">{t('loginModal.loginKakao')}</span>
@@ -32,7 +32,7 @@ function SocialLoginButton({ name, size = 'medium' }: SocialLoginButtonProps) {
       <button
         type="button"
         onClick={() => { onClickHandleSocialLogin('google'); }}
-        className={`mb-2 flex h-[40px] items-center justify-center rounded-xl bg-white shadow-md ${size === 'medium' ? 'px-6' : 'px-16'}`}
+        className={`mb-2 flex h-[40px] items-center justify-center rounded-xl bg-white shadow-md ${size === 'medium' ? 'px-4' : 'px-16'}`}
       >
         <img src="/img/social-login/google-logo.png" alt={t('loginModal.googleLogo')} className="w-6" />
         <span className="text-md ml-4 font-roboto">{t('loginModal.loginGoogle')}</span>
