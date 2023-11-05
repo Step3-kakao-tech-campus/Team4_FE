@@ -6,7 +6,7 @@ import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 import { comma } from '../../utils/convert';
 import { likeReview, cancelLikeReview } from '../../apis/review';
-import { useModal } from '../../hooks/modal';
+import DeleteReviewModal from '../modals/deleteReviewModal';
 
 interface ReviewInformationProps {
   rating: number,
@@ -23,7 +23,7 @@ function ReviewInformation({
   const { t } = useTranslation();
   const { storeId, reviewId } = useParams();
   const [isLikeReview, setIsLikeReview] = useState(false);
-  const { openModal } = useModal('DeleteReview');
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 
   const { mutate: likeStoreMutation } = useMutation({
     mutationKey: 'likeStore',
@@ -72,7 +72,7 @@ function ReviewInformation({
               수정
             </span>
           </button>
-          <button type="button" onClick={openModal}>
+          <button type="button" onClick={() => { setIsOpenDeleteModal(true); }}>
             <span className="text-sm text-matgpt-gray">
               삭제
             </span>
@@ -87,6 +87,12 @@ function ReviewInformation({
         </div>
         <span>{comma(totalPrice)}</span>
       </div>
+      {isOpenDeleteModal ? (
+        <DeleteReviewModal
+          modalOpen={isOpenDeleteModal}
+          setModalOpen={setIsOpenDeleteModal}
+        />
+      ) : null}
     </div>
   );
 }

@@ -17,7 +17,7 @@ function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageC
   const { openModal } = useModal('Login');
 
   const onHandlePromptEvent = (name: string) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessTdoken');
     if (token === null) {
       openModal();
     } else if (prompts[name] === undefined) {

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactModal from 'react-modal';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../atoms/button';
 
 const customModalStyles = {
@@ -25,9 +26,13 @@ const customModalStyles = {
   },
 };
 
-function DeleteReviewModal() {
+function DeleteReviewModal({ modalOpen, setModalOpen }: {
+  modalOpen: boolean,
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}) {
   const { t } = useTranslation();
-  const [modalOpen, setModalOpen] = useState(true);
+  const { storeId } = useParams();
+  const navigate = useNavigate();
 
   function onCloseModalClick() {
     setModalOpen(false);
@@ -37,6 +42,9 @@ function DeleteReviewModal() {
     <ReactModal
       isOpen={modalOpen}
       style={customModalStyles}
+      shouldCloseOnEsc
+      shouldCloseOnOverlayClick
+      onRequestClose={() => { onCloseModalClick(); }}
     >
       <div className="w-full flex-col justify-center justify-items-center">
         <div className="text-center">{t('deleteReviewModal.deleteTitle')}</div>
@@ -52,6 +60,7 @@ function DeleteReviewModal() {
             onClick={() => {
               onCloseModalClick();
               //  백앤드로 리뷰 삭제 요청을 보낸다.
+              navigate(`/stores/${storeId}`);
             }}
           >
             삭제
