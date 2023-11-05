@@ -7,22 +7,21 @@ import { getReviewDetail } from '../../apis/review';
 
 function ReviewDetailPage() {
   const { t } = useTranslation();
-  const { storeId, reviewId } = useParams();
+  const { reviewId } = useParams();
 
-  if (reviewId === undefined || Number.isNaN(+reviewId)
-    || storeId === undefined || Number.isNaN(+storeId)) {
+  if (reviewId === undefined || Number.isNaN(+reviewId)) {
     return <div>{t('reviewDetailPage.wrongApiAccess')}</div>;
   }
 
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: [`getReviewDetail/stores/${storeId}/reviews${reviewId}`],
-    queryFn: () => getReviewDetail(+storeId, +reviewId),
+    queryKey: ['reviewDetail'],
+    queryFn: () => getReviewDetail(+reviewId),
   });
 
   if (data && !isLoading && !isFetching) {
     return (
       <ReviewDetailTemplate
-        data={data}
+        data={data.data.data}
       />
     );
   }

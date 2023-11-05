@@ -6,7 +6,6 @@ import { ReviewCardInfo } from '../../types/review';
 import useElapsedDate from '../../hooks/convert';
 
 function ReviewCard({
-  storeId,
   reviewId,
   storeImage,
   storeName,
@@ -21,7 +20,7 @@ function ReviewCard({
 
   return (
     <Link
-      to={`/stores/${storeId}/reviews/${reviewId}`}
+      to={`/stores/${reviewId}`}
       className="w-full p-2"
       aria-label={`${storeName} ${t('reviewCard.linkToReview')}`}
     >

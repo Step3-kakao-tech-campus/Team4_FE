@@ -46,11 +46,16 @@ export interface GPTReviewContent {
 
 export interface ReviewDetailInfo {
   reviewImages: ReviewDetailImageInfo[];
-  reviewerImage: string,
+  reviewer: {
+    profileImage: string;
+    userName: string;
+  }
   createdAt: string,
-  reviewerName: string,
+  averageCostPerPerson: number;
+  peopleCount: number;
   content: string;
   rating: number;
-  peopleCount: number;
+  recommendCount: number;
   totalPrice: number;
+  updated: boolean;
 }

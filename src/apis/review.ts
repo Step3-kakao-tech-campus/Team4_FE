@@ -1,4 +1,4 @@
-import { ReviewCardInfo, ReviewInfo, ReviewDetailInfo } from '../types/review';
+import { ReviewCardInfo, ReviewInfo } from '../types/review';
 
 import { fetchInstance } from './instance';
 
@@ -18,12 +18,8 @@ export async function getLikedReview(
   return response.data.response;
 }
 
-export async function getReviewDetail(
-  storeId: number,
-  reviewId: number,
-): Promise<ReviewDetailInfo> {
-  const response = await fetchInstance.get(`/stores/${storeId}/reviews/${reviewId}`);
-  return response.data.response;
+export async function getReviewDetail(reviewId: number) {
+  return fetchInstance.get(`/stores/${reviewId}`);
 }
 
 export async function writeReview(
