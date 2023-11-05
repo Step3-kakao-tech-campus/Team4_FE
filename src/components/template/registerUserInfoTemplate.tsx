@@ -9,7 +9,7 @@ function RegisterUserInfoTemplate() {
   return (
     <div>
       <div className="bg-gradient-to-b from-matgpt-blue from-55% to-white to-45%">
-        <PageTitleCard pageTitle={t('registerUserInfoPage.pageTitle')} isCanBackPage={false} />
+        <PageTitleCard pageTitle={t('registerUserInfoPage.pageTitle')} />
         <EditProfileImage />
       </div>
       <EditProfileForm isRegister />
