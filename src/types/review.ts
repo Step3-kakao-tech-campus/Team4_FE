@@ -60,4 +60,5 @@ export interface ReviewDetailInfo {
   rating: number;
   peopleCount: number;
   totalPrice: number;
+  isOwn: boolean,
 }

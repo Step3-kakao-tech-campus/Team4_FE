@@ -15,10 +15,11 @@ interface ReviewInformationProps {
   reviewerImage: string,
   peopleCount: number,
   totalPrice: number,
+  isOwn: boolean,
 }
 
 function ReviewInformation({
-  rating, createdAt, reviewerName, reviewerImage, peopleCount, totalPrice,
+  rating, createdAt, reviewerName, reviewerImage, peopleCount, totalPrice, isOwn,
 }: ReviewInformationProps) {
   const { t } = useTranslation();
   const { storeId, reviewId } = useParams();
@@ -67,16 +68,20 @@ function ReviewInformation({
             <Image imageSrc={reviewerImage} alt={t('reviewDetailPage.reviewerProfileImage')} />
           </div>
           <span className="pl-[0.5rem]">{reviewerName}</span>
-          <button type="button">
-            <span className="mx-2 text-sm text-matgpt-gray">
-              수정
-            </span>
-          </button>
-          <button type="button" onClick={() => { setIsOpenDeleteModal(true); }}>
-            <span className="text-sm text-matgpt-gray">
-              삭제
-            </span>
-          </button>
+          {isOwn ? (
+            <div>
+              <button type="button">
+                <span className="mx-2 text-sm text-matgpt-gray">
+                  수정
+                </span>
+              </button>
+              <button type="button" onClick={() => { setIsOpenDeleteModal(true); }}>
+                <span className="text-sm text-matgpt-gray">
+                  삭제
+                </span>
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
       <div>
