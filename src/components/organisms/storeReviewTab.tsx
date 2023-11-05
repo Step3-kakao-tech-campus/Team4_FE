@@ -3,11 +3,13 @@ import { ReviewCardInfo } from '../../types/review';
 import ReviewCard from '../molecules/reviewCard';
 
 interface StoreReviewTabProps {
+  storeId: number;
   reviews: ReviewCardInfo[];
   fetchReview: () => void;
 }
 
 export default function StoreReviewTab({
+  storeId,
   reviews,
   fetchReview,
 }:StoreReviewTabProps) {
@@ -19,7 +21,7 @@ export default function StoreReviewTab({
         {reviews.map((review) => (
           <li key={review.reviewId}>
             <ReviewCard
-              storeId={review.storeId}
+              storeId={storeId}
               reviewId={review.reviewId}
               rating={review.rating}
               userId={review.userId}

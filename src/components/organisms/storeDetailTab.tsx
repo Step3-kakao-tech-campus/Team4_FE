@@ -58,6 +58,7 @@ export default function StoreDetailTab({
         ) : null}
         {tab === 1 && reviews ? (
           <StoreReviewTab
+            storeId={storeId}
             reviews={reviews}
             fetchReview={fetchReview}
           />

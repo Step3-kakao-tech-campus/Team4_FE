@@ -31,7 +31,7 @@ export default function StoreCard({
   return (
     <div className="flex items-center">
       <Link
-        to={`/store/${storeId}`}
+        to={`/stores/${storeId}`}
         className="flex w-full items-center gap-4 p-2"
         aria-label={`${storeName} ${t('storeCard.moveDetail')}`}
       >
