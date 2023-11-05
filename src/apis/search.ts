@@ -9,3 +9,7 @@ export async function getSearchedStore(
 
   return response.data.data;
 }
+
+export async function getPopularStore() {
+  return fetchInstance.get('/store/popular?cursor=-1&lastId=-1');
+}

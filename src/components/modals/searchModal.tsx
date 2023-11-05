@@ -4,11 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../atoms/input';
 import Icon from '../atoms/icon';
 import { RefHandler } from '../../types/refHandler';
+import { usePopularStore } from '../../hooks/query';
+import StoreCard from '../molecules/storeCard';
 
 export default function SearchModal() {
   const { t } = useTranslation();
   const searchRef = useRef<RefHandler>(null);
   const navigate = useNavigate();
+
+  const { data: popularStoreData } = usePopularStore();
+  const popularStore = popularStoreData?.data.data.body[0];
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,16 +55,24 @@ export default function SearchModal() {
       <div className="flex w-full flex-col gap-4 bg-white py-4">
         <div>
           <h2 className="mb-2 px-4 font-bold">{t('searchBar.popularStore')}</h2>
-
+          <StoreCard
+            storeId={popularStore.storeId}
+            storeName={popularStore.storeName}
+            category={popularStore.category}
+            ratingAvg={popularStore.ratingAvg}
+            numsOfReview={popularStore.numsOfReview}
+            review={popularStore.review}
+            image={popularStore.image}
+          />
         </div>
-        <div>
+        {/* <div>
           <h2 className="mb-2 px-4 font-bold">{t('searchBar.recentReviewed')}</h2>
 
         </div>
         <div>
           <h2 className="mb-2 px-4 font-bold">{t('searchBar.similar')}</h2>
 
-        </div>
+        </div> */}
       </div>
     </div>
   );
