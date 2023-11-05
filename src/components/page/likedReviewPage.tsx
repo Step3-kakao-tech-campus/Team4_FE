@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import { getLikedReview } from '../../apis/review';
 import LikedReviewTemplate from '../template/likedReviewTemplate';
 
@@ -10,6 +11,13 @@ function LikedReviewPage() {
     queryKey: [`getLikedReview?cursor=${1 + 8 * (page - 1)}&limits=${limits}`],
     queryFn: () => getLikedReview(1 + 8 * (page - 1), limits),
   });
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    // 로그인 상태가 아니면 로그인 레이아웃으로 이동
+    if (localStorage.getItem('accessToken') === null) { navigate('/login'); }
+  }, []);
+
   const onHandleChangePage = (type: 'right' | 'left') => {
     if (type === 'right') {
       setPage((prev) => prev + 1);

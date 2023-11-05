@@ -28,6 +28,7 @@ import GlobalLoader from './components/atoms/globalLoader';
 import PromptPage from './components/page/promptPage';
 import LoginRedriect from './components/page/loginRedriect';
 import RegisterUserInfoPage from './components/page/registerUserInfoPage';
+import Login from './components/layouts/login';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -67,6 +68,7 @@ function App() {
                   {/* 단독 레이아웃 */}
                   <Route path="/landing" element={<LandingPage />} />
                   <Route path="/login-redirect" element={<LoginRedriect />} />
+                  <Route path="/login" element={<Login />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>
               </Suspense>
