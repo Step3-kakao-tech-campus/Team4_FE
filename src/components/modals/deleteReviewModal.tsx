@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import ReactModal from 'react-modal';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../atoms/button';
+import { deleteReview } from '../../apis/review';
 
 const customModalStyles = {
   overlay: {
@@ -31,7 +32,7 @@ function DeleteReviewModal({ modalOpen, setModalOpen }: {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   const { t } = useTranslation();
-  const { storeId } = useParams();
+  const { storeId, reviewId } = useParams();
   const navigate = useNavigate();
 
   function onCloseModalClick() {
@@ -59,7 +60,10 @@ function DeleteReviewModal({ modalOpen, setModalOpen }: {
             textColor="text-black"
             onClick={() => {
               onCloseModalClick();
-              //  백앤드로 리뷰 삭제 요청을 보낸다.
+              if (storeId === undefined || reviewId === undefined) {
+                return;
+              }
+              deleteReview(+storeId, +reviewId);
               navigate(`/stores/${storeId}`);
             }}
           >
