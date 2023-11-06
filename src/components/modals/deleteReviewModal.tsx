@@ -39,6 +39,16 @@ function DeleteReviewModal({ modalOpen, setModalOpen }: {
     setModalOpen(false);
   }
 
+  const onDeleteReviewClick = () => {
+    onCloseModalClick();
+    if (storeId === undefined || reviewId === undefined) {
+      return;
+    }
+    deleteReview(+storeId, +reviewId).then(() => {
+      navigate(`/stores/${storeId}`);
+    }).catch((error) => { console.log(error); });
+  };
+
   return (
     <ReactModal
       isOpen={modalOpen}
@@ -58,14 +68,7 @@ function DeleteReviewModal({ modalOpen, setModalOpen }: {
             size="medium"
             backgroundColor="bg-matgpt-red"
             textColor="text-black"
-            onClick={() => {
-              onCloseModalClick();
-              if (storeId === undefined || reviewId === undefined) {
-                return;
-              }
-              deleteReview(+storeId, +reviewId);
-              navigate(`/stores/${storeId}`);
-            }}
+            onClick={onDeleteReviewClick}
           >
             {t('deleteReviewModal.delete')}
           </Button>
