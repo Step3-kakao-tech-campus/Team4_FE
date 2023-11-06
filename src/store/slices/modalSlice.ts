@@ -19,10 +19,16 @@ export const modalSlice = createSlice({
       type: action.payload,
       isOpen: true,
     }),
-    close: () => ({
-      type: null,
-      isOpen: false,
-    }),
+    close: (state, action: PayloadAction<Modal['type']>) => {
+      if (action.payload === state.type) {
+        return {
+          type: null,
+          isOpen: false,
+        };
+      }
+
+      return state;
+    },
   },
 });
 

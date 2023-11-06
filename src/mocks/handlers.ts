@@ -2,6 +2,8 @@ import { rest } from 'msw';
 import { writedReviewData } from './data/writedReview';
 import recentlyViewdStoreData from './data/recentlyViewdStore';
 import { coinRechargeData, coinUsageData } from './data/coinData';
+import { reviewDetailData } from './data/reviewDetailData';
+import { storeMarkers } from './data/storeMarker';
 
 export const handlers = [
   rest.get('/search', (req, res, ctx) => {
@@ -139,6 +141,20 @@ export const handlers = [
       );
     }
 
+    if (Number(storeId) > 3) {
+      return res(
+        ctx.status(404),
+        ctx.json({
+          success: false,
+          response: null,
+          error: {
+            status: 404,
+            message: '해당 음식점을 찾을 수 없습니다.',
+          },
+        }),
+      );
+    }
+
     return res(
       ctx.status(200),
       ctx.json({
@@ -149,7 +165,7 @@ export const handlers = [
           storeImage: '/image/fakeDb/store/store1.png',
           reviewCount: 2000,
           rating: 4.3,
-          information: '음식점 정보',
+          information: '영업시간: 월-금 10:00~22:00\n토 10:00~14:00\n일 휴무',
         },
         error: null,
       }),
@@ -279,6 +295,20 @@ export const handlers = [
       ctx.json(recentlyViewdStoreData[2]),
     );
   }),
+  rest.put('/mypage/edit-profile', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json({ status: 200 }),
+  )),
+  rest.get('/mypage/profile', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json({
+      language: '한국어',
+      gender: '남자',
+      nickname: '닉네임',
+      profileImage: '/image/fakeDb/userPage/userImage.png',
+    }),
+  )),
+
   rest.get('/mypage/charge-coin', (req, res, ctx) => {
     const cursor = Number(req.url.searchParams.get('cursor'));
     const limits = Number(req.url.searchParams.get('limits'));
@@ -329,6 +359,117 @@ export const handlers = [
       ctx.json(
         coinUsageData[2],
       ),
+    );
+  }),
+
+  rest.get('/stores/:storeId/reviews/:reviewId', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json(reviewDetailData),
+  )),
+
+  rest.post('/stores/:storeId/reviews/:reviewId', (req, res, ctx) => res(
+    ctx.status(201),
+    ctx.json({
+      success: true,
+      response: {
+        reviewId: 1,
+      },
+      error: null,
+    }),
+  )),
+
+  rest.get('/', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json({
+      success: true,
+      response: storeMarkers,
+      error: null,
+    }),
+  )),
+
+  rest.post('/stores/:storeId/reviews', (req, res, ctx) => res(
+    ctx.status(201),
+    ctx.json({
+      success: true,
+      response: {
+        reviewId: 1,
+      },
+      error: null,
+    }),
+  )),
+
+  rest.get('/gpt/store/:storeId/review/best', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json({
+      data: {
+        isExist: false,
+        content: {
+          BEST: '수육이 최고에요. 맛있어서 다시 오고 싶어요. 깔끔하고 개운해요. 특히 깍두기와 김치가 맛있어요. 진짜 맛있는 곳이에요.',
+        },
+      },
+    }),
+  )),
+
+  rest.get('/gpt/store/:storeId/review/worst', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json({
+      data: {
+        isExist: true,
+        content: {
+          WORST: '음식이 자극적이고 양이 부족하며, 맛은 짜고 기다리기도 하고, 일본인들이 많이 찾아오는 것 같은 맛집이다.',
+        },
+      },
+    }),
+  )),
+  rest.post('/stores/:storeId/reviews/:reviewId/like', (req, res, ctx) => res(
+    ctx.status(201),
+    ctx.json({
+      success: true,
+      response: {
+        reviewId: 1,
+      },
+      error: null,
+    }),
+  )),
+
+  rest.post('/stores/:storeId/reviews/:reviewId/like-cancel', (req, res, ctx) => res(
+    ctx.status(201),
+    ctx.json({
+      success: true,
+      response: {
+        reviewId: 1,
+      },
+      error: null,
+    }),
+  )),
+
+  rest.get('/prompt/:promptId', (req, res, ctx) => {
+    const { promptId } = req.params;
+
+    if (Number.isNaN(+promptId)) {
+      return res(
+        ctx.status(400),
+        ctx.json({
+          success: false,
+          response: null,
+          error: {
+            status: 400,
+            message: '잘못된 요청입니다.',
+          },
+        }),
+      );
+    }
+    return res(
+      ctx.status(201),
+      ctx.json({
+        success: true,
+        response: {
+          짜장면: 2,
+          탕수육: 3,
+          삼겹살: 5,
+        },
+        error: null,
+      }),
     );
   }),
 ];

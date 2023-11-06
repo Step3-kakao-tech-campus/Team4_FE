@@ -5,13 +5,13 @@ import { CoinRechargeInfo } from '../../types/coin';
 import CoinListCard from '../molecules/coinListCard';
 import Page from '../molecules/page';
 
-interface CoinRechargeTemplateType {
+interface CoinRechargeTemplateProps {
   coinRecharge: CoinRechargeInfo[];
   page: number,
   onChangePage: (type: 'left' | 'right') => void,
 }
 
-function CoinRechargeTemplate({ coinRecharge, page, onChangePage }: CoinRechargeTemplateType) {
+function CoinRechargeTemplate({ coinRecharge, page, onChangePage }: CoinRechargeTemplateProps) {
   const { t } = useTranslation();
 
   const [isLastPage, setIsLastPage] = useState(false);

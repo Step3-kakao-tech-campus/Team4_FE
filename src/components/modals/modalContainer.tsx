@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom';
 import { useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ModalBackdrop from './modalBackdrop';
 import { useModalSelector } from '../../hooks/store';
 import LanguageModal from './languageModal';
@@ -11,6 +11,7 @@ import DeleteReviewModal from './deleteReviewModal';
 export default function ModalContainer({ children }: { children: React.ReactNode }) {
   const { type, isOpen } = useModalSelector((state) => state.modal);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const preNode = useRef<HTMLDivElement>(null);
   const postNode = useRef<HTMLDivElement>(null);
@@ -39,8 +40,8 @@ export default function ModalContainer({ children }: { children: React.ReactNode
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        window.location.hash = '';
+      if (isOpen && event.key === 'Escape') {
+        navigate(-1);
       }
     };
     window.addEventListener('keydown', handleEscape);
@@ -48,7 +49,7 @@ export default function ModalContainer({ children }: { children: React.ReactNode
     return () => {
       window.removeEventListener('keydown', handleEscape);
     };
-  }, []);
+  }, [isOpen]);
 
   return (
     <>

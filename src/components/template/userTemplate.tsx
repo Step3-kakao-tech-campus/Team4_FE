@@ -15,7 +15,7 @@ function UserTemplate() {
         <div className="flex flex-col items-center">
           <img src="/image/fakeDb/userPage/userImage.png" alt={t('userPage.userImage')} className="w-[9rem]" />
           <span className="py-3 text-xl font-bold">{t('userPage.userName')}</span>
-          <Link to="/profileEditingPage">
+          <Link to="/profileEditing">
             <Button>{t('userPage.configProfile')}</Button>
           </Link>
         </div>

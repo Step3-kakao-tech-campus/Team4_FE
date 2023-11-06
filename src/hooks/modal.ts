@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { ModalType } from '../types/modal';
 import { open, close } from '../store/slices/modalSlice';
-import { useModalDispatch } from './store';
 
 export function useModal(type: ModalType) {
-  const dispatch = useModalDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleModalOpen = () => {
@@ -12,7 +12,7 @@ export function useModal(type: ModalType) {
       if (hash === `#${type}`) {
         dispatch(open(type));
       } else {
-        dispatch(close());
+        dispatch(close(type));
       }
     };
     window.addEventListener('hashchange', handleModalOpen);
