@@ -1,5 +1,6 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { ModalDispatch, RootState } from '../store';
+import { AppDispatch, RootState } from '../store';
 
-export const useModalDispatch: () => ModalDispatch = useDispatch;
+export const useModalDispatch: () => AppDispatch = useDispatch;
 export const useModalSelector: TypedUseSelectorHook<RootState> = useSelector;
+export const useMenuTagSelector: TypedUseSelectorHook<RootState> = useSelector;

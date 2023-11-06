@@ -3,20 +3,29 @@ import { useTranslation } from 'react-i18next';
 import { ReviewCardInfo } from '../../types/review';
 import StoreOverviewTab from './storeOverviewTab';
 import StoreReviewTab from './storeReviewTab';
+import { useGPTBestReview, useGPTWorstReview } from '../../hooks/query';
 
 interface StoreDetailTabProps {
+  storeId: number;
   storeInfo: string;
   reviews: ReviewCardInfo[] | undefined;
   fetchReview: () => void;
 }
 
 export default function StoreDetailTab({
+  storeId,
   storeInfo,
   reviews,
   fetchReview,
 }: StoreDetailTabProps) {
   const [tab, setTab] = useState(0);
   const { t } = useTranslation();
+
+  const { data: bestReview } = useGPTBestReview(storeId);
+  const { data: worstReview } = useGPTWorstReview(storeId);
+
+  const bestReviewData = bestReview?.data.data;
+  const worstReviewData = worstReview?.data.data;
 
   return (
     <div>
@@ -36,8 +45,14 @@ export default function StoreDetailTab({
           {t('storeDetail.review')}
         </button>
       </div>
-      <div>
-        {tab === 0 ? <StoreOverviewTab storeInfo={storeInfo} /> : null}
+      <div className="pb-[3.7rem]">
+        {tab === 0 ? (
+          <StoreOverviewTab
+            storeInfo={storeInfo}
+            lowRatingReview={worstReviewData}
+            highRatingReview={bestReviewData}
+          />
+        ) : null}
         {tab === 1 && reviews ? (
           <StoreReviewTab
             reviews={reviews}

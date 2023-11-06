@@ -5,13 +5,13 @@ import PageTitleCard from '../molecules/pageTitleCard';
 import StoreCard from '../molecules/storeCard';
 import Page from '../molecules/page';
 
-interface LikedStoreTemplateType {
+interface LikedStoreTemplateProps {
   likedStore: StoreCardInfo[],
   page: number,
   onChangePage: (type: 'left' | 'right') => void,
 }
 
-function LikedStoreTemplate({ likedStore, page, onChangePage }: LikedStoreTemplateType) {
+function LikedStoreTemplate({ likedStore, page, onChangePage }: LikedStoreTemplateProps) {
   const { t } = useTranslation();
   const [isLastPage, setIsLastPage] = useState(false);
 

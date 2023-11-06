@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import RecentlyViewdStoreTemplate from '../template/recentlyViewdStoreTemplate';
 import { getRecentlyViewdStore } from '../../apis/getRecentlyViewdStore';
 
@@ -10,6 +11,12 @@ function RecentlyViewdStorePage() {
     queryKey: [`getRecentlyViewdStore?cursor=${1 + 6 * (page - 1)}&limits=${limits}`],
     queryFn: () => getRecentlyViewdStore(1 + 6 * (page - 1), limits),
   });
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    // 로그인 상태가 아니면 로그인 레이아웃으로 이동
+    if (localStorage.getItem('accessToken') === null) { navigate('/login'); }
+  }, []);
 
   const onHandleChangePage = (type: 'right' | 'left') => {
     if (type === 'right') {

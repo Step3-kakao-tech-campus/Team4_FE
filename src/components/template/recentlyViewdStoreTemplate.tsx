@@ -5,14 +5,14 @@ import PageTitleCard from '../molecules/pageTitleCard';
 import StoreCard from '../molecules/storeCard';
 import Page from '../molecules/page';
 
-interface RecentlyViewdStoreTemplateType {
+interface RecentlyViewdStoreTemplateProps {
   recentlyViewdStore: StoreCardInfo[],
   page: number,
   onChangePage: (type: 'left' | 'right') => void,
 }
 
 function RecentlyViewdStoreTemplate(
-  { recentlyViewdStore, page, onChangePage }: RecentlyViewdStoreTemplateType,
+  { recentlyViewdStore, page, onChangePage }: RecentlyViewdStoreTemplateProps,
 ) {
   const { t } = useTranslation();
   const [isLastPage, setIsLastPage] = useState(false);

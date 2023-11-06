@@ -19,19 +19,13 @@ export default function SearchResultPage() {
 
   return (
     <>
-      {isFetching && isLoading ? <div>...</div> : (
-        <>
-        </>
-      )}
+      {isFetching && isLoading ? <div>...</div> : null}
       {data ? (
         <SearchResultTemplate
           searchString={searchString || ''}
           stores={data.pages.flat()}
         />
-      ) : (
-        <>
-        </>
-      )}
+      ) : null}
       <div ref={bottomObserverRef} className="mb-[3.7rem]" />
     </>
   );

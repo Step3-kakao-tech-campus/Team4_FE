@@ -36,7 +36,7 @@ export default function SearchModal() {
             type="button"
             className="text-white"
             onClick={() => {
-              window.location.hash = '';
+              navigate(-1);
             }}
           >
             <Icon name="OutlineLeft" size="1.4em" ariaLabel={t('searchBar.cancelSearch')} />
