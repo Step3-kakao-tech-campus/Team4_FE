@@ -6,6 +6,7 @@ import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 import { comma } from '../../utils/convert';
 import { likeReview, cancelLikeReview } from '../../apis/review';
+import DeleteReviewModal from '../modals/deleteReviewModal';
 
 interface ReviewInformationProps {
   rating: number,
@@ -14,14 +15,16 @@ interface ReviewInformationProps {
   reviewerImage: string,
   peopleCount: number,
   totalPrice: number,
+  isOwn: boolean,
 }
 
 function ReviewInformation({
-  rating, createdAt, reviewerName, reviewerImage, peopleCount, totalPrice,
+  rating, createdAt, reviewerName, reviewerImage, peopleCount, totalPrice, isOwn,
 }: ReviewInformationProps) {
   const { t } = useTranslation();
   const { storeId, reviewId } = useParams();
   const [isLikeReview, setIsLikeReview] = useState(false);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 
   const { mutate: likeStoreMutation } = useMutation({
     mutationKey: 'likeStore',
@@ -65,6 +68,20 @@ function ReviewInformation({
             <Image imageSrc={reviewerImage} alt={t('reviewDetailPage.reviewerProfileImage')} />
           </div>
           <span className="pl-[0.5rem]">{reviewerName}</span>
+          {isOwn ? (
+            <div>
+              <button type="button">
+                <span className="mx-2 text-sm text-matgpt-gray">
+                  {t('reviewDetailPage.edit')}
+                </span>
+              </button>
+              <button type="button" onClick={() => { setIsOpenDeleteModal(true); }}>
+                <span className="text-sm text-matgpt-gray">
+                  {t('reviewDetailPage.delete')}
+                </span>
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
       <div>
@@ -75,6 +92,12 @@ function ReviewInformation({
         </div>
         <span>{comma(totalPrice)}</span>
       </div>
+      {isOpenDeleteModal ? (
+        <DeleteReviewModal
+          modalOpen={isOpenDeleteModal}
+          setModalOpen={setIsOpenDeleteModal}
+        />
+      ) : null}
     </div>
   );
 }

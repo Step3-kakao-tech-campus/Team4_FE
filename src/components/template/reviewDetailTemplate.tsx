@@ -30,6 +30,7 @@ function ReviewDetailTemplate({ data }: ReviewDetailTemplateProps) {
         reviewerImage={data.reviewerImage}
         peopleCount={data.peopleCount}
         totalPrice={data.totalPrice}
+        isOwn={data.isOwn}
       />
       {isClick ? (
         <PromptEdit
