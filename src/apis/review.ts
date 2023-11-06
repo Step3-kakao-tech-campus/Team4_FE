@@ -1,4 +1,4 @@
-import { ReviewCardInfo, ReviewInfo, ReviewDetailInfo } from '../types/review';
+import { ReviewCardInfo, PostWriteReviewInfo, ReviewDetailInfo } from '../types/review';
 
 import { fetchInstance } from './instance';
 
@@ -28,7 +28,7 @@ export async function getReviewDetail(
 
 export async function writeReview(
   storeId: number,
-  reviewData: ReviewInfo,
+  reviewData: PostWriteReviewInfo[],
 ) {
   return fetchInstance.post(`/stores/${storeId}/reviews`, reviewData);
 }

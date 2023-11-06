@@ -232,6 +232,10 @@ i18n
           registerUserInfoPage: {
             pageTitle: '유저 정보 입력',
           },
+          imageUploadError: {
+            fileTypeError: '유효하지 않은 파일 유형입니다.\n[jpg, png, jpeg, webp]인지 확인해주세요',
+            fileSizeError: '파일 크기는 5MB 이하여야 합니다.',
+          },
         },
       },
       en: {
@@ -443,6 +447,10 @@ i18n
           },
           registerUserInfoPage: {
             pageTitle: 'Sign-up Page',
+          },
+          imageUploadError: {
+            fileTypeError: 'Invalid file type.\nPlease check if it is [jpg, png, jpeg, webp]',
+            fileSizeError: 'The file size must be 5MB or less.',
           },
         },
       },
