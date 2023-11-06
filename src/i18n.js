@@ -100,6 +100,7 @@ i18n
             deleteTitle: '정말로 삭제하시겠습니까?',
             notRecovredTitle: '삭제된 리뷰는 복구할 수 없습니다.',
             cancel: '취소',
+            delete: '삭제',
           },
           storeDetail: {
             overview: '개요',
@@ -225,6 +226,8 @@ i18n
             num: ' 개',
             closePrompt: '프롬프트 수정 창 닫기',
             createPrompt: '프롬프트 생성',
+            edit: '수정',
+            delete: '삭제',
           },
           promptPage: {
             confirm: '확인',
@@ -314,6 +317,7 @@ i18n
             deleteTitle: 'Are you sure you want to delete it?',
             notRecovredTitle: 'Deleted reviews cannot be recovered.',
             cancel: 'Cancel',
+            delete: 'Delete',
           },
           storeDetail: {
             overview: 'Overview',
@@ -437,6 +441,8 @@ i18n
             num: ' Quantity.',
             closePrompt: 'Close the prompt editing window.',
             createPrompt: 'Create a prompt.',
+            edit: 'edit',
+            delete: 'delete',
           },
           promptPage: {
             confirm: 'Confrim',

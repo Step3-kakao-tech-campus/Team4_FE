@@ -67,7 +67,7 @@ function DeleteReviewModal({ modalOpen, setModalOpen }: {
               navigate(`/stores/${storeId}`);
             }}
           >
-            삭제
+            {t('deleteReviewModal.delete')}
           </Button>
         </div>
       </div>

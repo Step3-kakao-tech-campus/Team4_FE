@@ -72,12 +72,12 @@ function ReviewInformation({
             <div>
               <button type="button">
                 <span className="mx-2 text-sm text-matgpt-gray">
-                  수정
+                  {t('reviewDetailPage.edit')}
                 </span>
               </button>
               <button type="button" onClick={() => { setIsOpenDeleteModal(true); }}>
                 <span className="text-sm text-matgpt-gray">
-                  삭제
+                  {t('reviewDetailPage.delete')}
                 </span>
               </button>
             </div>
