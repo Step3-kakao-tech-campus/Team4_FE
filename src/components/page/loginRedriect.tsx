@@ -14,6 +14,7 @@ function LoginRedriect() {
     localStorage.setItem('refreshToken', `Bearer ${refreshToken}`);
     localStorage.setItem('accessTokenExpiresIn', `${accessTokenExpiresIn}`);
 
+    // 백앤드에 api요청 보내서 닉네임, 이메일, 성별, 언어 정보 전역 상태 값에 저장
     if (isFirstLogin) {
       navigate('/registerUserInfo');
     } else {

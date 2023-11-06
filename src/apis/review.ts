@@ -46,3 +46,10 @@ export async function cancelLikeReview(
 ) {
   return fetchInstance.post(`/stores/${storeId}/reviews/${reviewId}/like-cancel`);
 }
+
+export async function deleteReview(
+  storeId: number,
+  reviewId: number,
+) {
+  return fetchInstance.delete(`/stores/${storeId}/reviews/${reviewId}`);
+}
