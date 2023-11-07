@@ -4,8 +4,43 @@
 
 @layer base {
   body {
-    font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans', 'Noto Sans KR', Roboto, sans-serif;
     max-width: 500px;
     margin: 0 auto;
   }
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: bold;
+  font-weight: 700;
+  src: url('../public/assest/fonts/notosans/NotoSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../public/assest/fonts/notosans/NotoSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: bold;
+  font-weight: 700;
+  src: url('../public/assest/fonts/notosans/NotoSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../public/assest/fonts/notosans/NotoSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: Medium;
+  font-weight: 400;
+  src: url('../public/assest/fonts/roboto/Roboto-Medium.ttf') format('truetype');
 }
