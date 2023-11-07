@@ -6,12 +6,12 @@ import {
 import { writeReview } from '../apis/review';
 import { PostWriteReviewInfo } from '../types/review';
 
-export function useSearchStore(searchString: string | null) {
+export function useSearchStore(searchString: string) {
   return useInfiniteQuery({
     queryKey: ['searchStore', { searchString }],
-    queryFn: async ({ pageParam = 0 }) => getSearchedStore(searchString, pageParam),
-    getNextPageParam: (lastPage, allPages) => (
-      lastPage.length === 0 ? undefined : allPages.flat().length
+    queryFn: async ({ pageParam = 10000 }) => getSearchedStore(searchString, pageParam),
+    getNextPageParam: (lastPage) => (
+      lastPage.paging.hasNext ? lastPage.paging.nextCursor : null
     ),
   });
 }
