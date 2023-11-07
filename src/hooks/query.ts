@@ -1,5 +1,5 @@
 import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
-import { getSearchedStore } from '../apis/search';
+import { getPopularStores, getSearchedStore } from '../apis/search';
 import {
   getGPTBestReview, getGPTWorstReview, getReviews, getStoreDetail,
 } from '../apis/storeDetail';
@@ -57,5 +57,12 @@ export function useGPTWorstReview(storeId: number) {
   return useQuery({
     queryKey: ['GPTWorstReview', { storeId }],
     queryFn: async () => getGPTWorstReview(storeId),
+  });
+}
+
+export function usePopularStores() {
+  return useQuery({
+    queryKey: ['popularStores'],
+    queryFn: async () => getPopularStores(),
   });
 }

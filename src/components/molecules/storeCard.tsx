@@ -9,10 +9,9 @@ export default function StoreCard({
   storeId,
   storeName,
   category,
-  review,
-  image,
-  rating,
-  reviewCount,
+  numsOfReview,
+  storeImage,
+  ratingAvg,
   likedCard = false,
 }: StoreCardInfo) {
   const { t } = useTranslation();
@@ -37,7 +36,7 @@ export default function StoreCard({
       >
         <div className="h-28 w-28">
           <Image
-            imageSrc={image}
+            imageSrc={storeImage}
             alt={storeName}
             objectFitMode
             className="rounded-full object-cover"
@@ -47,19 +46,14 @@ export default function StoreCard({
         </div>
         <section className="flex h-full flex-col gap-[0.375rem] text-left">
           <h3 className="text-lg font-bold">{storeName}</h3>
-          <p className="text-sm">{category}</p>
-          <p className="font-bold">
-            &ldquo;
-            {review}
-            &rdquo;
-          </p>
+          <p className="text-sm">{category.name}</p>
           <div className="flex items-center gap-3 text-xs">
             <div className="flex items-center gap-[0.1875rem]">
               <Icon name="OutlineStar" size="1rem" ariaLabel={t('storeCard.rating')} />
-              {rating}
+              {ratingAvg}
             </div>
             <div>
-              {`${t('storeCard.review')} ${reviewCount}`}
+              {`${t('storeCard.review')} ${numsOfReview}`}
             </div>
           </div>
         </section>
