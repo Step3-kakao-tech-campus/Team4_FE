@@ -4,7 +4,7 @@ import {
   getGPTBestReview, getGPTWorstReview, getReviews, getStoreDetail,
 } from '../apis/storeDetail';
 import { writeReview } from '../apis/review';
-import { ReviewInfo } from '../types/review';
+import { PostWriteReviewInfo } from '../types/review';
 
 export function useSearchStore(searchString: string | null) {
   return useInfiniteQuery({
@@ -41,7 +41,7 @@ export function useWriteReview() {
       reviewData,
     }: {
       storeId: number,
-      reviewData: ReviewInfo
+      reviewData: PostWriteReviewInfo[]
     }) => writeReview(storeId, reviewData),
   });
 }

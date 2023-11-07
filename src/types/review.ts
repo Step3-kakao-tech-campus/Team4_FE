@@ -19,22 +19,9 @@ export interface ReviewImageTagInfo {
   rating: number;
 }
 
-export interface ReviewImageInfo {
-  imageData: Blob;
-  tags: ReviewImageTagInfo[];
-}
-
 export interface ReviewDetailImageInfo {
   imageData: string;
   tags: ReviewImageTagInfo[];
-}
-
-export interface ReviewInfo {
-  reviewImages: ReviewImageInfo[];
-  content: string;
-  rating: number;
-  peopleCount: number;
-  totalPrice: number;
 }
 
 export interface GPTBestReviewContent {
@@ -61,4 +48,16 @@ export interface ReviewDetailInfo {
   peopleCount: number;
   totalPrice: number;
   isOwn: boolean,
+}
+
+export interface Tag {
+  name: string;
+  locationX: number;
+  locationY: number;
+  rating: number;
+}
+
+export interface PostWriteReviewInfo {
+  imageUrl: string;
+  tags: Tag[];
 }

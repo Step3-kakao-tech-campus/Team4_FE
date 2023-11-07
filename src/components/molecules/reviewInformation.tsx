@@ -16,10 +16,11 @@ interface ReviewInformationProps {
   peopleCount: number,
   totalPrice: number,
   isOwn: boolean,
+  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function ReviewInformation({
-  rating, createdAt, reviewerName, reviewerImage, peopleCount, totalPrice, isOwn,
+  rating, createdAt, reviewerName, reviewerImage, peopleCount, totalPrice, isOwn, setIsEdit,
 }: ReviewInformationProps) {
   const { t } = useTranslation();
   const { storeId, reviewId } = useParams();
@@ -68,9 +69,9 @@ function ReviewInformation({
             <Image imageSrc={reviewerImage} alt={t('reviewDetailPage.reviewerProfileImage')} />
           </div>
           <span className="pl-[0.5rem]">{reviewerName}</span>
-          {isOwn ? (
+          {!isOwn ? (
             <div>
-              <button type="button">
+              <button type="button" onClick={() => { setIsEdit((prev) => !prev); }}>
                 <span className="mx-2 text-sm text-matgpt-gray">
                   {t('reviewDetailPage.edit')}
                 </span>
