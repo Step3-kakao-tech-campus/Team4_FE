@@ -23,7 +23,7 @@ function Login() {
           지금 로그인하세요.
         </div>
       </div>
-      <div>
+      <div className="flex flex-col items-center">
         <div className="mb-6">
           <SocialLoginButton size="large" name="kakao" />
         </div>
