@@ -36,9 +36,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <BrowserRouter>
-          <ModalContainer>
-            <ErrorBoundary>
-              <Suspense fallback={<GlobalLoader />}>
+          <ErrorBoundary>
+            <Suspense fallback={<GlobalLoader />}>
+              <ModalContainer>
                 <Routes>
                   {/* 공통 레이아웃 */}
                   <Route element={<MainLayout />}>
@@ -64,9 +64,9 @@ function App() {
                   <Route path="/login" element={<Login />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>
-              </Suspense>
-            </ErrorBoundary>
-          </ModalContainer>
+              </ModalContainer>
+            </Suspense>
+          </ErrorBoundary>
         </BrowserRouter>
       </Provider>
     </QueryClientProvider>
