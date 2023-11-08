@@ -20,7 +20,7 @@ function ReviewCard({
     >
       <div className="flex">
         <div className="mr-2 h-28 w-28">
-          <Image imageSrc={imageUrls} alt={t('reviewCard.storeImage')} className="rounded-full object-cover" objectFitMode />
+          <Image imageSrc={imageUrls[0]} alt={t('reviewCard.storeImage')} className="rounded-full object-cover" objectFitMode />
         </div>
         <div className="flex w-[20rem] flex-col justify-between py-2">
           <div>

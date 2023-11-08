@@ -69,7 +69,7 @@ function ReviewInformation({
             <Image imageSrc={reviewerImage} alt={t('reviewDetailPage.reviewerProfileImage')} />
           </div>
           <span className="pl-[0.5rem]">{reviewerName}</span>
-          {!isOwn ? (
+          {isOwn ? (
             <div>
               <button type="button" onClick={() => { setIsEdit((prev) => !prev); }}>
                 <span className="mx-2 text-sm text-matgpt-gray">

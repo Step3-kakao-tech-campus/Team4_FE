@@ -4,7 +4,7 @@ import {
   getGPTReview,
   getReviews, getStoreDetail,
 } from '../apis/storeDetail';
-import { writeReview } from '../apis/review';
+import { getReviewDetail, writeReview } from '../apis/review';
 import { PostWriteReviewInfo } from '../types/review';
 
 export function useSearchStore(searchString: string) {
@@ -58,5 +58,12 @@ export function usePopularStores() {
   return useQuery({
     queryKey: ['popularStores'],
     queryFn: async () => getPopularStores(),
+  });
+}
+
+export function useReviewDetail(storeId: number, reviewId: number) {
+  return useQuery({
+    queryKey: ['reviewDetail', { storeId, reviewId }],
+    queryFn: async () => getReviewDetail(storeId, reviewId),
   });
 }
