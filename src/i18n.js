@@ -243,6 +243,14 @@ i18n
             result: '검색 결과',
             noResult: '검색 결과가 없습니다.',
           },
+          elapsedDate: {
+            moment: '방금 전',
+            minute: '분 전',
+            hour: '시간 전',
+            day: '일 전',
+            month: '달 전',
+            year: '년 전',
+          },
         },
       },
       en: {
@@ -465,6 +473,14 @@ i18n
           searchResult: {
             result: 'Search result',
             noResult: 'No search results.',
+          },
+          elapsedDate: {
+            moment: 'just a moment ago',
+            minute: 'minutes ago',
+            hour: 'hours ago',
+            day: 'days ago',
+            month: 'months ago',
+            year: 'years ago',
           },
         },
       },

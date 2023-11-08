@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageTitleCard from '../molecules/pageTitleCard';
 import { ReviewCardInfo } from '../../types/review';
-import ReviewCard from '../molecules/reviewCard';
+// import ReviewCard from '../molecules/reviewCard';
 import Page from '../molecules/page';
 
 interface WritedReviewProps {
@@ -34,7 +34,7 @@ function WritedReviewTemplate({ wrtiedReview, page, onChangePage }: WritedReview
       </nav>
       <main>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {wrtiedReview.map(({
+          {/* {wrtiedReview.map(({
             storeId, reviewId, storeImage,
             storeName, profileImage, reviewerName,
             reviewRating, visitedCount, createdAt,
@@ -52,7 +52,7 @@ function WritedReviewTemplate({ wrtiedReview, page, onChangePage }: WritedReview
                 createdAt={createdAt}
               />
             </li>
-          ))}
+          ))} */}
         </ul>
       </main>
     </div>

@@ -22,13 +22,13 @@ export default function Image({
     <picture className={`${objectFitMode ? 'flex h-full w-full' : ''}`}>
       <source
         media={`(max-width: ${threshold.smallToMedium})`}
-        srcSet={smallImageSrc || imageSrc}
+        srcSet={smallImageSrc || imageSrc || '/logo192.png'}
       />
       <source
         media={`(min-width: ${threshold.mediumToLarge})`}
-        srcSet={largeImageSrc || imageSrc}
+        srcSet={largeImageSrc || imageSrc || '/logo192.png'}
       />
-      <img {...props} src={imageSrc} alt={alt} />
+      <img {...props} src={imageSrc || '/logo192.png'} alt={alt} />
     </picture>
   );
 }

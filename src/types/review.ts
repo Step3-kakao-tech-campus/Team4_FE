@@ -1,13 +1,12 @@
 export interface ReviewCardInfo {
-  storeId: number,
-  reviewId: number,
-  storeImage: string,
-  storeName: string,
-  profileImage: string,
-  reviewerName: string,
-  reviewRating: number,
-  visitedCount: number,
-  createdAt: string,
+  storeId: number;
+  reviewId: number;
+  rating: number;
+  imageUrls: string;
+  content: string;
+  createdAt: string;
+  numOfLikes: number;
+  updated: boolean;
 }
 
 export interface ReviewImageTagInfo {
@@ -24,17 +23,11 @@ export interface ReviewDetailImageInfo {
   tags: ReviewImageTagInfo[];
 }
 
-export interface GPTBestReviewContent {
+export interface GPTReviewContent {
   isExist: boolean;
   content: {
-    BEST: string;
-  }
-}
-
-export interface GPTWorstReviewContent {
-  isExist: boolean;
-  content: {
-    WORST: string;
+    best: string;
+    worst: string;
   }
 }
 

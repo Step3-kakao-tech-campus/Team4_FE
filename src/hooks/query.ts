@@ -1,7 +1,8 @@
 import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
 import { getPopularStores, getSearchedStore } from '../apis/search';
 import {
-  getGPTBestReview, getGPTWorstReview, getReviews, getStoreDetail,
+  getGPTReview,
+  getReviews, getStoreDetail,
 } from '../apis/storeDetail';
 import { writeReview } from '../apis/review';
 import { PostWriteReviewInfo } from '../types/review';
@@ -26,9 +27,9 @@ export function useStoreDetail(storeId: number) {
 export function useStoreReview(storeId: number) {
   return useInfiniteQuery({
     queryKey: ['storeReview', { storeId }],
-    queryFn: async ({ pageParam = 0 }) => getReviews(storeId, pageParam),
-    getNextPageParam: (lastPage, allPages) => (
-      lastPage.length === 0 ? undefined : allPages.flat().length
+    queryFn: async ({ pageParam = 10000 }) => getReviews(storeId, pageParam),
+    getNextPageParam: (lastPage) => (
+      lastPage.paging.hasNext ? lastPage.paging.nextCursor : null
     ),
   });
 }
@@ -46,17 +47,10 @@ export function useWriteReview() {
   });
 }
 
-export function useGPTBestReview(storeId: number) {
+export function useGPTReview(storeId: number) {
   return useQuery({
-    queryKey: ['GPTBestReview', { storeId }],
-    queryFn: async () => getGPTBestReview(storeId),
-  });
-}
-
-export function useGPTWorstReview(storeId: number) {
-  return useQuery({
-    queryKey: ['GPTWorstReview', { storeId }],
-    queryFn: async () => getGPTWorstReview(storeId),
+    queryKey: ['GPTReview', { storeId }],
+    queryFn: async () => getGPTReview(storeId),
   });
 }
 
