@@ -24,7 +24,7 @@ const ReviewDetailTemplate = forwardRef<RefHandler, ReviewDetailTemplateProps>((
   },
   ref,
 ) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [prompts, setPrompts] = useState({}); // 프롬프트 데이터를 저장할 상태 값
   const [isClick, setIsClick] = useState(false); // 프롬프트 창을 열었는지 확인하는 상태 값
   const [isEdit, setIsEdit] = useState(false); // 리뷰 수정 상태 안지 확인하는 상태 값
@@ -36,7 +36,7 @@ const ReviewDetailTemplate = forwardRef<RefHandler, ReviewDetailTemplateProps>((
   const translateReview = () => {
     if (!isTranslated) {
       fetchWithHandler(
-        async () => translateContent(data.content, 'en'),
+        async () => translateContent(data.content, i18n.language),
         {
           onSuccess: (response) => {
             setTranslatedContent(response?.data.data.translations[0].translatedText);
