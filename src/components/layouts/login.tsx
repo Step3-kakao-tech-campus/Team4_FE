@@ -37,7 +37,7 @@ function Login() {
           backgroundColor="bg-matgpt-gray"
           extraStyle="px-12"
           onClick={() => {
-            navigate(-1);
+            navigate('/');
           }}
         >
           나중에 로그인 하기

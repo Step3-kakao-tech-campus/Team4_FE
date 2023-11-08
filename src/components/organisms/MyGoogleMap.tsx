@@ -99,7 +99,7 @@ export default function MyGoogleMap() {
         }}
       >
         <Button
-          extraStyle={`absolute bottom-4 left-1/2 -translate-x-1/2 ${isStoreLoading ? 'bg-matgpt-gray' : ''}`}
+          extraStyle={`absolute bottom-6 left-1/2 -translate-x-1/2 ${isStoreLoading ? 'bg-matgpt-gray' : ''}`}
           onClick={() => fetchStores(bound!)}
           disabled={isStoreLoading}
         >
