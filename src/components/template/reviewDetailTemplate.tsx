@@ -38,8 +38,8 @@ const ReviewDetailTemplate = forwardRef<RefHandler, ReviewDetailTemplateProps>((
       <ReviewInformation
         rating={data.rating}
         createdAt={data.createdAt}
-        reviewerName={data.reviewerName}
-        reviewerImage={data.reviewerImage}
+        reviewerName={data.reviewer.userName}
+        reviewerImage={data.reviewer.profileImage}
         peopleCount={data.peopleCount}
         totalPrice={data.totalPrice}
         isOwn={data.isOwn}
@@ -77,12 +77,20 @@ const ReviewDetailTemplate = forwardRef<RefHandler, ReviewDetailTemplateProps>((
                 <div>
                   {data.content}
                   <div className="absolute right-12">
-                    <div className="solid fixed bottom-16 z-10 mb-10 ml-5 h-5 w-5 rounded-3xl bg-matgpt-red text-center leading-4">
+                    <div className="fixed bottom-16 z-10 mb-10 ml-5 h-5 w-5 rounded-3xl bg-matgpt-red text-center leading-4">
                       <span className="text-[0.75rem] font-bold">{Object.keys(prompts).length}</span>
                     </div>
                     <div>
-                      <button type="button" onClick={() => { setIsClick((prev) => !prev); }} className="solid fixed bottom-8 mb-11 rounded-3xl border-8 border-matgpt-blue bg-matgpt-blue">
-                        <Icon name="JournalBookmarkFill" ariaLabel={t('reviewDetailPage.openPrompEditPage')} size="1.5rem" />
+                      <button
+                        type="button"
+                        onClick={() => { setIsClick((prev) => !prev); }}
+                        className="fixed bottom-8 mb-11 rounded-3xl border-8 border-matgpt-blue bg-matgpt-blue"
+                      >
+                        <Icon
+                          name="JournalBookmarkFill"
+                          ariaLabel={t('reviewDetailPage.openPrompEditPage')}
+                          size="1.5rem"
+                        />
                       </button>
                     </div>
                   </div>

@@ -37,7 +37,7 @@ export default function MyGoogleMap() {
       },
       {
         onSuccess: (response) => {
-          const data = response?.data.response;
+          const data = response?.data.data;
           setStores(data);
           setIsStoreLoading(false);
         },
@@ -72,7 +72,8 @@ export default function MyGoogleMap() {
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY!,
+    // googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY!,
+    googleMapsApiKey: '',
   });
 
   return (
@@ -104,15 +105,15 @@ export default function MyGoogleMap() {
         >
           범위 내 음식점 검색
         </Button>
-        {stores.map(({
-          lat, lng, storeId, storeName, image,
+        {stores && stores.map(({
+          latitude, longitude, storeId, storeName, storeImage,
         }) => (
           <Marker
             key={storeId}
-            lat={lat}
-            lng={lng}
+            latitude={latitude}
+            longitude={longitude}
             storeName={storeName}
-            image={image}
+            storeImage={storeImage}
             storeId={storeId}
           />
         ))}

@@ -1,23 +1,24 @@
-import { ReviewCardInfo } from '../types/review';
+import { AxiosResponse } from 'axios';
+import { GPTReviewContent, ReviewCardInfo } from '../types/review';
+import { StoreDetail } from '../types/store';
 import { fetchInstance } from './instance';
+import { PagingDataResponse } from '../types/response';
 
 export async function getStoreDetail(storeId: number) {
-  return fetchInstance.get(`/stores/${storeId}`);
+  return fetchInstance.get<AxiosResponse<StoreDetail>>(`/stores/${storeId}`);
 }
 
 export async function getReviews(
   storeId: number,
   cursor: number,
-): Promise<ReviewCardInfo[]> {
-  const response = await fetchInstance.get(`/stores/${storeId}/reviews?c=${cursor}`);
+) {
+  const response = await fetchInstance.get<AxiosResponse<PagingDataResponse<ReviewCardInfo>>>(
+    `stores/${storeId}/reviews?sortBy=latest&cursorId=${cursor}&cursorLikes=${cursor}`,
+  );
 
-  return response.data.response;
+  return response.data.data;
 }
 
-export async function getGPTBestReview(storeId: number) {
-  return fetchInstance.get(`/gpt/store/${storeId}/review/best`);
-}
-
-export async function getGPTWorstReview(storeId: number) {
-  return fetchInstance.get(`/gpt/store/${storeId}/review/worst`);
+export async function getGPTReview(storeId: number) {
+  return fetchInstance.get<AxiosResponse<GPTReviewContent>>(`/gpt/stores/${storeId}/review`);
 }

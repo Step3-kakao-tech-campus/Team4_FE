@@ -19,13 +19,15 @@ export default function StoreDetailTemplate({
       <StoreDetailHeader
         storeId={storeDetail.storeId}
         storeName={storeDetail.storeName}
-        storeImage={storeDetail.storeImage}
-        rating={storeDetail.rating}
-        reviewCount={storeDetail.reviewCount}
+        storeImage={storeDetail.storeImg}
+        rating={storeDetail.ratingAvg}
+        reviewCount={storeDetail.numsOfReview}
       />
       <StoreDetailTab
         storeId={storeDetail.storeId}
-        storeInfo={storeDetail.information}
+        phoneNumber={storeDetail.phoneNumber}
+        address={storeDetail.address}
+        businessHours={storeDetail.businessHours}
         reviews={reviews}
         fetchReview={fetchReview}
       />

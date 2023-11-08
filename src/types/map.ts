@@ -1,7 +1,7 @@
 export interface MarkerInfo {
-  lat: number;
-  lng: number;
+  latitude: number;
+  longitude: number;
   storeName: string;
   storeId: number;
-  image: string;
+  storeImage: string;
 }

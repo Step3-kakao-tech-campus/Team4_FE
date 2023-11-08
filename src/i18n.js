@@ -239,6 +239,18 @@ i18n
             fileTypeError: '유효하지 않은 파일 유형입니다.\n[jpg, png, jpeg, webp]인지 확인해주세요',
             fileSizeError: '파일 크기는 5MB 이하여야 합니다.',
           },
+          searchResult: {
+            result: '검색 결과',
+            noResult: '검색 결과가 없습니다.',
+          },
+          elapsedDate: {
+            moment: '방금 전',
+            minute: '분 전',
+            hour: '시간 전',
+            day: '일 전',
+            month: '달 전',
+            year: '년 전',
+          },
         },
       },
       en: {
@@ -457,6 +469,18 @@ i18n
           imageUploadError: {
             fileTypeError: 'Invalid file type.\nPlease check if it is [jpg, png, jpeg, webp]',
             fileSizeError: 'The file size must be 5MB or less.',
+          },
+          searchResult: {
+            result: 'Search result',
+            noResult: 'No search results.',
+          },
+          elapsedDate: {
+            moment: 'just a moment ago',
+            minute: 'minutes ago',
+            hour: 'hours ago',
+            day: 'days ago',
+            month: 'months ago',
+            year: 'years ago',
           },
         },
       },

@@ -8,5 +8,5 @@ export async function getStoresInBound({
   lowLng: number,
   highLng: number,
 }) {
-  return fetchInstance.get(`/?lowLat=${lowLat}&highLat=${highLat}&lowLng=${lowLng}&highLng=${highLng}`);
+  return fetchInstance.get(`/stores/boundary?maxlat=${highLat}&maxlon=${highLng}&minlat=${lowLat}&minlon=${lowLng}`);
 }
