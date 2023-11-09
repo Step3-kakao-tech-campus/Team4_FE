@@ -27,8 +27,7 @@ i18n
             myPage: '마이 페이지로 이동',
             home: '메인 페이지로 이동',
             search: '검색 페이지로 이동',
-            darkMode: '다크 모드로 전환',
-            lightMode: '라이트 모드로 전환',
+            language: '언어 변경',
           },
           input: {
             search: '검색하기',
@@ -260,8 +259,7 @@ i18n
             myPage: 'Move to my page',
             home: 'Move to main page',
             search: 'Move to search page',
-            darkMode: 'Switch to dark mode',
-            lightMode: 'Switch to light mode',
+            language: 'Change language',
           },
           input: {
             search: 'Search',
