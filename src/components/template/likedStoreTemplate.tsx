@@ -8,11 +8,11 @@ interface LikedStoreTemplateProps {
   likedStore: StoreCardInfo[],
   page: number,
   onChangePage: (type: 'left' | 'right') => void,
-  hasNextPage: boolean;
+  isLastPage: boolean;
 }
 
 function LikedStoreTemplate({
-  likedStore, page, onChangePage, hasNextPage,
+  likedStore, page, onChangePage, isLastPage,
 }: LikedStoreTemplateProps) {
   const { t } = useTranslation();
 
@@ -22,11 +22,11 @@ function LikedStoreTemplate({
         <PageTitleCard pageTitle={t('likedStorePage.pageTitle')} />
       </div>
       <nav>
-        <Page page={page} isLastPage={!hasNextPage} onChangePage={onChangePage} />
+        <Page page={page} isLastPage={isLastPage} onChangePage={onChangePage} />
       </nav>
       <main>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {likedStore.map(({
+          {likedStore && likedStore.map(({
             storeId, storeName, category, storeImage, numsOfReview, ratingAvg,
           }) => (
             <li key={storeId}>

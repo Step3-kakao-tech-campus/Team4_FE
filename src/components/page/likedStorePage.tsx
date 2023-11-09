@@ -29,25 +29,25 @@ function LikedStorePage() {
         fetchNextPage();
         setPage((prev) => prev + 1);
         setLastFetchedPage((prev) => prev + 1);
+      } else {
+        setPage((prev) => prev + 1);
       }
-      setPage((prev) => prev + 1);
     } else if (type === 'left') {
       setPage((prev) => prev - 1);
     }
   };
 
-  if (data && !isLoading && !isFetching) {
-    return (
-      <LikedStoreTemplate
-        likedStore={divideArray(data.pages.map((p) => p.body).flat(), 6)[page - 1]}
-        page={page}
-        onChangePage={onHandleChangePage}
-        hasNextPage={hasNextPage || page < lastFetchedPage}
-      />
-    );
+  if (!data || isLoading || isFetching) {
+    return <div>Loading..</div>;
   }
+
   return (
-    <div>Loading..</div>
+    <LikedStoreTemplate
+      likedStore={divideArray(data.pages.map((p) => p.body).flat(), 6)[page - 1]}
+      page={page}
+      onChangePage={onHandleChangePage}
+      isLastPage={page === lastFetchedPage && !hasNextPage}
+    />
   );
 }
 
