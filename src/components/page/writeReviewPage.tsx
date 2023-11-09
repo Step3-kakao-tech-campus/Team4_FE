@@ -23,7 +23,11 @@ export default function WriteReviewPage() {
 
   useEffect(() => {
     // 로그인 상태가 아니면 로그인 레이아웃으로 이동
-    if (localStorage.getItem('accessToken') === null) { navigate('/login'); }
+    if (localStorage.getItem('accessToken') === null) {
+      navigate('/login', {
+        replace: true,
+      });
+    }
   }, []);
 
   // presignedUrl을 요청하고, 각 이미지를 업로드
