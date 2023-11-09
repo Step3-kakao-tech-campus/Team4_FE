@@ -11,4 +11,12 @@ module.exports = function (app) {
       },
     }),
   );
+
+  app.use(
+    '/language/translate/v2',
+    createProxyMiddleware({
+      target: 'https://translation.googleapis.com',
+      changeOrigin: true,
+    }),
+  );
 };
