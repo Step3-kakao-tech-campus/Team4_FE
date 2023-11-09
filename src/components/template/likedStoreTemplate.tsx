@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StoreCardInfo } from '../../types/store';
 import PageTitleCard from '../molecules/pageTitleCard';
@@ -9,22 +8,13 @@ interface LikedStoreTemplateProps {
   likedStore: StoreCardInfo[],
   page: number,
   onChangePage: (type: 'left' | 'right') => void,
+  hasNextPage: boolean;
 }
 
-function LikedStoreTemplate({ likedStore, page, onChangePage }: LikedStoreTemplateProps) {
+function LikedStoreTemplate({
+  likedStore, page, onChangePage, hasNextPage,
+}: LikedStoreTemplateProps) {
   const { t } = useTranslation();
-  const [isLastPage, setIsLastPage] = useState(false);
-
-  useEffect(() => {
-    if (likedStore.length < 6) {
-      return () => {
-        setIsLastPage(true);
-      };
-    }
-    return () => {
-      setIsLastPage(false);
-    };
-  }, [likedStore]);
 
   return (
     <div className="relative">
@@ -32,7 +22,7 @@ function LikedStoreTemplate({ likedStore, page, onChangePage }: LikedStoreTempla
         <PageTitleCard pageTitle={t('likedStorePage.pageTitle')} />
       </div>
       <nav>
-        <Page page={page} isLastPage={isLastPage} onChangePage={onChangePage} />
+        <Page page={page} isLastPage={!hasNextPage} onChangePage={onChangePage} />
       </nav>
       <main>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">

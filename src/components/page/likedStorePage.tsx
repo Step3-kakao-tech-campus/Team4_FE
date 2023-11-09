@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LikedStoreTemplate from '../template/likedStoreTemplate';
 import { useLikedStore } from '../../hooks/query';
+import divideArray from '../../utils/array';
 
 function LikedStorePage() {
   const [page, setPage] = useState(1);
+  const [lastFetchedPage, setLastFetchedPage] = useState(1);
   const token = localStorage.getItem('accessToken');
 
   const navigate = useNavigate();
@@ -17,10 +19,17 @@ function LikedStorePage() {
     }
   }, []);
 
-  const { data, isLoading, isFetching } = useLikedStore(token);
+  const {
+    data, isLoading, isFetching, hasNextPage, fetchNextPage,
+  } = useLikedStore(token);
 
   const onHandleChangePage = (type: 'right' | 'left') => {
     if (type === 'right') {
+      if (page === lastFetchedPage && hasNextPage) {
+        fetchNextPage();
+        setPage((prev) => prev + 1);
+        setLastFetchedPage((prev) => prev + 1);
+      }
       setPage((prev) => prev + 1);
     } else if (type === 'left') {
       setPage((prev) => prev - 1);
@@ -30,9 +39,10 @@ function LikedStorePage() {
   if (data && !isLoading && !isFetching) {
     return (
       <LikedStoreTemplate
-        likedStore={data.data.data.storeList}
+        likedStore={divideArray(data.pages.map((p) => p.body).flat(), 6)[page - 1]}
         page={page}
         onChangePage={onHandleChangePage}
+        hasNextPage={hasNextPage || page < lastFetchedPage}
       />
     );
   }

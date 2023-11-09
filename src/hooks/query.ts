@@ -70,8 +70,11 @@ export function useReviewDetail(storeId: number, reviewId: number) {
 }
 
 export function useLikedStore(token: string | null) {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ['likedReview', { token }],
-    queryFn: async () => getLikedStore(token),
+    queryFn: async ({ pageParam = 10000 }) => getLikedStore(token, pageParam),
+    getNextPageParam: (lastPage) => (
+      lastPage.paging.hasNext ? lastPage.paging.nextCursor : null
+    ),
   });
 }
