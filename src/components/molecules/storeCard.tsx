@@ -46,7 +46,7 @@ export default function StoreCard({
         </div>
         <section className="flex h-full flex-col gap-[0.375rem] text-left">
           <h3 className="text-lg font-bold">{storeName}</h3>
-          <p className="text-sm">{category.name}</p>
+          {category ? <p className="text-sm">{category.name}</p> : null}
           <div className="flex items-center gap-3 text-xs">
             <div className="flex items-center gap-[0.1875rem]">
               <Icon name="OutlineStar" size="1rem" ariaLabel={t('storeCard.rating')} />
@@ -65,7 +65,12 @@ export default function StoreCard({
             onClickLikeStoreHandler();
           }}
         >
-          <Icon name="FillHeart" color={like ? 'text-matgpt-red' : 'text-matgpt-red opacity-20'} size="3rem" ariaLabel={t('likedStorePage.heartButton')} />
+          <Icon
+            name={`${like ? 'FillHeart' : 'OutlineHeart'}`}
+            color="text-matgpt-red"
+            size="3rem"
+            ariaLabel={t('likedStorePage.heartButton')}
+          />
         </button>
       ) : ''}
     </div>

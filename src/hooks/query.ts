@@ -6,6 +6,7 @@ import {
 } from '../apis/storeDetail';
 import { getReviewDetail, writeReview } from '../apis/review';
 import { PostWriteReviewInfo } from '../types/review';
+import { getLikedStore } from '../apis/likedStore';
 
 export function useSearchStore(searchString: string) {
   return useInfiniteQuery({
@@ -65,5 +66,12 @@ export function useReviewDetail(storeId: number, reviewId: number) {
   return useQuery({
     queryKey: ['reviewDetail', { storeId, reviewId }],
     queryFn: async () => getReviewDetail(storeId, reviewId),
+  });
+}
+
+export function useLikedStore(token: string | null) {
+  return useQuery({
+    queryKey: ['likedReview', { token }],
+    queryFn: async () => getLikedStore(token),
   });
 }

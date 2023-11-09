@@ -1,10 +1,15 @@
+import { AxiosResponse } from 'axios';
 import { StoreCardInfo } from '../types/store';
 import { fetchInstance } from './instance';
 
-export async function getLikedStore(
-  cursor: number,
-  limits: number,
-): Promise<StoreCardInfo[]> {
-  const response = await fetchInstance.get(`/mypage/liked-store?cursor=${cursor}&limits=${limits}`);
-  return response.data.response;
+export async function getLikedStore(token: string | null) {
+  return fetchInstance.get<AxiosResponse<{
+    userId: number;
+    storeList: StoreCardInfo[];
+  }>>('/stores/like', {
+    headers: {
+      Authorization: token,
+    },
+    withCredentials: true,
+  });
 }

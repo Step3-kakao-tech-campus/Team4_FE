@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StoreCardInfo } from '../../types/store';
 import PageTitleCard from '../molecules/pageTitleCard';
-// import StoreCard from '../molecules/storeCard';
 import Page from '../molecules/page';
+import StoreCard from '../molecules/storeCard';
 
 interface LikedStoreTemplateProps {
   likedStore: StoreCardInfo[],
@@ -36,22 +36,21 @@ function LikedStoreTemplate({ likedStore, page, onChangePage }: LikedStoreTempla
       </nav>
       <main>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {/* {likedStore.map(({
-            storeId, storeName, category, review, reviewCount, rating, image,
+          {likedStore.map(({
+            storeId, storeName, category, storeImage, numsOfReview, ratingAvg,
           }) => (
             <li key={storeId}>
               <StoreCard
                 storeId={storeId}
                 storeName={storeName}
                 category={category}
-                review={review}
-                reviewCount={reviewCount}
-                rating={rating}
-                image={image}
+                storeImage={storeImage}
+                numsOfReview={numsOfReview}
+                ratingAvg={ratingAvg}
                 likedCard
               />
             </li>
-          ))} */}
+          ))}
         </ul>
       </main>
     </div>
