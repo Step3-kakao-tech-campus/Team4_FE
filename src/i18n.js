@@ -250,6 +250,9 @@ i18n
             month: '달 전',
             year: '년 전',
           },
+          mainPage: {
+            search: '현재 범위 내 음식점 검색',
+          },
         },
       },
       en: {
@@ -479,6 +482,9 @@ i18n
             day: 'days ago',
             month: 'months ago',
             year: 'years ago',
+          },
+          mainPage: {
+            search: 'Search stores in range',
           },
         },
       },
