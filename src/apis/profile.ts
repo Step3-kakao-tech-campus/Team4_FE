@@ -6,7 +6,7 @@ interface ResultType {
 }
 export async function profileEdit({ language, gender, nickname }: ProfileEditInfo)
   : Promise<ResultType> {
-  const response = await fetchInstance.put('/mypage/edit-profile', {
+  const response = await fetchInstance.put('/profile', {
     language,
     gender,
     nickname,
@@ -16,7 +16,7 @@ export async function profileEdit({ language, gender, nickname }: ProfileEditInf
 
 export async function profileCreate({ language, gender, nickname }: ProfileEditInfo)
   : Promise<ResultType> {
-  const response = await fetchInstance.post('/create-profile', {
+  const response = await fetchInstance.post('/profile', {
     language,
     gender,
     nickname,
@@ -25,6 +25,6 @@ export async function profileCreate({ language, gender, nickname }: ProfileEditI
 }
 
 export async function getProfile(): Promise<ProfileInfo> {
-  const response = await fetchInstance.get('/mypage/profile');
+  const response = await fetchInstance.get('/profile');
   return response.data;
 }

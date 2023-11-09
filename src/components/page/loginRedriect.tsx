@@ -1,26 +1,30 @@
+import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function LoginRedriect() {
   const navigate = useNavigate();
-  const [serchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get('code');
 
   useEffect(() => {
-    const isFirstLogin = Boolean(serchParams.get('isFirstLogin'));
-    const accessToken = serchParams.get('accessToken') || '';
-    const refreshToken = serchParams.get('refreshToken') || '';
-    const accessTokenExpiresIn = Number(serchParams.get('accessTokenExpiresIn') || '');
-    localStorage.setItem('accessToken', `Bearer ${accessToken}`);
-    localStorage.setItem('refreshToken', `Bearer ${refreshToken}`);
-    localStorage.setItem('accessTokenExpiresIn', `${accessTokenExpiresIn}`);
-
-    // 백앤드에 api요청 보내서 닉네임, 이메일, 성별, 언어 정보 전역 상태 값에 저장
-    if (isFirstLogin) {
-      navigate('/registerUserInfo');
-    } else {
-      // 기존 유저면 원래 있던 페이지로 이동
-      navigate(localStorage.getItem('previouseUrl') || '/');
-    }
+    axios.get('/login/oauth2/code/kakao', {
+      params: {
+        code,
+      },
+    }).then((res) => {
+      localStorage.setItem('accessToken', `Bearer ${res.data.accessToken}`);
+      localStorage.setItem('refreshToken', `Bearer ${res.data.refreshToken}`);
+      localStorage.setItem('accessTokenExpiresIn', `${res.data.accessTokenExpiresIn}`);
+      const { isFirstLogin } = res.data;
+      if (isFirstLogin) {
+        navigate('/registerUserInfo');
+      } else {
+        navigate(localStorage.getItem('previouseUrl') || '/');
+      }
+    }).catch((error) => {
+      alert(error);
+    });
   }, []);
   return (
     <div>리다이렉트 됩니다.</div>
