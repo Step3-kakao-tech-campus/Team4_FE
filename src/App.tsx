@@ -67,7 +67,7 @@ function App() {
                   </Route>
                   {/* 단독 레이아웃 */}
                   <Route path="/landing" element={<LandingPage />} />
-                  <Route path="/login-redirect" element={<LoginRedriect />} />
+                  <Route path="/login/oauth2/code/kakao" element={<LoginRedriect />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>

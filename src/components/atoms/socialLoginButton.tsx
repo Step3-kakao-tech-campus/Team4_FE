@@ -12,7 +12,7 @@ function SocialLoginButton({ name, size = 'medium' }: SocialLoginButtonProps) {
 
   const onClickHandleSocialLogin = (socialType: string) => {
     localStorage.setItem('previouseUrl', currentLocation.pathname);
-    window.location.href = `http://43.201.187.182:8080/oauth2/authorization/${socialType}`;
+    window.location.href = `https://kauth.${socialType}.com/oauth/authorize?client_id=f46f96e8851e0a56496f0d93d20f869a&redirect_uri=https://k4cd71a7a9c51a.user-app.krampoline.com/login/oauth2/code/kakao&response_type=code`;
   };
 
   if (name === 'kakao') {
