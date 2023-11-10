@@ -13,3 +13,12 @@ export async function getLikedStore(token: string | null, cursor: number) {
 
   return response.data.data;
 }
+
+export async function toggleStoreLike(token: string | null, storeId: number) {
+  return fetchInstance.post(`stores/${storeId}/like`, null, {
+    headers: {
+      Authorization: token,
+    },
+    withCredentials: true,
+  });
+}

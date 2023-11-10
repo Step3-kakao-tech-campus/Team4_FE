@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 import { StoreCardInfo } from '../../types/store';
+import { fetchWithHandler } from '../../utils/fetchWithHandler';
+import { toggleStoreLike } from '../../apis/likedStore';
 
 export default function StoreCard({
   storeId,
@@ -16,15 +18,25 @@ export default function StoreCard({
 }: StoreCardInfo) {
   const { t } = useTranslation();
   const [like, setLike] = useState(true);
+  const navigate = useNavigate();
 
-  const onClickLikeStoreHandler = () => {
-    if (like === true) {
-      // 백앤드 서버에 가게 좋아요 취소 api 요청
-      setLike(() => false);
-    } else {
-      // 백앤드 서버에 가게 좋아요 api 요청
-      setLike(() => true);
+  const handleToggleStoreLike = async () => {
+    const token = localStorage.getItem('accessToken');
+
+    if (token === null) {
+      navigate('/login', {
+        replace: true,
+      });
     }
+
+    await fetchWithHandler(async () => toggleStoreLike(token, storeId), {
+      onSuccess: () => {
+        setLike((prev) => !prev);
+      },
+      onError: () => {
+        alert(t('toggleLike.error'));
+      },
+    });
   };
 
   return (
@@ -61,9 +73,7 @@ export default function StoreCard({
       {likedCard ? (
         <button
           type="button"
-          onClick={() => {
-            onClickLikeStoreHandler();
-          }}
+          onClick={handleToggleStoreLike}
         >
           <Icon
             name={`${like ? 'FillHeart' : 'OutlineHeart'}`}
