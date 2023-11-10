@@ -28,9 +28,13 @@ function ReviewCard({
           </div>
           <div className="flex justify-between">
             <div className="flex items-center">
-              <Icon name="OutlineStar" size="1.5rem" ariaLabel={t('reviewCard.ratingIcon')} />
+              <span className="text-yellow-400">
+                <Icon name="FillStar" size="1.5rem" ariaLabel={t('reviewCard.ratingIcon')} />
+              </span>
               <span className="pl-1 pr-3">{rating}</span>
-              <Icon name="FillHeart" size="1.2rem" ariaLabel={t('reviewCard.memberNumIcon')} />
+              <span className="text-matgpt-red">
+                <Icon name="FillHeart" size="1.2rem" ariaLabel={t('reviewCard.memberNumIcon')} />
+              </span>
               <span className="pl-1">
                 {numOfLikes}
               </span>

@@ -75,11 +75,13 @@ export default function StoreDetailHeader({
         <div className="flex justify-between">
           <div className="flex gap-4">
             <div className="flex items-center gap-1">
-              <Icon
-                name="FillStar"
-                size="1.4rem"
-                ariaLabel={t('storeDetail.rating')}
-              />
+              <span className="text-yellow-400">
+                <Icon
+                  name="FillStar"
+                  size="1.4rem"
+                  ariaLabel={t('storeDetail.rating')}
+                />
+              </span>
               <div>{rating}</div>
             </div>
             <div className="flex items-center gap-1">

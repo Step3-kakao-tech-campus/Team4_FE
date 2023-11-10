@@ -61,8 +61,10 @@ export default function StoreCard({
           {category ? <p className="text-sm">{category.name}</p> : null}
           <div className="flex items-center gap-3 text-xs">
             <div className="flex items-center gap-[0.1875rem]">
-              <Icon name="OutlineStar" size="1rem" ariaLabel={t('storeCard.rating')} />
-              {ratingAvg}
+              <span className="text-yellow-400">
+                <Icon name="FillStar" size="1rem" ariaLabel={t('storeCard.rating')} />
+              </span>
+              {ratingAvg.toFixed(2)}
             </div>
             <div>
               {`${t('storeCard.review')} ${numsOfReview}`}

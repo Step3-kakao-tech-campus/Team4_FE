@@ -26,22 +26,22 @@ function LikedReviewTemplate({
       </nav>
       <main>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {likedReview.map(({
-            reviewId, storeId, rating, content, createdAt, updated, numOfLikes, imageUrl,
-          }) => (
-            <li key={reviewId}>
-              <ReviewCard
-                storeId={storeId}
-                reviewId={reviewId}
-                rating={rating}
-                content={content}
-                createdAt={createdAt}
-                numOfLikes={numOfLikes}
-                updated={updated}
-                imageUrl={imageUrl}
-              />
-            </li>
-          ))}
+          {likedReview && likedReview[0] !== null ? likedReview.map((review) => (
+            review ? (
+              <li key={review.reviewId}>
+                <ReviewCard
+                  storeId={review.storeId}
+                  reviewId={review.storeId}
+                  rating={review.rating}
+                  content={review.content}
+                  createdAt={review.createdAt}
+                  numOfLikes={review.numOfLikes}
+                  updated={review.updated}
+                  imageUrl={review.imageUrl}
+                />
+              </li>
+            ) : null
+          )) : <div>{t('userPage.noLikedReview')}</div>}
         </ul>
       </main>
     </div>

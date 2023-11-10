@@ -26,21 +26,21 @@ function LikedStoreTemplate({
       </nav>
       <main>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {likedStore && likedStore.map(({
-            storeId, storeName, category, storeImage, numsOfReview, ratingAvg,
-          }) => (
-            <li key={storeId}>
-              <StoreCard
-                storeId={storeId}
-                storeName={storeName}
-                category={category}
-                storeImage={storeImage}
-                numsOfReview={numsOfReview}
-                ratingAvg={ratingAvg}
-                likedCard
-              />
-            </li>
-          ))}
+          {likedStore && likedStore[0] !== null ? likedStore.map((store) => (
+            store ? (
+              <li key={store.storeId}>
+                <StoreCard
+                  storeId={store.storeId}
+                  storeName={store.storeName}
+                  category={store.category}
+                  storeImage={store.storeImage}
+                  numsOfReview={store.numsOfReview}
+                  ratingAvg={store.ratingAvg}
+                  likedCard
+                />
+              </li>
+            ) : null
+          )) : <div>{t('userPage.noLikedStore')}</div>}
         </ul>
       </main>
     </div>

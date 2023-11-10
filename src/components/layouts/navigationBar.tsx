@@ -12,12 +12,12 @@ export default function NavigationBar() {
     <nav className="fixed inset-x-0 bottom-0 mx-auto flex w-full max-w-[500px]
       flex-row items-center justify-evenly bg-white"
     >
-      <Link
-        to="/prompt"
+      <button
+        type="button"
         className="flex grow justify-center py-4"
       >
         <Icon name="Clipboard" size="1.7rem" ariaLabel={t('navigationBar.prompt')} />
-      </Link>
+      </button>
       <Link
         to="/mypage"
         className="flex grow justify-center py-4"

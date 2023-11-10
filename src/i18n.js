@@ -53,6 +53,9 @@ i18n
             coinUsageHistory: '코인 사용 내역',
             language: '언어',
             logout: '로그 아웃',
+            noLikedReview: '좋아요 한 리뷰가 없습니다.',
+            noLikedStore: '좋아요 한 음식점이 없습니다.',
+            noWritedReview: '작성한 리뷰가 없습니다.',
           },
           loginModal: {
             closeIcon: '로그인 모달창을 닫습니다.',
@@ -114,6 +117,7 @@ i18n
             lowRatingReview: '낮은 평점 요약',
             highRatingReview: '높은 평점 요약',
             gptNotExist: 'ChatGPT로 요약한 후기를 검토중이에요.',
+            noReview: '리뷰가 없습니다.',
           },
           likedStorePage: {
             pageTitle: '좋아요 한 맛집',
@@ -291,6 +295,9 @@ i18n
             coinUsageHistory: 'Coin Usage History',
             language: 'Language',
             logout: 'Log Out',
+            noLikedReview: 'There is no review you liked.',
+            noLikedStore: 'There is no store you liked',
+            noWritedReview: 'There is no review you written.',
           },
           loginModal: {
             closeIcon: 'Close the Login Modal',
@@ -352,6 +359,7 @@ i18n
             lowRatingReview: 'Low rating review summary',
             highRatingReview: 'High rating review summary',
             gptNotExist: 'We\'re reviewing the review summarized by ChatGPT.',
+            noReview: 'There is no review.',
           },
           likedStorePage: {
             pageTitle: 'A Restaurant with Likes',
