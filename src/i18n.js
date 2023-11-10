@@ -253,6 +253,9 @@ i18n
           mainPage: {
             search: '현재 범위 내 음식점 검색',
           },
+          toggleLike: {
+            error: '오류가 발생했습니다.\n잠시 후 다시 시도해 주세요.',
+          },
         },
       },
       en: {
@@ -485,6 +488,9 @@ i18n
           },
           mainPage: {
             search: 'Search stores in range',
+          },
+          toggleLike: {
+            error: 'An error has occurred.\nPlease try again in a momentarily.',
           },
         },
       },

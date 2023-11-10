@@ -4,7 +4,9 @@ import {
   getGPTReview,
   getReviews, getStoreDetail,
 } from '../apis/storeDetail';
-import { getReviewDetail, writeReview } from '../apis/review';
+import {
+  getLikedReview, getReviewDetail, getWritedReview, writeReview,
+} from '../apis/review';
 import { PostWriteReviewInfo } from '../types/review';
 import { getLikedStore } from '../apis/likedStore';
 
@@ -71,8 +73,28 @@ export function useReviewDetail(storeId: number, reviewId: number) {
 
 export function useLikedStore(token: string | null) {
   return useInfiniteQuery({
-    queryKey: ['likedReview', { token }],
+    queryKey: ['likedStore', { token }],
     queryFn: async ({ pageParam = 10000 }) => getLikedStore(token, pageParam),
+    getNextPageParam: (lastPage) => (
+      lastPage.paging.hasNext ? lastPage.paging.nextCursor : null
+    ),
+  });
+}
+
+export function useLikedReview(token: string | null) {
+  return useInfiniteQuery({
+    queryKey: ['likedReview', { token }],
+    queryFn: async ({ pageParam = 10000 }) => getLikedReview(token, pageParam),
+    getNextPageParam: (lastPage) => (
+      lastPage.paging.hasNext ? lastPage.paging.nextCursor : null
+    ),
+  });
+}
+
+export function useWritedReview(token: string | null) {
+  return useInfiniteQuery({
+    queryKey: ['WritedReview', { token }],
+    queryFn: async ({ pageParam = 10000 }) => getWritedReview(token, pageParam),
     getNextPageParam: (lastPage) => (
       lastPage.paging.hasNext ? lastPage.paging.nextCursor : null
     ),

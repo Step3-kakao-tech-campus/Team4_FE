@@ -31,27 +31,6 @@ export interface GPTReviewContent {
   }
 }
 
-// {
-//   "data": {
-//     "storeId": 1,
-//     "reviewId": 2,
-//     "reviewer": {
-//       "profileImage": null,
-//       "userName": "ac98bef6-79c0-4a7b-b9b4-9c3e397dbbd7",
-//       "email": "female@gmail.com"
-//     },
-//     "averageCostPerPerson": 150000,
-//     "peopleCount": 2,
-//     "createdAt": "15 hoursago",
-//     "rating": 4,
-//     "recommendCount": 2,
-//     "content": "참말로 맛있네용",
-//     "reviewImages": [],
-//     "totalPrice": 30000,
-//     "updated": true
-//   }
-// }
-
 export interface ReviewDetailInfo {
   storeId: number;
   reviewId: number;
@@ -82,4 +61,17 @@ export interface Tag {
 export interface PostWriteReviewInfo {
   imageUrl: string;
   tags: Tag[];
+}
+
+export interface MypageReviewCardInfo {
+  id: number;
+  rating: number;
+  content: string;
+  createdAt: string;
+  storeImage: string;
+  storeName: string;
+  relativeTime: string;
+  updated: boolean;
+  numOfLikes: number;
+  peopleCount: number;
 }

@@ -24,7 +24,7 @@ export default function StoreDetailHeader({
   reviewCount,
 }: StoreDetailHeaderProps) {
   const { t } = useTranslation();
-  const [like, setLike] = useState(true);
+  const [like, setLike] = useState(false);
   const navigate = useNavigate();
 
   const handleToggleStoreLike = async () => {

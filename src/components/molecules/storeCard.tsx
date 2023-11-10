@@ -17,7 +17,7 @@ export default function StoreCard({
   likedCard = false,
 }: StoreCardInfo) {
   const { t } = useTranslation();
-  const [like, setLike] = useState(true);
+  const [like, setLike] = useState(likedCard);
   const navigate = useNavigate();
 
   const handleToggleStoreLike = async () => {
