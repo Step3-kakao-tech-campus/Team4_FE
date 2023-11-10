@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageTitleCard from '../molecules/pageTitleCard';
-import SocialLoginButton from '../atoms/socialLoginButton';
 import Button from '../atoms/button';
+import Icon from '../atoms/icon';
 
 function Login() {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ function Login() {
   return (
     <div className="flex flex-col items-center">
       <PageTitleCard pageTitle="로그인 페이지" />
-      <div className="flex flex-col items-center pb-24 pt-36 text-4xl font-bold">
+      <div className="flex flex-col items-center pb-20 pt-36 text-4xl font-bold">
         <div className="text-6xl">
           <span className="text-matgpt-red">MatGP</span>
           T
@@ -23,26 +23,24 @@ function Login() {
           지금 로그인하세요.
         </div>
       </div>
-      <div className="flex flex-col items-center">
-        <div className="mb-6">
-          <SocialLoginButton size="large" name="kakao" />
+      <div className="relative mb-2 flex flex-col items-center">
+        <div className="mb-2">
+          <input type="text" placeholder="아이디를 입력하세요." className="w-full rounded-full border border-black bg-white px-4 py-2" />
         </div>
         <div>
-          <SocialLoginButton size="large" name="google" />
+          <input type="password" placeholder="비밀번호를 입력하세요." className="w-full rounded-full border border-black bg-white px-4 py-2" />
+        </div>
+        <div className="absolute bottom-[-2rem]">
+          <span>아이디가 틀렸습니다.</span>
         </div>
       </div>
-      <div className="mt-36">
-        <Button
-          size="large"
-          backgroundColor="bg-matgpt-gray"
-          extraStyle="px-12"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          나중에 로그인 하기
-
-        </Button>
+      <div className="mt-8">
+        <Button size="large">로그인 하기</Button>
+      </div>
+      <div className="mt-3 flex">
+        <button type="button" className="underline decoration-solid">회원가입</button>
+        <Icon name="MinusVertical" size="1.5rem" ariaLabel="세로 선" />
+        <button type="button" className="underline decoration-solid">로그아웃</button>
       </div>
     </div>
   );
