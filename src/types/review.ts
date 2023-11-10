@@ -2,11 +2,26 @@ export interface ReviewCardInfo {
   storeId: number;
   reviewId: number;
   rating: number;
-  imageUrls: string;
+  imageUrl: string;
   content: string;
   createdAt: string;
   numOfLikes: number;
   updated: boolean;
+}
+
+export interface MypageReviewCardInfo {
+  reviewId: number;
+  storeId: number;
+  rating: number;
+  content: string;
+  imageUrl: string;
+  createdAt: string;
+  storeImage: string;
+  storeName: string;
+  relativeTime: string;
+  updated: boolean;
+  numOfLikes: number;
+  peopleCount: number;
 }
 
 export interface ReviewImageTagInfo {
@@ -63,15 +78,9 @@ export interface PostWriteReviewInfo {
   tags: Tag[];
 }
 
-export interface MypageReviewCardInfo {
-  id: number;
-  rating: number;
-  content: string;
-  createdAt: string;
-  storeImage: string;
-  storeName: string;
-  relativeTime: string;
-  updated: boolean;
-  numOfLikes: number;
-  peopleCount: number;
+export interface ReviewImagesPresignedUrlInfo {
+  reviewId: number;
+  presignedUrls: {
+    presignedUrl: string;
+  }[];
 }

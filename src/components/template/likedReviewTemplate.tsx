@@ -27,18 +27,18 @@ function LikedReviewTemplate({
       <main>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
           {likedReview.map(({
-            id, rating, content, createdAt, updated, numOfLikes,
+            reviewId, storeId, rating, content, createdAt, updated, numOfLikes, imageUrl,
           }) => (
-            <li key={id}>
+            <li key={reviewId}>
               <ReviewCard
-                storeId={1}
-                reviewId={id}
+                storeId={storeId}
+                reviewId={reviewId}
                 rating={rating}
                 content={content}
                 createdAt={createdAt}
                 numOfLikes={numOfLikes}
                 updated={updated}
-                imageUrls=""
+                imageUrl={imageUrl}
               />
             </li>
           ))}

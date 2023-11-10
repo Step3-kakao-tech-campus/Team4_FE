@@ -18,20 +18,20 @@ export default function StoreReviewTab({
   return (
     <>
       <ul>
-        {reviews.map((review) => (
+        {reviews && reviews.length > 0 ? reviews.map((review) => (
           <li key={review.reviewId}>
             <ReviewCard
               storeId={storeId}
               reviewId={review.reviewId}
               rating={review.rating}
-              imageUrls={review.imageUrls}
+              imageUrl={review.imageUrl}
               content={review.content}
               createdAt={review.createdAt}
               numOfLikes={review.numOfLikes}
               updated={review.updated}
             />
           </li>
-        ))}
+        )) : <div>리뷰가 없습니다.</div>}
       </ul>
       <div ref={bottomObserverRef} className="mb-[3.7rem]" />
     </>
