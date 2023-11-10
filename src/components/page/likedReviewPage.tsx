@@ -24,7 +24,7 @@ function LikedReviewPage() {
     data, isLoading, isFetching, hasNextPage, fetchNextPage,
   } = useLikedReview(token);
 
-  const onHandleChangePage = (type: 'right' | 'left') => {
+  const handleChangePage = (type: 'right' | 'left') => {
     if (type === 'right') {
       if (page === lastFetchedPage && hasNextPage) {
         fetchNextPage();
@@ -46,7 +46,7 @@ function LikedReviewPage() {
     <LikedReviewTemplate
       likedReview={divideArray(data.pages.map((p) => p.body).flat(), 8)[page - 1]}
       page={page}
-      onChangePage={onHandleChangePage}
+      onChangePage={handleChangePage}
       isLastPage={page === lastFetchedPage && !hasNextPage}
     />
   );

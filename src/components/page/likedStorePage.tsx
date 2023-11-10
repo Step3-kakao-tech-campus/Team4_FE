@@ -23,7 +23,7 @@ function LikedStorePage() {
     data, isLoading, isFetching, hasNextPage, fetchNextPage,
   } = useLikedStore(token);
 
-  const onHandleChangePage = (type: 'right' | 'left') => {
+  const handleChangePage = (type: 'right' | 'left') => {
     if (type === 'right') {
       if (page === lastFetchedPage && hasNextPage) {
         fetchNextPage();
@@ -45,7 +45,7 @@ function LikedStorePage() {
     <LikedStoreTemplate
       likedStore={divideArray(data.pages.map((p) => p.body).flat(), 6)[page - 1]}
       page={page}
-      onChangePage={onHandleChangePage}
+      onChangePage={handleChangePage}
       isLastPage={page === lastFetchedPage && !hasNextPage}
     />
   );
