@@ -11,6 +11,11 @@ export async function login(
   id: string,
   passwrod: string,
 ): Promise<LoginReturnInfo> {
-  const response = await fetchInstance.post('/login', { id, passwrod });
+  const response = await fetchInstance.post('/auth/login', { id, passwrod });
+  return response.data.response;
+}
+
+export async function logout(): Promise<null> {
+  const response = await fetchInstance.post('/auth/logout');
   return response.data.response;
 }

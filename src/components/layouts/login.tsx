@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PageTitleCard from '../molecules/pageTitleCard';
 import Button from '../atoms/button';
 import Icon from '../atoms/icon';
-import { login } from '../../apis/login';
+import { login, logout } from '../../apis/login';
 
 function Login() {
   const navigate = useNavigate();
@@ -31,6 +31,17 @@ function Login() {
     }).catch((err) => {
       setIsError(true);
       setErrorMessage(err.message);
+    });
+  };
+
+  const onClickLogout = () => {
+    logout().then(() => {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('accessTokenExpiresIn');
+      window.location.reload();
+    }).catch((err) => {
+      alert(err);
     });
   };
 
@@ -93,9 +104,9 @@ function Login() {
         <Button size="large" onClick={onClickLogin}>로그인 하기</Button>
       </div>
       <div className="mt-3 flex">
-        <button type="button" className="underline decoration-solid">회원가입</button>
+        <button type="button" className="underline decoration-solid" onClick={() => { navigate('/register'); }}>회원가입</button>
         <Icon name="MinusVertical" size="1.5rem" ariaLabel="세로 선" />
-        <button type="button" className="underline decoration-solid">로그아웃</button>
+        <button type="button" className="underline decoration-solid" onClick={onClickLogout}>로그아웃</button>
       </div>
     </div>
   );
