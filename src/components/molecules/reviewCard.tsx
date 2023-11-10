@@ -18,12 +18,12 @@ function ReviewCard({
       className="w-full p-2"
       aria-label={`${t('reviewCard.linkToReview')}`}
     >
-      <div className="flex">
+      <div className="flex h-28">
         <div className="mr-2 h-28 w-28">
           <Image imageSrc={imageUrl} alt={t('reviewCard.storeImage')} className="rounded-full object-cover" objectFitMode />
         </div>
         <div className="flex w-[20rem] flex-col justify-between py-2">
-          <div>
+          <div className="truncate">
             {content}
           </div>
           <div className="flex justify-between">
