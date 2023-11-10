@@ -1,14 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { useTranslation } from 'react-i18next';
-import { RootState } from '../../store/index';
 import Input from '../atoms/input';
 import Button from '../atoms/button';
 import DropdownList from '../molecules/dropdownList';
 import { RefHandler } from '../../types/refHandler';
 import { profileEdit, profileCreate } from '../../apis/profile';
-import { editProfile } from '../../store/slices/userProfileState';
 
 interface EditProfileFormProps {
   isRegister?: boolean;
@@ -16,11 +13,9 @@ interface EditProfileFormProps {
 
 function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
   const { t } = useTranslation();
-  const profile = useSelector((state: RootState) => state.profile);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [openArray, setOpenArray] = useState([false, false]);
-  const [gender, setGender] = useState(profile.gender || t('userEditProfilePage.notSelected'));
+  const [gender, setGender] = useState(localStorage.getItem('gender') || t('userEditProfilePage.notSelected'));
   const inputRef = useRef<RefHandler>(null);
   const ageRef = useRef<HTMLInputElement>(null);
 
@@ -49,14 +44,9 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
 
   function updateUserInfoState() {
     if (inputRef.current !== null && ageRef.current !== null) {
-      const nickname = inputRef.current.getInputValue();
-      if (nickname !== undefined) {
-        dispatch(editProfile({
-          age: +ageRef.current.value,
-          gender,
-          nickname,
-        }));
-      }
+      localStorage.setItem('gender', gender);
+      localStorage.setItem('age', ageRef.current.value);
+      localStorage.setItem('nickname', inputRef.current.getInputValue() || '');
     }
   }
 
@@ -69,14 +59,24 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
       }
       if (checkInputValidation()) {
         // 닉네임, 성별, 언어를 백앤드에 전송
-        const result = await profileEdit({ age: +ageRef.current.value, gender, nickname });
-        if (result.status === 200) {
+        let genderValue = '';
+        const age = ageRef.current.value;
+        if (gender === 'Woman' || gender === '여자') { genderValue = 'female'; }
+        if (gender === 'Men' || gender === '남자') { genderValue = 'male'; }
+        profileEdit({
+          age: +ageRef.current.value,
+          gender: genderValue,
+          nickname,
+        }).then(() => {
+          localStorage.setItem('gender', genderValue);
+          localStorage.setItem('age', age);
+          localStorage.setItem('age', nickname);
           alert(t('userEditProfilePage.success'));
           updateUserInfoState();
           navigate('/');
-        } else {
+        }).catch(() => {
           alert(t('userEditProfilePage.error'));
-        }
+        });
       }
     }
   }
@@ -90,14 +90,24 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
       }
       if (checkInputValidation()) {
         // 닉네임, 성별, 언어를 백앤드에 전송
-        const result = await profileCreate({ age: +ageRef.current.value, gender, nickname });
-        if (result.status === 200) {
+        let genderValue = '';
+        const age = ageRef.current.value;
+        if (gender === 'Woman' || gender === '여자') { genderValue = 'female'; }
+        if (gender === 'Men' || gender === '남자') { genderValue = 'male'; }
+        profileCreate({
+          age: +ageRef.current.value,
+          gender: genderValue,
+          nickname,
+        }).then(() => {
+          localStorage.setItem('gender', genderValue);
+          localStorage.setItem('age', age);
+          localStorage.setItem('age', nickname);
           alert(t('userEditProfilePage.success'));
           updateUserInfoState();
           navigate('/');
-        } else {
+        }).catch(() => {
           alert(t('userEditProfilePage.error'));
-        }
+        });
       }
     }
   }
@@ -108,7 +118,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
         <form>
           <label htmlFor="nickName">
             <span className="font-bold">{t('userEditProfilePage.nickName')}</span>
-            <Input mode="singleLine" ref={inputRef} placeholder={profile.nickname} id="nickName" />
+            <Input mode="singleLine" ref={inputRef} placeholder={localStorage.getItem('nickname') || undefined} id="nickName" />
           </label>
         </form>
       </div>

@@ -1,7 +1,5 @@
 import React, { useRef } from 'react';
-import { useSelector } from 'react-redux/es/exports';
 import { useTranslation } from 'react-i18next';
-import { RootState } from '../../store/index';
 import Button from '../atoms/button';
 import { isImageType, isValidFileSize } from '../../utils/image';
 
@@ -9,7 +7,6 @@ function EditProfileImage() {
   const { t } = useTranslation();
   const imgRef = useRef<HTMLInputElement>(null);
   const onClickProfileImageEdit = () => { };
-  const profile = useSelector((state: RootState) => state.profile);
 
   const handleChange = () => {
     const fileList = imgRef.current?.files;
@@ -33,7 +30,7 @@ function EditProfileImage() {
 
   return (
     <div className="flex flex-col items-center">
-      <img src={profile.profileImage} alt={t('userPage.userImage')} className="w-[9rem]" />
+      <img src={localStorage.getItem('userImage') || undefined} alt={t('userPage.userImage')} className="h-[12rem] w-[9rem]" />
       <span className="py-3 text-xl font-bold">{t('userEditProfilePage.nickName')}</span>
       <Button onClick={() => { onClickProfileImageEdit(); }}>
         <label htmlFor="profileImg">{t('userEditProfilePage.profileImageAdd')}</label>
