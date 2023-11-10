@@ -9,6 +9,7 @@ import {
 } from '../apis/review';
 import { PostWriteReviewInfo } from '../types/review';
 import { getLikedStore } from '../apis/likedStore';
+import { getChargeCoin, getUsageCoin } from '../apis/coin';
 
 export function useSearchStore(searchString: string) {
   return useInfiniteQuery({
@@ -95,6 +96,26 @@ export function useWritedReview(token: string | null) {
   return useInfiniteQuery({
     queryKey: ['WritedReview', { token }],
     queryFn: async ({ pageParam = 10000 }) => getWritedReview(token, pageParam),
+    getNextPageParam: (lastPage) => (
+      lastPage.paging.hasNext ? lastPage.paging.nextCursor : null
+    ),
+  });
+}
+
+export function useRechargedCoinHistory(token: string | null) {
+  return useInfiniteQuery({
+    queryKey: ['rechargedCoin', { token }],
+    queryFn: async ({ pageParam = '2100-01-01T00:00:00' }) => getChargeCoin(token, pageParam),
+    getNextPageParam: (lastPage) => (
+      lastPage.paging.hasNext ? lastPage.paging.nextCursor : null
+    ),
+  });
+}
+
+export function useUsedCoinHistory(token: string | null) {
+  return useInfiniteQuery({
+    queryKey: ['usedCoin', { token }],
+    queryFn: async ({ pageParam = '2100-01-01T00:00:00' }) => getUsageCoin(token, pageParam),
     getNextPageParam: (lastPage) => (
       lastPage.paging.hasNext ? lastPage.paging.nextCursor : null
     ),
