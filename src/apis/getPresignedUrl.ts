@@ -1,24 +1,30 @@
+import { AxiosResponse } from 'axios';
 import { fetchInstance } from './instance';
-
-interface PresignedUrls {
-  presignedUrl: string,
-}
-
-interface ReviewImagesPresignedUrlInfo {
-  reviewId: number,
-  presignedUrls: PresignedUrls[]
-}
+import { ReviewImagesPresignedUrlInfo } from '../types/review';
 
 export async function getReviewImagesPresignedUrls(
+  token: string | null,
   storeId: number,
   content: string,
   rating: number,
   peopleCount: number,
   totalPrice: number,
   imageCount: number,
-): Promise<ReviewImagesPresignedUrlInfo> {
-  const response = await fetchInstance.post(`/stores/${storeId}/reviews/temp`, {
-    content, rating, peopleCount, totalPrice, imageCount,
-  });
-  return response.data;
+) {
+  return fetchInstance.post<AxiosResponse<ReviewImagesPresignedUrlInfo>>(
+    `/stores/${storeId}/reviews/temp`,
+    {
+      content: `${content}`,
+      rating,
+      peopleCount,
+      totalPrice,
+      imageCount,
+    },
+    {
+      headers: {
+        Authorization: token,
+      },
+      withCredentials: true,
+    },
+  );
 }

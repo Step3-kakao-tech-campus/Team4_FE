@@ -18,7 +18,7 @@ export default function StoreReviewTab({
   return (
     <>
       <ul>
-        {reviews && reviews.length > 0 ? reviews.map((review) => (
+        {reviews[0] !== null && reviews.length > 0 ? reviews.map((review) => (
           <li key={review.reviewId}>
             <ReviewCard
               storeId={storeId}

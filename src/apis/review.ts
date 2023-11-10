@@ -43,9 +43,12 @@ export async function getReviewDetail(
 
 export async function writeReview(
   storeId: number,
-  reviewData: PostWriteReviewInfo[],
+  reviewId: number,
+  reviewData: {
+    reviewImages: PostWriteReviewInfo[];
+  },
 ) {
-  return fetchInstance.post(`/stores/${storeId}/reviews`, reviewData);
+  return fetchInstance.post(`/stores/${storeId}/reviews/${reviewId}`, reviewData);
 }
 
 export async function editReview(

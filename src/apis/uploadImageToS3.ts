@@ -1,12 +1,11 @@
-import { fetchInstance } from './instance';
+import axios from 'axios';
 
 export async function uploadImageToS3(
   presignendUrl: string,
   file: Blob,
-): Promise<{ data: {} }> {
-  const response = await fetchInstance.put(
+) {
+  return axios.put(
     `${presignendUrl}`,
     file,
   );
-  return response.data;
 }

@@ -43,11 +43,15 @@ export function useWriteReview() {
     mutationKey: ['writeReview'],
     mutationFn: async ({
       storeId,
+      reviewId,
       reviewData,
     }: {
-      storeId: number,
-      reviewData: PostWriteReviewInfo[]
-    }) => writeReview(storeId, reviewData),
+      storeId: number;
+      reviewId: number;
+      reviewData: {
+        reviewImages: PostWriteReviewInfo[];
+      };
+    }) => writeReview(storeId, reviewId, reviewData),
   });
 }
 
