@@ -16,6 +16,9 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
   const navigate = useNavigate();
   const [openArray, setOpenArray] = useState([false, false]);
   const [gender, setGender] = useState(localStorage.getItem('gender') || t('userEditProfilePage.notSelected'));
+
+  const [language, setLanguage] = useState(localStorage.getItem('language') || t('userEditProfilePage.notSelected'));
+
   const inputRef = useRef<RefHandler>(null);
   const ageRef = useRef<HTMLInputElement>(null);
 
@@ -24,7 +27,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
   // 페이지 렌더링 시 닉네임, 성별, 언어 서버에서 받아오기
 
   function checkInputValidation() {
-    if (inputRef.current !== null) {
+    if (inputRef.current !== null && ageRef.current !== null) {
       const nickname = inputRef.current.getInputValue();
       if (nickname === undefined) {
         return false;
@@ -37,17 +40,9 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
         alert(t('userEditProfilePage.genderNotSelectedError'));
         return false;
       }
-      return true;
+      if (+ageRef.current.value === 0) { alert('나이를 입력해주세요'); return false; }
     }
-    return false;
-  }
-
-  function updateUserInfoState() {
-    if (inputRef.current !== null && ageRef.current !== null) {
-      localStorage.setItem('gender', gender);
-      localStorage.setItem('age', ageRef.current.value);
-      localStorage.setItem('nickname', inputRef.current.getInputValue() || '');
-    }
+    return true;
   }
 
   async function onClickProfileEdit() {
@@ -64,15 +59,16 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
         if (gender === 'Woman' || gender === '여자') { genderValue = 'female'; }
         if (gender === 'Men' || gender === '남자') { genderValue = 'male'; }
         profileEdit({
+          language,
           age: +ageRef.current.value,
           gender: genderValue,
           nickname,
         }).then(() => {
+          localStorage.setItem('language', language);
           localStorage.setItem('gender', genderValue);
           localStorage.setItem('age', age);
-          localStorage.setItem('age', nickname);
+          localStorage.setItem('nickname', nickname);
           alert(t('userEditProfilePage.success'));
-          updateUserInfoState();
           navigate('/');
         }).catch(() => {
           alert(t('userEditProfilePage.error'));
@@ -89,21 +85,22 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
         return;
       }
       if (checkInputValidation()) {
-        // 닉네임, 성별, 언어를 백앤드에 전송
+        // 닉네임, 성별, 언어, 나이를 백앤드에 전송
         let genderValue = '';
         const age = ageRef.current.value;
         if (gender === 'Woman' || gender === '여자') { genderValue = 'female'; }
         if (gender === 'Men' || gender === '남자') { genderValue = 'male'; }
         profileCreate({
+          language,
           age: +ageRef.current.value,
           gender: genderValue,
           nickname,
         }).then(() => {
+          localStorage.setItem('language', language);
           localStorage.setItem('gender', genderValue);
           localStorage.setItem('age', age);
-          localStorage.setItem('age', nickname);
+          localStorage.setItem('nickname', nickname);
           alert(t('userEditProfilePage.success'));
-          updateUserInfoState();
           navigate('/');
         }).catch(() => {
           alert(t('userEditProfilePage.error'));
@@ -123,6 +120,50 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
         </form>
       </div>
       <div className="my-6 px-12">
+        <div>
+          <div className="mt-6 font-bold">{t('userEditProfilePage.gender')}</div>
+          <DropdownList
+            value={language}
+            isOpen={openArray[0]}
+            setIsOpen={() => { setOpenArray([!openArray[0], openArray[1]]); }}
+          >
+            <ul className="rounded-b-lg border border-solid border-black bg-white">
+              <button type="button" onClick={() => { setLanguage('us'); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
+                <li>us</li>
+              </button>
+              <button type="button" onClick={() => { setLanguage('korea'); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
+                <li>korea</li>
+              </button>
+              <button type="button" onClick={() => { setLanguage('japan'); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
+                <li>japan</li>
+              </button>
+              <button type="button" onClick={() => { setLanguage('chinese'); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
+                <li>chinese</li>
+              </button>
+              <button type="button" onClick={() => { setLanguage('simplified_chinese'); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
+                <li>simplified_chinese</li>
+              </button>
+              <button type="button" onClick={() => { setLanguage('traditional_chinese'); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
+                <li>traditional_chinese</li>
+              </button>
+              <button type="button" onClick={() => { setLanguage('france'); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
+                <li>france</li>
+              </button>
+              <button type="button" onClick={() => { setLanguage('germany'); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
+                <li>germany</li>
+              </button>
+              <button type="button" onClick={() => { setLanguage('italy'); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
+                <li>italy</li>
+              </button>
+              <button type="button" onClick={() => { setLanguage('uk'); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
+                <li>uk</li>
+              </button>
+              <button type="button" onClick={() => { setLanguage('canada'); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
+                <li>canada</li>
+              </button>
+            </ul>
+          </DropdownList>
+        </div>
         <div>
           <div className="mt-6 font-bold">{t('userEditProfilePage.gender')}</div>
           <DropdownList
