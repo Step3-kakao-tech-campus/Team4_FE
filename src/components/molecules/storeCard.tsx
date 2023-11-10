@@ -6,6 +6,7 @@ import Image from '../atoms/image';
 import { StoreCardInfo } from '../../types/store';
 import { fetchWithHandler } from '../../utils/fetchWithHandler';
 import { toggleStoreLike } from '../../apis/likedStore';
+import { getRandomBlankImage } from '../../utils/image';
 
 export default function StoreCard({
   storeId,
@@ -19,6 +20,7 @@ export default function StoreCard({
   const { t } = useTranslation();
   const [like, setLike] = useState(likedCard);
   const navigate = useNavigate();
+  const [image] = useState(storeImage || getRandomBlankImage());
 
   const handleToggleStoreLike = async () => {
     const token = localStorage.getItem('accessToken');
@@ -48,7 +50,7 @@ export default function StoreCard({
       >
         <div className="h-28 w-28">
           <Image
-            imageSrc={storeImage}
+            imageSrc={image}
             alt={storeName}
             objectFitMode
             className="rounded-full object-cover"

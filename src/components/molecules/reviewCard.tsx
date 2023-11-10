@@ -1,14 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 import { ReviewCardInfo } from '../../types/review';
 import useElapsedDate from '../../hooks/convert';
+import { getRandomBlankImage } from '../../utils/image';
 
 function ReviewCard({
   storeId, reviewId, rating, imageUrl, content, createdAt, numOfLikes, updated,
 }: ReviewCardInfo) {
   const { t } = useTranslation();
+  const [image] = useState(imageUrl || getRandomBlankImage());
 
   const elapsedDate = useElapsedDate({ dateString: createdAt });
 
@@ -20,7 +23,7 @@ function ReviewCard({
     >
       <div className="flex h-28">
         <div className="mr-2 h-28 w-28">
-          <Image imageSrc={imageUrl} alt={t('reviewCard.storeImage')} className="rounded-full object-cover" objectFitMode />
+          <Image imageSrc={image} alt={t('reviewCard.storeImage')} className="rounded-full object-cover" objectFitMode />
         </div>
         <div className="flex w-[20rem] flex-col justify-between py-2">
           <div className="truncate">

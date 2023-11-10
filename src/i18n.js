@@ -78,7 +78,7 @@ i18n
           },
           reviewCard: {
             linkToReview: '의 선택된 리뷰 페이지로 이동',
-            storeImage: '식당 이미지',
+            storeImage: '리뷰 이미지',
             userImage: '유저 이미지',
             ratingIcon: '리뷰 평점',
             memberNumIcon: '방문 인원',
@@ -320,7 +320,7 @@ i18n
           },
           reviewCard: {
             linkToReview: 'Selected Review Page',
-            storeImage: 'Store Image',
+            storeImage: 'Review image',
             userImage: 'User Image',
             ratingIcon: 'Review Rating',
             memberNumIcon: 'The number of people visiting the store',
