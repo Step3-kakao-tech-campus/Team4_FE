@@ -29,6 +29,7 @@ import PromptPage from './components/page/promptPage';
 import LoginRedriect from './components/page/loginRedriect';
 import RegisterUserInfoPage from './components/page/registerUserInfoPage';
 import Login from './components/layouts/login';
+import Register from './components/layouts/register';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
@@ -64,6 +65,7 @@ function App() {
                     <Route path="/prompt/:promptId" element={<PromptPage />} />
                     <Route path="stores/:storeId/reviews/:reviewId" element={<ReviewDetailPage />} />
                     <Route path="/registerUserInfo" element={<RegisterUserInfoPage />} />
+                    <Route path="/register" element={<Register />} />
                   </Route>
                   {/* 단독 레이아웃 */}
                   <Route path="/landing" element={<LandingPage />} />
