@@ -15,11 +15,23 @@ function Login() {
   const idRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const [isError] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [isPasswordHide, setIsPasswordHide] = useState(true);
 
   const onClickLogin = () => {
-
+    if (idRef.current === null || passwordRef.current === null) { return; }
+    login(idRef.current.value, passwordRef.current.value).then((res) => {
+      localStorage.setItem('accessToken', `Bearer ${res.accessToken}`);
+      localStorage.setItem('refreshToken', `Bearer ${res.refreshToken}`);
+      localStorage.setItem('accessTokenExpiresIn', `${res.accessTokenExpiresIn}`);
+      alert('로그인에 성공하였습니다.');
+      setIsError(false);
+      navigate(localStorage.getItem('previouseUrl') || '/');
+    }).catch((err) => {
+      setIsError(true);
+      setErrorMessage(err.message);
+    });
   };
 
   return (
@@ -72,12 +84,12 @@ function Login() {
           </div>
         </div>
         {isError ? (
-          <div className="absolute bottom-[-2rem]">
-            <span>아이디가 틀렸습니다.</span>
+          <div className="absolute bottom-[-3rem]">
+            <span className="font-bold text-matgpt-red">{errorMessage}</span>
           </div>
         ) : null}
       </div>
-      <div className="mt-8">
+      <div className="mt-10">
         <Button size="large" onClick={onClickLogin}>로그인 하기</Button>
       </div>
       <div className="mt-3 flex">
