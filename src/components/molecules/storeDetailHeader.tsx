@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Button from '../atoms/button';
 import Icon from '../atoms/icon';
@@ -21,6 +21,16 @@ export default function StoreDetailHeader({
   reviewCount,
 }: StoreDetailHeaderProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const onClickWriteReview = () => {
+    if (localStorage.getItem('accessToken') === null) {
+      localStorage.setItem('previouseUrl', `/stores/${storeId}`);
+      navigate('/login');
+    } else {
+      navigate(`/stores/${storeId}/writeReview`);
+    }
+  };
   return (
     <>
       <PageTitleCard pageTitle={t('storeDetail.pageTitle')} />
@@ -58,9 +68,7 @@ export default function StoreDetailHeader({
               <div>{reviewCount}</div>
             </div>
           </div>
-          <Link to={`/stores/${storeId}/writeReview`}>
-            <Button>{t('storeDetail.writeReview')}</Button>
-          </Link>
+          <Button onClick={onClickWriteReview}>{t('storeDetail.writeReview')}</Button>
         </div>
       </div>
     </>

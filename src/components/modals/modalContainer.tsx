@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import ModalBackdrop from './modalBackdrop';
 import { useModalSelector } from '../../hooks/store';
 import LanguageModal from './languageModal';
-import SocialLoginModalContent from './socialLoginModalContent';
 import SearchModal from './searchModal';
 
 export default function ModalContainer({ children }: { children: React.ReactNode }) {
@@ -61,17 +60,6 @@ export default function ModalContainer({ children }: { children: React.ReactNode
           <div role="dialog" aria-modal>
             <div ref={preNode} tabIndex={0} />
             <LanguageModal />
-            <div ref={postNode} tabIndex={0} />
-          </div>
-        </ModalBackdrop>,
-        document.body,
-      ) : null}
-
-      {(isOpen && type === 'Login' && location.hash === '#Login') ? createPortal(
-        <ModalBackdrop>
-          <div role="dialog" aria-modal>
-            <div ref={preNode} tabIndex={0} />
-            <SocialLoginModalContent />
             <div ref={postNode} tabIndex={0} />
           </div>
         </ModalBackdrop>,

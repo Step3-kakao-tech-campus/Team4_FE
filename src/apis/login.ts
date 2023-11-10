@@ -11,7 +11,7 @@ export async function login(
   id: string,
   passwrod: string,
 ): Promise<LoginReturnInfo> {
-  const response = await fetchInstance.post('/auth/login', { id, passwrod });
+  const response = await fetchInstance.post('/auth/login', { username: id, passwrod });
   return response.data.response;
 }
 
