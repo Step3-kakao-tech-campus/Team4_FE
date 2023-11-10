@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageTitleCard from '../molecules/pageTitleCard';
 import Button from '../atoms/button';
 import Icon from '../atoms/icon';
+import { login } from '../../apis/login';
 
 function Login() {
   const navigate = useNavigate();
@@ -11,8 +12,15 @@ function Login() {
     if (localStorage.getItem('accessToken') !== null) { navigate('/'); }
   }, []);
 
+  const idRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
   const [isError] = useState(false);
   const [isPasswordHide, setIsPasswordHide] = useState(true);
+
+  const onClickLogin = () => {
+
+  };
 
   return (
     <div className="flex flex-col items-center">
@@ -28,10 +36,20 @@ function Login() {
       </div>
       <div className="relative mb-2 flex flex-col items-center">
         <div className="mb-2">
-          <input type="text" placeholder="아이디를 입력하세요." className="w-full rounded-full border border-black bg-white px-4 py-2" />
+          <input
+            type="text"
+            placeholder="아이디를 입력하세요."
+            className="w-full rounded-full border border-black bg-white px-4 py-2"
+            ref={idRef}
+          />
         </div>
         <div className="relative">
-          <input type={isPasswordHide ? 'password' : 'text'} placeholder="비밀번호를 입력하세요." className="w-full rounded-full border border-black bg-white px-4 py-2" />
+          <input
+            type={isPasswordHide ? 'password' : 'text'}
+            placeholder="비밀번호를 입력하세요."
+            className="w-full rounded-full border border-black bg-white px-4 py-2"
+            ref={passwordRef}
+          />
           <div>
             {isPasswordHide ? (
               <button
@@ -60,7 +78,7 @@ function Login() {
         ) : null}
       </div>
       <div className="mt-8">
-        <Button size="large">로그인 하기</Button>
+        <Button size="large" onClick={onClickLogin}>로그인 하기</Button>
       </div>
       <div className="mt-3 flex">
         <button type="button" className="underline decoration-solid">회원가입</button>
