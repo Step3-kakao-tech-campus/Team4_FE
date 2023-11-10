@@ -20,9 +20,9 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [openArray, setOpenArray] = useState([false, false]);
-  const [language, setLanguage] = useState(profile.language || t('userEditProfilePage.notSelected'));
   const [gender, setGender] = useState(profile.gender || t('userEditProfilePage.notSelected'));
   const inputRef = useRef<RefHandler>(null);
+  const ageRef = useRef<HTMLInputElement>(null);
 
   // 요청 성공 시 리덕스에 전체 값 저장
 
@@ -38,11 +38,6 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
         alert(t('userEditProfilePage.nickNameLengthError'));
         return false;
       }
-      console.log(language, gender);
-      if (language === t('userEditProfilePage.notSelected')) {
-        alert(t('userEditProfilePage.languageNotSelectedError'));
-        return false;
-      }
       if (gender === t('userEditProfilePage.notSelected')) {
         alert(t('userEditProfilePage.genderNotSelectedError'));
         return false;
@@ -53,11 +48,11 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
   }
 
   function updateUserInfoState() {
-    if (inputRef.current !== null) {
+    if (inputRef.current !== null && ageRef.current !== null) {
       const nickname = inputRef.current.getInputValue();
       if (nickname !== undefined) {
         dispatch(editProfile({
-          language,
+          age: +ageRef.current.value,
           gender,
           nickname,
         }));
@@ -66,7 +61,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
   }
 
   async function onClickProfileEdit() {
-    if (inputRef.current !== null) {
+    if (inputRef.current !== null && ageRef.current !== null) {
       const nickname = inputRef.current.getInputValue();
       if (nickname === undefined) {
         alert(t('userEditProfilePage.error'));
@@ -74,7 +69,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
       }
       if (checkInputValidation()) {
         // 닉네임, 성별, 언어를 백앤드에 전송
-        const result = await profileEdit({ language, gender, nickname });
+        const result = await profileEdit({ age: +ageRef.current.value, gender, nickname });
         if (result.status === 200) {
           alert(t('userEditProfilePage.success'));
           updateUserInfoState();
@@ -87,7 +82,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
   }
 
   async function onClickProfileCraete() {
-    if (inputRef.current !== null) {
+    if (inputRef.current !== null && ageRef.current !== null) {
       const nickname = inputRef.current.getInputValue();
       if (nickname === undefined) {
         alert(t('userEditProfilePage.error'));
@@ -95,7 +90,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
       }
       if (checkInputValidation()) {
         // 닉네임, 성별, 언어를 백앤드에 전송
-        const result = await profileCreate({ language, gender, nickname });
+        const result = await profileCreate({ age: +ageRef.current.value, gender, nickname });
         if (result.status === 200) {
           alert(t('userEditProfilePage.success'));
           updateUserInfoState();
@@ -119,23 +114,6 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
       </div>
       <div className="my-6 px-12">
         <div>
-          <div className="font-bold ">{t('userEditProfilePage.language')}</div>
-          <DropdownList
-            value={language}
-            isOpen={openArray[0]}
-            setIsOpen={() => { setOpenArray([!openArray[0], openArray[1]]); }}
-          >
-            <ul className="rounded-b-lg border border-solid border-black bg-white">
-              <button type="button" onClick={() => { setLanguage(t('userEditProfilePage.korean')); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
-                <li>{t('userEditProfilePage.korean')}</li>
-              </button>
-              <button type="button" onClick={() => { setLanguage(t('userEditProfilePage.english')); setOpenArray([false, openArray[1]]); }} className="block w-full p-2 text-left">
-                <li>{t('userEditProfilePage.english')}</li>
-              </button>
-            </ul>
-          </DropdownList>
-        </div>
-        <div>
           <div className="mt-6 font-bold">{t('userEditProfilePage.gender')}</div>
           <DropdownList
             value={gender}
@@ -151,6 +129,10 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
               </button>
             </ul>
           </DropdownList>
+        </div>
+        <div>
+          <div className="mt-6 font-bold">{t('userEditProfilePage.language')}</div>
+          <input ref={ageRef} type="number" className="w-full rounded-full border border-black bg-white px-4 py-2" />
         </div>
       </div>
       <div className="my-24 text-center">

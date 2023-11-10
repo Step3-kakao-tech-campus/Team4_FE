@@ -4,20 +4,20 @@ import { ProfileInfo, ProfileEditInfo } from '../types/profile';
 interface ResultType {
   status: number,
 }
-export async function profileEdit({ language, gender, nickname }: ProfileEditInfo)
+export async function profileEdit({ gender, nickname, age }: ProfileEditInfo)
   : Promise<ResultType> {
   const response = await fetchInstance.put('/mypage/edit-profile', {
-    language,
+    age,
     gender,
     nickname,
   });
   return response;
 }
 
-export async function profileCreate({ language, gender, nickname }: ProfileEditInfo)
+export async function profileCreate({ gender, nickname, age }: ProfileEditInfo)
   : Promise<ResultType> {
   const response = await fetchInstance.post('/create-profile', {
-    language,
+    age,
     gender,
     nickname,
   });

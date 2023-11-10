@@ -6,7 +6,7 @@ export interface ProfileInfo {
 }
 
 export interface ProfileEditInfo {
-  language: string,
+  age: number,
   gender: string,
   nickname: string,
 }
