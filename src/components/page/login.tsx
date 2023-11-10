@@ -33,6 +33,7 @@ function Login() {
     }).catch((err) => {
       setIsError(true);
       setErrorMessage(err.message);
+      // api상태 코드에 따라 아이디가 틀림.. 이런 부분 미 구현
     });
   };
 
