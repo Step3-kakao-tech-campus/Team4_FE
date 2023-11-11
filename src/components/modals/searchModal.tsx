@@ -89,7 +89,7 @@ export default function SearchModal() {
             )) : null}
           </ul>
         </div>
-        {similarStores ? (
+        {similarStores && similarStores.length > 0 ? (
           <div>
             <h2 className="mb-2 px-4 font-bold">{t('searchBar.similarStore')}</h2>
             <ul>
