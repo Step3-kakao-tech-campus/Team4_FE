@@ -25,9 +25,9 @@ import ErrorBoundary from './components/layouts/errorBoundary';
 import NotFoundPage from './components/page/notFoundPage';
 import GlobalLoader from './components/atoms/globalLoader';
 import PromptPage from './components/page/promptPage';
-import LoginRedriect from './components/page/loginRedriect';
 import RegisterUserInfoPage from './components/page/registerUserInfoPage';
-import Login from './components/layouts/login';
+import Login from './components/page/login';
+import Register from './components/page/register';
 
 ReactModal.setAppElement('#root');
 
@@ -57,11 +57,11 @@ function App() {
                     <Route path="/prompt/:promptId" element={<PromptPage />} />
                     <Route path="stores/:storeId/reviews/:reviewId" element={<ReviewDetailPage />} />
                     <Route path="/registerUserInfo" element={<RegisterUserInfoPage />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/login" element={<Login />} />
                   </Route>
                   {/* 단독 레이아웃 */}
                   <Route path="/landing" element={<LandingPage />} />
-                  <Route path="/login/oauth2/code/kakao" element={<LoginRedriect />} />
-                  <Route path="/login" element={<Login />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>
               </ModalContainer>

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
 import ImageCarousel from '../molecules/imageCarousel';
 import { ReviewDetailImageInfo } from '../../types/review';
 import Image from '../atoms/image';
 import MenuTag from '../molecules/menuTag';
-import { useModal } from '../../hooks/modal';
 
 interface ReviewImageCarouselProps {
   reviewImages: ReviewDetailImageInfo[],
@@ -14,12 +14,13 @@ interface ReviewImageCarouselProps {
 
 function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageCarouselProps) {
   const { t } = useTranslation();
-  const { openModal } = useModal('Login');
-
+  const navigate = useNavigate();
+  const { storeId, reviewId } = useParams();
   const onHandlePromptEvent = (name: string) => {
     const token = localStorage.getItem('accessToken');
     if (token === null) {
-      openModal();
+      localStorage.setItem('peviouseUrl', `stores/${storeId}/reviews${reviewId}`);
+      navigate('/login');
     } else if (prompts[name] === undefined) {
       // 프롬프트에 메뉴가 없다면
       setPrompts((prev) => ({

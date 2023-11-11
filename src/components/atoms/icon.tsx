@@ -8,13 +8,14 @@ import {
   AiOutlineDislike, AiFillDislike, AiFillLike, AiOutlinePlus, AiOutlineMinus,
 
 } from 'react-icons/ai';
+import { TbEyeClosed, TbEyeCheck, TbMinusVertical } from 'react-icons/tb';
 import { HiUserGroup, HiCreditCard } from 'react-icons/hi';
 
 interface IconProps {
   name: 'Person' | 'Home' | 'Search' | 'Moon' | 'Clipboard' | 'Language' | 'FillHeart' | 'OutlineLike' |
   'OutlineCheck' | 'OutlineStar' | 'OutlineClose' | 'OutlineLeft' | 'OutlineBell' | 'UserGroup' | 'CreditCard' | 'OutlineRight' |
   'OutlineHeart' | 'FillStar' | 'OutlineDislike' | 'EllipseOutline' | 'Ellipse' | 'FillDislike' | 'FillLike'
-  | 'JournalBookmarkFill' | 'OutlinePlus' | 'OutlineMinus'
+  | 'JournalBookmarkFill' | 'OutlinePlus' | 'OutlineMinus' | 'EyeCheck' | 'EyeClosed' | 'MinusVertical'
   size: string;
   ariaLabel: string;
   color?: string;
@@ -76,6 +77,12 @@ function Icon({
       return <AiOutlinePlus size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineMinus': // -
       return <AiOutlineMinus size={size} aria-label={ariaLabel} className={color} />;
+    case 'MinusVertical': // |
+      return <TbMinusVertical size={size} aria-label={ariaLabel} className={color} />;
+    case 'EyeClosed': // 눈 감음
+      return <TbEyeClosed size={size} aria-label={ariaLabel} className={color} />;
+    case 'EyeCheck': // 눈 뜸
+      return <TbEyeCheck size={size} aria-label={ariaLabel} className={color} />;
     default:
       return <div>해당 이름의 아이콘이 없습니다.</div>;
   }

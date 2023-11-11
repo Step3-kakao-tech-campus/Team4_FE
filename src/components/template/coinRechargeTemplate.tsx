@@ -31,7 +31,7 @@ function CoinRechargeTemplate({
           <div className="pr-6">{t('coinRecharging.totalCoin')}</div>
         </div>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {coinRecharge.map(({
+          {coinRecharge && coinRecharge.length > 0 ? coinRecharge.map(({
             amount, earnedAt, balance,
           }) => (
             <li key={earnedAt}>
@@ -41,7 +41,7 @@ function CoinRechargeTemplate({
                 balance={balance}
               />
             </li>
-          ))}
+          )) : <div>코인 충전 내역이 없습니다.</div>}
         </ul>
       </main>
     </div>

@@ -31,7 +31,7 @@ function CoinUsageTemlate({
           <div className="pr-6">{t('coinUsage.totalCoin')}</div>
         </div>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {coinUsage.map(({
+          {coinUsage && coinUsage.length > 0 ? coinUsage.map(({
             amount, usedAt, balance,
           }) => (
             <li key={usedAt}>
@@ -41,7 +41,7 @@ function CoinUsageTemlate({
                 balance={balance}
               />
             </li>
-          ))}
+          )) : <div>코인 사용 내역이 없습니다.</div>}
         </ul>
       </main>
     </div>

@@ -1,12 +1,15 @@
 export interface ProfileInfo {
-  language: string,
-  gender: string,
+  email: string,
   nickname: string,
-  profileImage: string,
+  profileImageUrl: string,
+  gender: string,
+  age: number,
+  locale: string,
 }
 
 export interface ProfileEditInfo {
   language: string,
+  age: number,
   gender: string,
   nickname: string,
 }
