@@ -12,6 +12,7 @@ interface InputProps {
   defaultValue?: string;
   onSearchClick?: React.FormEventHandler<HTMLFormElement>;
   step?: number;
+  maxLength?: number;
 }
 
 const Input = forwardRef<RefHandler, InputProps>((
@@ -22,6 +23,7 @@ const Input = forwardRef<RefHandler, InputProps>((
     defaultValue,
     onSearchClick = (e) => { e.preventDefault(); },
     step = 1,
+    maxLength,
   },
   ref,
 ) => {
@@ -60,6 +62,7 @@ const Input = forwardRef<RefHandler, InputProps>((
           ref={inputRef}
           className="w-full focus:outline-none"
           placeholder={placeholder}
+          maxLength={maxLength}
         />
         <button type="submit">
           <GoSearch size="1.2rem" aria-label={t('input.search')} />
@@ -77,6 +80,7 @@ const Input = forwardRef<RefHandler, InputProps>((
           ref={inputRef}
           className="w-full focus:outline-none"
           placeholder={placeholder}
+          maxLength={maxLength}
         />
       </div>
     );
@@ -119,6 +123,7 @@ const Input = forwardRef<RefHandler, InputProps>((
         ref={textareaRef}
         className="h-full w-full resize-none rounded-xl border border-matgpt-gray p-4"
         placeholder={placeholder}
+        maxLength={maxLength}
       />
     );
   }
