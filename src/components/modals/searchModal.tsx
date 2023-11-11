@@ -1,18 +1,36 @@
 import { useTranslation } from 'react-i18next';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StoreCard from '../molecules/storeCard';
 import Input from '../atoms/input';
 import Icon from '../atoms/icon';
 import { RefHandler } from '../../types/refHandler';
 import { usePopularStores } from '../../hooks/query';
+import { StoreCardInfo } from '../../types/store';
+import { fetchWithHandler } from '../../utils/fetchWithHandler';
+import { getSimilarStores } from '../../apis/search';
 
 export default function SearchModal() {
   const { t } = useTranslation();
   const searchRef = useRef<RefHandler>(null);
   const navigate = useNavigate();
+  const [similarStores, setSimilarStores] = useState<StoreCardInfo[]>([]);
 
   const { data: popularStores } = usePopularStores();
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (token !== null) {
+      fetchWithHandler(async () => getSimilarStores(token), {
+        onSuccess: (response) => {
+          setSimilarStores(response?.data.data);
+        },
+        onError: (error) => {
+          console.error(error);
+        },
+      });
+    }
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,6 +89,27 @@ export default function SearchModal() {
             )) : null}
           </ul>
         </div>
+        {similarStores && similarStores.length > 0 ? (
+          <div>
+            <h2 className="mb-2 px-4 font-bold">{t('searchBar.similarStore')}</h2>
+            <ul>
+              {similarStores.map(({
+                storeImage, storeId, storeName, category, ratingAvg, numsOfReview,
+              }) => (
+                <li key={storeId}>
+                  <StoreCard
+                    storeImage={storeImage}
+                    storeId={storeId}
+                    storeName={storeName}
+                    category={category}
+                    ratingAvg={ratingAvg}
+                    numsOfReview={numsOfReview}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </div>
     </div>
   );
