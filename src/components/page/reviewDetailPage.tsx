@@ -1,28 +1,46 @@
-import React from 'react';
+import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
 import { useTranslation } from 'react-i18next';
 import ReviewDetailTemplate from '../template/reviewDetailTemplate';
-import { getReviewDetail } from '../../apis/review';
+import { editReview } from '../../apis/review';
+import { RefHandler } from '../../types/refHandler';
+import { useReviewDetail } from '../../hooks/query';
 
 function ReviewDetailPage() {
   const { t } = useTranslation();
-  const { storeId, reviewId } = useParams();
+  const { storeId: si, reviewId: ri } = useParams();
+  const InputRef = useRef<RefHandler>(null);
 
-  if (reviewId === undefined || Number.isNaN(+reviewId)
-    || storeId === undefined || Number.isNaN(+storeId)) {
+  const storeId = Number(si);
+  const reviewId = Number(ri);
+
+  const handleEditReview = () => {
+    if (Number.isNaN(storeId) || Number.isNaN(reviewId)) {
+      return;
+    }
+
+    const content = InputRef.current?.getInputValue() || '';
+
+    editReview(storeId, reviewId, { content }).then(() => {
+      alert('리뷰를 수정 하였습니다.');
+      window.location.reload();
+    }).catch((error) => {
+      alert(error.response.statusText);
+    });
+  };
+
+  if (Number.isNaN(reviewId) || Number.isNaN(storeId)) {
     return <div>{t('reviewDetailPage.wrongApiAccess')}</div>;
   }
 
-  const { data, isLoading, isFetching } = useQuery({
-    queryKey: [`getReviewDetail/stores/${storeId}/reviews${reviewId}`],
-    queryFn: () => getReviewDetail(+storeId, +reviewId),
-  });
+  const { data, isLoading, isFetching } = useReviewDetail(storeId, reviewId);
 
   if (data && !isLoading && !isFetching) {
     return (
       <ReviewDetailTemplate
-        data={data}
+        data={data.data.data}
+        onClickeditReview={handleEditReview}
+        ref={InputRef}
       />
     );
   }

@@ -7,6 +7,13 @@ export function useModal(type: ModalType) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const { hash } = window.location;
+    if (hash === `#${type}`) {
+      dispatch(open(type));
+    }
+  }, []);
+
+  useEffect(() => {
     const handleModalOpen = () => {
       const { hash } = window.location;
       if (hash === `#${type}`) {

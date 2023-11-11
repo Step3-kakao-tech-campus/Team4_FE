@@ -1,13 +1,11 @@
 export interface CoinRechargeInfo {
-  rechargeId: number,
-  date: Date;
-  reChargeCoin: number;
-  totalCoin: number;
+  earnedAt: string;
+  amount: number,
+  balance: number,
 }
 
 export interface CoinUsageInfo {
-  usageId: number,
-  date: Date;
-  usageCoin: number,
-  totalCoin: number,
+  usedAt: string;
+  amount: number,
+  balance: number,
 }

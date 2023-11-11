@@ -4,9 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import ModalBackdrop from './modalBackdrop';
 import { useModalSelector } from '../../hooks/store';
 import LanguageModal from './languageModal';
-import SocialLoginModalContent from './socialLoginModalContent';
 import SearchModal from './searchModal';
-import DeleteReviewModal from './deleteReviewModal';
 
 export default function ModalContainer({ children }: { children: React.ReactNode }) {
   const { type, isOpen } = useModalSelector((state) => state.modal);
@@ -68,33 +66,11 @@ export default function ModalContainer({ children }: { children: React.ReactNode
         document.body,
       ) : null}
 
-      {(isOpen && type === 'Login' && location.hash === '#Login') ? createPortal(
-        <ModalBackdrop>
-          <div role="dialog" aria-modal>
-            <div ref={preNode} tabIndex={0} />
-            <SocialLoginModalContent />
-            <div ref={postNode} tabIndex={0} />
-          </div>
-        </ModalBackdrop>,
-        document.body,
-      ) : null}
-
       {(isOpen && type === 'Search' && location.hash === '#Search') ? createPortal(
         <ModalBackdrop>
           <div role="dialog" aria-modal>
             <div ref={preNode} tabIndex={0} />
             <SearchModal />
-            <div ref={postNode} tabIndex={0} />
-          </div>
-        </ModalBackdrop>,
-        document.body,
-      ) : null}
-
-      {(isOpen && type === 'DeleteReview' && location.hash === '#DeleteReview') ? createPortal(
-        <ModalBackdrop>
-          <div role="dialog" aria-modal>
-            <div ref={preNode} tabIndex={0} />
-            <DeleteReviewModal />
             <div ref={postNode} tabIndex={0} />
           </div>
         </ModalBackdrop>,
