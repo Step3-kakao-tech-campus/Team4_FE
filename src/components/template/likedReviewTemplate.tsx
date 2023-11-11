@@ -31,7 +31,7 @@ function LikedReviewTemplate({
               <li key={review.reviewId}>
                 <ReviewCard
                   storeId={review.storeId}
-                  reviewId={review.storeId}
+                  reviewId={review.reviewId}
                   rating={review.rating}
                   content={review.content}
                   createdAt={review.createdAt}
