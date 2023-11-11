@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import Button from '../atoms/button';
@@ -25,8 +25,8 @@ export default function StoreDetailHeader({
   reviewCount,
 }: StoreDetailHeaderProps) {
   const { t } = useTranslation();
-  const [like, setLike] = useState(false);
   const navigate = useNavigate();
+  const [like, setLike] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
@@ -44,6 +44,15 @@ export default function StoreDetailHeader({
       });
     }
   }, []);
+
+  const handleClickWriteReview = () => {
+    if (localStorage.getItem('accessToken') === null) {
+      localStorage.setItem('previouseUrl', `/stores/${storeId}`);
+      navigate('/login');
+    } else {
+      navigate(`/stores/${storeId}/writeReview`);
+    }
+  };
 
   const handleToggleStoreLike = async () => {
     const token = localStorage.getItem('accessToken');
@@ -107,9 +116,7 @@ export default function StoreDetailHeader({
               <div>{reviewCount}</div>
             </div>
           </div>
-          <Link to={`/stores/${storeId}/writeReview`}>
-            <Button>{t('storeDetail.writeReview')}</Button>
-          </Link>
+          <Button onClick={handleClickWriteReview}>{t('storeDetail.writeReview')}</Button>
         </div>
       </div>
     </>
