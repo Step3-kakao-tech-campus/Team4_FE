@@ -231,6 +231,7 @@ i18n
             createPrompt: '프롬프트 생성',
             edit: '수정',
             delete: '삭제',
+            rating: '평점',
           },
           promptPage: {
             confirm: '확인',
@@ -471,6 +472,7 @@ i18n
             createPrompt: 'Create a prompt.',
             edit: 'edit',
             delete: 'delete',
+            rating: 'rating',
           },
           promptPage: {
             confirm: 'Confrim',

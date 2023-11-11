@@ -1,12 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../atoms/button';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 import PageTitleCard from './pageTitleCard';
 import { fetchWithHandler } from '../../utils/fetchWithHandler';
 import { toggleStoreLike } from '../../apis/likedStore';
+import { checkLikedStore } from '../../apis/checkLike';
 
 interface StoreDetailHeaderProps {
   storeId: number;
@@ -26,6 +27,20 @@ export default function StoreDetailHeader({
   const { t } = useTranslation();
   const [like, setLike] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (token !== null) {
+      fetchWithHandler(async () => checkLikedStore(token, storeId), {
+        onSuccess: (response) => {
+          setLike(response?.data.data.hasLiked);
+        },
+        onError: (error) => {
+          console.error(error);
+        },
+      });
+    }
+  }, []);
 
   const handleToggleStoreLike = async () => {
     const token = localStorage.getItem('accessToken');

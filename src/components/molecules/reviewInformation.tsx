@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Icon from '../atoms/icon';
@@ -7,6 +7,7 @@ import { comma } from '../../utils/convert';
 import { toggleReviewLike } from '../../apis/review';
 import DeleteReviewModal from '../modals/deleteReviewModal';
 import { fetchWithHandler } from '../../utils/fetchWithHandler';
+import { checkLikedReview } from '../../apis/checkLike';
 
 interface ReviewInformationProps {
   rating: number,
@@ -27,6 +28,21 @@ function ReviewInformation({
   const [isLikeReview, setIsLikeReview] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    const ri = Number(reviewId);
+    if (token !== null && !Number.isNaN(ri)) {
+      fetchWithHandler(async () => checkLikedReview(token, ri), {
+        onSuccess: (response) => {
+          setIsLikeReview(response?.data.data.hasLiked);
+        },
+        onError: (error) => {
+          console.error(error);
+        },
+      });
+    }
+  }, []);
 
   const handleToggleReviewLike = async () => {
     const token = localStorage.getItem('accessToken');
@@ -51,10 +67,11 @@ function ReviewInformation({
     <div className="my-4 flex items-center justify-between pl-2 pr-3">
       <div className="flex flex-col">
         <div className="flex items-center pl-1">
-          <button type="button" onClick={handleToggleReviewLike}>
+          <span className="text-yellow-400"><Icon name="FillStar" ariaLabel={t('reviewDetailPage.rating')} size="2rem" /></span>
+          <span className="pl-2 pr-3 text-2xl">{rating}</span>
+          <button type="button" onClick={handleToggleReviewLike} className="text-matgpt-red">
             <Icon name={`${isLikeReview ? 'FillHeart' : 'OutlineHeart'}`} ariaLabel={t('reviewDetailPage.likeReviewButton')} size="2rem" />
           </button>
-          <span className="pl-[0.5rem] text-2xl">{rating}</span>
         </div>
         <div className="mt-3 flex items-center">
           <div className="h-12 w-12">
