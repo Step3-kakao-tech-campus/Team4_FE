@@ -151,6 +151,7 @@ i18n
             nickName: '닉네임',
             language: '언어',
             gender: '성별',
+            age: '나이',
             profileImageAdd: '프로필 이미지 추가',
             error: '오류가 발생했습니다. 다시 시도해 주세요.',
             success: '요청이 성공적이네요!',
@@ -166,6 +167,7 @@ i18n
             userInfoSave: '회원정보 저장',
             languageNotSelectedError: '언어 정보가 선택되지 않았습니다.',
             genderNotSelectedError: '성별 정보가 선택되지 않았습니다.',
+            ageNotSelectedError: '나이를 입력해주세요.',
           },
           likedReviewPage: {
             pageTitle: '좋아요 한 리뷰',
@@ -422,6 +424,7 @@ i18n
             nickName: 'nickname',
             language: 'language',
             gender: 'gender',
+            age: 'age',
             profileImageAdd: 'Add ProfileImage',
             error: 'An error has occurred. Please try again.',
             success: 'Your request was successful!',
@@ -435,6 +438,7 @@ i18n
             notSelected: 'not Selected',
             fileIsNotUpload: 'The file was not uploaded.',
             userInfoSave: 'Save Your Information',
+            ageNotSelectedError: 'Insert Your age.',
           },
           likedReviewPage: {
             pageTitle: 'Liked review',

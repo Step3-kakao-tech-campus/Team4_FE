@@ -9,13 +9,16 @@ interface LoginReturnInfo {
 
 export async function login(
   id: string,
-  passwrod: string,
+  password: string,
 ): Promise<LoginReturnInfo> {
-  const response = await fetchInstance.post('/auth/login', { eamil: id, passwrod });
-  return response.data.response;
+  const response = await fetchInstance.post('/auth/login', { email: id, password });
+  return response.data.data;
 }
 
-export async function logout(): Promise<null> {
-  const response = await fetchInstance.post('/auth/logout');
+export async function logout(
+  accessToken: string,
+  refreshToken: string,
+): Promise<null> {
+  const response = await fetchInstance.post('/auth/logout', { accessToken, refreshToken });
   return response.data.response;
 }

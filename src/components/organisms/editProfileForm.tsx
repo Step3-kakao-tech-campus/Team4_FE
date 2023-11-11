@@ -15,9 +15,9 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [openArray, setOpenArray] = useState([false, false]);
-  const [gender, setGender] = useState(localStorage.getItem('gender') || t('userEditProfilePage.notSelected'));
+  const [gender, setGender] = useState(t('userEditProfilePage.notSelected'));
 
-  const [language, setLanguage] = useState(localStorage.getItem('language') || t('userEditProfilePage.notSelected'));
+  const [language, setLanguage] = useState(t('userEditProfilePage.notSelected'));
 
   const inputRef = useRef<RefHandler>(null);
   const ageRef = useRef<HTMLInputElement>(null);
@@ -36,11 +36,15 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
         alert(t('userEditProfilePage.nickNameLengthError'));
         return false;
       }
+      if (language === t('userEditProfilePage.notSelected')) {
+        alert(t('userEditProfilePage.languageNotSelectedError'));
+        return false;
+      }
       if (gender === t('userEditProfilePage.notSelected')) {
         alert(t('userEditProfilePage.genderNotSelectedError'));
         return false;
       }
-      if (+ageRef.current.value === 0) { alert('나이를 입력해주세요'); return false; }
+      if (+ageRef.current.value === 0) { alert(t('userEditProfilePage.ageNotSelectedError')); return false; }
     }
     return true;
   }
@@ -88,6 +92,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
         // 닉네임, 성별, 언어, 나이를 백앤드에 전송
         let genderValue = '';
         const age = ageRef.current.value;
+
         if (gender === 'Woman' || gender === '여자') { genderValue = 'female'; }
         if (gender === 'Men' || gender === '남자') { genderValue = 'male'; }
         profileCreate({
@@ -99,6 +104,8 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
           localStorage.setItem('language', language);
           localStorage.setItem('gender', genderValue);
           localStorage.setItem('age', age);
+          console.log(nickname);
+          console.log(genderValue);
           localStorage.setItem('nickname', nickname);
           alert(t('userEditProfilePage.success'));
           navigate('/');
@@ -110,7 +117,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
   }
 
   return (
-    <form>
+    <div>
       <div className="my-6 px-12">
         <form>
           <label htmlFor="nickName">
@@ -121,7 +128,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
       </div>
       <div className="my-6 px-12">
         <div>
-          <div className="mt-6 font-bold">{t('userEditProfilePage.gender')}</div>
+          <div className="mt-6 font-bold">{t('userEditProfilePage.language')}</div>
           <DropdownList
             value={language}
             isOpen={openArray[0]}
@@ -182,7 +189,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
           </DropdownList>
         </div>
         <div>
-          <div className="mt-6 font-bold">{t('userEditProfilePage.language')}</div>
+          <div className="mt-6 font-bold">{t('userEditProfilePage.age')}</div>
           <input ref={ageRef} type="number" className="w-full rounded-full border border-black bg-white px-4 py-2" />
         </div>
       </div>
@@ -194,7 +201,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
           </div>
         )}
       </div>
-    </form>
+    </div>
   );
 }
 
