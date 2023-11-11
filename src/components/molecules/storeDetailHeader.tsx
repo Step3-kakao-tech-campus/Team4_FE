@@ -33,7 +33,10 @@ export default function StoreDetailHeader({
     if (token !== null) {
       fetchWithHandler(async () => checkLikedStore(token, storeId), {
         onSuccess: (response) => {
-          setLike(response?.data.data.hasLiked);
+          const isLiked = response?.data.data.hasLiked;
+          if (isLiked === true) {
+            setLike(true);
+          }
         },
         onError: (error) => {
           console.error(error);

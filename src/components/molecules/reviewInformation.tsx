@@ -35,7 +35,10 @@ function ReviewInformation({
     if (token !== null && !Number.isNaN(ri)) {
       fetchWithHandler(async () => checkLikedReview(token, ri), {
         onSuccess: (response) => {
-          setIsLikeReview(response?.data.data.hasLiked);
+          const isLiked = response?.data.data.hasLiked;
+          if (isLiked === true) {
+            setIsLikeReview(true);
+          }
         },
         onError: (error) => {
           console.error(error);
