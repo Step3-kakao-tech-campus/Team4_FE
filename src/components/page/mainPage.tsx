@@ -20,7 +20,7 @@ export default function MainPage() {
           </button>
         </div>
       </div>
-      <div className="h-[calc(100dvh-7.7rem)]">
+      <div className="relative h-[calc(100dvh-7.7rem)]">
         <MyGoogleMap />
       </div>
     </main>

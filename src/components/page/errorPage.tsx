@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 interface ErrorPageProps {
   errorMessage?: string;
-  resetError: () => void;
+  resetError?: () => void;
 }
 
 export default function ErrorPage({

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageTitleCard from '../molecules/pageTitleCard';
 import { CoinRechargeInfo } from '../../types/coin';
@@ -9,23 +8,13 @@ interface CoinRechargeTemplateProps {
   coinRecharge: CoinRechargeInfo[];
   page: number,
   onChangePage: (type: 'left' | 'right') => void,
+  isLastPage: boolean;
 }
 
-function CoinRechargeTemplate({ coinRecharge, page, onChangePage }: CoinRechargeTemplateProps) {
+function CoinRechargeTemplate({
+  coinRecharge, page, onChangePage, isLastPage,
+}: CoinRechargeTemplateProps) {
   const { t } = useTranslation();
-
-  const [isLastPage, setIsLastPage] = useState(false);
-
-  useEffect(() => {
-    if (coinRecharge.length < 12) {
-      return () => {
-        setIsLastPage(true);
-      };
-    }
-    return () => {
-      setIsLastPage(false);
-    };
-  }, [coinRecharge]);
 
   return (
     <div>
@@ -42,18 +31,17 @@ function CoinRechargeTemplate({ coinRecharge, page, onChangePage }: CoinRecharge
           <div className="pr-6">{t('coinRecharging.totalCoin')}</div>
         </div>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {coinRecharge.map(({
-            rechargeId, date, reChargeCoin, totalCoin,
+          {coinRecharge && coinRecharge.length > 0 ? coinRecharge.map(({
+            amount, earnedAt, balance,
           }) => (
-            <li key={rechargeId}>
+            <li key={earnedAt}>
               <CoinListCard
-                date={date}
-                passingCoin={reChargeCoin}
-                finalCoin={totalCoin}
-                isUse={false}
+                date={earnedAt}
+                amount={amount}
+                balance={balance}
               />
             </li>
-          ))}
+          )) : <div>코인 충전 내역이 없습니다.</div>}
         </ul>
       </main>
     </div>
