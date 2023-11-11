@@ -90,7 +90,7 @@ export default function MenuTag({
                 <Icon name="OutlineClose" size="1rem" ariaLabel={t('menuTag.delete')} />
               </button>
               <div className="mr-3">
-                <Input ref={inputRef} mode="singleLine" defaultValue={name} />
+                <Input ref={inputRef} mode="singleLine" defaultValue={name} maxLength={30} />
               </div>
               <SelectTagRating
                 rating={modifyRating}
