@@ -54,16 +54,16 @@ function ReviewInformation({
       navigate('/login', {
         replace: true,
       });
+    } else {
+      await fetchWithHandler(async () => toggleReviewLike(token, Number(reviewId)), {
+        onSuccess: () => {
+          setIsLikeReview((prev) => !prev);
+        },
+        onError: () => {
+          alert(t('toggleLike.error'));
+        },
+      });
     }
-
-    await fetchWithHandler(async () => toggleReviewLike(token, Number(reviewId)), {
-      onSuccess: () => {
-        setIsLikeReview((prev) => !prev);
-      },
-      onError: () => {
-        alert('오류가 발생했습니다.\n잠시 후 다시 시도해주세요.');
-      },
-    });
   };
 
   return (

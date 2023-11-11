@@ -61,16 +61,16 @@ export default function StoreDetailHeader({
       navigate('/login', {
         replace: true,
       });
+    } else {
+      await fetchWithHandler(async () => toggleStoreLike(token, storeId), {
+        onSuccess: () => {
+          setLike((prev) => !prev);
+        },
+        onError: () => {
+          alert(t('toggleLike.error'));
+        },
+      });
     }
-
-    await fetchWithHandler(async () => toggleStoreLike(token, storeId), {
-      onSuccess: () => {
-        setLike((prev) => !prev);
-      },
-      onError: () => {
-        alert(t('toggleLike.error'));
-      },
-    });
   };
 
   return (
