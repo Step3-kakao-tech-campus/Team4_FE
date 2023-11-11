@@ -78,7 +78,7 @@ function ReviewInformation({
         </div>
         <div className="mt-3 flex items-center">
           <div className="h-12 w-12">
-            <Image imageSrc={reviewerImage} alt={t('reviewDetailPage.reviewerProfileImage')} />
+            <Image imageSrc={reviewerImage || '/blankImages/profile.svg'} alt={t('reviewDetailPage.reviewerProfileImage')} />
           </div>
           <span className="pl-[0.5rem]">{reviewerName}</span>
           {isOwn ? (

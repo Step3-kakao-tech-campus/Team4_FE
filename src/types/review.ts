@@ -33,9 +33,23 @@ export interface ReviewImageTagInfo {
   rating: number;
 }
 
+export interface Tag {
+  name: string;
+  locationX: number;
+  locationY: number;
+  rating: number;
+}
+
+export interface ReviewDetailTag {
+  name: string;
+  location_x: number;
+  location_y: number;
+  rating: number;
+}
+
 export interface ReviewDetailImageInfo {
-  imageData: string;
-  tags: ReviewImageTagInfo[];
+  image: string;
+  tags: ReviewDetailTag[];
 }
 
 export interface GPTReviewContent {
@@ -64,13 +78,6 @@ export interface ReviewDetailInfo {
   totalPrice: number;
   updated: boolean;
   isOwn: boolean,
-}
-
-export interface Tag {
-  name: string;
-  locationX: number;
-  locationY: number;
-  rating: number;
 }
 
 export interface PostWriteReviewInfo {
