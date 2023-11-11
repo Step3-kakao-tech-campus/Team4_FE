@@ -10,6 +10,7 @@ import { getProfile } from '../../apis/profile';
 function Login() {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const [isLogin] = useState(localStorage.getItem('accessToken') !== null);
 
   const idRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -31,13 +32,12 @@ function Login() {
         localStorage.setItem('email', response.email);
         localStorage.setItem('nickname', response.nickname);
         localStorage.setItem('profileImageUrl', response.profileImageUrl);
-        localStorage.setItem('gender', response.gender);
+        localStorage.setItem('gender', response.gender.toLowerCase());
         localStorage.setItem('age', `${response.age}`);
-        localStorage.setItem('language', response.locale);
+        localStorage.setItem('language', response.locale.toLowerCase());
       }).catch(() => {
         alert('유저 정보를 받아올 수 없습니다.');
       });
-
       navigate(localStorage.getItem('previouseUrl') || '/');
     }).catch((err) => {
       setIsError(true);
@@ -52,11 +52,16 @@ function Login() {
       return;
     }
 
-    const age = localStorage.getItem('age') || '';
-    const gender = localStorage.getItem('gender') || '';
-    const locale = localStorage.getItem('language') || '';
-    const nickname = localStorage.getItem('nickname') || '';
-    logout(nickname, gender, +age, locale).then(() => {
+    const accessToken = localStorage.getItem('accessToken') || '';
+    const refreshToken = localStorage.getItem('refreshToken') || '';
+
+    logout(accessToken.split(' ')[1], refreshToken.split(' ')[1]).then(() => {
+      localStorage.removeItem('email');
+      localStorage.removeItem('nickname');
+      localStorage.removeItem('profileImageUrl');
+      localStorage.removeItem('gender');
+      localStorage.removeItem('age');
+      localStorage.removeItem('language');
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('accessTokenExpiresIn');
@@ -78,57 +83,66 @@ function Login() {
           {t('login.loginPageTitle')}
         </div>
       </div>
-      <div className="relative mb-2 flex flex-col items-center">
-        <div className="mb-2">
-          <input
-            type="text"
-            placeholder={t('login.idPlaceHolder')}
-            className="w-full rounded-full border border-black bg-white px-4 py-2"
-            ref={idRef}
-          />
+      {isLogin ? (
+        <div>
+          로그인 상태입니다.
         </div>
-        <div className="relative">
-          <input
-            type={isPasswordHide ? 'password' : 'text'}
-            placeholder={t('login.passwordPlaceHolder')}
-            className="w-full rounded-full border border-black bg-white px-4 py-2"
-            ref={passwordRef}
-          />
-          <div>
-            {isPasswordHide ? (
-              <button
-                className="absolute right-2 top-2"
-                type="button"
-                onClick={() => { setIsPasswordHide(false); }}
-              >
-                <Icon name="EyeCheck" ariaLabel={t('login.passwordHide')} size="1.3rem" />
-              </button>
-            )
-              : (
-                <button
-                  className="absolute right-2 top-3"
-                  type="button"
-                  onClick={() => { setIsPasswordHide(true); }}
-                >
-                  <Icon name="EyeClosed" ariaLabel={t('login.passwordSeen')} size="1.3rem" />
-                </button>
-              )}
+      ) : (
+        <div>
+          <div className="relative mb-2 flex flex-col items-center">
+            <div className="mb-2">
+              <input
+                type="text"
+                placeholder={t('login.idPlaceHolder')}
+                className="w-full rounded-full border border-black bg-white px-4 py-2"
+                ref={idRef}
+              />
+            </div>
+            <div className="relative">
+              <input
+                type={isPasswordHide ? 'password' : 'text'}
+                placeholder={t('login.passwordPlaceHolder')}
+                className="w-full rounded-full border border-black bg-white px-4 py-2"
+                ref={passwordRef}
+              />
+              <div>
+                {isPasswordHide ? (
+                  <button
+                    className="absolute right-2 top-2"
+                    type="button"
+                    onClick={() => { setIsPasswordHide(false); }}
+                  >
+                    <Icon name="EyeCheck" ariaLabel={t('login.passwordHide')} size="1.3rem" />
+                  </button>
+                )
+                  : (
+                    <button
+                      className="absolute right-2 top-3"
+                      type="button"
+                      onClick={() => { setIsPasswordHide(true); }}
+                    >
+                      <Icon name="EyeClosed" ariaLabel={t('login.passwordSeen')} size="1.3rem" />
+                    </button>
+                  )}
+              </div>
+            </div>
+            {isError ? (
+              <div className="absolute bottom-[-3rem]">
+                <span className="font-bold text-matgpt-red">{errorMessage}</span>
+              </div>
+            ) : null}
+          </div>
+          <div className="mt-12">
+            <Button size="large" onClick={onClickLogin}>{t('login.loginButton')}</Button>
           </div>
         </div>
-        {isError ? (
-          <div className="absolute bottom-[-3rem]">
-            <span className="font-bold text-matgpt-red">{errorMessage}</span>
-          </div>
-        ) : null}
-      </div>
-      <div className="mt-10">
-        <Button size="large" onClick={onClickLogin}>{t('login.loginButton')}</Button>
-      </div>
-      <div className="mt-3 flex">
+      )}
+      <div className="mt-3 flex justify-center">
         <button type="button" className="underline decoration-solid" onClick={() => { navigate('/register'); }}>{t('login.register')}</button>
         <Icon name="MinusVertical" size="1.5rem" ariaLabel={t('login.verticalLine')} />
         <button type="button" className="underline decoration-solid" onClick={onClickLogout}>{t('login.logout')}</button>
       </div>
+
     </div>
   );
 }

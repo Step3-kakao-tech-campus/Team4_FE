@@ -15,9 +15,9 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [openArray, setOpenArray] = useState([false, false]);
-  const [gender, setGender] = useState(localStorage.getItem('gender') || t('userEditProfilePage.notSelected'));
+  const [gender, setGender] = useState(t('userEditProfilePage.notSelected'));
 
-  const [language, setLanguage] = useState(localStorage.getItem('language') || t('userEditProfilePage.notSelected'));
+  const [language, setLanguage] = useState(t('userEditProfilePage.notSelected'));
 
   const inputRef = useRef<RefHandler>(null);
   const ageRef = useRef<HTMLInputElement>(null);
@@ -92,6 +92,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
         // 닉네임, 성별, 언어, 나이를 백앤드에 전송
         let genderValue = '';
         const age = ageRef.current.value;
+
         if (gender === 'Woman' || gender === '여자') { genderValue = 'female'; }
         if (gender === 'Men' || gender === '남자') { genderValue = 'male'; }
         profileCreate({

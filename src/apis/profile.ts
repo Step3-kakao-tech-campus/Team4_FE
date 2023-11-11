@@ -31,8 +31,8 @@ export async function profileCreate({
 }
 
 export async function getProfile(): Promise<ProfileInfo> {
-  const response = await fetchInstance.get('/users-info');
-  return response.data;
+  const response = await fetchInstance.get('/users/info');
+  return response.data.data;
 }
 
 export async function getPresignedUrl(): Promise<{ data: string }> {
