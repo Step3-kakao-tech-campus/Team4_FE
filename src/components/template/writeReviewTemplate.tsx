@@ -62,6 +62,7 @@ const WriteReviewTemplate = forwardRef<WriteReviewRefHandler, WriteReviewTemplat
           <Input
             mode="multiLine"
             ref={contentRef}
+            maxLength={1000}
           />
         </div>
         <div className="flex flex-col items-center">

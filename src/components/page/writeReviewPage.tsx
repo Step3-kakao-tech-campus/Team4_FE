@@ -62,7 +62,7 @@ export default function WriteReviewPage() {
 
     // 이미지별로 presignedUrl로 이미지 업로드, presingedUrl배열 상태 값에 push
     for (let i = 0; i < presignedUrls.length; i += 1) {
-      fetchWithHandler(async () => uploadImageToS3(`/s3Image/${presignedUrls[i].presignedUrl.slice(50)}`, reviewImages[i]), {
+      fetchWithHandler(async () => uploadImageToS3(`${presignedUrls[i].presignedUrl}`, reviewImages[i]), {
         onSuccess: () => {},
         onError: (error) => {
           console.error(error);
