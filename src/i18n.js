@@ -92,7 +92,7 @@ i18n
             cancelSearch: '검색 취소',
             popularStore: '인기 음식점',
             recentReviewed: '최근 리뷰가 달린 음식점',
-            similar: '나와 비슷한 사용자에게 인기 있는 음식점',
+            similarStore: '나와 비슷한 사용자에게 인기 있는 음식점',
           },
           marker: {
             storeImage: '가게 이미지',
@@ -335,7 +335,7 @@ i18n
             cancelSearch: 'Cancel search',
             popularStore: 'Popular restaurant',
             recentReviewed: 'Recently reviewed restaurant',
-            similar: 'Popular restaurant for users similar to me',
+            similarStore: 'Popular restaurant for users similar to me',
           },
           marker: {
             storeImage: 'Store image',

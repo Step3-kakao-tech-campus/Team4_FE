@@ -21,3 +21,12 @@ export async function getPopularStores() {
 
   return response.data.data.body;
 }
+
+export async function getSimilarStores(token: string | null) {
+  return fetchInstance.get<AxiosResponse<StoreCardInfo[]>>('stores/similar', {
+    headers: {
+      Authorization: token,
+    },
+    withCredentials: true,
+  });
+}
