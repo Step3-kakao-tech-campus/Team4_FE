@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://k04b53cc4de90a.user-app.krampoline.com',
+      target: 'https://kf3c002a226dca.user-app.krampoline.com',
       changeOrigin: true,
       pathRewrite: {
         '^/api': '/',
@@ -17,6 +17,17 @@ module.exports = function (app) {
     createProxyMiddleware({
       target: 'https://translation.googleapis.com',
       changeOrigin: true,
+    }),
+  );
+
+  app.use(
+    '/s3Image',
+    createProxyMiddleware({
+      target: 'https://matgpt-dev.s3.ap-northeast-2.amazonaws.com',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/s3Image': '/',
+      },
     }),
   );
 };
