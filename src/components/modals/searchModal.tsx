@@ -89,25 +89,27 @@ export default function SearchModal() {
             )) : null}
           </ul>
         </div>
-        <div>
-          <h2 className="mb-2 px-4 font-bold">{t('searchBar.similarStore')}</h2>
-          <ul>
-            {similarStores ? similarStores.map(({
-              storeImage, storeId, storeName, category, ratingAvg, numsOfReview,
-            }) => (
-              <li key={storeId}>
-                <StoreCard
-                  storeImage={storeImage}
-                  storeId={storeId}
-                  storeName={storeName}
-                  category={category}
-                  ratingAvg={ratingAvg}
-                  numsOfReview={numsOfReview}
-                />
-              </li>
-            )) : null}
-          </ul>
-        </div>
+        {similarStores ? (
+          <div>
+            <h2 className="mb-2 px-4 font-bold">{t('searchBar.similarStore')}</h2>
+            <ul>
+              {similarStores.map(({
+                storeImage, storeId, storeName, category, ratingAvg, numsOfReview,
+              }) => (
+                <li key={storeId}>
+                  <StoreCard
+                    storeImage={storeImage}
+                    storeId={storeId}
+                    storeName={storeName}
+                    category={category}
+                    ratingAvg={ratingAvg}
+                    numsOfReview={numsOfReview}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </div>
     </div>
   );
