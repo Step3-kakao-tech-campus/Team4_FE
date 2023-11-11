@@ -36,11 +36,15 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
         alert(t('userEditProfilePage.nickNameLengthError'));
         return false;
       }
+      if (language === t('userEditProfilePage.notSelected')) {
+        alert(t('userEditProfilePage.languageNotSelectedError'));
+        return false;
+      }
       if (gender === t('userEditProfilePage.notSelected')) {
         alert(t('userEditProfilePage.genderNotSelectedError'));
         return false;
       }
-      if (+ageRef.current.value === 0) { alert('나이를 입력해주세요'); return false; }
+      if (+ageRef.current.value === 0) { alert(t('userEditProfilePage.ageNotSelectedError')); return false; }
     }
     return true;
   }
@@ -121,7 +125,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
       </div>
       <div className="my-6 px-12">
         <div>
-          <div className="mt-6 font-bold">{t('userEditProfilePage.gender')}</div>
+          <div className="mt-6 font-bold">{t('userEditProfilePage.language')}</div>
           <DropdownList
             value={language}
             isOpen={openArray[0]}
@@ -182,7 +186,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
           </DropdownList>
         </div>
         <div>
-          <div className="mt-6 font-bold">{t('userEditProfilePage.language')}</div>
+          <div className="mt-6 font-bold">{t('userEditProfilePage.age')}</div>
           <input ref={ageRef} type="number" className="w-full rounded-full border border-black bg-white px-4 py-2" />
         </div>
       </div>

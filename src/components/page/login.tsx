@@ -5,6 +5,7 @@ import PageTitleCard from '../molecules/pageTitleCard';
 import Button from '../atoms/button';
 import Icon from '../atoms/icon';
 import { login, logout } from '../../apis/login';
+import { getProfile } from '../../apis/profile';
 
 function Login() {
   const navigate = useNavigate();
@@ -29,6 +30,18 @@ function Login() {
       localStorage.setItem('accessTokenExpiresIn', `${res.accessTokenExpiresIn}`);
       alert(t('login.success'));
       setIsError(false);
+
+      getProfile().then((response) => {
+        localStorage.setItem('email', response.email);
+        localStorage.setItem('nickname', response.nickname);
+        localStorage.setItem('profileImageUrl', response.profileImageUrl);
+        localStorage.setItem('gender', response.gender);
+        localStorage.setItem('age', `${response.age}`);
+        localStorage.setItem('language', response.locale);
+      }).catch(() => {
+        alert('유저 정보를 받아올 수 없습니다.');
+      });
+
       navigate(localStorage.getItem('previouseUrl') || '/');
     }).catch((err) => {
       setIsError(true);
@@ -38,6 +51,10 @@ function Login() {
   };
 
   const onClickLogout = () => {
+    if (localStorage.getItem('accessToken') === null) {
+      alert('로그인 상태가 아닙니다.');
+      return;
+    }
     logout().then(() => {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
