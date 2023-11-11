@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PageTitleCard from '../molecules/pageTitleCard';
@@ -9,10 +9,6 @@ import { getProfile } from '../../apis/profile';
 
 function Login() {
   const navigate = useNavigate();
-  useEffect(() => {
-    // 로그인 상태인데 이 레이아웃에 들어오면 바로 메인 페이지로 이동
-    if (localStorage.getItem('accessToken') !== null) { navigate('/'); }
-  }, []);
   const { t } = useTranslation();
 
   const idRef = useRef<HTMLInputElement>(null);
@@ -55,7 +51,12 @@ function Login() {
       alert('로그인 상태가 아닙니다.');
       return;
     }
-    logout().then(() => {
+
+    const age = localStorage.getItem('age') || '';
+    const gender = localStorage.getItem('gender') || '';
+    const locale = localStorage.getItem('language') || '';
+    const nickname = localStorage.getItem('nickname') || '';
+    logout(nickname, gender, +age, locale).then(() => {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('accessTokenExpiresIn');

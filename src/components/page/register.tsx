@@ -11,6 +11,7 @@ function Register() {
     id: '',
     password: '',
     passwrodCheck: '',
+    register: '',
   });
   const { t } = useTranslation();
 
@@ -57,6 +58,7 @@ function Register() {
         alert(t('register.successSignIn'));
         navigate('/registerUserInfo');
       }).catch((err) => {
+        setValidationMessage((prev) => ({ ...prev, register: '이미 존재하는 아이디입니다.' }));
         alert(err);
       });
     }
@@ -108,8 +110,9 @@ function Register() {
         />
         <span className="absolute bottom-[-3rem] font-bold text-matgpt-red">{validationMessage.passwrodCheck}</span>
       </div>
-      <div className="mt-4">
+      <div className="relative mt-4 flex flex-col items-center">
         <Button size="large" onClick={onClickRegister}>{t('register.successSignInButton')}</Button>
+        <span className="font-bold text-matgpt-red">{validationMessage.register}</span>
       </div>
     </div>
   );

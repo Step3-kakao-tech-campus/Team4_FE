@@ -21,8 +21,8 @@ export async function profileCreate({
   age, gender, nickname, language,
 }: ProfileEditInfo)
   : Promise<ResultType> {
-  const response = await fetchInstance.post('/users-info', {
-    language,
+  const response = await fetchInstance.post('/users/info', {
+    locale: language,
     age,
     gender,
     nickname,
@@ -45,7 +45,8 @@ export async function putUserImage(presignedUrl: string, imageFile: Blob): Promi
   return response.data;
 }
 
-export async function imageComplete(email: string, presignedUrl: string): Promise<{ profileImageUrl: string }> {
+export async function imageComplete(email: string, presignedUrl: string)
+  : Promise<{ profileImageUrl: string }> {
   const response = await fetchInstance.post('/users/image-complete', { email, presignedUrl });
   return response.data;
 }

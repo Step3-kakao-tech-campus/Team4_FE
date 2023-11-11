@@ -9,7 +9,6 @@ import MainPage from './components/page/mainPage';
 import SearchResultPage from './components/page/searchResultPage';
 import MainLayout from './components/layouts/mainLayout';
 import { queryClient } from './utils/query';
-import { worker } from './mocks/worker';
 import StoreDetailPage from './components/page/storeDetailPage';
 import LikedStorePage from './components/page/likedStorePage';
 import CoinRechargePage from './components/page/coinRechargePage';
@@ -29,12 +28,6 @@ import PromptPage from './components/page/promptPage';
 import RegisterUserInfoPage from './components/page/registerUserInfoPage';
 import Login from './components/page/login';
 import Register from './components/page/register';
-
-if (process.env.NODE_ENV === 'development') {
-  worker.start({
-    onUnhandledRequest: 'bypass',
-  });
-}
 
 ReactModal.setAppElement('#root');
 

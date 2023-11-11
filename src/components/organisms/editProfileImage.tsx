@@ -27,6 +27,7 @@ function EditProfileImage() {
     }
 
     getPresignedUrl().then((res) => {
+      console.log(res);
       putUserImage(res.data, fileList[0]).then(() => {
         imageComplete(localStorage.getItem('email') || '', res.data).then((response) => {
           alert('유저 이미지가 성공적으로 변경 되었습니다.');
@@ -34,11 +35,12 @@ function EditProfileImage() {
         }).catch(() => {
           alert('유저 이미지가 업로드에 실패하였습니다.');
         });
+      }).catch((err) => {
+        console.log(err);
       });
+    }).catch((err) => {
+      console.log(err);
     });
-
-    // 브라우저에서 AWS preSignedURL로 이미지 upload
-    // 전역 상태 값 업데이트
   };
 
   return (

@@ -103,6 +103,8 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
           localStorage.setItem('language', language);
           localStorage.setItem('gender', genderValue);
           localStorage.setItem('age', age);
+          console.log(nickname);
+          console.log(genderValue);
           localStorage.setItem('nickname', nickname);
           alert(t('userEditProfilePage.success'));
           navigate('/');
@@ -114,7 +116,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
   }
 
   return (
-    <form>
+    <div>
       <div className="my-6 px-12">
         <form>
           <label htmlFor="nickName">
@@ -198,7 +200,7 @@ function EditProfileForm({ isRegister = false }: EditProfileFormProps) {
           </div>
         )}
       </div>
-    </form>
+    </div>
   );
 }
 

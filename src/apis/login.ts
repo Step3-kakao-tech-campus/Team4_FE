@@ -15,7 +15,17 @@ export async function login(
   return response.data.response;
 }
 
-export async function logout(): Promise<null> {
-  const response = await fetchInstance.post('/auth/logout');
+export async function logout(
+  nickname: string,
+  gender: string,
+  age: number,
+  locale: string,
+): Promise<null> {
+  const response = await fetchInstance.post('/auth/logout', {
+    nickname,
+    gender,
+    age,
+    locale,
+  });
   return response.data.response;
 }
