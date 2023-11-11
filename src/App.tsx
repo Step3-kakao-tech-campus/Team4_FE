@@ -15,7 +15,7 @@ import CoinRechargePage from './components/page/coinRechargePage';
 import { store } from './store';
 import ModalContainer from './components/modals/modalContainer';
 import WritedReviewPage from './components/page/writedReviewPage';
-import RecentlyViewdStorePage from './components/page/recentlyViewdStorePage';
+import RecentlyViewdStorePage from './components/page/recentlyViewedStorePage';
 import UserEditProfilePage from './components/page/userEditProfilePage';
 import CoinUsagePage from './components/page/coinUsagePage';
 import LikedReviewPage from './components/page/likedReviewPage';

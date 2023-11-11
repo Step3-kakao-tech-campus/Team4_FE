@@ -1,48 +1,48 @@
 import { useTranslation } from 'react-i18next';
-import { BsPerson } from 'react-icons/bs';
-import { GoHome, GoSearch } from 'react-icons/go';
-import { PiMoon, PiClipboard } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 import { useModal } from '../../hooks/modal';
+import Icon from '../atoms/icon';
 
 export default function NavigationBar() {
   const { t } = useTranslation();
-  const { openModal } = useModal('Search');
+  const { openModal: openSearchModal } = useModal('Search');
+  const { openModal: openLanguageModal } = useModal('Language');
 
   return (
     <nav className="fixed inset-x-0 bottom-0 mx-auto flex w-full max-w-[500px]
       flex-row items-center justify-evenly bg-white"
     >
-      <Link
-        to="/prompt"
+      <button
+        type="button"
         className="flex grow justify-center py-4"
       >
-        <PiClipboard size="1.7rem" aria-label={t('navigationBar.prompt')} />
-      </Link>
+        <Icon name="Clipboard" size="1.7rem" ariaLabel={t('navigationBar.prompt')} />
+      </button>
       <Link
         to="/mypage"
         className="flex grow justify-center py-4"
       >
-        <BsPerson size="1.7rem" aria-label={t('navigationBar.myPage')} />
+        <Icon name="Person" size="1.7rem" ariaLabel={t('navigationBar.myPage')} />
       </Link>
       <Link
         to="/"
         className="flex grow justify-center py-4"
       >
-        <GoHome size="1.7rem" aria-label={t('navigationBar.home')} />
+        <Icon name="Home" size="1.7rem" ariaLabel={t('navigationBar.home')} />
       </Link>
       <button
         type="button"
         className="flex grow justify-center py-4"
-        onClick={openModal}
+        onClick={openSearchModal}
       >
-        <GoSearch size="1.7rem" aria-label={t('navigationBar.search')} />
+        <Icon name="Search" size="1.7rem" ariaLabel={t('navigationBar.search')} />
       </button>
       <button
         type="button"
         className="flex grow justify-center py-4"
+        onClick={openLanguageModal}
       >
-        <PiMoon size="1.7rem" aria-label={t('navigationBar.darkMode')} />
+        <Icon name="Language" size="1.7rem" ariaLabel={t('navigationBar.language')} />
       </button>
     </nav>
   );

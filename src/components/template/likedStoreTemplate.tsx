@@ -1,30 +1,20 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StoreCardInfo } from '../../types/store';
 import PageTitleCard from '../molecules/pageTitleCard';
-// import StoreCard from '../molecules/storeCard';
 import Page from '../molecules/page';
+import StoreCard from '../molecules/storeCard';
 
 interface LikedStoreTemplateProps {
   likedStore: StoreCardInfo[],
   page: number,
   onChangePage: (type: 'left' | 'right') => void,
+  isLastPage: boolean;
 }
 
-function LikedStoreTemplate({ likedStore, page, onChangePage }: LikedStoreTemplateProps) {
+function LikedStoreTemplate({
+  likedStore, page, onChangePage, isLastPage,
+}: LikedStoreTemplateProps) {
   const { t } = useTranslation();
-  const [isLastPage, setIsLastPage] = useState(false);
-
-  useEffect(() => {
-    if (likedStore.length < 6) {
-      return () => {
-        setIsLastPage(true);
-      };
-    }
-    return () => {
-      setIsLastPage(false);
-    };
-  }, [likedStore]);
 
   return (
     <div className="relative">
@@ -36,22 +26,21 @@ function LikedStoreTemplate({ likedStore, page, onChangePage }: LikedStoreTempla
       </nav>
       <main>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {/* {likedStore.map(({
-            storeId, storeName, category, review, reviewCount, rating, image,
-          }) => (
-            <li key={storeId}>
-              <StoreCard
-                storeId={storeId}
-                storeName={storeName}
-                category={category}
-                review={review}
-                reviewCount={reviewCount}
-                rating={rating}
-                image={image}
-                likedCard
-              />
-            </li>
-          ))} */}
+          {likedStore && likedStore[0] !== null ? likedStore.map((store) => (
+            store ? (
+              <li key={store.storeId}>
+                <StoreCard
+                  storeId={store.storeId}
+                  storeName={store.storeName}
+                  category={store.category}
+                  storeImage={store.storeImage}
+                  numsOfReview={store.numsOfReview}
+                  ratingAvg={store.ratingAvg}
+                  likedCard
+                />
+              </li>
+            ) : null
+          )) : <div>{t('userPage.noLikedStore')}</div>}
         </ul>
       </main>
     </div>

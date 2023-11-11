@@ -27,7 +27,6 @@ function UserTemplate() {
         <MyPageList text={t('userPage.likedReview')} linkTo="/likedReview" />
         <MyPageList text={t('userPage.coinRechargeHistory')} linkTo="/coinRechargeHistory" />
         <MyPageList text={t('userPage.coinUsageHistory')} linkTo="/coinUsageHistory" />
-        <MyPageList text={t('userPage.language')} linkTo="/language" />
         <div className="mb-8 pb-8 text-center text-matgpt-gray">
           <span>{t('userPage.logout')}</span>
         </div>

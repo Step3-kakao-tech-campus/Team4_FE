@@ -1,6 +1,6 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { loginFetchInstance } from '../../apis/instance';
 
 function LoginRedriect() {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ function LoginRedriect() {
   const code = searchParams.get('code');
 
   useEffect(() => {
-    axios.get('/login/oauth2/code/kakao', {
+    loginFetchInstance.get('/login/oauth2/code/kakao', {
       params: {
         code,
       },

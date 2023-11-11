@@ -27,8 +27,7 @@ i18n
             myPage: '마이 페이지로 이동',
             home: '메인 페이지로 이동',
             search: '검색 페이지로 이동',
-            darkMode: '다크 모드로 전환',
-            lightMode: '라이트 모드로 전환',
+            language: '언어 변경',
           },
           input: {
             search: '검색하기',
@@ -54,6 +53,9 @@ i18n
             coinUsageHistory: '코인 사용 내역',
             language: '언어',
             logout: '로그 아웃',
+            noLikedReview: '좋아요 한 리뷰가 없습니다.',
+            noLikedStore: '좋아요 한 음식점이 없습니다.',
+            noWritedReview: '작성한 리뷰가 없습니다.',
           },
           loginModal: {
             closeIcon: '로그인 모달창을 닫습니다.',
@@ -76,7 +78,7 @@ i18n
           },
           reviewCard: {
             linkToReview: '의 선택된 리뷰 페이지로 이동',
-            storeImage: '식당 이미지',
+            storeImage: '리뷰 이미지',
             userImage: '유저 이미지',
             ratingIcon: '리뷰 평점',
             memberNumIcon: '방문 인원',
@@ -115,6 +117,7 @@ i18n
             lowRatingReview: '낮은 평점 요약',
             highRatingReview: '높은 평점 요약',
             gptNotExist: 'ChatGPT로 요약한 후기를 검토중이에요.',
+            noReview: '리뷰가 없습니다.',
           },
           likedStorePage: {
             pageTitle: '좋아요 한 맛집',
@@ -228,6 +231,7 @@ i18n
             createPrompt: '프롬프트 생성',
             edit: '수정',
             delete: '삭제',
+            rating: '평점',
           },
           promptPage: {
             confirm: '확인',
@@ -251,6 +255,12 @@ i18n
             month: '달 전',
             year: '년 전',
           },
+          mainPage: {
+            search: '현재 범위 내 음식점 검색',
+          },
+          toggleLike: {
+            error: '오류가 발생했습니다.\n잠시 후 다시 시도해 주세요.',
+          },
         },
       },
       en: {
@@ -260,8 +270,7 @@ i18n
             myPage: 'Move to my page',
             home: 'Move to main page',
             search: 'Move to search page',
-            darkMode: 'Switch to dark mode',
-            lightMode: 'Switch to light mode',
+            language: 'Change language',
           },
           input: {
             search: 'Search',
@@ -287,6 +296,9 @@ i18n
             coinUsageHistory: 'Coin Usage History',
             language: 'Language',
             logout: 'Log Out',
+            noLikedReview: 'There is no review you liked.',
+            noLikedStore: 'There is no store you liked',
+            noWritedReview: 'There is no review you written.',
           },
           loginModal: {
             closeIcon: 'Close the Login Modal',
@@ -309,7 +321,7 @@ i18n
           },
           reviewCard: {
             linkToReview: 'Selected Review Page',
-            storeImage: 'Store Image',
+            storeImage: 'Review image',
             userImage: 'User Image',
             ratingIcon: 'Review Rating',
             memberNumIcon: 'The number of people visiting the store',
@@ -348,6 +360,7 @@ i18n
             lowRatingReview: 'Low rating review summary',
             highRatingReview: 'High rating review summary',
             gptNotExist: 'We\'re reviewing the review summarized by ChatGPT.',
+            noReview: 'There is no review.',
           },
           likedStorePage: {
             pageTitle: 'A Restaurant with Likes',
@@ -459,6 +472,7 @@ i18n
             createPrompt: 'Create a prompt.',
             edit: 'edit',
             delete: 'delete',
+            rating: 'rating',
           },
           promptPage: {
             confirm: 'Confrim',
@@ -481,6 +495,12 @@ i18n
             day: 'days ago',
             month: 'months ago',
             year: 'years ago',
+          },
+          mainPage: {
+            search: 'Search stores in range',
+          },
+          toggleLike: {
+            error: 'An error has occurred.\nPlease try again in a momentarily.',
           },
         },
       },

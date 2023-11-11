@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useIntersectionObserver } from '../../hooks/intersectionObserver';
 import { ReviewCardInfo } from '../../types/review';
 import ReviewCard from '../molecules/reviewCard';
@@ -14,24 +15,27 @@ export default function StoreReviewTab({
   fetchReview,
 }:StoreReviewTabProps) {
   const bottomObserverRef = useIntersectionObserver(fetchReview, { threshold: 1 });
+  const { t } = useTranslation();
 
   return (
     <>
       <ul>
-        {reviews.map((review) => (
-          <li key={review.reviewId}>
-            <ReviewCard
-              storeId={storeId}
-              reviewId={review.reviewId}
-              rating={review.rating}
-              imageUrls={review.imageUrls}
-              content={review.content}
-              createdAt={review.createdAt}
-              numOfLikes={review.numOfLikes}
-              updated={review.updated}
-            />
-          </li>
-        ))}
+        {reviews && reviews[0] !== null ? reviews.map((review) => (
+          review ? (
+            <li key={review.reviewId}>
+              <ReviewCard
+                storeId={storeId}
+                reviewId={review.reviewId}
+                rating={review.rating}
+                imageUrl={review.imageUrl}
+                content={review.content}
+                createdAt={review.createdAt}
+                numOfLikes={review.numOfLikes}
+                updated={review.updated}
+              />
+            </li>
+          ) : null
+        )) : <div>{t('storeDetail.noReview')}</div>}
       </ul>
       <div ref={bottomObserverRef} className="mb-[3.7rem]" />
     </>

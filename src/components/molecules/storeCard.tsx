@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Icon from '../atoms/icon';
 import Image from '../atoms/image';
 import { StoreCardInfo } from '../../types/store';
+import { fetchWithHandler } from '../../utils/fetchWithHandler';
+import { toggleStoreLike } from '../../apis/likedStore';
+import { getRandomBlankImage } from '../../utils/image';
 
 export default function StoreCard({
   storeId,
@@ -15,16 +18,27 @@ export default function StoreCard({
   likedCard = false,
 }: StoreCardInfo) {
   const { t } = useTranslation();
-  const [like, setLike] = useState(true);
+  const [like, setLike] = useState(likedCard);
+  const navigate = useNavigate();
+  const [image] = useState(storeImage || getRandomBlankImage());
 
-  const onClickLikeStoreHandler = () => {
-    if (like === true) {
-      // 백앤드 서버에 가게 좋아요 취소 api 요청
-      setLike(() => false);
-    } else {
-      // 백앤드 서버에 가게 좋아요 api 요청
-      setLike(() => true);
+  const handleToggleStoreLike = async () => {
+    const token = localStorage.getItem('accessToken');
+
+    if (token === null) {
+      navigate('/login', {
+        replace: true,
+      });
     }
+
+    await fetchWithHandler(async () => toggleStoreLike(token, storeId), {
+      onSuccess: () => {
+        setLike((prev) => !prev);
+      },
+      onError: () => {
+        alert(t('toggleLike.error'));
+      },
+    });
   };
 
   return (
@@ -36,7 +50,7 @@ export default function StoreCard({
       >
         <div className="h-28 w-28">
           <Image
-            imageSrc={storeImage}
+            imageSrc={image}
             alt={storeName}
             objectFitMode
             className="rounded-full object-cover"
@@ -46,11 +60,13 @@ export default function StoreCard({
         </div>
         <section className="flex h-full flex-col gap-[0.375rem] text-left">
           <h3 className="text-lg font-bold">{storeName}</h3>
-          <p className="text-sm">{category.name}</p>
+          {category ? <p className="text-sm">{category.name}</p> : null}
           <div className="flex items-center gap-3 text-xs">
             <div className="flex items-center gap-[0.1875rem]">
-              <Icon name="OutlineStar" size="1rem" ariaLabel={t('storeCard.rating')} />
-              {ratingAvg}
+              <span className="text-yellow-400">
+                <Icon name="FillStar" size="1rem" ariaLabel={t('storeCard.rating')} />
+              </span>
+              {ratingAvg.toFixed(2)}
             </div>
             <div>
               {`${t('storeCard.review')} ${numsOfReview}`}
@@ -61,11 +77,14 @@ export default function StoreCard({
       {likedCard ? (
         <button
           type="button"
-          onClick={() => {
-            onClickLikeStoreHandler();
-          }}
+          onClick={handleToggleStoreLike}
         >
-          <Icon name="FillHeart" color={like ? 'text-matgpt-red' : 'text-matgpt-red opacity-20'} size="3rem" ariaLabel={t('likedStorePage.heartButton')} />
+          <Icon
+            name={`${like ? 'FillHeart' : 'OutlineHeart'}`}
+            color="text-matgpt-red"
+            size="3rem"
+            ariaLabel={t('likedStorePage.heartButton')}
+          />
         </button>
       ) : ''}
     </div>

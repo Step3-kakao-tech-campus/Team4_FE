@@ -2,11 +2,26 @@ export interface ReviewCardInfo {
   storeId: number;
   reviewId: number;
   rating: number;
-  imageUrls: string;
+  imageUrl: string;
   content: string;
   createdAt: string;
   numOfLikes: number;
   updated: boolean;
+}
+
+export interface MypageReviewCardInfo {
+  reviewId: number;
+  storeId: number;
+  rating: number;
+  content: string;
+  imageUrl: string;
+  createdAt: string;
+  storeImage: string;
+  storeName: string;
+  relativeTime: string;
+  updated: boolean;
+  numOfLikes: number;
+  peopleCount: number;
 }
 
 export interface ReviewImageTagInfo {
@@ -30,27 +45,6 @@ export interface GPTReviewContent {
     worst: string;
   }
 }
-
-// {
-//   "data": {
-//     "storeId": 1,
-//     "reviewId": 2,
-//     "reviewer": {
-//       "profileImage": null,
-//       "userName": "ac98bef6-79c0-4a7b-b9b4-9c3e397dbbd7",
-//       "email": "female@gmail.com"
-//     },
-//     "averageCostPerPerson": 150000,
-//     "peopleCount": 2,
-//     "createdAt": "15 hoursago",
-//     "rating": 4,
-//     "recommendCount": 2,
-//     "content": "참말로 맛있네용",
-//     "reviewImages": [],
-//     "totalPrice": 30000,
-//     "updated": true
-//   }
-// }
 
 export interface ReviewDetailInfo {
   storeId: number;
@@ -82,4 +76,11 @@ export interface Tag {
 export interface PostWriteReviewInfo {
   imageUrl: string;
   tags: Tag[];
+}
+
+export interface ReviewImagesPresignedUrlInfo {
+  reviewId: number;
+  presignedUrls: {
+    presignedUrl: string;
+  }[];
 }
