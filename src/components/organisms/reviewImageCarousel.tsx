@@ -17,7 +17,7 @@ function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageC
   const { openModal } = useModal('Login');
 
   const onHandlePromptEvent = (name: string) => {
-    const token = localStorage.getItem('accessTdoken');
+    const token = localStorage.getItem('accessToken');
     if (token === null) {
       openModal();
     } else if (prompts[name] === undefined) {
@@ -33,19 +33,24 @@ function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageC
   };
 
   return (
-    <div>
-      <ImageCarousel swiperStyle="w-full h-full">
-        {reviewImages.map(({
-          imageData, tags,
-        }) => (
-          <div className="relative h-full w-full" key={imageData}>
-            <div className="h-[500px] w-[500px] bg-white">
-              <Image smallImageSrc={imageData} largeImageSrc={imageData} imageSrc={imageData} alt={t('reviewDetailPage.reviewImage')} />
-            </div>
+    <div className="relative w-full">
+      <ImageCarousel swiperStyle="relative w-full h-full">
+        {reviewImages.map(({ image, tags }) => (
+          <div className="relative h-full w-full" key={image}>
+            <Image
+              imageSrc={image}
+              alt={t('reviewDetailPage.reviewImage')}
+              objectFitMode
+              className="h-full w-full object-cover"
+            />
             {tags.map(({
-              tagIndex, locationX, locationY, name, rating,
-            }) => (
-              <li key={tagIndex} className="absolute" style={{ top: `${locationY}%`, left: `${locationX}%` }}>
+              location_x, location_y, name, rating,
+            }, tagIndex) => (
+              <div
+                key={`${name}-${location_x}-${location_y}`}
+                className="absolute"
+                style={{ top: `${location_y}%`, left: `${location_x}%` }}
+              >
                 <MenuTag
                   tagIndex={tagIndex}
                   name={name}
@@ -55,7 +60,7 @@ function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageC
                     () => { onHandlePromptEvent(name); }
                   }
                 />
-              </li>
+              </div>
             ))}
           </div>
         ))}
