@@ -9,14 +9,13 @@ import MainPage from './components/page/mainPage';
 import SearchResultPage from './components/page/searchResultPage';
 import MainLayout from './components/layouts/mainLayout';
 import { queryClient } from './utils/query';
-import { worker } from './mocks/worker';
 import StoreDetailPage from './components/page/storeDetailPage';
 import LikedStorePage from './components/page/likedStorePage';
 import CoinRechargePage from './components/page/coinRechargePage';
 import { store } from './store';
 import ModalContainer from './components/modals/modalContainer';
 import WritedReviewPage from './components/page/writedReviewPage';
-import RecentlyViewdStorePage from './components/page/recentlyViewdStorePage';
+import RecentlyViewdStorePage from './components/page/recentlyViewedStorePage';
 import UserEditProfilePage from './components/page/userEditProfilePage';
 import CoinUsagePage from './components/page/coinUsagePage';
 import LikedReviewPage from './components/page/likedReviewPage';
@@ -30,12 +29,6 @@ import RegisterUserInfoPage from './components/page/registerUserInfoPage';
 import Login from './components/page/login';
 import Register from './components/page/register';
 
-if (process.env.NODE_ENV === 'development') {
-  worker.start({
-    onUnhandledRequest: 'bypass',
-  });
-}
-
 ReactModal.setAppElement('#root');
 
 function App() {
@@ -43,9 +36,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <BrowserRouter>
-          <ModalContainer>
-            <ErrorBoundary>
-              <Suspense fallback={<GlobalLoader />}>
+          <ErrorBoundary>
+            <Suspense fallback={<GlobalLoader />}>
+              <ModalContainer>
                 <Routes>
                   {/* 공통 레이아웃 */}
                   <Route element={<MainLayout />}>
@@ -71,9 +64,9 @@ function App() {
                   <Route path="/landing" element={<LandingPage />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>
-              </Suspense>
-            </ErrorBoundary>
-          </ModalContainer>
+              </ModalContainer>
+            </Suspense>
+          </ErrorBoundary>
         </BrowserRouter>
       </Provider>
     </QueryClientProvider>

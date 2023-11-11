@@ -1,7 +1,7 @@
 import { BsPerson, BsJournalBookmarkFill } from 'react-icons/bs';
 import { GoHome, GoSearch } from 'react-icons/go';
 import { PiMoon, PiClipboard } from 'react-icons/pi';
-import { IoLanguage, IoEllipseOutline, IoEllipse } from 'react-icons/io5';
+import { IoEllipseOutline, IoEllipse, IoLanguageOutline } from 'react-icons/io5';
 import {
   AiOutlineLike, AiOutlineStar, AiOutlineClose, AiOutlineHeart,
   AiOutlineLeft, AiOutlineBell, AiOutlineRight, AiFillHeart, AiFillStar, AiOutlineCheck,
@@ -36,7 +36,7 @@ function Icon({
     case 'Clipboard': // 클립보드
       return <PiClipboard size={size} aria-label={ariaLabel} className={color} />;
     case 'Language': // 랜딩페이지 지구본
-      return <IoLanguage size={size} aria-label={ariaLabel} className={color} />;
+      return <IoLanguageOutline size={size} aria-label={ariaLabel} className={color} />;
     case 'OutlineLike': // 좋아요
       return <AiOutlineLike size={size} aria-label={ariaLabel} className={color} />;
     case 'UserGroup': // 유저들

@@ -1,32 +1,19 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StoreCardInfo } from '../../types/store';
 import PageTitleCard from '../molecules/pageTitleCard';
 import StoreCard from '../molecules/storeCard';
 import Page from '../molecules/page';
 
 interface RecentlyViewdStoreTemplateProps {
-  recentlyViewdStore: StoreCardInfo[],
-  page: number,
-  onChangePage: (type: 'left' | 'right') => void,
+  recentlyViewdStore: any[];
+  page: number;
+  onChangePage: (type: 'left' | 'right') => void;
+  isLastPage: boolean;
 }
 
-function RecentlyViewdStoreTemplate(
-  { recentlyViewdStore, page, onChangePage }: RecentlyViewdStoreTemplateProps,
-) {
+function RecentlyViewdStoreTemplate({
+  recentlyViewdStore, page, onChangePage, isLastPage,
+}: RecentlyViewdStoreTemplateProps) {
   const { t } = useTranslation();
-  const [isLastPage, setIsLastPage] = useState(false);
-
-  useEffect(() => {
-    if (recentlyViewdStore.length < 6) {
-      return () => {
-        setIsLastPage(true);
-      };
-    }
-    return () => {
-      setIsLastPage(false);
-    };
-  }, [recentlyViewdStore]);
 
   return (
     <div className="relative">
@@ -38,22 +25,21 @@ function RecentlyViewdStoreTemplate(
       </nav>
       <main>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {recentlyViewdStore.map(({
-            storeId, storeName, category, review, reviewCount, rating, image,
+          {recentlyViewdStore ? recentlyViewdStore.map(({
+            storeIamge, storeId, storeName, category,
+            ratingAvg, numsOfReview,
           }) => (
             <li key={storeId}>
               <StoreCard
+                storeImage={storeIamge}
                 storeId={storeId}
                 storeName={storeName}
                 category={category}
-                review={review}
-                reviewCount={reviewCount}
-                rating={rating}
-                image={image}
-                likedCard
+                ratingAvg={ratingAvg}
+                numsOfReview={numsOfReview}
               />
             </li>
-          ))}
+          )) : <div>최근 본 음식점이 없습니다.</div>}
         </ul>
       </main>
     </div>

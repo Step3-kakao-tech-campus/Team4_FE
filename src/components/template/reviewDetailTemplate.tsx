@@ -9,6 +9,8 @@ import PromptEdit from '../organisms/promptEdit';
 import Input from '../atoms/input';
 import { RefHandler } from '../../types/refHandler';
 import Button from '../atoms/button';
+import { fetchWithHandler } from '../../utils/fetchWithHandler';
+import { translateContent } from '../../apis/translate';
 
 interface ReviewDetailTemplateProps {
   data: ReviewDetailInfo,
@@ -22,10 +24,39 @@ const ReviewDetailTemplate = forwardRef<RefHandler, ReviewDetailTemplateProps>((
   },
   ref,
 ) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [prompts, setPrompts] = useState({}); // 프롬프트 데이터를 저장할 상태 값
   const [isClick, setIsClick] = useState(false); // 프롬프트 창을 열었는지 확인하는 상태 값
   const [isEdit, setIsEdit] = useState(false); // 리뷰 수정 상태 안지 확인하는 상태 값
+
+  const [isTranslated, setIsTranslated] = useState(false);
+  const [translatedContent, setTranslatedContent] = useState('');
+  const [isShowTranslatedContent, setIsShowTranslatedContent] = useState(false);
+
+  const translateReview = () => {
+    if (!isTranslated) {
+      fetchWithHandler(
+        async () => translateContent(data.content, i18n.language),
+        {
+          onSuccess: (response) => {
+            setTranslatedContent(response?.data.data.translations[0].translatedText);
+            setIsTranslated(true);
+          },
+          onError: (error) => {
+            console.error(error);
+          },
+        },
+      );
+    }
+  };
+
+  const toggleContent = () => {
+    if (!isShowTranslatedContent) {
+      translateReview();
+    }
+
+    setIsShowTranslatedContent((prev) => !prev);
+  };
 
   return (
     <main>
@@ -38,8 +69,8 @@ const ReviewDetailTemplate = forwardRef<RefHandler, ReviewDetailTemplateProps>((
       <ReviewInformation
         rating={data.rating}
         createdAt={data.createdAt}
-        reviewerName={data.reviewerName}
-        reviewerImage={data.reviewerImage}
+        reviewerName={data.reviewer.userName}
+        reviewerImage={data.reviewer.profileImage}
         peopleCount={data.peopleCount}
         totalPrice={data.totalPrice}
         isOwn={data.isOwn}
@@ -75,14 +106,27 @@ const ReviewDetailTemplate = forwardRef<RefHandler, ReviewDetailTemplateProps>((
             )
               : (
                 <div>
-                  {data.content}
+                  {isShowTranslatedContent ? translatedContent : data.content}
+                  <div className="flex justify-end py-2">
+                    <Button onClick={toggleContent} size="small">
+                      {isShowTranslatedContent ? '원문보기' : '번역하기'}
+                    </Button>
+                  </div>
                   <div className="absolute right-12">
-                    <div className="solid fixed bottom-16 z-10 mb-10 ml-5 h-5 w-5 rounded-3xl bg-matgpt-red text-center leading-4">
+                    <div className="fixed bottom-16 z-10 mb-10 ml-5 h-5 w-5 rounded-3xl bg-matgpt-red text-center leading-4">
                       <span className="text-[0.75rem] font-bold">{Object.keys(prompts).length}</span>
                     </div>
                     <div>
-                      <button type="button" onClick={() => { setIsClick((prev) => !prev); }} className="solid fixed bottom-8 mb-11 rounded-3xl border-8 border-matgpt-blue bg-matgpt-blue">
-                        <Icon name="JournalBookmarkFill" ariaLabel={t('reviewDetailPage.openPrompEditPage')} size="1.5rem" />
+                      <button
+                        type="button"
+                        onClick={() => { setIsClick((prev) => !prev); }}
+                        className="fixed bottom-8 mb-11 rounded-3xl border-8 border-matgpt-blue bg-matgpt-blue"
+                      >
+                        <Icon
+                          name="JournalBookmarkFill"
+                          ariaLabel={t('reviewDetailPage.openPrompEditPage')}
+                          size="1.5rem"
+                        />
                       </button>
                     </div>
                   </div>
