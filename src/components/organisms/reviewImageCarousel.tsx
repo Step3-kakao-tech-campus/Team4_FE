@@ -1,19 +1,22 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import type { RootState } from '../../store';
 import ImageCarousel from '../molecules/imageCarousel';
 import { ReviewDetailImageInfo } from '../../types/review';
 import Image from '../atoms/image';
 import MenuTag from '../molecules/menuTag';
+import { AddMenu } from '../../store/slices/promptMenu';
 
 interface ReviewImageCarouselProps {
   reviewImages: ReviewDetailImageInfo[],
-  prompts: { [key: string]: number },
-  setPrompts: React.Dispatch<React.SetStateAction<{}>>;
 }
 
-function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageCarouselProps) {
+function ReviewImageCarousel({ reviewImages }: ReviewImageCarouselProps) {
   const { t } = useTranslation();
+  const prompts = useSelector((state: RootState) => state.promptMenu);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { storeId, reviewId } = useParams();
   const onHandlePromptEvent = (name: string) => {
@@ -23,10 +26,7 @@ function ReviewImageCarousel({ reviewImages, prompts, setPrompts }: ReviewImageC
       navigate('/login');
     } else if (prompts[name] === undefined) {
       // 프롬프트에 메뉴가 없다면
-      setPrompts((prev) => ({
-        ...prev,
-        [name]: 1,
-      }));
+      dispatch(AddMenu({ menu: name }));
       alert(t('reviewDetailPage.menuAdd'));
     } else { // 프롬프트에 메뉴가 있다면
       alert(t('reviewDetailPage.alreadyAddMenu'));

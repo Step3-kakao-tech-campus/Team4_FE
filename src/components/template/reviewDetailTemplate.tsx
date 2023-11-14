@@ -1,9 +1,11 @@
 import React, { useState, forwardRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import ReviewImageCarousel from '../organisms/reviewImageCarousel';
 import ReviewInformation from '../molecules/reviewInformation';
 import PageTitleCard from '../molecules/pageTitleCard';
 import { ReviewDetailInfo } from '../../types/review';
+import { RootState } from '../../store';
 import Icon from '../atoms/icon';
 import PromptEdit from '../organisms/promptEdit';
 import Input from '../atoms/input';
@@ -25,9 +27,9 @@ const ReviewDetailTemplate = forwardRef<RefHandler, ReviewDetailTemplateProps>((
   ref,
 ) => {
   const { t, i18n } = useTranslation();
-  const [prompts, setPrompts] = useState({}); // 프롬프트 데이터를 저장할 상태 값
   const [isClick, setIsClick] = useState(false); // 프롬프트 창을 열었는지 확인하는 상태 값
   const [isEdit, setIsEdit] = useState(false); // 리뷰 수정 상태 안지 확인하는 상태 값
+  const prompts = useSelector((state: RootState) => state.promptMenu);
 
   const [isTranslated, setIsTranslated] = useState(false);
   const [translatedContent, setTranslatedContent] = useState('');
@@ -63,8 +65,6 @@ const ReviewDetailTemplate = forwardRef<RefHandler, ReviewDetailTemplateProps>((
       <PageTitleCard pageTitle={t('reviewDetailPage.pageTitle')} />
       <ReviewImageCarousel
         reviewImages={data.reviewImages}
-        prompts={prompts}
-        setPrompts={setPrompts}
       />
       <ReviewInformation
         rating={data.rating}
@@ -78,9 +78,7 @@ const ReviewDetailTemplate = forwardRef<RefHandler, ReviewDetailTemplateProps>((
       />
       {isClick ? (
         <PromptEdit
-          prompts={prompts}
           setIsClick={setIsClick}
-          setPrompts={setPrompts}
         />
       ) : (
         <div className="relative">
