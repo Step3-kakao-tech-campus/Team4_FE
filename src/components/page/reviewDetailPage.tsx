@@ -1,6 +1,8 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { resetMenu } from '../../store/slices/promptMenu';
 import ReviewDetailTemplate from '../template/reviewDetailTemplate';
 import { editReview } from '../../apis/review';
 import { RefHandler } from '../../types/refHandler';
@@ -10,6 +12,7 @@ function ReviewDetailPage() {
   const { t } = useTranslation();
   const { storeId: si, reviewId: ri } = useParams();
   const InputRef = useRef<RefHandler>(null);
+  const dispatch = useDispatch();
 
   const storeId = Number(si);
   const reviewId = Number(ri);
@@ -32,6 +35,10 @@ function ReviewDetailPage() {
   if (Number.isNaN(reviewId) || Number.isNaN(storeId)) {
     return <div>{t('reviewDetailPage.wrongApiAccess')}</div>;
   }
+
+  useEffect(() => {
+    dispatch(resetMenu());
+  }, []);
 
   const { data, isLoading, isFetching } = useReviewDetail(storeId, reviewId);
 

@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Icon from '../atoms/icon';
+import type { RootState } from '../../store';
+import { MenuNumber, DeleteMenu } from '../../store/slices/promptMenu';
 
 interface PromptListProps {
   menu: string,
-  number: number,
-  setPrompts: React.Dispatch<React.SetStateAction<{}>>,
-  prompts: { [key: string]: number },
 }
 
 function PromptList({
-  menu, number, setPrompts, prompts,
+  menu,
 }: PromptListProps) {
+  const prompts = useSelector((state: RootState) => state.promptMenu);
+  const [number, setNumber] = useState(prompts[menu]);
+  const dispatch = useDispatch();
+
   const onHandleMenuNumber = (type: 'plus' | 'minus') => {
     let newNumber = number;
     if (newNumber < 1) {
@@ -19,29 +23,15 @@ function PromptList({
     }
 
     if (type === 'plus') { newNumber += 1; } else { newNumber -= 1; }
-    setPrompts((prev) => ({
-      ...prev,
-      [menu]: newNumber,
-    }));
+    dispatch(MenuNumber({ menu, newNumber }));
+    setNumber(newNumber);
   };
 
-  const onHandleDeleteMenu = () => {
-    setPrompts((prev) => {
-      const newPrompts: { [key: string]: number } = {};
-      Object.keys(prev).map((key) => {
-        if (key !== menu) {
-          newPrompts[key] = prompts[key];
-        }
-        return true;
-      });
-      return ({ ...newPrompts });
-    });
-  };
   return (
     <div className="mb-8 flex items-center justify-between px-4">
       <span className="pl-2 text-2xl font-normal">{menu}</span>
       <div className="flex flex-col items-end">
-        <button type="button" onClick={() => { onHandleDeleteMenu(); }}>
+        <button type="button" onClick={() => { dispatch(DeleteMenu({ menu })); }}>
           <Icon name="OutlineClose" ariaLabel="메뉴 목록에서 삭제하기" size="1.5rem" />
         </button>
         <div className="flex pt-8">
