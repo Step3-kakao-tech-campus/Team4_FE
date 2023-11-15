@@ -2,7 +2,8 @@ import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '../atoms/button';
 import { isImageType, isValidFileSize } from '../../utils/image';
-import { getPresignedUrl, imageComplete, putUserImage } from '../../apis/profile';
+import { getPresignedUrl, imageComplete } from '../../apis/profile';
+import { uploadImageToS3 } from '../../apis/uploadImageToS3';
 
 function EditProfileImage() {
   const { t } = useTranslation();
@@ -28,7 +29,7 @@ function EditProfileImage() {
 
     getPresignedUrl().then((res) => {
       console.log(res);
-      putUserImage(res.data, fileList[0]).then(() => {
+      uploadImageToS3(res.data, fileList[0]).then(() => {
         imageComplete(localStorage.getItem('email') || '', res.data).then((response) => {
           alert('유저 이미지가 성공적으로 변경 되었습니다.');
           localStorage.setItem('profileImageUrl', response.profileImageUrl);

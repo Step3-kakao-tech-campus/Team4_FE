@@ -8,7 +8,7 @@ export async function profileEdit({
   age, gender, nickname, language,
 }: ProfileEditInfo)
   : Promise<ResultType> {
-  const response = await fetchInstance.put('/users-info', {
+  const response = await fetchInstance.put('/users/info', {
     language,
     age,
     gender,
