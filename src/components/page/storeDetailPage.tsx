@@ -1,20 +1,18 @@
 import { useParams } from 'react-router-dom';
 import { useStoreDetail, useStoreReview } from '../../hooks/query';
 import StoreDetailTemplate from '../template/storeDetailTemplate';
+import ErrorPage from './errorPage';
 
 export default function StoreDetailPage() {
   const { storeId } = useParams();
+  const storeIdToNum = Number(storeId);
 
-  if (storeId === undefined || Number.isNaN(+storeId)) {
-    return <div>잘못된 접근입니다.</div>;
-  }
-
-  const { data: storeDetailData, isLoading: isStoreDetailDataLoading } = useStoreDetail(+storeId);
-  const storeDetail = storeDetailData?.data.response;
+  const { data: storeDetailData } = useStoreDetail(storeIdToNum);
+  const storeDetail = storeDetailData?.data.data;
 
   const {
     data: reviewData, hasNextPage, fetchNextPage,
-  } = useStoreReview(+storeId);
+  } = useStoreReview(storeIdToNum);
 
   const fetchReview = () => {
     if (hasNextPage) {
@@ -22,14 +20,14 @@ export default function StoreDetailPage() {
     }
   };
 
-  if (isStoreDetailDataLoading) {
-    return <div>...</div>;
+  if (!storeDetail) {
+    return <ErrorPage errorMessage="음식점 정보를 불러오는데 실패했습니다." />;
   }
 
   return (
     <StoreDetailTemplate
       storeDetail={storeDetail}
-      reviews={reviewData?.pages.flat()}
+      reviews={reviewData?.pages.map((page) => page.body).flat()}
       fetchReview={fetchReview}
     />
   );

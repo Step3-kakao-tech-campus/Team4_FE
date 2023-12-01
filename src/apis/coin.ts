@@ -1,18 +1,26 @@
+import { AxiosResponse } from 'axios';
 import { fetchInstance } from './instance';
 import { CoinRechargeInfo, CoinUsageInfo } from '../types/coin';
+import { PagingDataResponse } from '../types/response';
 
-export async function getChargeCoin(
-  cursor: number,
-  limits: number,
-): Promise<CoinRechargeInfo[]> {
-  const response = await fetchInstance.get(`/mypage/charge-coin?cursor=${cursor}&limits=${limits}`);
-  return response.data.response;
+export async function getChargeCoin(token: string | null, cursor: string) {
+  const response = await fetchInstance.get<AxiosResponse<PagingDataResponse<CoinRechargeInfo>>>(`/coin/history/earning?cursor=${cursor}`, {
+    headers: {
+      Authorization: token,
+    },
+    withCredentials: true,
+  });
+
+  return response.data.data;
 }
 
-export async function getUsageCoin(
-  cursor: number,
-  limits: number,
-): Promise<CoinUsageInfo[]> {
-  const response = await fetchInstance.get(`/mypage/usage-coin?cursor=${cursor}&limits=${limits}`);
-  return response.data.response;
+export async function getUsageCoin(token: string | null, cursor: string) {
+  const response = await fetchInstance.get<AxiosResponse<PagingDataResponse<CoinUsageInfo>>>(`/coin/history/usage?cursor=${cursor}`, {
+    headers: {
+      Authorization: token,
+    },
+    withCredentials: true,
+  });
+
+  return response.data.data;
 }

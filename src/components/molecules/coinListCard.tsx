@@ -1,25 +1,26 @@
+import useElapsedDate from '../../hooks/convert';
 import { comma } from '../../utils/convert';
 
 interface CoinListCardType {
-  date: Date,
-  passingCoin: number,
-  finalCoin: number,
-  isUse: boolean,
+  date: string;
+  amount: number;
+  balance: number;
 }
 
 function CoinListCard({
-  date, passingCoin, finalCoin, isUse,
+  date, amount, balance,
 }: CoinListCardType) {
+  const elapsedDate = useElapsedDate({ dateString: date });
+
   return (
     <div>
       <hr className="border-[0.1rem]" />
       <div className="flex w-full justify-between py-6">
-        <div className="pl-6">{date.toString()}</div>
+        <div className="pl-6">{elapsedDate}</div>
         <div className="pr-9">
-          {isUse ? <span>-</span> : <span>+</span>}
-          <span>{comma(passingCoin)}</span>
+          <span>{comma(amount)}</span>
         </div>
-        <div className="pr-6">{comma(finalCoin)}</div>
+        <div className="pr-6">{comma(balance)}</div>
       </div>
     </div>
   );

@@ -1,22 +1,25 @@
 import { OverlayViewF } from '@react-google-maps/api';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 import Image from '../atoms/image';
 import { MarkerInfo } from '../../types/map';
+import { getRandomBlankImage } from '../../utils/image';
 
 export default function Marker({
-  lat,
-  lng,
+  latitude,
+  longitude,
   storeId,
   storeName,
-  image,
+  storeImage,
 }: MarkerInfo) {
   const { t } = useTranslation();
+  const [image] = useState(storeImage || getRandomBlankImage());
 
   return (
     <OverlayViewF
       mapPaneName="floatPane"
-      position={{ lat, lng }}
+      position={{ lat: latitude, lng: longitude }}
     >
       <Link
         className="absolute -left-6 -top-6 flex flex-col items-center justify-center gap-2"

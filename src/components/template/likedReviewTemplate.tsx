@@ -1,30 +1,21 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageTitleCard from '../molecules/pageTitleCard';
-import { ReviewCardInfo } from '../../types/review';
 import ReviewCard from '../molecules/reviewCard';
 import Page from '../molecules/page';
+import { MypageReviewCardInfo } from '../../types/review';
 
-interface WritedReviewType {
-  likedReview: ReviewCardInfo[],
-  page: number,
-  onChangePage: (type: 'left' | 'right') => void,
+interface WritedReviewProps {
+  likedReview: MypageReviewCardInfo[];
+  page: number;
+  onChangePage: (type: 'left' | 'right') => void;
+  isLastPage: boolean;
 }
 
-function LikedReviewTemplate({ likedReview, page, onChangePage }: WritedReviewType) {
+function LikedReviewTemplate({
+  likedReview, page, onChangePage, isLastPage,
+}: WritedReviewProps) {
   const { t } = useTranslation();
-  const [isLastPage, setIsLastPage] = useState(false);
 
-  useEffect(() => {
-    if (likedReview.length < 8) {
-      return () => {
-        setIsLastPage(true);
-      };
-    }
-    return () => {
-      setIsLastPage(false);
-    };
-  }, [likedReview]);
   return (
     <div className="relative">
       <div className="sticky top-0">
@@ -35,25 +26,22 @@ function LikedReviewTemplate({ likedReview, page, onChangePage }: WritedReviewTy
       </nav>
       <main>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {likedReview.map(({
-            storeId, reviewId, storeImage,
-            storeName, profileImage, reviewerName,
-            reviewRating, visitedCount, createdAt,
-          }) => (
-            <li key={storeId}>
-              <ReviewCard
-                storeId={storeId}
-                reviewId={reviewId}
-                storeImage={storeImage}
-                storeName={storeName}
-                profileImage={profileImage}
-                reviewerName={reviewerName}
-                reviewRating={reviewRating}
-                visitedCount={visitedCount}
-                createdAt={createdAt}
-              />
-            </li>
-          ))}
+          {likedReview && likedReview[0] !== null ? likedReview.map((review) => (
+            review ? (
+              <li key={review.reviewId}>
+                <ReviewCard
+                  storeId={review.storeId}
+                  reviewId={review.reviewId}
+                  rating={review.rating}
+                  content={review.content}
+                  createdAt={review.createdAt}
+                  numOfLikes={review.numOfLikes}
+                  updated={review.updated}
+                  imageUrl={review.imageUrl}
+                />
+              </li>
+            ) : null
+          )) : <div>{t('userPage.noLikedReview')}</div>}
         </ul>
       </main>
     </div>

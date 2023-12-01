@@ -1,15 +1,36 @@
 import { useTranslation } from 'react-i18next';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StoreCard from '../molecules/storeCard';
 import Input from '../atoms/input';
 import Icon from '../atoms/icon';
 import { RefHandler } from '../../types/refHandler';
+import { usePopularStores } from '../../hooks/query';
+import { StoreCardInfo } from '../../types/store';
+import { fetchWithHandler } from '../../utils/fetchWithHandler';
+import { getSimilarStores } from '../../apis/search';
 
 export default function SearchModal() {
   const { t } = useTranslation();
   const searchRef = useRef<RefHandler>(null);
   const navigate = useNavigate();
+  const [similarStores, setSimilarStores] = useState<StoreCardInfo[]>([]);
+
+  const { data: popularStores } = usePopularStores();
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (token !== null) {
+      fetchWithHandler(async () => getSimilarStores(token), {
+        onSuccess: (response) => {
+          setSimilarStores(response?.data.data);
+        },
+        onError: (error) => {
+          console.error(error);
+        },
+      });
+    }
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,14 +50,14 @@ export default function SearchModal() {
   };
 
   return (
-    <div className="h-[100dvh] w-[100dvw] max-w-[500px] bg-white">
+    <div className="h-[100dvh] w-[100dvw] max-w-[500px] overflow-y-auto bg-white">
       <div className="h-16 bg-matgpt-blue p-3">
         <div className="flex flex-row items-center gap-2">
           <button
             type="button"
             className="text-white"
             onClick={() => {
-              window.location.hash = '';
+              navigate(-1);
             }}
           >
             <Icon name="OutlineLeft" size="1.4em" ariaLabel={t('searchBar.cancelSearch')} />
@@ -51,40 +72,44 @@ export default function SearchModal() {
       <div className="flex w-full flex-col gap-4 bg-white py-4">
         <div>
           <h2 className="mb-2 px-4 font-bold">{t('searchBar.popularStore')}</h2>
-          <StoreCard
-            storeId={1}
-            storeName="몽중헌 판교점"
-            category="중식당"
-            review="닭껍질이 엄청 맛있습니다"
-            image="/image/fakeDb/store/store1.png"
-            reviewCount={2000}
-            rating={4.3}
-          />
+          <ul>
+            {popularStores ? popularStores.map(({
+              storeImage, storeId, storeName, category, ratingAvg, numsOfReview,
+            }) => (
+              <li key={storeId}>
+                <StoreCard
+                  storeImage={storeImage}
+                  storeId={storeId}
+                  storeName={storeName}
+                  category={category}
+                  ratingAvg={ratingAvg}
+                  numsOfReview={numsOfReview}
+                />
+              </li>
+            )) : null}
+          </ul>
         </div>
-        <div>
-          <h2 className="mb-2 px-4 font-bold">{t('searchBar.recentReviewed')}</h2>
-          <StoreCard
-            storeId={2}
-            storeName="고반식당 판교아브뉴프랑점"
-            category="돼지고기 구이"
-            review="숙성고기 맛집"
-            image="/image/fakeDb/store/store2.png"
-            reviewCount={500}
-            rating={4.6}
-          />
-        </div>
-        <div>
-          <h2 className="mb-2 px-4 font-bold">{t('searchBar.similar')}</h2>
-          <StoreCard
-            storeId={3}
-            storeName="비앙또아 판교점"
-            category="양식"
-            review="줄 서서 먹는 브런치 카페"
-            image="/image/fakeDb/store/store3.png"
-            reviewCount={500}
-            rating={4.4}
-          />
-        </div>
+        {similarStores && similarStores.length > 0 ? (
+          <div>
+            <h2 className="mb-2 px-4 font-bold">{t('searchBar.similarStore')}</h2>
+            <ul>
+              {similarStores.map(({
+                storeImage, storeId, storeName, category, ratingAvg, numsOfReview,
+              }) => (
+                <li key={storeId}>
+                  <StoreCard
+                    storeImage={storeImage}
+                    storeId={storeId}
+                    storeName={storeName}
+                    category={category}
+                    ratingAvg={ratingAvg}
+                    numsOfReview={numsOfReview}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </div>
     </div>
   );
